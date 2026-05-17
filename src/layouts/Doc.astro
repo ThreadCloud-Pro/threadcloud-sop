@@ -1,0 +1,325 @@
+---
+import "../styles/tokens.css";
+import { navigation } from "../data/nav";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = "Standard operating procedures for the ThreadCloud team.", ogImage } = Astro.props;
+const pageTitle = `${title} — ThreadCloud SOPs`;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="brand">
+          <span class="brand-mark">◐</span>
+          <span class="brand-name">ThreadCloud <span class="brand-name-quiet">SOPs</span></span>
+        </a>
+        <form class="search" role="search" data-pagefind-ignore>
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Search the SOPs…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <kbd>/</kbd>
+        </form>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" data-pagefind-ignore>
+        <nav>
+          {navigation.map((section) => (
+            <div class="nav-section">
+              <h4 class="nav-heading">{section.title}</h4>
+              <ul>
+                {section.items.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class:list={["nav-link", { active: path === item.href.replace(/\/$/, "") || path + "/" === item.href }]}
+                    >
+                      {item.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <div class="nav-section nav-footer">
+            <p>Last updated 2026-05-16. Owned by Gregory.</p>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <article data-pagefind-body>
+          <slot />
+        </article>
+      </main>
+
+      <div class="search-results" id="search-results" hidden></div>
+    </div>
+
+    <script>
+      // Bind "/" to focus search and wire Pagefind result rendering.
+      const input = document.getElementById("search-input") as HTMLInputElement;
+      const results = document.getElementById("search-results")!;
+      let pagefind: any = null;
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement?.tagName !== "INPUT") {
+          e.preventDefault();
+          input?.focus();
+        }
+        if (e.key === "Escape") {
+          results.hidden = true;
+          input?.blur();
+        }
+      });
+
+      input?.addEventListener("input", async () => {
+        const q = input.value.trim();
+        if (!q) {
+          results.hidden = true;
+          results.innerHTML = "";
+          return;
+        }
+        if (!pagefind) {
+          try {
+            // @ts-ignore — Pagefind is dropped into /pagefind/ at build time.
+            pagefind = await import("/pagefind/pagefind.js");
+            await pagefind.options({ baseUrl: "/" });
+          } catch {
+            results.innerHTML = "<p class='search-empty'>Search index not built yet. Run <code>npm run build</code>.</p>";
+            results.hidden = false;
+            return;
+          }
+        }
+        const search = await pagefind.search(q);
+        const items = await Promise.all(search.results.slice(0, 8).map((r: any) => r.data()));
+        if (items.length === 0) {
+          results.innerHTML = `<p class='search-empty'>No matches for “${q}”.</p>`;
+        } else {
+          results.innerHTML = items
+            .map(
+              (i: any) => `
+              <a class="search-result" href="${i.url}">
+                <div class="search-result-title">${i.meta?.title ?? i.url}</div>
+                <div class="search-result-excerpt">${i.excerpt}</div>
+              </a>`,
+            )
+            .join("");
+        }
+        results.hidden = false;
+      });
+
+      document.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        if (!results.contains(target) && target !== input) {
+          results.hidden = true;
+        }
+      });
+    </script>
+
+    <style>
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border-soft);
+      }
+      .header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 14px 32px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text);
+        border-bottom: 0;
+        font-weight: 500;
+      }
+      .brand:hover { border-bottom: 0; color: var(--text); }
+      .brand-mark {
+        font-size: 22px;
+        color: var(--primary);
+        font-family: var(--font-serif);
+      }
+      .brand-name {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-style: italic;
+        font-weight: 400;
+      }
+      .brand-name-quiet {
+        color: var(--text-muted);
+        font-style: italic;
+      }
+
+      .search {
+        position: relative;
+        flex: 1;
+        max-width: 480px;
+      }
+      .search input {
+        width: 100%;
+        padding: 9px 32px 9px 14px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        font: inherit;
+        color: var(--text);
+        outline: none;
+        transition: border-color var(--dur-state);
+      }
+      .search input:focus { border-color: var(--border-strong); }
+      .search input::placeholder { color: var(--text-subtle); }
+      .search kbd {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      .layout {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 48px;
+        padding: 32px;
+        position: relative;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 80px;
+        align-self: start;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        padding-right: 12px;
+      }
+      .nav-section { margin-bottom: 28px; }
+      .nav-heading {
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-subtle);
+        margin: 0 0 8px;
+      }
+      .sidebar ul { list-style: none; padding: 0; margin: 0; }
+      .sidebar li { margin: 0; }
+      .nav-link {
+        display: block;
+        padding: 4px 10px;
+        margin-left: -10px;
+        color: var(--text-muted);
+        border-bottom: 0;
+        border-radius: 2px;
+        font-size: 14px;
+        transition: background-color var(--dur-state), color var(--dur-state);
+      }
+      .nav-link:hover {
+        background: var(--bg-lift);
+        color: var(--text);
+        border-bottom: 0;
+      }
+      .nav-link.active {
+        background: var(--primary-quiet);
+        color: var(--primary);
+        font-weight: 500;
+        border-bottom: 0;
+      }
+      .nav-footer p {
+        font-size: 12px;
+        color: var(--text-subtle);
+        margin: 0;
+      }
+
+      .content {
+        max-width: 760px;
+        min-width: 0;
+      }
+      .content :global(article > h1:first-child) {
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+      .content :global(article > h1:first-child + p) {
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        margin-top: -12px;
+        margin-bottom: 2.5rem;
+      }
+
+      .search-results {
+        position: absolute;
+        top: 80px;
+        right: 32px;
+        width: 480px;
+        max-height: 70vh;
+        overflow-y: auto;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        box-shadow: var(--shadow-lift);
+        z-index: 30;
+        padding: 4px;
+      }
+      :global(.search-result) {
+        display: block;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border-soft);
+        color: var(--text);
+        border-bottom: 1px solid var(--border-soft);
+      }
+      :global(.search-result):hover { background: var(--bg-lift); }
+      :global(.search-result-title) { font-weight: 500; margin-bottom: 4px; }
+      :global(.search-result-excerpt) { font-size: 13px; color: var(--text-muted); }
+      :global(.search-result mark) { background: var(--primary-quiet); color: var(--primary); padding: 1px 2px; }
+      :global(.search-empty) { padding: 14px; color: var(--text-muted); margin: 0; font-size: 14px; }
+
+      @media (max-width: 900px) {
+        .layout { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
+        .sidebar { position: static; max-height: none; }
+        .header-inner { flex-direction: column; gap: 12px; align-items: stretch; padding: 12px 16px; }
+        .search-results { right: 16px; left: 16px; width: auto; }
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+---
+layout: ../../layouts/Doc.astro
+title: Financials
+description: Overview of cost, margin, brand scorecards, and assortment mix across seasons.
+---
+
+# Financials
+
+The financial roll-up surface. Cost, margin, brand scorecards, assortment composition — across orders, seasons, and the whole catalog.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Monthly close. Quarterly review. Anytime someone asks "what's our gross margin on Brand X this year?"
+</div>
+
+## Pages inside Financials
+
+Sidebar → Financials gives you four sub-pages:
+
+### Overview
+The top-level dashboard. Total committed dollars, total received dollars, total sold dollars, gross margin %, brand mix donut, category mix donut. Pivots by buying season (default = current).
+
+### Brand Scorecards
+One row per brand. Columns:
+- Committed (this season)
+- Received
+- Sold
+- Sell-through %
+- Avg margin %
+- Markdown $
+- Net margin $
+
+Sort by any column. Click a brand to drill into a per-style breakdown.
+
+### Assortment
+Visual breakdown of what you've bought:
+- By category
+- By price point ($ buckets)
+- By brand
+- By country of origin
+- By fabric
+
+Helps answer "is our assortment balanced or skewed?"
+
+### Seasons
+Roll-up by buying season. One row per season showing total commitment, sell-through, margin. Compare side-by-side: PF2024 vs PF2025.
+
+## Data sources
+
+| Surface | Where the data comes from |
+|---|---|
+| Committed $ | ThreadCloud order line totals (qty × cost × FX-locked rate) |
+| Received $ | Receiving event quantities × cost |
+| Sold $ | Shopify Order Sync (synced every 6 hours, see [Trading](/planning/trading/)) |
+| Markdown $ | Shopify discount data + manual markdown entries |
+
+## Common patterns
+
+### Monthly margin check
+
+End of month:
+
+1. Financials → Overview
+2. Filter to "last 30 days"
+3. Look at gross margin %
+4. Compare to your target (typically 50%+ for menswear)
+5. If off, drill into Brand Scorecards to find which brands pulled margin down
+
+### Brand performance review
+
+Quarterly:
+
+1. Financials → Brand Scorecards, filtered to the season(s) under review
+2. Sort by Net margin $
+3. Identify top 3 (lean in next year) and bottom 3 (negotiate harder or drop)
+
+### Assortment audit
+
+Annually:
+
+1. Financials → Assortment
+2. Compare your category mix to your target mix
+3. Identify gaps (e.g. underbought knitwear) and overweights (e.g. overbought suits)
+
+## Markdown tracking
+
+Markdowns are tracked two ways:
+
+1. **Automatic** — Shopify Discounts that match TC-pushed products
+2. **Manual entry** — for store-floor markdowns that aren't logged as discounts
+
+To enter a manual markdown:
+
+1. Financials → Markdown → New Manual Markdown
+2. Enter the style, original price, marked-down price, units sold at markdown
+3. Save
+
+Markdown dollars deduct from gross margin on the brand scorecard automatically.
+
+## Margin math
+
+ThreadCloud computes margin as:
+
+```
+margin $ = retail sold − cost sold − markdowns
+margin % = margin $ / retail sold
+```
+
+Where:
+- **retail sold** = units sold × actual sale price (after discounts)
+- **cost sold** = units sold × FX-locked cost
+- **markdowns** = sum of markdown adjustments
+
+This is gross margin. It doesn't deduct shipping, returns, or other operating costs — that's a P&L concern, not ThreadCloud's.
+
+## Export to spreadsheet
+
+Every Financials view has an <strong>Export CSV</strong> button. Useful for:
+
+- Sharing with the accountant
+- Pasting into board decks
+- Custom analysis your accountant wants to do in Excel
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Treating committed as cost realized</div>
+Committed = ordered. Cost realized = received. If a $30K order is committed but only $20K has shipped, your true exposure is $20K. The Overview surfaces both — read both.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Comparing seasons without normalizing</div>
+A buying season that's 6 weeks in versus one that's done has very different sell-through. Use the date filter to compare like-for-like — e.g. "first 6 weeks of PF2024 vs first 6 weeks of PF2025".
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Ignoring FX impact</div>
+If the dollar strengthened mid-season, your locked-FX costs for early-season orders are unfavorable vs later-season orders. The FX-locked cost is the truth — but be aware of the timing effect when reviewing margins.
+</div>
+
+## Next steps
+
+- [Trading](/planning/trading/) — operational sell-through view
+- [Budget & OTB](/planning/budget-otb/) — forward-looking planning
+- [Buying Seasons](/planning/buying-seasons/) — the season container

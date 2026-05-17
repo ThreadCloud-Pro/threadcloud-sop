@@ -1,0 +1,194 @@
+---
+layout: ../../layouts/Doc.astro
+title: Legacy Enrichment
+description: Bulk-classify and enrich existing Shopify products that were created before ThreadCloud.
+---
+
+# Legacy Enrichment
+
+The retroactive upgrade flow. Takes your existing Shopify catalog (products created before ThreadCloud, or by another tool) and stamps them with ThreadCloud's metafields so they show up in smart filters, financials, and trading views.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Once at install time — Gregory has already run this for the Blazer For Men catalog (4984 products, classified May 2026). Re-run after big bulk imports of legacy products from another tool.
+</div>
+
+## The five-step workflow
+
+The page is shaped as a numbered checklist. Walk it top to bottom.
+
+<ol class="steps">
+  <li><strong>Seed Products</strong> — Scan Shopify catalog, create one enrichment job per product</li>
+  <li><strong>AI Classification</strong> — AI fills in category, colour, fabric, etc. per job</li>
+  <li><strong>Review & Fix</strong> — Walk the table, fix low-confidence rows</li>
+  <li><strong>Apply to Shopify</strong> — Write metafields back to Shopify products</li>
+  <li><strong>Import to Database</strong> — Optional. Backfills the ThreadCloud database with the enriched products (only needed for dashboard/trading)</li>
+</ol>
+
+## Step 1 — Seed Products
+
+Click <strong>Seed Products</strong>.
+
+ThreadCloud paginates through every active Shopify product (filters out archived + draft) and creates one row in the enrichment queue per product. Each row starts in <span class="badge">PENDING</span> status.
+
+Products already tied to ThreadCloud styles (active pipeline products) are <strong>skipped</strong> — they don't need legacy enrichment.
+
+Typical seed time: 30 seconds for 5,000 products.
+
+After seeding:
+
+- Total seeded shown in the success banner
+- Number skipped shown (these are TC-managed products or thin-data SKUs like gift cards)
+
+### Re-seeding
+
+If you add new products in Shopify Admin and want them enriched too, click <strong>Re-seed</strong>. Adds new rows, doesn't duplicate existing ones.
+
+## Step 2 — AI Classification
+
+After seeding, click <strong>Run Classification</strong>.
+
+The background worker starts processing pending rows. For each:
+
+1. Fetches the Shopify product + variants
+2. Calls Claude with the product title, vendor, type, tags, and description
+3. AI returns: category, subcategory, colour group, colour name, pattern, fabric, COO, fit, occasion, size scale
+4. Deterministic engines run too: size scale (from variant data), brand code, supplier ref (from description regex)
+
+Worker speeds:
+
+- ~1 product per second under normal conditions
+- Slower when Anthropic is under load (retries kick in automatically)
+- Faster than seeing-individual: workers process 5 jobs in parallel per batch
+
+Progress shows:
+
+- Total classified count
+- ETA based on rolling rate
+- The ambient bar fires <span class="badge badge-info">COMBING THE RACK</span>
+
+You can navigate away — the worker keeps running. Status endpoint polls and self-heals if the worker dies.
+
+### Stopping mid-run
+
+Click <strong>Stop</strong>. Worker halts after the current batch (5 jobs).
+
+### Failure recovery
+
+If individual products fail with Anthropic errors, they go to <span class="badge badge-danger">ERROR</span> status with the error message. Dismiss them in bulk (View errors → Dismiss All) or click each to retry.
+
+## Step 3 — Review & Fix
+
+After classification, the table shows every job. Each row has:
+
+- Shopify product title + vendor
+- Vendor Ref (extracted from description, if found)
+- Category + Subcategory (with confidence indicator)
+- Colour group + Colour name
+- Pattern
+- Status: <span class="badge badge-ok">READY</span> or <span class="badge badge-warn">NEEDS REVIEW</span>
+
+Filter pills at the top: All / Needs review / Ready.
+
+### Walking the Needs Review queue
+
+Click <strong>Needs review</strong> filter to focus on rows that need attention. Click any row to open the edit drawer on the right.
+
+In the drawer:
+
+- Fix the wrong field(s)
+- Or click <strong>Confirm as-is</strong> in the footer if the AI got it right (this just promotes the row from Needs Review to Ready without changing values)
+- Click <strong>Next →</strong> to move to the next needs-review row without closing
+
+<div class="callout callout-tip">
+<div class="callout-title">Tip — Confirm as-is</div>
+The Confirm as-is button is the time-saver. If AI inferred "Navy" with 65% confidence and you agree it's Navy, one click promotes to Ready. No need to pick a different colour and pick back to trigger an edit event.
+</div>
+
+### Bulk edit
+
+To set the same value across many rows:
+
+1. Filter (e.g. only Lardini ties)
+2. Use the checkboxes to select rows — works for both Ready AND Needs Review now
+3. Click <strong>Edit Selected</strong>
+4. Pick the field + value once
+5. Click <strong>Apply</strong> — updates every selected row
+
+## Step 4 — Apply to Shopify
+
+Once your rows are mostly Ready:
+
+1. Click <strong>Select All Ready</strong> (top of the table)
+2. Click <strong>Apply Selected</strong>
+3. Confirms how many will be written. If you selected mixed Ready + Needs Review, it warns about how many will be skipped
+4. Click <strong>Write metafields to N products</strong>
+
+What gets written per product:
+
+- All `tc_core` metafields (category, colour, fabric, etc.)
+- All `tc_measure` metafields (size scale)
+- All `tc_trade` metafields (supplier_ref)
+- Variant `barcode` filled from SKU (enables Shopify Admin batch label fallback)
+
+What ThreadCloud does NOT touch:
+
+- Product title, description, images
+- Variant SKU, price, inventory
+- Tags (unless you explicitly check the overwrite box)
+- Any metafield in a non-`tc_*` namespace
+
+The Apply runs in batches of 50. Progress shows. Failures get logged with reasons.
+
+### Overwrite vs. fill-blanks
+
+Default behavior: only fill metafields that are currently blank. If a product already has `tc_core.category = "Suit"`, ThreadCloud won't overwrite.
+
+If you want to overwrite existing values (e.g. re-classifying everything after improving the AI), check <strong>Overwrite existing</strong> in the confirm dialog.
+
+## Step 5 — Import to Database (optional)
+
+Only relevant if you want the legacy products to appear in:
+- ThreadCloud's dashboard order list
+- Trading dashboard sell-through
+- Financials roll-up
+
+If you only care about smart filters working on the storefront, skip Step 5.
+
+To run:
+
+1. Click <strong>Run Import</strong>
+2. ThreadCloud creates Order + Style + Variant rows in its own database for each enriched product
+3. Idempotent — re-running picks up new products, doesn't duplicate
+
+## Rollback
+
+If an Apply went wrong:
+
+1. Scroll past the workflow to the <strong>Applied</strong> table
+2. Select rows you want to undo
+3. Click <strong>Rollback</strong>
+
+Restores the previous metafield values from the snapshot ThreadCloud took before writing. Works within 90 days.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Skipping the Review step</div>
+Don't go straight from Classification → Apply. AI gets things wrong on legacy data more often than on parse (less context). Walk the Needs Review filter at minimum.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Overwriting good metafields</div>
+If some products were already enriched by ThreadCloud, the default fill-blanks behavior protects them. Don't check Overwrite unless you really mean it.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Resetting mid-run</div>
+The <strong>Reset All</strong> button wipes all preview/needs_review/error jobs and starts fresh. Useful if you completely changed the AI prompts, but destroys any manual fixes you've done. Reset Errors only (less destructive option) clears just the failed rows.
+</div>
+
+## Next steps
+
+- [Settings → AI & Models](/settings/ai-models/) — tune the classification AI
+- Verify on the storefront — smart filters should now work for the enriched products

@@ -1,0 +1,142 @@
+---
+layout: ../../layouts/Doc.astro
+title: Reorder
+description: Re-buy what's selling. ThreadCloud surfaces sell-through and lets you pick exact variants and quantities to re-up.
+---
+
+# Reorder
+
+When a style is selling fast, you reorder it. ThreadCloud's reorder flow shows sell-through, age, and weeks-of-supply per variant so you can place targeted re-buys instead of guessing.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Weekly — typically Monday morning when you review the prior week's sales. Or anytime a hot item hits a sell-through threshold you want to maintain.
+</div>
+
+## What ThreadCloud surfaces
+
+For every style currently in stock, you see:
+
+- **Units sold** in the last 7 / 14 / 30 days
+- **Sell-through rate** (% of received qty that's been sold)
+- **Inventory age** (days since first received)
+- **Weeks of supply** (current stock ÷ recent weekly sales rate)
+- **Per-variant** breakdown — what sizes are running low
+
+## The reorder flow
+
+<ol class="steps">
+  <li><strong>Open Reorder</strong> — dashboard sidebar → Reorder</li>
+  <li><strong>Filter to candidates</strong> — by brand, season, or stock threshold</li>
+  <li><strong>Pick styles & variants</strong> — select the exact rows to re-up</li>
+  <li><strong>Set quantities</strong> — per variant</li>
+  <li><strong>Create reorder PO</strong> — generates a new order targeting the same supplier</li>
+  <li><strong>Send to supplier</strong> — same supplier-ack flow as a new order</li>
+  <li><strong>Push to Shopify on confirmation</strong> — only re-pushes the new variants, doesn't duplicate products</li>
+</ol>
+
+## Stage 1 — Open Reorder
+
+From the dashboard sidebar, click <strong>Reorder</strong>. You land on the Reorder workspace — a table of every currently-stocked style with sell-through context.
+
+## Stage 2 — Filter
+
+Top of the page:
+
+| Filter | What it does |
+|---|---|
+| **Brand** | One brand at a time, or all |
+| **Buying Season** | Restricts to e.g. PF2025 only |
+| **Min sell-through** | "Show me only styles selling >30%" |
+| **Min weeks of supply remaining** | "Show me only styles with &lt;2 weeks left" |
+| **Age** | "Show me only styles received >30 days ago" |
+
+The defaults surface high-velocity / low-stock combinations — most reorders come from this set.
+
+## Stage 3 — Pick styles
+
+The table shows one row per style. Click any row to expand the size grid underneath — that's where you decide exactly which variants need re-up.
+
+For each variant cell you'll see:
+
+- **Current stock**
+- **Sold (30d)**
+- **Reorder qty** input (empty)
+
+Type a quantity in the reorder qty field. ThreadCloud suggests a quantity based on recent velocity (the "Suggested" pill next to the input). You can take the suggestion or override.
+
+<div class="callout callout-tip">
+<div class="callout-title">Tip — partial vs full reorder</div>
+You don't have to reorder every variant of a style. A common pattern: reorder only the sizes that sold through (e.g. just M and L if XS and XL are still sitting). The grid view makes this easy to see at a glance.
+</div>
+
+## Stage 4 — Confirm reorder
+
+Once you've filled in quantities across one or more styles, click <strong>Create Reorder</strong> at the top.
+
+You'll see a confirmation:
+
+- Total styles affected
+- Total units
+- Total cost (at the original cost prices, FX'd to store currency)
+- Suggested delivery window
+
+Pick a delivery window, confirm. ThreadCloud creates a new order in the same buying season, marked as a **reorder of order #X**.
+
+## Stage 5 — Send to supplier
+
+The new reorder PO behaves like any other order:
+
+1. Open the order
+2. PO tab → review the lines (should match what you selected)
+3. Click <strong>Send to Supplier</strong>
+4. Wait for confirmation
+
+When the supplier confirms, push to Shopify. **This won't duplicate the existing products** — it'll update the existing variants' stock count (when the shipment is received), and won't create new products unless you reordered a size that doesn't yet exist on the variant.
+
+## Stage 6 — Receive
+
+When the reorder shipment arrives, receive it like any other order — see [Receiving](/workflows/receiving/). The received qty adds to the existing Shopify variant inventory.
+
+## Re-pushing reorders
+
+If you reordered a new size that wasn't in the original push (e.g. you added Size 56 to the reorder of a suit that originally went up to 54), the push step will create the new variant on the existing product. Existing variants get inventory bumps; no product duplication.
+
+## Sell-through math
+
+The "sold (30d)" figure is computed from Shopify's order data, synced periodically:
+
+- ThreadCloud pulls Shopify orders for the last 30 days
+- Matches each order line to the variant
+- Aggregates per variant, per style
+
+If the sell-through number looks wrong:
+
+- Check if the Shopify Order Sync ran recently — under Settings → AI & Models there's a "Sync sell-through now" button
+- Otherwise wait — sync runs every 6 hours
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Reordering all sizes</div>
+The temptation is to reorder a "full size run" — but if XS and 3XL sat the first time, they'll sit again. <strong>Reorder only the sizes that sold</strong>. The grid view is built for this.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Ignoring weeks-of-supply on the upside</div>
+A style with 26 weeks of supply doesn't need a reorder, even if sell-through looks healthy. The seasonal window will close before you can sell through the existing stock. Reorder for items with <strong>4–8 weeks of supply</strong> — those are the sweet spot.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Reordering at the wrong cost</div>
+ThreadCloud reuses the original FX-locked cost when calculating reorder total. If the supplier raised prices between the original and reorder, your margin math is off. Verify the supplier's current pricing before clicking <strong>Send to Supplier</strong>.
+</div>
+
+## Auto-reorder rules (manual today)
+
+ThreadCloud doesn't auto-place reorders. Every reorder is a manual decision. (Auto-reorder timers are on the roadmap but not built yet — Gregory will configure when they ship.)
+
+## Next steps
+
+- [Trading](/planning/trading/) — sell-through dashboard, identify candidates earlier
+- [Receiving](/workflows/receiving/) — when the reorder arrives

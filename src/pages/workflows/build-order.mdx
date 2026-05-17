@@ -1,0 +1,185 @@
+---
+layout: ../../layouts/Doc.astro
+title: Build Order
+description: Turn a supplier linesheet into a fully structured order in ThreadCloud. From PDF upload to approved styles ready for Shopify push.
+---
+
+# Build Order
+
+Turn a supplier linesheet into a fully structured order. The heaviest workflow in ThreadCloud — and the most important. Get this right and everything downstream just works.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Every time you place a new buying order with a supplier. Replaces the old "make a spreadsheet, manually create products in Shopify" process.
+</div>
+
+## What you'll need before you start
+
+- The supplier's linesheet (PDF or Excel)
+- The order's **buying season** (e.g. PF2025) — set up under <a href="/planning/buying-seasons/">Buying Seasons</a> if it doesn't exist yet
+- The supplier set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a>
+- Roughly known **delivery window** (start–end dates)
+
+## The five stages
+
+<ol class="steps">
+  <li><strong>Create the order</strong> — pick brand, season, delivery window</li>
+  <li><strong>Parse</strong> — upload linesheet, AI extracts every style</li>
+  <li><strong>Review & fix</strong> — eyeball the grid, fix anything wrong</li>
+  <li><strong>Submit for supplier review</strong> — send ack link, wait for confirmation</li>
+  <li><strong>Push to Shopify</strong> — see the <a href="/workflows/push-to-shopify/">Push SOP</a></li>
+</ol>
+
+## Stage 1 — Create the order
+
+Open ThreadCloud and click <strong>New Order</strong> from the dashboard (or `/app` → New).
+
+You'll be asked for:
+
+| Field | What to enter | Notes |
+|---|---|---|
+| Brand | Pick from dropdown | If brand is missing, add it first under [Brands & Suppliers](/settings/brands-suppliers/) |
+| Supplier | Auto-fills based on brand | Override only if the brand has multiple suppliers |
+| Buying Season | Pick from dropdown | Must exist under [Buying Seasons](/planning/buying-seasons/) |
+| Delivery Window | Pick a window | Each window is e.g. "Aug 15 – Sep 1, 2025" — set up under [Delivery Windows](/settings/delivery-windows/) |
+| Order Currency | Auto-fills from supplier | Override only if this PO is in a different currency than the supplier default |
+
+Click <strong>Create</strong>. You land on the new order's page with an empty Parse zone.
+
+<div class="callout callout-tip">
+<div class="callout-title">Tip</div>
+The order's <strong>id</strong> appears in the URL (e.g. <code>/app/orders/<strong>247</strong>/...</code>). Write this down — it becomes the <code>tc-order-247</code> tag on every product, so you can search Shopify Admin for "everything from this PO".
+</div>
+
+## Stage 2 — Parse
+
+Drag the supplier's PDF or Excel onto the Parse zone, or click to browse.
+
+What happens behind the scenes:
+
+1. ThreadCloud uploads the file
+2. AI reads it (vision pass for PDFs, structured pass for Excel)
+3. Each style is extracted with: style code, colour, sizes, retail price, cost, fabric, country of origin, and a dozen other fields
+4. The styles appear as **tiles** in the order grid, one tile per style
+
+**Expected time:** 25–60 seconds for a typical PDF. The <span class="badge badge-info">PARSING</span> ambient bar fires at the top of the screen.
+
+<div class="callout callout-warn">
+<div class="callout-title">Heads up</div>
+Don't navigate away during the first parse. The page is hooked up to revalidate when parsing finishes, but if you click around you might miss the tile updates. Wait for the ambient bar to flip to "Document threaded".
+</div>
+
+### If parse fails
+
+See the [runbook: parse timeout](/runbook/#parse-timeout). Short version: try once more, then ask the supplier for Excel, then add styles manually as a last resort.
+
+## Stage 3 — Review & fix
+
+Scroll the style grid. Each tile shows:
+
+- Style code, colour, retail price
+- Size grid with quantities
+- A small image (if the supplier included one)
+- A <span class="badge badge-warn">NEEDS REVIEW</span> badge if AI wasn't confident
+
+Click any tile to open the **edit drawer** on the right. From there you can fix:
+
+| Field | When to fix |
+|---|---|
+| **Style name** | If parsing pulled in something cluttered ("M / Navy / [LRD] 2024") — clean it up |
+| **Colour name + group** | If colour mapping is off (e.g. "Sulfur Oak" → group "Yellow" should be "Brown") |
+| **Sizes & qty** | Always double-check — this is the most common parse error |
+| **Retail price** | If parse pulled the wholesale instead of retail, or the wrong column |
+| **Cost** | Usually right but verify against the linesheet |
+| **Fabric / COO** | Only if AI flagged low confidence |
+
+<div class="callout callout-tip">
+<div class="callout-title">Speed tip</div>
+Use <strong>Next Issue</strong> (top right of the order page) to jump between only the <span class="badge badge-warn">NEEDS REVIEW</span> tiles. Saves scrolling.
+</div>
+
+### Editing in bulk
+
+If many tiles share the same fix (e.g. fabric is "100% Cashmere" on the whole order):
+
+1. Use the checkboxes to multi-select tiles
+2. Click <strong>Edit Selected</strong>
+3. Set the value once — applies to every selected tile
+4. Click <strong>Apply</strong>
+
+### Adding a style manually
+
+If the supplier added a style after sending the linesheet:
+
+1. Click <strong>Add Style</strong> (top of the order)
+2. Fill in the form
+3. Click <strong>Save</strong> — it appears at the bottom of the grid
+
+## Stage 4 — Submit for supplier review
+
+This sends the supplier a link to confirm the parsed order before you commit to it.
+
+1. Click <strong>Submit for Review</strong> at the top of the order
+2. ThreadCloud generates a unique supplier ack link and emails it to the supplier
+3. Order status flips to <span class="badge badge-info">SENT TO SUPPLIER</span>
+4. The supplier opens the link, reviews each line, and either confirms or marks changes
+5. When they confirm, your order flips to <span class="badge badge-ok">CONFIRMED</span>
+
+<div class="callout callout-info">
+<div class="callout-title">Why this step exists</div>
+Supplier confirmation is your paper trail. If a price or quantity later turns out wrong, the supplier's confirmation is your evidence. <strong>Don't skip it</strong> unless you really know the supplier well and have authorization.
+</div>
+
+### Supplier didn't respond?
+
+If a supplier is slow, you can:
+
+- **Resend** — Open the order → PO tab → click <strong>Send to supplier</strong> again
+- **Approve as-is** — Click the Approve-as-is button in the PO tab. Skips supplier confirmation entirely. **Use sparingly.**
+
+### Supplier sent back changes
+
+If the supplier marked changes on the ack form:
+
+1. Open the order → **Supplier Review** tab
+2. See a diff view: their values vs your parsed values, line by line
+3. Click <strong>Accept</strong> next to each row you agree with, or override manually
+4. Click <strong>Apply changes</strong> to commit
+
+## Stage 5 — Push to Shopify
+
+Once status is <span class="badge badge-ok">CONFIRMED</span>, you're ready to push. See the [Push to Shopify SOP](/workflows/push-to-shopify/).
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Wrong size scale</div>
+If the supplier ships EU sizes and you push without checking, customers will see EU numbers on the storefront. Always verify the size scale matches what your shopper expects. <strong>Settings → AI & Models</strong> sets the default scale per category.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Currency mismatch</div>
+If the order is in EUR but you set it to CAD, every price gets multiplied by ~0.7 silently. Check the order currency in the header before pushing.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Approving a row with empty fields</div>
+A <span class="badge badge-warn">NEEDS REVIEW</span> row that you mark as ready WITHOUT filling in the empty fields will push to Shopify with blank metafields. Smart filters won't catch those products. Always fill every yellow cell before approving.
+</div>
+
+## What the system does automatically
+
+You don't need to think about these — they happen on push:
+
+- ✅ Generates SKUs (format: `STYLE-COLOR-SIZE`, max 40 chars)
+- ✅ Writes SKU into Shopify variant `barcode` field (for label-printer fallback)
+- ✅ Adds tags: `tc-imported`, `tc-order-{id}`, `{seasonCode}`, `brand-{name}`, plus category/colour/pattern tags
+- ✅ Builds the full Shopify product description (multi-image gallery, fit notes, fabric, country)
+- ✅ Sets up all 60+ Shopify metafields (`tc_core`, `tc_measure`, `tc_trade`)
+- ✅ Locks the FX rate to the buying-season currency
+
+## Next steps
+
+- [Enrich](/workflows/enrich/) — what happens between parse and push
+- [Push to Shopify](/workflows/push-to-shopify/) — the actual writing of products
+- [Receiving](/workflows/receiving/) — when the shipment arrives

@@ -1,0 +1,118 @@
+---
+layout: ../../layouts/Doc.astro
+title: AI & Models
+description: Anthropic API key, model selection, brand voice, prompt overrides, and sync settings.
+---
+
+# AI & Models
+
+The control surface for everything AI does in ThreadCloud. Parse, enrich, classify, describe — all of it routes through this configuration.
+
+<div class="callout callout-danger">
+<div class="callout-title">Only Gregory edits this</div>
+The team should never change prompts, models, or API keys. If something looks off, refresh the page or ping Gregory.
+</div>
+
+## What lives here
+
+Settings → AI & Models has four sections:
+
+### 1. API key
+The Anthropic API key. Stored encrypted, never echoed back in the UI after save.
+
+To rotate:
+
+1. Get new key from console.anthropic.com
+2. Paste into the field
+3. Click <strong>Save</strong>
+4. Old key auto-revokes after 24h
+
+### 2. Model selection
+Which Claude model handles each workstream:
+
+| Workstream | Default model | Why |
+|---|---|---|
+| Parse (Tier-1) | claude-haiku-4-5 | Fast, cheap, structured extraction |
+| Enrich (Tier-2) | claude-haiku-4-5 | Same — accuracy-sensitive but bounded |
+| Description | claude-sonnet-4-6 | Prose quality matters more than speed |
+| Classify (Legacy Enrich) | claude-haiku-4-5 | Volume-sensitive, structured output |
+
+Override per-workstream if needed. Generally don't.
+
+### 3. Brand voice + description rules
+The editorial voice used for storefront descriptions:
+
+- **Brand voice** — paragraph describing the tone (e.g. "Understated luxury. Inform, don't sell. Lead with fabric and construction.")
+- **Structure** — what to lead with (fabric → construction → fit → COO → occasion)
+- **Avoid rules** — words and phrases to never use ("elevate", "timeless", "effortless", "perfect for any occasion")
+
+Changes apply to new descriptions and any re-generated descriptions. Existing descriptions stay as they were.
+
+### 4. Prompt overrides (advanced)
+Per-prompt overrides for specific extraction rules:
+
+| Prompt key | What it controls |
+|---|---|
+| `description.style` | Description structure rules |
+| `description.cooFilter` | Which countries get mentioned in description prose |
+| `description.bulletPoints` | Whether to use bullet points in descriptions |
+| `extraction.fabricContent` | Custom rules for fabric extraction |
+| `extraction.occasionRule` | Custom rules for occasion classification |
+
+Edit at your own risk. Each override is a free-form prompt that gets injected at AI call time.
+
+## Sync controls
+
+At the bottom of the page:
+
+- **Sync sell-through now** — triggers an immediate Shopify Order Sync (otherwise runs every 6 hours)
+- **Reset AI cache** — clears Anthropic prompt cache (rarely needed)
+- **Re-run enrichment on all draft orders** — useful after changing brand voice
+
+## Common patterns
+
+### After changing brand voice
+
+1. Save new brand voice
+2. Click "Re-run enrichment on all draft orders" — this regenerates descriptions for any orders in <span class="badge">DRAFT</span> status
+3. Existing live products on Shopify need a per-order re-push to pick up the new voice
+
+### When AI is throwing 429s (rate limits)
+
+Anthropic rate limit hit. Two options:
+
+1. Wait — limits reset every minute, and the retry logic handles it
+2. Upgrade the Anthropic plan if you're constantly hitting the wall
+
+Don't switch to a smaller model — that's a different fix and usually wrong.
+
+### Anthropic outage
+
+If status.anthropic.com shows an incident:
+
+- Don't kick workers manually — they're already retrying
+- Don't change the API key
+- Don't change the model
+- Just wait
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Pasting an invalid API key</div>
+Throws no error on save — only fails at next AI call. Test by triggering one classification on a small dataset after rotating the key.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Editing the description prompt before testing</div>
+Always test prompt changes against 5–10 styles before applying to a full order. Use a small draft order or the legacy enrichment dry-run.
+</div>
+
+<div class="callout callout-danger">
+<div class="callout-title">Don't switch to a non-Anthropic provider</div>
+The prompts are tuned to Claude's structured-output behavior. OpenAI or Gemini will return malformed JSON and break extraction. <strong>Stick with Anthropic.</strong>
+</div>
+
+## Next steps
+
+- [Legacy Enrichment](/settings/legacy-enrichment/) — bulk-classify the existing catalog
+- [Settings → Brands & Suppliers](/settings/brands-suppliers/) — brand-specific overrides

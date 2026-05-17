@@ -1,0 +1,139 @@
+---
+layout: ../../layouts/Doc.astro
+title: Brands & Suppliers
+description: Add brands, link them to suppliers, configure MTM recipes, set brand codes and markup defaults.
+---
+
+# Brands & Suppliers
+
+The brand and supplier directory. Every product is tied to a brand; every brand is tied to a supplier (or sometimes multiple). This page is where they're set up.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Before placing the first order with a new brand or supplier. Setup takes 2 minutes; skipping it blocks Build Order from completing.
+</div>
+
+## The shape of the data
+
+ThreadCloud uses a graph model under the hood:
+
+- **Party** — generic entity (a brand, a supplier, an agent)
+- **PartyRole** — what role(s) the party plays (Brand, Supplier, Agent)
+- **Mandate** — "Supplier X reps Brand Y in Territory Z"
+
+For day-to-day use, you'll just see **Brands** and **Suppliers**. The graph runs underneath.
+
+## Adding a brand
+
+1. Settings → Brands & Suppliers → Brands tab
+2. Click <strong>New Brand</strong>
+3. Fill in:
+   - **Name** (the brand name as shown on the storefront)
+   - **Brand code** (2–4 char prefix used in SKUs, e.g. "LRD" for Lardini — must be unique across the store)
+   - **Country of origin** (optional, but enables auto-fill in Enrich)
+   - **Default markup** (% used to compute retail from cost — typically 2.4x for most menswear)
+   - **Brand voice override** (optional — overrides the global brand voice for descriptions of this brand only)
+
+4. Click <strong>Create</strong>
+
+### Brand codes
+
+The brand code is a 2–4 char prefix that goes into every SKU for the brand. Pick well — changing it later requires re-stamping every SKU.
+
+Good codes: short, distinctive, capitalized.
+
+- ✅ `LRD` (Lardini)
+- ✅ `DRK` (Drake's)
+- ✅ `KIT` (Kiton)
+- ❌ `LARD` (too long — eats SKU space)
+- ❌ `L` (too short — collisions)
+- ❌ `1` (numeric — confusing)
+
+If the code you want collides with an existing brand, the system suggests an alternative.
+
+## Adding a supplier
+
+1. Settings → Brands & Suppliers → Suppliers tab
+2. Click <strong>New Supplier</strong>
+3. Fill in:
+   - **Name** (the legal/billing name)
+   - **Contact email** (where supplier ack links and POs go)
+   - **Default currency** (EUR / USD / GBP / etc.)
+   - **Default delivery lead time** (weeks)
+   - **Brands they rep** (multi-select)
+4. Click <strong>Create</strong>
+
+## Linking brands to suppliers
+
+A brand can have multiple suppliers (e.g. one for North America, one for Europe). Set this up via mandates:
+
+1. Open the brand
+2. Click <strong>Mandates</strong>
+3. Click <strong>New Mandate</strong>
+4. Pick supplier + territory (or "all territories")
+5. Save
+
+For day-to-day use, you'll almost always have one supplier per brand. The graph supports more if you need it.
+
+## MTM brand recipes
+
+If a brand offers MTM (Made-to-Measure), you need a recipe. The recipe defines:
+
+- **Available fabrics** — code, composition, mill, lead time, swatch image, retail markup
+- **Available options** — lapel styles, vents, lining, etc. (constrained to what the supplier actually offers)
+- **Measurement fields required** — for this brand's MTM
+- **Deposit %** (typically 50%)
+
+To set up an MTM recipe:
+
+1. Open the brand
+2. Click the <strong>MTM</strong> tab
+3. Toggle "Offers MTM" on
+4. Click <strong>Import Fabric Library</strong> — upload the supplier's fabric CSV (format documented when you first import)
+5. Configure available options (lapel / vents / lining / etc.)
+6. Save
+
+Once saved, the brand becomes available in the [MTM workflow](/workflows/mtm/).
+
+## Editing existing brands & suppliers
+
+Open the brand or supplier → make changes → save. Most fields can be changed freely. Exceptions:
+
+- **Brand code** — changing this requires re-stamping every SKU of every product from that brand. Talk to Gregory before changing.
+- **Default currency on supplier** — only affects future orders. Existing orders keep their original currency.
+
+## Archiving
+
+If you stop carrying a brand:
+
+1. Open the brand
+2. Click <strong>Archive</strong>
+3. Confirms — the brand stops appearing in dropdowns but existing products stay searchable
+4. To resurrect later: click Unarchive
+
+<div class="callout callout-warn">
+<div class="callout-title">Don't delete</div>
+There's no delete button. Archive only. Deleting a brand would orphan products. <strong>Use archive instead.</strong>
+</div>
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Two brands with the same name</div>
+ThreadCloud allows duplicates (legitimate when a brand splits collections), but the dropdowns get confusing. Use a suffix to disambiguate (e.g. "Lardini" and "Lardini MTM").
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Skipping the supplier email</div>
+The supplier ack flow needs an email. If it's blank, the PO never sends and you'll wonder why the supplier didn't confirm.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Changing default markup mid-season</div>
+Existing orders keep their original markup. Changing it only affects future orders. So you may end up with mixed markups in one season — not necessarily wrong, but be aware.
+</div>
+
+## Next steps
+
+- [Build Order](/workflows/build-order/) — order from a configured brand
+- [MTM](/workflows/mtm/) — create an MTM order against a brand recipe

@@ -1,0 +1,146 @@
+---
+layout: ../layouts/Doc.astro
+title: If something breaks
+description: The on-call playbook. Match the symptom to the fix.
+---
+
+# If something breaks
+
+The on-call playbook. Match the symptom on the left to the fix on the right. If you've tried the fix and it didn't work, **don't keep trying** — text Gregory.
+
+## Quick triage
+
+| Symptom | What to do |
+|---|---|
+| Page is blank / 500 error | Refresh once. Then **[restart the worker](#worker-stuck)**. Then text Gregory. |
+| AI Classification stuck at "Combing the rack" | **[Stop and restart](#classification-stuck)** — see below |
+| Label printer not printing | **[Use Shopify Admin fallback](#printer-fallback)** — fully supported |
+| Supplier didn't get the email | **[Resend from PO tab](#resend-supplier)** |
+| Shopify says "rate limit exceeded" | **Wait 60 seconds and try again.** The worker retries automatically. |
+| Image upload failed | Re-upload the same image. If it fails twice, the image is too large — resize to under 4MB and retry. |
+| "Missing access token" error | This was a real bug — it's been fixed. If you see it, refresh the page. If still broken after refresh, text Gregory. |
+| Parse times out on a PDF | **[Try Excel](#parse-timeout)** — see below |
+| Apply Selected says "0 ready" | Some rows are still <span class="badge badge-warn">NEEDS REVIEW</span>. Filter to "Needs review", fix each, then re-select. |
+| Catalog rolled back wrong | **[Undo via Legacy Enrichment](#wrong-rollback)** |
+| Order status won't change | Refresh. If still stuck, **[check the supplier ack](#stuck-status)**. |
+
+---
+
+## Worker stuck
+
+If a background process (classification, enrich, push) appears frozen:
+
+<ol class="steps">
+  <li>Refresh the page. The worker auto-resumes from where it left off.</li>
+  <li>If still stuck, click <strong>Stop</strong> on the workflow surface, wait 5 seconds, then click the run button again.</li>
+  <li>If still stuck after 5 minutes, the worker may have hit an external API outage. Wait 15 minutes and retry once.</li>
+  <li>If still broken: text Gregory with a screenshot.</li>
+</ol>
+
+## Classification stuck
+
+The progress bar isn't moving and the ETA isn't updating.
+
+<ol class="steps">
+  <li>Click <strong>Stop</strong> on the AI Classification step. Wait for it to confirm "Stopping…" → "Run Classification".</li>
+  <li>Click <strong>Run Classification</strong> again. The worker picks up only the pending rows.</li>
+  <li>If the same row keeps failing, open the error drawer ("View errors" link at the top) — see what it says.</li>
+  <li>If it's an Anthropic API error, just keep retrying. The API recovers on its own.</li>
+</ol>
+
+<div class="callout callout-info">
+<div class="callout-title">Why this matters</div>
+The worker is designed to be safe to stop and restart at any point. It only claims rows in <code>pending</code> status, so re-running never duplicates work or wastes an AI call.
+</div>
+
+## Printer fallback
+
+The Dymo label printer isn't responding, is out of labels, or jams repeatedly.
+
+<ol class="steps">
+  <li>Open Shopify Admin → Products.</li>
+  <li>In the search bar, type <code>tag:tc-order-247</code> (replace <code>247</code> with the order ID — find it in the URL of the order page in ThreadCloud, e.g. <code>/app/orders/<strong>247</strong>/receiving</code>).</li>
+  <li>Select all rows that need labels. Click <strong>More actions</strong> → <strong>Print barcode labels</strong>.</li>
+  <li>Choose your label size (Avery 5160 30-up sheet is the safest), pick the products, hit Print.</li>
+</ol>
+
+<div class="callout callout-tip">
+<div class="callout-title">Why this works now</div>
+ThreadCloud writes the SKU into Shopify's variant <code>barcode</code> field on every push. Shopify Admin reads from that field. So the SKU you'd see on a TC label is exactly what gets printed.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Heads up</div>
+The Shopify Admin label format isn't identical to TC's Dymo layout (no brand name, no colour name — just barcode + SKU + price). It's a working fallback, not a like-for-like replacement.
+</div>
+
+## Resend supplier
+
+The supplier says they didn't get the PO email, or you closed the window before saving.
+
+<ol class="steps">
+  <li>Open the order → click the <strong>PO</strong> tab.</li>
+  <li>Scroll to the bottom and click <strong>Send to supplier</strong> again. The email re-sends with a fresh token.</li>
+  <li>If the supplier already responded on the previous link, the new link supersedes it. Tell the supplier to ignore the old email.</li>
+</ol>
+
+## Parse timeout
+
+PDF parsing hangs or shows "Parse failed".
+
+<ol class="steps">
+  <li>Try the same file again — once. Transient timeouts happen.</li>
+  <li>If it fails twice, ask the supplier for an Excel version of the linesheet. Excel parses much faster and more reliably.</li>
+  <li>If neither is available, open the order and click <strong>Add Style</strong> — manually add the rows. Slow but bulletproof.</li>
+</ol>
+
+## Wrong rollback
+
+You applied enrichment to a batch and the results are wrong.
+
+<ol class="steps">
+  <li>Open <strong>Settings → Legacy Enrichment</strong>.</li>
+  <li>Scroll past the workflow to the <strong>Applied</strong> table at the bottom.</li>
+  <li>Select the rows you want to undo. Click <strong>Rollback</strong>.</li>
+  <li>Confirm. ThreadCloud restores the previous metafield values from the snapshot it took before applying.</li>
+</ol>
+
+<div class="callout callout-info">
+<div class="callout-title">Why this works</div>
+Every Apply step saves a snapshot of the existing values before overwriting. Rollback writes the snapshot back. This works for up to 90 days after the apply.
+</div>
+
+## Stuck status
+
+An order is stuck at "Sent to supplier" forever.
+
+<ol class="steps">
+  <li>Check if the supplier has responded — open the order → PO tab → look for the supplier ack timestamp.</li>
+  <li>If they have responded, the page may need a refresh. Press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (hard refresh).</li>
+  <li>If they haven't, click <strong>Approve as-is</strong> on the PO tab — this skips the supplier loop and marks the order confirmed manually.</li>
+</ol>
+
+---
+
+## Big-picture failures
+
+These are the rare ones. If you see one of these, **text Gregory immediately** — don't try to fix them yourself.
+
+| Symptom | What it means |
+|---|---|
+| Every page across the app is 500 | Production deploy is broken. Possibly a Fly.io outage or a bad merge to main. Gregory or a manual `fly deploy` can fix it. |
+| All Anthropic calls failing for 30+ min | Anthropic API outage. Status: [status.anthropic.com](https://status.anthropic.com). Nothing to do except wait. |
+| Shopify Admin won't load at all | Shopify outage. Status: [status.shopify.com](https://www.shopify.com/status). Wait. |
+| Bank-side currency feed says the wrong rate | The multi-provider FX fallback should catch this. If somehow all three providers are wrong, set the FX manually on the order (Receiving tab) and tell Gregory. |
+| A push wrote products with bad data | Don't panic. Pull them back: Shopify Admin → filter by `tag:tc-order-{id}` → bulk-delete. Then re-push from ThreadCloud after fixing the source. |
+
+## What only Gregory should do
+
+- Approve a push of more than 200 products at once
+- Edit the AI prompts (Settings → AI & Models)
+- Change the metafield namespace or schema
+- Use the dev tools page (`/app/settings/dev`)
+- Run direct database operations
+- Merge code to `main` (production)
+
+If your fingers are hovering over any of those, stop and ask.

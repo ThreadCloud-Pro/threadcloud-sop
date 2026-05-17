@@ -1,0 +1,98 @@
+---
+layout: ../layouts/Doc.astro
+title: Glossary
+description: ThreadCloud terms, screens, and statuses translated into plain English.
+---
+
+# Glossary
+
+Everything you'll see in ThreadCloud, translated into plain English. Bookmark this page.
+
+## Core concepts
+
+### Order
+A buying order. One supplier, one season, one delivery window. In ThreadCloud's database this is sometimes still called a "Season" — that's a leftover name. **In the UI and in conversation, always say "order".**
+
+### Buying Season
+A *group* of orders for one selling period — e.g. "Pre-Fall 2025" might contain 14 orders from 14 brands. You set up the buying season once at the top of the year and assign orders to it.
+
+### Style
+One product within an order. A blazer in Navy is one style. The same blazer in Brown is a second style. Each style has variants (sizes).
+
+### Variant
+One size of one style. A Navy blazer in size 50 is one variant.
+
+### SKU
+The unique code for one variant. Format is usually `STYLE-COLOR-SIZE`, e.g. `BLZR42-NVY-50`. ThreadCloud generates these automatically.
+
+### Vendor Ref
+The supplier's internal style code (the one printed on the linesheet). Stored as `tc_trade.supplier_ref` on the Shopify product. **Never** confuse this with SKU.
+
+## Workflow stages
+
+### Parse
+The first step of Build Order. AI reads the supplier PDF/Excel and extracts every style into a grid.
+
+### Enrich
+The second step. AI fills in descriptions, fit notes, fabric content, country of origin, occasion, and all the other Shopify metafields.
+
+### Push to Shopify
+Writes the products to your Shopify store. Once pushed, they're live on the storefront (assuming the product status is Active).
+
+### Receive
+When the physical shipment arrives, you mark each variant's received quantity, the FX rate locks, and you print labels.
+
+### Reorder
+A targeted re-buy of styles that are selling well. Pulls from sell-through data and lets you pick which variants to re-up.
+
+## Statuses you'll see
+
+| Badge | Meaning |
+|---|---|
+| <span class="badge">DRAFT</span> | Order is being built; nothing is in Shopify yet |
+| <span class="badge badge-info">CLASSIFYING</span> | AI is still working on the rows |
+| <span class="badge badge-warn">NEEDS REVIEW</span> | AI wasn't confident enough — needs your sign-off |
+| <span class="badge badge-ok">READY</span> | Approved and ready to push to Shopify |
+| <span class="badge badge-ok">APPROVED</span> | Already pushed and live |
+| <span class="badge badge-info">SENT TO SUPPLIER</span> | PO sent; waiting on supplier confirmation |
+| <span class="badge badge-ok">CONFIRMED</span> | Supplier confirmed the PO |
+| <span class="badge badge-warn">PARTIAL</span> | Some variants received, others not yet |
+| <span class="badge badge-ok">RECEIVED</span> | Fully received |
+| <span class="badge badge-danger">ERROR</span> | Something failed — see the error message |
+
+## Tags you'll see in Shopify Admin
+
+Every product TC pushes gets stamped with searchable tags:
+
+- `tc-imported` — every TC-pushed product
+- `tc-order-{id}` — products from a single buying batch (use this for batch-level filtering, e.g. re-printing labels for one order)
+- `{seasonCode}` — e.g. `PF2025` for Pre-Fall 2025; bundles every drop in the season
+- `brand-{name}` — e.g. `brand-Lardini`
+- Plus category, subcategory, pattern, colour, country tags
+
+**Combine tags in Shopify Admin's product filter:**
+- `tag:tc-imported AND tag:PF2025` — everything from Pre-Fall '25
+- `tag:tc-order-247` — only products from order #247
+- `tag:tc-imported AND tag:brand-Lardini` — every Lardini product
+
+## Metafield namespaces
+
+- **`tc_core`** — primary enrichment (category, colour, fabric, fit, occasion, etc.)
+- **`tc_measure`** — physical measurements (chest flat, sleeve length, etc.)
+- **`tc_trade`** — supplier-facing identifiers (supplier_ref / vendor code)
+- `shopify.*` — **don't touch.** Reserved.
+
+## Roles
+
+| Role | Can do |
+|---|---|
+| **Owner** | Everything. There's exactly one — Gregory. |
+| **Buyer** | All workflows above. Can't change AI settings or theme. |
+| **Viewer** | Read-only — for accountants, supplier reps, anyone who shouldn't be editing. |
+
+## People & things to know
+
+- **Anthropic Claude** — the AI behind parse, enrich, and classification. When it's down, those flows wait.
+- **Fly.io** — where ThreadCloud is hosted. Two apps: `threadcloud-staging` (testing) and `threadcloud-lite` (production).
+- **Shopify Admin** — the store backend. ThreadCloud writes to it; you can read from it.
+- **CodeRabbit** — automated code reviewer on GitHub. Not your concern.

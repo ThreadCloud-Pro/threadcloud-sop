@@ -1,0 +1,173 @@
+---
+layout: ../../layouts/Doc.astro
+title: Enrich
+description: Fill in the deep product attributes that make smart filters, financials, and storefront descriptions work.
+---
+
+# Enrich
+
+The tier-2 pass. After Build Order's quick parse, Enrich fills in everything else: descriptions, fit notes, fabric details, country of origin, occasion tags, and 60+ Shopify metafields.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+On every order after parse, before push. Usually auto-runs in the background — you only intervene if a row gets flagged for review.
+</div>
+
+## When Enrich runs
+
+Three triggers:
+
+1. **Automatically** after parse — fires on background worker once Submit for Review happens
+2. **Manually** — click <strong>Enrich</strong> on the order's Enrich tab
+3. **Per-style** — click any style tile → drawer → "Re-enrich this style" button
+
+You shouldn't need to manually fire it for normal orders. The auto-trigger handles 95% of cases.
+
+## What Enrich actually does
+
+For every style on the order, AI fills in:
+
+### Customer-facing
+- **Web description** (the long product description on the storefront)
+- **Fit notes** — how the garment runs (slim / regular / relaxed) and sizing advice
+- **Occasion** — when to wear it (Business / Casual / Resort / Formal)
+
+### Structured metafields (smart filters read these)
+- **Category + Subcategory** — the canonical TC taxonomy
+- **Colour Group** — the canonical colour bucket (Black, Navy, Brown, etc.) for filter facets
+- **Pattern** — Solid / Stripe / Check / etc.
+- **Fabric content** — primary fibre + composition
+- **Country of origin** — Italy, Japan, Portugal, etc.
+- **Fit type** — Slim, Regular, Classic, Relaxed
+- **Construction attributes** (for tailoring) — lapel, button stance, lining, vents, canvas type, etc.
+
+### Identity
+- **Vendor Ref** — supplier's internal style code (separate from the Shopify SKU)
+- **Brand Code** — short brand prefix (e.g. "LRD" for Lardini)
+
+## Working the Enrich page
+
+Open the order → click the **Enrich** tab.
+
+You'll see a grid of style cards. Each card shows:
+
+- Image
+- Editorial preview of the description
+- Tier-1 fields (category, colour, etc.)
+- Tier-2 fields (fit, fabric, occasion)
+- An <strong>Apply Edit</strong> button per card
+- A green checkmark if the style is complete, yellow flag if needs review
+
+### Reviewing a style card
+
+Click the card to expand the field grid. Walk down the fields top-to-bottom:
+
+| Field | What to check |
+|---|---|
+| Web Description | Reads well? No "elevate your wardrobe" cliches? Correct fabric mentioned? |
+| Fit Type | Matches what you know about the brand's fit |
+| Occasion | At least one selected, more if applicable |
+| Fabric content | Matches the linesheet (this is the most-common AI miss) |
+| Country of Origin | Only "prestige" origins get mentioned in description (Italy, Japan, etc.) |
+| Category/Subcategory | Should be correct from parse — verify |
+
+Edit any field inline. Click <strong>Apply Edit</strong> to save and re-generate dependent fields (e.g. changing the fabric will re-generate the description).
+
+<div class="callout callout-tip">
+<div class="callout-title">Speed tip</div>
+Cards with no flags can usually be approved in one click. Reserve attention for the ones with yellow review flags.
+</div>
+
+### Bulk approve
+
+Once all cards look good:
+
+1. Click <strong>Batch Approve</strong> at the top of the Enrich tab
+2. Confirms how many styles will flip to <span class="badge badge-ok">READY</span>
+3. Click <strong>Approve</strong>
+
+Only styles that pass completeness checks get approved — anything with empty critical fields stays in review.
+
+## Editing the description specifically
+
+The AI description follows brand-voice rules set in [Settings → AI & Models](/settings/ai-models/). To customize per-style:
+
+1. Click the style card → description field
+2. Edit the text directly
+3. Click <strong>Apply Edit</strong>
+
+Or click <strong>Regenerate</strong> next to the description field — runs the AI again with the current brand voice.
+
+<div class="callout callout-warn">
+<div class="callout-title">Heads up</div>
+If you edit a description manually and then change the fabric or COO later, the description does <strong>not</strong> auto-update. It's locked to your manual edit. To re-link it: click Regenerate.
+</div>
+
+## Per-subcategory attribute fields
+
+Some fields only appear when the style's subcategory makes them relevant:
+
+| Field | Shows for |
+|---|---|
+| **Lapel Style** | Suits, Blazers, Sport Jackets, dressy outerwear |
+| **Button Stance** | Suits, Blazers, Sport Jackets |
+| **Vents** | Tailored jackets |
+| **Construction** (canvas type) | Tailored jackets |
+| **Lining** | Tailored jackets, structured outerwear |
+| **Collar Style** | Dress shirts |
+| **Cuff Style** | Dress shirts |
+| **Sole Type** | Footwear |
+| **Toe Shape** | Footwear |
+| **Fastening** | Footwear |
+| **Ply** | Knitwear |
+| **Rise** | Pants, Shorts |
+
+If a field doesn't appear, that means the gating rules decided it's not relevant for this subcategory. You can't force it visible from the UI.
+
+## Brand Recipes
+
+Some brands have a "recipe" — a set of pre-filled defaults that override AI for known fields. E.g. Lubiam's MTM recipe pre-fills construction, lapel, button stance, lining for every Lubiam MTM order.
+
+Recipes are managed by Gregory under [Settings → Brands & Suppliers](/settings/brands-suppliers/). The team doesn't need to touch them.
+
+## When AI flags a style for review
+
+A row gets <span class="badge badge-warn">NEEDS REVIEW</span> when:
+
+- Category confidence < 70% (AI not sure what kind of garment it is)
+- Colour confidence < 70%
+- One of the critical fields (fabric, COO) was extracted with low confidence
+- The vendor ref couldn't be matched to a known supplier ref pattern
+
+To clear the flag:
+
+1. Open the card
+2. Fix any empty or wrong field
+3. Click <strong>Apply Edit</strong>
+4. The flag clears automatically once all critical fields are filled
+
+If the AI got it right and you just want to confirm:
+
+- Click <strong>Confirm as-is</strong> in the card footer (it's a separate button from Apply Edit). Flips the row to <span class="badge badge-ok">READY</span> without changing any values.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Approving cards with empty fabric</div>
+If fabric is empty when you approve, the product pushes to Shopify with no fabric metafield. Smart filter "shop by fabric" misses these products. <strong>Always fill fabric before approving.</strong>
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Wrong COO going public</div>
+Country of origin shows on the storefront for prestige origins (Italy, Japan, etc.). If parse extracted "Tunisia" but the linesheet actually says "Italy" — fix it before approving. Hard to undo after products are live.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Editing the description after push</div>
+If you push to Shopify and then edit the description in Enrich, you need to push again to see the change on the storefront. The metafield update doesn't propagate without a push.
+</div>
+
+## Next steps
+
+- [Push to Shopify](/workflows/push-to-shopify/)
+- [Settings → AI & Models](/settings/ai-models/) — to tune the AI voice

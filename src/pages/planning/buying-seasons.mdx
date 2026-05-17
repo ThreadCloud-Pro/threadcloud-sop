@@ -1,0 +1,129 @@
+---
+layout: ../../layouts/Doc.astro
+title: Buying Seasons
+description: How to set up a buying season, assign orders to it, and use it for planning and roll-up.
+---
+
+# Buying Seasons
+
+A buying season is the container for all the orders that ship within one selling period. Pre-Fall, Spring/Summer, Fall/Winter, Resort, Cruise. You set them up once a year and every order gets assigned to one.
+
+<div class="callout callout-info">
+<div class="callout-title">Why this matters</div>
+Buying season is how you roll up <strong>cost, commitment, sell-through, and margin across many orders</strong>. The Trading dashboard and Financials views both pivot on it. Set this up right and planning becomes trivial.
+</div>
+
+## When to set up a new buying season
+
+- Twice a year for SS / FW (the core seasons)
+- Plus PF (Pre-Fall) and Cruise/Resort if you carry those
+- Annually, ahead of when you start placing orders for it (typically 6+ months before delivery)
+
+## Anatomy of a buying season
+
+| Field | Example | Notes |
+|---|---|---|
+| **Name** | "Pre-Fall 2025" | Human-readable label |
+| **Code** | `PF2025` | Stamped as a tag on every product in the season — keep this short and consistent |
+| **Start date** | 2025-07-01 | When inventory starts shipping for this season |
+| **End date** | 2025-10-31 | When the season "closes" for new orders (you can still receive after this) |
+| **Planned budget** | $X | Total dollar commitment for the season |
+| **Category plan** | per category | "Spend $X on Suits, $Y on Knitwear, …" |
+
+## Setting up a buying season
+
+<ol class="steps">
+  <li>Navigate to <strong>Planning → Buying Seasons</strong> from the sidebar</li>
+  <li>Click <strong>New Buying Season</strong></li>
+  <li>Fill in name + code (code uppercase, no spaces, e.g. <code>PF2025</code>)</li>
+  <li>Set start + end dates</li>
+  <li>Click <strong>Create</strong> — lands on the season detail page</li>
+</ol>
+
+## Adding budget + category plan
+
+On the season detail page:
+
+1. Click <strong>Set Budget</strong>
+2. Total budget in store currency
+3. **Category breakdown** — distribute the budget across categories (Suits 25%, Sport Jackets 15%, Knitwear 20%, etc.)
+4. Click <strong>Save Plan</strong>
+
+The plan becomes the comparison baseline for **committed** (what you've actually ordered) vs **planned** (what you intended). The Budget/OTB view ([Budget & OTB](/planning/budget-otb/)) pivots on this.
+
+## Assigning orders to a season
+
+There are two ways:
+
+### When creating an order
+[Build Order](/workflows/build-order/) Stage 1 asks for the buying season — pick from the dropdown. Done.
+
+### After the fact
+If an order was created without a season (or assigned wrong):
+
+1. Open the order
+2. Click the season badge in the header
+3. Pick from dropdown
+4. Saves automatically
+
+## Viewing the season
+
+The buying season detail page shows:
+
+| Section | What it shows |
+|---|---|
+| **Header** | Name, code, dates, planned vs committed totals |
+| **Orders** | Every order assigned to the season, with status and committed cost |
+| **Category roll-up** | Planned vs committed by category (graph view) |
+| **Brand mix** | Committed dollars by brand |
+| **Delivery windows** | Stacked timeline of when shipments are expected |
+| **Sell-through** (after season starts) | Per-style sales velocity |
+
+This is your single planning surface for the season. Bookmark it.
+
+## Common patterns
+
+### Pre-buying
+
+Before you start placing orders, click the season → <strong>Set Plan</strong>. Distribute the budget across categories based on prior-year sell-through and your direction for the season. This anchors every subsequent buying decision.
+
+### Mid-season check-in
+
+Mid-season, look at the season page:
+
+- Are you on plan? Look at Committed vs Planned
+- Are categories balanced or overweighted in one?
+- Which brands are over/under?
+
+Use these signals to either rebalance the next round of orders or hold orders back.
+
+### End-of-season
+
+When the season closes:
+
+1. Mark the end date as today (or earlier) by editing the season
+2. The status flips to **Closed**
+3. Sell-through and margin numbers freeze — you can still view but not change the plan
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Mixing buying seasons in one order</div>
+One order = one buying season. If a supplier ships across two seasons (some Pre-Fall, some Fall), create <strong>two separate orders</strong>, each in the right season.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Skipping the budget</div>
+You can create orders without a season budget set. But the Budget/OTB view will be empty, and you'll have no baseline to spot overspending. <strong>Always set the plan first.</strong>
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Renaming the code mid-season</div>
+The season code is stamped as a tag on every Shopify product (e.g. <code>PF2025</code>). Renaming the code does NOT retroactively update tags. Pick a code up front; don't rename.
+</div>
+
+## Next steps
+
+- [Budget & OTB](/planning/budget-otb/) — track what's spent vs planned
+- [Trading](/planning/trading/) — track sell-through during the selling window
+- [Build Order](/workflows/build-order/) — assign new orders to the season

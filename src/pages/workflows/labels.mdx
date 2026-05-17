@@ -1,0 +1,122 @@
+---
+layout: ../../layouts/Doc.astro
+title: Print Labels
+description: Print physical labels for received variants — Dymo, Avery sheet, or Shopify Admin fallback.
+---
+
+# Print Labels
+
+Three ways to print labels, ranked best to fallback. Use whichever your situation allows.
+
+## Option 1 — TC Dymo print (preferred)
+
+The default flow. Dymo 30334 thermal printer, 57×32mm landscape labels.
+
+<ol class="steps">
+  <li>Receiving tab → click <strong>Print Labels</strong></li>
+  <li>A new tab opens with the label preview — one label per received variant unit (e.g. if you received 5 of Size L, you get 5 labels for that variant)</li>
+  <li>Press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd></li>
+  <li>Select the Dymo printer</li>
+  <li>Verify the label size in the print dialog is set to <strong>57×32mm landscape</strong></li>
+  <li>Click Print</li>
+</ol>
+
+### What's on the label
+
+```
+[BRAND]  [STYLE]                          [SIZE]
+[Colour]                                  ████ ████ █
+[SKU]                                     CA$245.00
+```
+
+- Brand name + style name (top left)
+- Colour name (below)
+- SKU (small)
+- Barcode (Code 128B of the SKU)
+- Retail price (bottom right)
+- **Size** is intentionally the largest element on the right — fast scan during fitting
+
+## Option 2 — Avery 5160 sheet labels (printer-agnostic fallback)
+
+If the Dymo dies, runs out of labels, jams, or is just unavailable.
+
+<ol class="steps">
+  <li>Buy Avery 5160 sheet labels (30-up, 1×2⅝ inches) from any office supply store</li>
+  <li>Load them into any regular laser/inkjet printer</li>
+  <li>Click <strong>Print Labels</strong> in TC as usual</li>
+  <li>In the print dialog: select your normal printer, set paper to Letter, scale to 100%</li>
+  <li>Print</li>
+</ol>
+
+<div class="callout callout-warn">
+<div class="callout-title">Heads up</div>
+The TC label is sized for Dymo's 57×32mm format. On Avery 5160 sheets, you'll get the same visual label but the layout will be slightly different (typically one label per Avery slot, with whitespace). It's a working fallback, not a perfect match. Verify on one test sheet before printing a stack.
+</div>
+
+## Option 3 — Shopify Admin native batch print (last resort)
+
+When neither TC's printer nor a backup is available, fall back to Shopify Admin. This works because ThreadCloud writes the SKU into the Shopify variant `barcode` field on every push.
+
+<ol class="steps">
+  <li>Open Shopify Admin → Products</li>
+  <li>In the search bar, type <code>tag:tc-order-<strong>247</strong></code> — replace 247 with your order's ID (find it in the TC order URL)</li>
+  <li>Select all rows that need labels</li>
+  <li>Click <strong>More actions</strong> → <strong>Print barcode labels</strong></li>
+  <li>Choose label size (Avery 5160 is safest), choose products + variants, hit Print</li>
+</ol>
+
+### Differences vs TC labels
+
+| Field | TC label | Shopify Admin |
+|---|---|---|
+| Brand | ✅ | ❌ |
+| Style name | ✅ | ✅ (truncated) |
+| Colour name | ✅ | ❌ |
+| Size | ✅ (large) | ✅ |
+| SKU | ✅ | ✅ |
+| Barcode | ✅ | ✅ |
+| Retail price | ✅ | ✅ |
+
+You lose brand and colour but keep size, SKU, barcode, and price — enough to ID and ring up each item.
+
+## Reprinting labels later
+
+You don't always print labels at receive time. To reprint for an existing order:
+
+1. Open the order → Receiving tab
+2. Click <strong>Print Labels</strong> — the print preview rebuilds from the saved data
+3. Print
+
+This re-prints **all received labels** for the order. There's no per-variant reprint in the UI yet. If you only need to reprint a few:
+
+- Print the full sheet
+- Discard the ones you don't need
+- Or use the Shopify Admin fallback for cherry-picking by variant
+
+## Custom labels for hang tags / size tickets
+
+ThreadCloud's labels are receiving-focused (SKU + size + price for stock control). For customer-facing hang tags with brand story, fabric content, etc., that's a different flow — under <strong>Order → Hang Tag Print</strong>.
+
+(Documented separately if your team uses hang tags. Most stores don't.)
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Print scale set to "Fit to page"</div>
+This shrinks the barcode below scannable threshold. Always set scale to 100% / Actual Size in the print dialog.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Print preview shows wrong quantities</div>
+The preview reads from saved data. If you didn't click Save Received before opening Print Labels, the preview shows old numbers. Save first.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Forgetting size selection in Shopify Admin fallback</div>
+Shopify's batch barcode print defaults to "one label per variant" — but you may have received 5 units of one variant. Manually set the qty to match in Shopify's print dialog.
+</div>
+
+## Next steps
+
+- [Receiving](/workflows/receiving/) — the workflow this prints from
+- [Runbook → Printer fallback](/runbook/#printer-fallback)

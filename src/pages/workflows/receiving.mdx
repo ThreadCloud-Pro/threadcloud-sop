@@ -1,0 +1,176 @@
+---
+layout: ../../layouts/Doc.astro
+title: Receiving
+description: Log received quantities, lock the FX rate, and print labels when the shipment arrives.
+---
+
+# Receiving
+
+When the boxes arrive, you open the receiving page, count what's in them, mark received quantities per variant, and print labels. This is the most physical workflow — usually done at the receiving table with a phone or tablet next to the open boxes.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+The moment a shipment arrives. Don't wait — receiving in ThreadCloud the same day keeps inventory and sell-through accurate.
+</div>
+
+## What you'll need
+
+- The physical shipment + packing list
+- A printer connected (Dymo 30334 or fallback — see [Labels](/workflows/labels/))
+- The order ID (find it in the email confirmation or under the order in TC)
+
+## The receiving flow
+
+<ol class="steps">
+  <li><strong>Open the receiving page</strong> — Order → Receiving tab</li>
+  <li><strong>Enter received quantities per variant</strong></li>
+  <li><strong>Save</strong> — FX rate locks the first time you save</li>
+  <li><strong>Print labels</strong> — one click, sends to Dymo</li>
+  <li><strong>Apply labels to the physical items</strong></li>
+  <li><strong>Move to store shelves or stockroom</strong></li>
+</ol>
+
+## Stage 1 — Open the receiving page
+
+Two ways:
+
+- From the dashboard: click the order → Receiving tab
+- From the URL bar: `/app/orders/{order-id}/receiving`
+
+You see a grid of every style in the order, with its sizes and the **ordered quantity** per size. Each cell has an empty input next to it for the **received quantity**.
+
+## Stage 2 — Enter received quantities
+
+For each variant:
+
+1. Tap the cell
+2. Type the count from the box
+3. Move to the next
+
+<div class="callout callout-tip">
+<div class="callout-title">Speed tip</div>
+If the entire shipment matches the ordered qty exactly (rare but happens), click <strong>Receive All as Ordered</strong> at the top. It pre-fills every received cell with the ordered qty. Then just spot-check and save.
+</div>
+
+### When ordered ≠ received
+
+If you got fewer than ordered:
+
+- Enter the actual count. ThreadCloud will mark it as a **discrepancy** in the order's audit log.
+- The order will sit in <span class="badge badge-warn">PARTIAL</span> status — fine for now. Resolve when the rest of the shipment arrives or when you accept the short.
+
+If you got more than ordered (rare):
+
+- Enter the larger count.
+- Add a note in the discrepancy log.
+- Verify with the supplier — they may have over-shipped intentionally as a sample.
+
+If a variant didn't ship at all:
+
+- Leave it at zero. The order stays <span class="badge badge-warn">PARTIAL</span>.
+
+## Stage 3 — Save & lock FX
+
+Click <strong>Save Received</strong>.
+
+What happens:
+
+- Received quantities write to Shopify's inventory (immediately available for purchase)
+- The FX rate locks at the current rate from the multi-provider feed
+- The order's total cost recalculates with the locked rate
+
+<div class="callout callout-info">
+<div class="callout-title">Why FX locking matters</div>
+The FX rate snapshot is your <strong>cost truth</strong>. Even if rates fluctuate over the next 12 months, your margin calculations stay anchored to the rate the day inventory landed. Don't override this.
+</div>
+
+If you need to set the FX rate manually (rare — only if the live feed is wrong):
+
+1. Receiving tab → FX Rate row → click the rate
+2. Type the override
+3. Click Confirm. ThreadCloud locks your manual rate instead.
+
+## Stage 4 — Print labels
+
+Once saved, click <strong>Print Labels</strong> at the top of the Receiving tab.
+
+A new tab opens with the label preview — one label per received unit, laid out for Dymo 30334 (57×32mm). Press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd>, select the Dymo, print.
+
+Label contents:
+
+- Brand name + style name
+- Colour
+- Size (large, on the right)
+- SKU (small, below)
+- Barcode (Code 128B of the SKU)
+- Retail price
+
+<div class="callout callout-tip">
+<div class="callout-title">Tip — print in batches</div>
+If you have 10 styles to receive but only the first 5 boxes are open, save those first and print just those labels. You can come back later for the rest — the print preview only shows labels for the just-saved batch.
+</div>
+
+### If the printer fails
+
+Three fallbacks, in order of how-close-to-TC-labels they look:
+
+1. **Avery 5160 sheet labels on a regular printer** — the print preview prints fine to any printer; just load sheet labels instead of Dymo rolls. Looks identical to the TC label, just on stickier paper.
+2. **Shopify Admin native print** — see the [runbook printer fallback](/runbook/#printer-fallback). Works because TC writes SKUs into the Shopify variant barcode field.
+3. **Hand-write SKUs on tags** — last resort. Use the SKU shown on the receiving page.
+
+## Stage 5 — Apply labels & shelve
+
+Apply each label to its physical item. Move to the store or stockroom.
+
+The order's status flips:
+
+- <span class="badge badge-warn">PARTIAL</span> if some variants are still at 0 received
+- <span class="badge badge-ok">RECEIVED</span> once every variant has received qty ≥ ordered qty
+
+## Returning to a partial order
+
+If a shipment arrives in two parts (common with EU suppliers):
+
+1. Receive what arrived in part 1 — save
+2. Order sits in <span class="badge badge-warn">PARTIAL</span>
+3. When part 2 arrives, open the same Receiving page
+4. Enter the *additional* received qty (not cumulative — just what arrived in part 2)
+5. Save again
+
+ThreadCloud adds the two saves together for the total received. The audit log shows each receive event separately.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Receiving in CAD when you bought in EUR</div>
+If the order's currency is EUR but you somehow set the receiving FX to 1.0, your costs are wildly off. Verify the FX before saving — it should be a normal exchange rate (e.g. 0.7 for EUR→CAD), not 1.0.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Forgetting to save before printing</div>
+The print preview reads from saved data. If you enter quantities but don't click Save Received first, the print preview will show old data (or zero labels).
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Receiving a re-order against the original order</div>
+If you placed a reorder for the same brand/season, the reorder is a <strong>separate order</strong> in ThreadCloud — even if the supplier shipped both together. Receive each order separately so sell-through math stays correct.
+</div>
+
+## Reverse a receive
+
+Made a mistake? You can reverse:
+
+1. Receiving tab → click <strong>Reverse Receive</strong>
+2. Select the variants and quantities to reverse
+3. Confirm — Shopify inventory reduces by that amount; the audit log records the reversal
+
+<div class="callout callout-warn">
+<div class="callout-title">Heads up</div>
+Reverse only works <strong>before</strong> any of the reversed variants have sold. If sales have already happened against the received inventory, talk to Gregory before reversing.
+</div>
+
+## Next steps
+
+- [Labels](/workflows/labels/) — print details + fallback options
+- [Reorder](/workflows/reorder/) — re-buy what's selling
+- [Trading](/planning/trading/) — watch sell-through

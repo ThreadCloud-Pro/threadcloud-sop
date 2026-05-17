@@ -1,0 +1,95 @@
+---
+layout: ../../layouts/Doc.astro
+title: Theme & Storefront
+description: Connect ThreadCloud to the Shopify theme, configure smart filters, manage sizing chart tabs.
+---
+
+# Theme & Storefront
+
+The storefront integration surface. Smart filters, sizing chart tabs, and theme-side configuration all live here.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Once at install — Gregory has already configured this for blazerformen.com. Re-visit only when changing theme or adding new filter facets.
+</div>
+
+## Smart filters
+
+Smart filters are the "Shop By" facets on the storefront — Color, Size, Brand, Fit, Occasion, etc. They read from the `tc_core` metafields ThreadCloud writes on push.
+
+### Configuration
+
+Settings → Theme → Smart Filters tab. You'll see a list of enabled filters:
+
+| Filter | Reads from | Notes |
+|---|---|---|
+| Color | `tc_core.color_group` | Canonical 12-bucket palette |
+| Size | Variant size tag | Driven by category's size scale |
+| Brand | `vendor` (native Shopify) | Multi-select |
+| Fit | `tc_core.fit_type` | Slim / Regular / Classic / Relaxed |
+| Occasion | `tc_core.occasion` | Multi-value support |
+| Fabric | `tc_core.fiber_primary` | Cashmere / Wool / Cotton / etc. |
+| Country of Origin | `tc_core.coo` | Only prestige origins shown |
+| Pattern | `tc_core.pattern_type` | Solid / Stripe / Check / etc. |
+| Price | Shopify price | Native |
+
+Each row has an enable toggle and a "configure" button (for things like Color, where you can hide specific buckets).
+
+### Re-evaluating filters
+
+When you change a filter's config (enable/disable, hide a bucket), the storefront updates within ~30 seconds. No theme deploy needed.
+
+### Adding a new filter facet
+
+This is a code change. Out of scope for the team — only Gregory does this.
+
+## Sizing chart tabs
+
+Some categories have storefront sizing chart tabs (the `_tab1_xxx-sizing-chart` tags ThreadCloud stamps on products). These auto-show a sizing chart tab on the product page.
+
+| Category | Tag stamped | Tab shows |
+|---|---|---|
+| Suits, Suit Jackets | `_tab1_suits-jackets-sizing-chart` | EU/US chest size chart |
+| Dress Shirts | `_tab1_dress-shirts-sizing-chart` | Collar circumference chart |
+| Pants | `_tab1_pants-sizing-chart` | Waist + inseam chart |
+| Footwear | `_tab1_shoes-sizing-chart` | EU/US/UK shoe chart |
+
+The tabs themselves are theme metaobjects — managed by Gregory in Shopify Admin → Online Store → Themes → Customize. Out of scope for the team.
+
+## Storefront preview
+
+The Theme settings page has a <strong>Preview Storefront</strong> button. Opens the live store in a new tab. Use it to sanity-check after:
+
+- A big legacy enrichment apply
+- A new buying season's first push
+- Adding/removing a filter facet
+
+## Image variants for smart filter swatches
+
+Color filter shows swatches. The swatch is sourced from:
+
+1. The Shopify product's variant image for that color (preferred), OR
+2. A hex code mapped to the color group (fallback)
+
+To set up a custom swatch image:
+
+1. Shopify Admin → Products → open one variant
+2. Set the variant image to a clean swatch (200×200px square works best)
+3. Storefront picks it up automatically
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Enabling a filter without metafield data</div>
+If you enable, say, "Pattern" but most of your products don't have <code>tc_core.pattern_type</code> set, the filter shows but lists almost nothing. Run [Legacy Enrichment](/settings/legacy-enrichment/) first.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Manually editing tags in Shopify Admin</div>
+Smart filters that read from tags (rather than metafields) are sensitive to tag edits. If you delete a TC-stamped tag like <code>category-SUIT</code>, the product drops out of the "Suits" filter. Always edit in ThreadCloud, never in Shopify Admin.
+</div>
+
+## Next steps
+
+- [Legacy Enrichment](/settings/legacy-enrichment/) — populate metafields for the filters to read
+- [Settings → AI & Models](/settings/ai-models/) — control which colour buckets / pattern values get extracted

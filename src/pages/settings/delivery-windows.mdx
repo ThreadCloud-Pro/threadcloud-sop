@@ -1,0 +1,87 @@
+---
+layout: ../../layouts/Doc.astro
+title: Delivery Windows
+description: Set up shipping windows for buying seasons. Used at order creation and for tracking.
+---
+
+# Delivery Windows
+
+A delivery window is a date range you expect shipments to arrive (e.g. "Aug 15 – Sep 1, 2025" for early Pre-Fall deliveries). Buying orders get assigned to a delivery window so you can track flow into the store.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Set up at the start of a buying season — typically 4–8 windows per season covering the expected shipping calendar.
+</div>
+
+## What a window contains
+
+| Field | Example | Notes |
+|---|---|---|
+| **Name** | "Pre-Fall Early" | Friendly label |
+| **Start date** | 2025-08-15 | Earliest expected arrival |
+| **End date** | 2025-09-01 | Latest expected arrival |
+| **Buying Season** | PF2025 | Which season this window belongs to |
+
+Windows can overlap — that's fine.
+
+## Setting up windows for a season
+
+1. Settings → Delivery Windows
+2. Click <strong>New Window</strong>
+3. Fill in name, dates, buying season
+4. Save
+
+A typical Pre-Fall might have:
+
+- Pre-Fall Early (Aug 15 – Sep 1)
+- Pre-Fall Mid (Sep 1 – Sep 20)
+- Pre-Fall Late (Sep 20 – Oct 15)
+- Pre-Fall Reorders (Oct 15 – Nov 15)
+
+You pick this granularity. Some buyers prefer weekly windows, some monthly. Match it to how you actually think about the calendar.
+
+## Visual calendar
+
+The Delivery Windows page shows a calendar view:
+
+- Each window is a colored band on the date axis
+- Orders assigned to each window appear as items inside the band
+- Total dollars per window roll up
+
+Helpful for spotting:
+
+- Weeks with too much inflow (warehouse capacity)
+- Weeks with no inflow (storefront looks stale)
+
+## Assigning orders to windows
+
+Done at order creation — Build Order asks for the delivery window. See [Build Order Stage 1](/workflows/build-order/#stage-1-create-the-order).
+
+To reassign after the fact:
+
+1. Open the order
+2. Click the delivery window badge in the header
+3. Pick from dropdown
+4. Saves immediately
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Too few windows</div>
+If the entire season is one window, you lose all granularity. Use 4–8 windows per season minimum.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Too many windows</div>
+20+ windows per season is overkill — you'll spend more time picking the right one than the data is worth. 4–8 is the sweet spot.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Letting windows lapse</div>
+If the window closed and you haven't received the shipment, the order will show as "overdue". Either receive (if it actually arrived) or move it to a later window.
+</div>
+
+## Next steps
+
+- [Buying Seasons](/planning/buying-seasons/) — windows are scoped to a season
+- [Build Order](/workflows/build-order/) — assign new orders to a window

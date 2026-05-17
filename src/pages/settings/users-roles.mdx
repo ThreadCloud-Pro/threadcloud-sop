@@ -1,0 +1,79 @@
+---
+layout: ../../layouts/Doc.astro
+title: Users & Roles
+description: Add team members, assign roles, manage access.
+---
+
+# Users & Roles
+
+ThreadCloud uses three roles. Pick the lowest one that lets a person do their job.
+
+| Role | What they can do |
+|---|---|
+| **Owner** | Everything. There's exactly one Owner per store — Gregory. |
+| **Buyer** | All workflows: Build Order, Enrich, Push, Receiving, Reorder, MTM, Trading, Financials. Can read settings but not change AI prompts or theme. |
+| **Viewer** | Read-only. Useful for accountants, supplier reps, anyone who needs visibility but shouldn't edit. |
+
+## Adding a user
+
+1. Settings → Users & Roles
+2. Click <strong>Invite User</strong>
+3. Enter email + role
+4. Click <strong>Send Invite</strong> — they receive an email with a sign-in link
+
+They sign in with their Shopify account. The role gets applied on first login.
+
+## Changing a user's role
+
+1. Settings → Users & Roles → find the user in the table
+2. Click the role dropdown next to their name
+3. Pick the new role
+4. Confirms — takes effect on their next page load
+
+## Removing a user
+
+1. Settings → Users & Roles → find the user
+2. Click <strong>Revoke Access</strong>
+3. Confirm — their next page load will show a "no access" page
+
+This doesn't delete their Shopify account, just their access to ThreadCloud.
+
+## Who gets what role
+
+| Person | Role | Why |
+|---|---|---|
+| Gregory | Owner | Full control |
+| Sales associate doing receiving | Buyer | Needs to operate Receiving + Labels |
+| Accountant | Viewer | Reads Financials, doesn't edit |
+| Manager doing reorders | Buyer | Needs to operate Reorder + Trading |
+| Supplier rep checking ack status | Viewer | Reads their own orders, doesn't edit |
+
+## What only Owner can do
+
+These are gated to Gregory only:
+
+- Edit AI prompts (Settings → AI & Models)
+- Change the metafield schema
+- Use dev tools (`/app/settings/dev`)
+- Set up new brands with MTM recipes
+- Adjust theme configuration
+- Reset / wipe data
+
+Buyers and Viewers will see these pages but get a "permission denied" message if they try to act.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Giving Owner to multiple people</div>
+There should be exactly one Owner per store. Multiple Owners create coordination problems on settings changes. <strong>Use Buyer for anyone else who needs write access.</strong>
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Forgetting to revoke when staff leave</div>
+ThreadCloud access persists until you explicitly revoke. Add "Revoke ThreadCloud access" to your offboarding checklist.
+</div>
+
+## Next steps
+
+- [Brands & Suppliers](/settings/brands-suppliers/) — assign brands a buyer is responsible for
+- [Runbook](/runbook/) — what Buyers can self-serve vs. need Owner for

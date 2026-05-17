@@ -1,0 +1,99 @@
+---
+layout: ../../layouts/Doc.astro
+title: Budget & OTB
+description: Open-to-Buy tracking. See what's planned vs committed across the season's categories.
+---
+
+# Budget & OTB
+
+Open-to-Buy. The classic retail planning view — for each category in a buying season, how much budget remains unspent. Use it during the buying calendar to keep the season on plan.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Before every supplier appointment. The OTB tells you how much room is left in each category — drives what you order at the appointment.
+</div>
+
+## What you see
+
+Open a buying season → click <strong>Budget</strong> tab. You see one row per category, with:
+
+| Column | What it means |
+|---|---|
+| **Category** | Suit / Blazer / Knitwear / etc. |
+| **Planned** | Dollars budgeted for this category in this season |
+| **Committed** | Dollars you've ordered (sum of all order line totals at cost) |
+| **OTB** | Planned − Committed. What's left to spend. |
+| **% of plan** | Visual indicator of how much of the plan is used |
+
+A category showing <span class="badge badge-warn">OVER PLAN</span> means you've ordered more than budgeted. Not necessarily bad — a strong category may deserve over-spending. But surface it before you keep stacking.
+
+## How OTB updates
+
+Every time you create or push an order:
+
+1. ThreadCloud sums the order's line totals at cost (qty × cost, FX'd to store currency)
+2. Buckets them by the styles' categories
+3. Adds to the season's committed total
+
+So the OTB is live — assuming the supplier confirms the order. Drafts that haven't been pushed yet are also counted, so you don't blow the plan by accident on drafts.
+
+## Using OTB to plan an appointment
+
+Before a supplier meeting:
+
+1. Open the relevant buying season → Budget tab
+2. Look at the OTB column
+3. For categories where OTB is high, you have room — order more
+4. For categories where OTB is at or below zero, you're full — only buy if you're rebalancing
+
+## Adjusting the plan mid-season
+
+If reality drifts from your original plan — e.g. you decide to lean into a category that's selling — you can rebalance:
+
+1. Open the buying season header → click <strong>Edit Plan</strong>
+2. Move dollars between categories
+3. Save
+
+This doesn't change committed dollars. It only changes Planned, which changes OTB.
+
+<div class="callout callout-warn">
+<div class="callout-title">Heads up</div>
+Rebalancing during the season is fine, but if you do it constantly the plan becomes meaningless. Try to set a strong plan up-front and stick to it; only rebalance for material shifts.
+</div>
+
+## Common patterns
+
+### Locking categories at the start of the season
+
+For categories you don't want to overspend on (e.g. niche / risky ones), set the planned dollars conservatively. The OTB column will turn red quickly and signal "stop ordering".
+
+### Seeing where you over-bought last year
+
+End-of-season, look at Committed vs Planned across categories. The ones with negative OTB (over-spent) are the ones to reduce in next year's plan.
+
+## Weeks of Supply integration
+
+The Budget tab also surfaces a per-category Weeks of Supply (WOS) number:
+
+- Estimated weeks until the current inventory sells through, at the current rate
+- Helps you decide: do I have room to buy more, or am I already drowning?
+
+A category with high OTB but also high WOS (lots of inventory sitting) is a signal to slow down even though you have budget.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Committing past plan without knowing</div>
+If you don't check the Budget tab before placing orders, you can be way over plan by the time you notice. Make checking the OTB part of your supplier-appointment prep.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Confusing committed with received</div>
+Committed = ordered. Received = arrived. An order placed but not yet shipped still counts as committed. The Budget view tracks dollars regardless of physical receipt.
+</div>
+
+## Next steps
+
+- [Buying Seasons](/planning/buying-seasons/) — set up the plan that drives OTB
+- [Trading](/planning/trading/) — when products start selling, track velocity
+- [Financials](/planning/financials/) — full-stack financial view

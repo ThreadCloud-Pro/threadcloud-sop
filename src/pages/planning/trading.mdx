@@ -1,0 +1,144 @@
+---
+layout: ../../layouts/Doc.astro
+title: Trading Dashboard
+description: Sell-through, inventory age, and action queue. The selling-window operations surface.
+---
+
+# Trading Dashboard
+
+The selling-window operations surface. Once inventory lands, Trading tells you what's selling, what's aging, and what to act on this week.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Weekly. Monday morning is the natural cadence — review prior week's sales, identify reorder candidates, identify markdown candidates.
+</div>
+
+## What's on the dashboard
+
+Sidebar → Trading. The dashboard has four cards by default:
+
+### 1. Sell-Through Rate
+Per category, per brand, per buying season. Tells you what's moving and what's sitting.
+
+The hero metric: **% sold of total received** over a configurable window (default 30 days).
+
+### 2. Inventory Age
+How long each style has been on the floor. Bucketed:
+- 0–14 days (fresh)
+- 15–30 days (warming)
+- 31–60 days (watch)
+- 61–90 days (slow)
+- 90+ days (consider markdown)
+
+### 3. Weeks of Supply (per category)
+Current inventory units ÷ recent weekly sales rate = weeks until sold out at current pace. Lets you see where you're top-heavy.
+
+### 4. Action Queue
+ThreadCloud's automated recommendations:
+- **Reorder candidates** — high sell-through + low weeks of supply
+- **Markdown candidates** — high age + low velocity
+- **Risk flags** — anything outside expected patterns
+
+Click any row in the queue to act on it.
+
+## Reading the cards
+
+### Sell-Through Rate
+
+Each row shows:
+- Brand / Category / Buying Season
+- Units sold
+- Units received
+- Sell-through %
+- Trend arrow (week-over-week)
+
+Sort by:
+- Highest sell-through (find winners)
+- Lowest sell-through (find losers)
+- Trend (find rising or falling)
+
+A category at 60%+ in 30 days is hot. A category under 15% in 60+ days is cold.
+
+### Inventory Age
+
+The chart shows distribution. Ideal shape:
+
+- Tall on the left (fresh stock)
+- Tapering right (older stock declining)
+
+A bulge in the 60+ day buckets means you have stale inventory that needs action — usually markdown or reorder-to-reaccelerate.
+
+### Action Queue
+
+Each item has:
+- Style + brand
+- Recommendation (Reorder / Markdown / Watch)
+- Reasoning ("12 weeks supply remaining, 35% sell-through")
+- Quick-action button
+
+Click <strong>Reorder</strong> to jump to the [Reorder workflow](/workflows/reorder/) pre-filtered to this style. Click <strong>Markdown</strong> to mark it for the next markdown batch.
+
+## Sync schedule
+
+Trading data syncs from Shopify orders. Two paths:
+
+1. **Auto-sync** every 6 hours — runs in the background
+2. **Manual sync** — Settings → AI & Models → click "Sync sell-through now"
+
+If the dashboard looks stale (numbers don't match what you know is selling), trigger a manual sync. Should complete in under a minute.
+
+## Common patterns
+
+### Monday morning review
+
+15 minutes:
+
+1. Open Trading → Sell-Through Rate, sorted by highest
+2. Identify top 5 styles by sell-through
+3. Check weeks of supply for each — if any are under 4 weeks, jump to Reorder
+4. Switch to Inventory Age — look at the 60+ day bucket
+5. Flag any styles >90 days for the markdown list
+
+That's the week's tasks set.
+
+### End-of-season post-mortem
+
+After a season closes, the Trading dashboard shows the full sell-through. Use this for:
+
+- Next year's buying plan (lean into high sell-through categories)
+- Brand performance review (which brands sold, which sat)
+- SKU productivity (which size scales sold across)
+
+## Filters
+
+Top of the page lets you filter:
+
+- **Buying Season** — restrict to current or last season
+- **Brand** — drill into one
+- **Category** — for category-level analysis
+- **Date range** — 7d / 14d / 30d / 60d / 90d / season-to-date
+
+Default is current buying season, 30d window.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Acting on stale sell-through</div>
+If the last sync ran 4 hours ago and a big batch of orders came through, the dashboard underrepresents reality. Hit "Sync now" before acting on close-to-the-line numbers.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Reordering off sell-through alone</div>
+A 50% sell-through style with 20 weeks of supply doesn't need reorder — you'll be sitting on it through Christmas. Always cross-check sell-through with weeks-of-supply.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Ignoring the trend arrow</div>
+A style at 30% sell-through and rising is a different story from 30% and falling. The arrow matters as much as the absolute number.
+</div>
+
+## Next steps
+
+- [Reorder](/workflows/reorder/) — act on reorder candidates
+- [Financials](/planning/financials/) — margin and cost roll-up
+- [Buying Seasons](/planning/buying-seasons/) — pivot for the planning context

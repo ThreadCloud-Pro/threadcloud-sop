@@ -1,0 +1,168 @@
+---
+layout: ../../layouts/Doc.astro
+title: MTM (Made-to-Measure)
+description: Capture customer measurements, build a one-off MTM order, send specs to the supplier, fit on arrival.
+---
+
+# MTM (Made-to-Measure)
+
+A different shape of workflow from regular buying. One customer, one garment, one production run. The flow optimizes for measurement accuracy and supplier spec clarity.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+A customer wants a custom suit, jacket, shirt, or trouser. MTM brands you've set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a> can be ordered through this flow.
+</div>
+
+## The MTM flow
+
+<ol class="steps">
+  <li><strong>Open MTM</strong> — sidebar → MTM</li>
+  <li><strong>Pick customer</strong> — existing or create new</li>
+  <li><strong>Pick brand + garment type</strong></li>
+  <li><strong>Enter measurements</strong> — chest, sleeve, body length, etc.</li>
+  <li><strong>Pick fabric</strong> — from the brand's recipe</li>
+  <li><strong>Pick options</strong> — lapel, button stance, lining, etc. (brand-specific)</li>
+  <li><strong>Review spec sheet</strong> — what gets sent to the supplier</li>
+  <li><strong>Send to supplier</strong> — emailed PDF spec + Shopify draft order for deposit</li>
+  <li><strong>On arrival: receive + fit appointment</strong></li>
+</ol>
+
+## Stage 1 — Open MTM
+
+Sidebar → MTM. You land on the MTM dashboard showing open MTM orders by status:
+
+- <span class="badge">DRAFT</span> — being built
+- <span class="badge badge-info">SENT</span> — sent to supplier
+- <span class="badge badge-warn">IN PRODUCTION</span> — supplier confirmed
+- <span class="badge badge-ok">RECEIVED</span> — landed in store
+- <span class="badge badge-ok">FIT COMPLETE</span> — customer picked up
+
+Click <strong>New MTM Order</strong> to start.
+
+## Stage 2 — Customer
+
+Pick from existing Shopify customers or create new (name, email, phone). The customer record links to the MTM order so when the garment arrives, the customer gets a fit-appointment email automatically.
+
+## Stage 3 — Brand + garment type
+
+Pick the brand. Only brands with an MTM recipe (set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a>) appear in the dropdown.
+
+Pick the garment type — Suit, Sport Jacket, Trouser, Shirt, etc. The next step's fields adapt to the garment.
+
+## Stage 4 — Measurements
+
+Enter measurements in the order the form prompts:
+
+For tailored upper-body garments:
+- **Chest**
+- **Sleeve length**
+- **Body length**
+- **Shoulder width**
+- **Neck** (shirts)
+
+For lower-body:
+- **Waist**
+- **Hip / seat**
+- **Thigh**
+- **Inseam**
+- **Rise** (front and back)
+
+Each measurement has a "guidance image" — click the small icon next to the field to see where to measure. Use either inches or centimeters (toggle at the top); the system stores both.
+
+<div class="callout callout-tip">
+<div class="callout-title">Speed tip — Customer Profile</div>
+If you've made MTM for this customer before, their measurements are saved on their profile. Click <strong>Load from Profile</strong> at the top to pre-fill. Then adjust if anything's changed (weight, etc.).
+</div>
+
+## Stage 5 — Fabric
+
+Pick from the brand's available fabric library. Each entry shows:
+
+- Fabric code (e.g. "FN-1234")
+- Composition (e.g. 100% Worsted Wool)
+- Mill (e.g. Loro Piana)
+- Swatch image
+- Lead time (in weeks)
+- Cost
+
+ThreadCloud pre-computed the retail price using the brand's MTM markup recipe — you can override per-order.
+
+## Stage 6 — Options
+
+Brand-specific. Lardini's recipe gives you different options than Lubiam's. Typical for a tailored jacket:
+
+- **Lapel**: Notch, Peak, Shawl
+- **Button stance**: 1B, 2B, 3-roll-2
+- **Vents**: Center, Side, None
+- **Lining**: Full, Half, Unlined
+- **Pockets**: Flap, Patch, Jetted, Ticket
+- **Buttonholes**: AMF on collar, Milanese on lapel, etc.
+- **Trouser fit**: Slim, Regular, Pleat detail
+
+Pick each. The recipe restricts you to combinations the supplier actually offers — you can't accidentally pick something that can't be produced.
+
+## Stage 7 — Review spec sheet
+
+Click <strong>Generate Spec</strong>. ThreadCloud builds a one-page PDF:
+
+- Customer name + email
+- Garment type + fabric
+- All measurements (in cm and inches)
+- All option selections, with images where the brand provides them
+- Special notes field — any custom instructions
+
+Review carefully. Once you send, changes require contacting the supplier directly.
+
+## Stage 8 — Send to supplier + deposit
+
+Click <strong>Send to Supplier</strong>. Two things happen:
+
+1. **Spec PDF emailed** to the supplier's MTM contact
+2. **Shopify draft order** created for the customer with the deposit amount (configured per brand — typically 50% of retail)
+
+The draft order link goes to the customer for payment. When the customer pays, the order flips to <span class="badge badge-info">SENT</span>.
+
+<div class="callout callout-info">
+<div class="callout-title">Why deposit before supplier sends</div>
+MTM is non-returnable. The deposit confirms customer commitment before you commit to the supplier. Skip this step at your own risk.
+</div>
+
+### Supplier confirmation
+
+When the supplier confirms the production, the MTM order flips to <span class="badge badge-warn">IN PRODUCTION</span>. Lead time is typically 6–10 weeks.
+
+## Stage 9 — Receive + fit
+
+When the garment arrives:
+
+1. Open the MTM order
+2. Click <strong>Receive</strong> — same UX as a regular receive, but for one item
+3. Print the MTM-specific label (includes customer name + garment type)
+4. ThreadCloud automatically emails the customer that the garment is ready
+5. When the customer comes in, run the fit appointment
+
+### Fit appointment notes
+
+After the fit, log notes on the customer's profile under "Fit notes". This feeds back into future MTM orders — if a customer always needs sleeves shortened 1cm, the next order pre-fills with that correction.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Sending the spec before customer confirms the design</div>
+Once it's at the supplier, changes are expensive (or impossible). Walk the customer through every option in the spec PDF before clicking Send.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Picking a fabric with long lead time for a deadline customer</div>
+The fabric library shows lead time. If a customer needs the garment for a wedding 8 weeks out, don't pick a fabric with a 6-week lead — production needs another 4–6 on top.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Forgetting the deposit</div>
+Send-without-deposit is possible (button is enabled) but you're on the hook if the customer flakes. <strong>Always take the deposit.</strong>
+</div>
+
+## Next steps
+
+- [Settings → Brands & Suppliers](/settings/brands-suppliers/) — set up new MTM brands
+- [Receiving](/workflows/receiving/) — when the MTM order lands
