@@ -42,8 +42,50 @@ const path = rawPath;
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+    <style is:inline>
+      /* Password gate — mirrors strategy.threadcloud.io */
+      #tc-gate { position: fixed; inset: 0; z-index: 9999; background: #0f0e0b; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0; }
+      #tc-gate-box { background: #1a1915; border: 1px solid #2e2c25; border-radius: 12px; padding: 40px 48px; width: 340px; max-width: 90vw; text-align: center; }
+      #tc-gate h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 22px; color: #f5f0e8; margin: 0 0 8px; }
+      #tc-gate p { font-size: 13px; color: #8a8070; margin: 0 0 28px; font-family: Inter, sans-serif; }
+      #tc-gate input { width: 100%; box-sizing: border-box; padding: 11px 14px; background: #0f0e0b; border: 1px solid #3a3830; border-radius: 6px; color: #f5f0e8; font-size: 15px; font-family: Inter, sans-serif; outline: none; margin-bottom: 14px; }
+      #tc-gate input:focus { border-color: #c4843a; }
+      #tc-gate button { width: 100%; padding: 11px; background: #c4843a; border: none; border-radius: 6px; color: #fff; font-size: 14px; font-weight: 600; font-family: Inter, sans-serif; cursor: pointer; letter-spacing: 0.02em; }
+      #tc-gate button:hover { background: #d4924a; }
+      #tc-gate-err { font-size: 12px; color: #e05252; margin-top: 10px; min-height: 16px; font-family: Inter, sans-serif; }
+    </style>
   </head>
   <body>
+    <div id="tc-gate">
+      <div id="tc-gate-box">
+        <h2>ThreadCloud SOPs</h2>
+        <p>For the ThreadCloud team only</p>
+        <input type="password" id="tc-pw" placeholder="Enter password" autofocus />
+        <button onclick="tcAuth()">Enter</button>
+        <div id="tc-gate-err"></div>
+      </div>
+    </div>
+    <script is:inline>
+      async function tcAuth() {
+        const pw = document.getElementById("tc-pw").value;
+        const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+        const hex = Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+        if (hex === "1a8d9de9490302d2d234f9c92bc2c854910ebf70c5eae016b86f03427fef03b7") {
+          sessionStorage.setItem("tc_sop_auth", "1");
+          document.getElementById("tc-gate").remove();
+        } else {
+          document.getElementById("tc-gate-err").textContent = "Incorrect password.";
+          document.getElementById("tc-pw").value = "";
+        }
+      }
+      document.getElementById("tc-pw").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") tcAuth();
+      });
+      if (sessionStorage.getItem("tc_sop_auth") === "1") {
+        document.getElementById("tc-gate").remove();
+      }
+    </script>
     <header class="site-header">
       <div class="header-inner">
         <a href="/" class="brand">
