@@ -6,19 +6,19 @@ description: The on-call playbook. Match the symptom to the fix.
 
 # If something breaks
 
-The on-call playbook. Match the symptom on the left to the fix on the right. If you've tried the fix and it didn't work, **don't keep trying** — text Gregory.
+The on-call playbook. Match the symptom on the left to the fix on the right. If you've tried the fix and it didn't work, **don't keep trying** — email ThreadCloud Support at [hello@threadcloud.io](mailto:hello@threadcloud.io).
 
 ## Quick triage
 
 | Symptom | What to do |
 |---|---|
-| Page is blank / 500 error | Refresh once. Then **[restart the worker](#worker-stuck)**. Then text Gregory. |
+| Page is blank / 500 error | Refresh once. Then **[restart the worker](#worker-stuck)**. Then email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
 | AI Classification stuck at "Combing the rack" | **[Stop and restart](#classification-stuck)** — see below |
 | Label printer not printing | **[Use Shopify Admin fallback](#printer-fallback)** — fully supported |
 | Supplier didn't get the email | **[Resend from PO tab](#resend-supplier)** |
 | Shopify says "rate limit exceeded" | **Wait 60 seconds and try again.** The worker retries automatically. |
 | Image upload failed | Re-upload the same image. If it fails twice, the image is too large — resize to under 4MB and retry. |
-| "Missing access token" error | This was a real bug — it's been fixed. If you see it, refresh the page. If still broken after refresh, text Gregory. |
+| "Missing access token" error | This was a real bug — it's been fixed. If you see it, refresh the page. If still broken after refresh, email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
 | Parse times out on a PDF | **[Try Excel](#parse-timeout)** — see below |
 | Apply Selected says "0 ready" | Some rows are still <span class="badge badge-warn">NEEDS REVIEW</span>. Filter to "Needs review", fix each, then re-select. |
 | Catalog rolled back wrong | **[Undo via Legacy Enrichment](#wrong-rollback)** |
@@ -34,7 +34,7 @@ If a background process (classification, enrich, push) appears frozen:
   <li>Refresh the page. The worker auto-resumes from where it left off.</li>
   <li>If still stuck, click <strong>Stop</strong> on the workflow surface, wait 5 seconds, then click the run button again.</li>
   <li>If still stuck after 5 minutes, the worker may have hit an external API outage. Wait 15 minutes and retry once.</li>
-  <li>If still broken: text Gregory with a screenshot.</li>
+  <li>If still broken: email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with a screenshot.</li>
 </ol>
 
 ## Classification stuck
@@ -124,23 +124,27 @@ An order is stuck at "Sent to supplier" forever.
 
 ## Big-picture failures
 
-These are the rare ones. If you see one of these, **text Gregory immediately** — don't try to fix them yourself.
+These are the rare ones. If you see one of these, **email ThreadCloud Support immediately** at [hello@threadcloud.io](mailto:hello@threadcloud.io) — don't try to fix them yourself.
 
 | Symptom | What it means |
 |---|---|
-| Every page across the app is 500 | Production deploy is broken. Possibly a Fly.io outage or a bad merge to main. Gregory or a manual `fly deploy` can fix it. |
+| Every page across the app is 500 | Production deploy is broken. Possibly a Fly.io outage or a bad merge to main. ThreadCloud Support handles this. |
 | All Anthropic calls failing for 30+ min | Anthropic API outage. Status: [status.anthropic.com](https://status.anthropic.com). Nothing to do except wait. |
 | Shopify Admin won't load at all | Shopify outage. Status: [status.shopify.com](https://www.shopify.com/status). Wait. |
-| Bank-side currency feed says the wrong rate | The multi-provider FX fallback should catch this. If somehow all three providers are wrong, set the FX manually on the order (Receiving tab) and tell Gregory. |
+| Bank-side currency feed says the wrong rate | The multi-provider FX fallback should catch this. If somehow all three providers are wrong, set the FX manually on the order (Receiving tab) and email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
 | A push wrote products with bad data | Don't panic. Pull them back: Shopify Admin → filter by `tag:tc-order-{id}` → bulk-delete. Then re-push from ThreadCloud after fixing the source. |
 
-## What only Gregory should do
+## What only the Owner should do
 
 - Approve a push of more than 200 products at once
 - Edit the AI prompts (Settings → AI & Models)
 - Change the metafield namespace or schema
 - Use the dev tools page (`/app/settings/dev`)
+
+These are platform-level operations and only ThreadCloud Support should handle them:
+
 - Run direct database operations
 - Merge code to `main` (production)
+- Manual `fly deploy` to recover a broken production deploy
 
 If your fingers are hovering over any of those, stop and ask.
