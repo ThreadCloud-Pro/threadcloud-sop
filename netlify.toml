@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Tell Netlify to serve Pagefind's JS with the right MIME type.
+[[headers]]
+  for = "/pagefind/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Catch-all for SPA-style URLs would go here, but this is a fully static
+# pre-rendered site so we don't need rewrites.
