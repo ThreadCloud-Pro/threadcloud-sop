@@ -2,15 +2,27 @@
 import "../styles/tokens.css";
 import { navigation } from "../data/nav";
 
-interface Props {
-  title: string;
+interface Frontmatter {
+  title?: string;
   description?: string;
   ogImage?: string;
 }
 
-const { title, description = "Standard operating procedures for the ThreadCloud team.", ogImage } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  frontmatter?: Frontmatter;
+}
+
+const props = Astro.props;
+const fm: Frontmatter = props.frontmatter ?? {};
+const title = props.title ?? fm.title ?? "Welcome";
+const description = props.description ?? fm.description ?? "Standard operating procedures for the ThreadCloud team.";
+const ogImage = props.ogImage ?? fm.ogImage;
 const pageTitle = `${title} — ThreadCloud SOPs`;
-const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const rawPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const path = rawPath;
 ---
 
 <!doctype html>
@@ -62,7 +74,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
                   <li>
                     <a
                       href={item.href}
-                      class:list={["nav-link", { active: path === item.href.replace(/\/$/, "") || path + "/" === item.href }]}
+                      class:list={["nav-link", { active: (item.href === "/" ? path === "/" : path === item.href.replace(/\/$/, "")) }]}
                     >
                       {item.title}
                     </a>
