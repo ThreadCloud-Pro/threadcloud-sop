@@ -26,7 +26,7 @@ export const navigation: NavSection[] = [
       { href: "/workflows/receiving/", title: "Receiving" },
       { href: "/workflows/labels/", title: "Print Labels" },
       { href: "/workflows/reorder/", title: "Reorder" },
-      { href: "/workflows/mtm/", title: "MTM (Made-to-Measure)" },
+      { href: "/workflows/mtm/", title: "Custom orders" },
     ],
   },
   {

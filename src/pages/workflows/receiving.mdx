@@ -16,16 +16,16 @@ The moment a shipment arrives. Don't wait — receiving in ThreadCloud the same 
 ## What you'll need
 
 - The physical shipment + packing list
-- A printer connected (Dymo 30334 or fallback — see [Labels](/workflows/labels/))
+- A printer connected (Dymo 30336 or fallback — see [Labels](/workflows/labels/))
 - The order ID (find it in the email confirmation or under the order in TC)
 
 ## The receiving flow
 
 <ol class="steps">
   <li><strong>Open the receiving page</strong> — Order → Receiving tab</li>
-  <li><strong>Enter received quantities per variant</strong></li>
-  <li><strong>Save</strong> — FX rate locks the first time you save</li>
-  <li><strong>Print labels</strong> — one click, sends to Dymo</li>
+  <li><strong>Enter received quantities per size</strong></li>
+  <li><strong>Confirm Receiving</strong> — the FX rate locks the first time you confirm</li>
+  <li><strong>Print labels</strong> — from the success screen</li>
   <li><strong>Apply labels to the physical items</strong></li>
   <li><strong>Move to store shelves or stockroom</strong></li>
 </ol>
@@ -37,7 +37,7 @@ Two ways:
 - From the dashboard: click the order → Receiving tab
 - From the URL bar: `/app/orders/{order-id}/receiving`
 
-You see a grid of every style in the order, with its sizes and the **ordered quantity** per size. Each cell has an empty input next to it for the **received quantity**.
+The page has two parts. At the top, a **shipment** card: the date, a reference, the location, the **exchange rate** (editable only the first time you receive), and a notes box for damages or partial boxes. Below it, a **grid** of every style with its sizes, showing the **ordered** quantity, a box for the **received** quantity, and what's still **outstanding**.
 
 ## Stage 2 — Enter received quantities
 
@@ -69,9 +69,14 @@ If a variant didn't ship at all:
 
 - Leave it at zero. The order stays <span class="badge badge-warn">PARTIAL</span>.
 
-## Stage 3 — Save & lock FX
+<div class="callout callout-tip">
+<div class="callout-title">Capture measurements and fit while you're here</div>
+Each style has an optional <strong>Add measurements</strong> panel (chest, sleeve, waist, and so on, by category) and a <strong>fit offset</strong> dropdown (runs large / true to size / runs small). Filling these at receiving means the storefront and hang tag carry accurate sizing. To leave a style out of this shipment entirely, tick <strong>Skip this style</strong>.
+</div>
 
-Click <strong>Save Received</strong>.
+## Stage 3 — Confirm & lock FX
+
+Click <strong>Confirm Receiving</strong>.
 
 What happens:
 
@@ -92,9 +97,7 @@ If you need to set the FX rate manually (rare — only if the live feed is wrong
 
 ## Stage 4 — Print labels
 
-Once saved, click <strong>Print Labels</strong> at the top of the Receiving tab.
-
-A new tab opens with the label preview — one label per received unit, laid out for Dymo 30334 (57×32mm). Press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>P</kbd>, select the Dymo, print.
+When you confirm, a success screen offers <strong>Print labels</strong> (and <strong>Print doc</strong> for the receiving document). Click <strong>Print labels</strong>: a new tab opens with the hang tags, one per received unit, for the Dymo 30336 (54×25mm). Press <kbd>Ctrl</kbd>+<kbd>P</kbd>, select the Dymo, print.
 
 Label contents:
 
@@ -148,7 +151,7 @@ If the order's currency is EUR but you somehow set the receiving FX to 1.0, your
 
 <div class="callout callout-warn">
 <div class="callout-title">Forgetting to save before printing</div>
-The print preview reads from saved data. If you enter quantities but don't click Save Received first, the print preview will show old data (or zero labels).
+The print link reads from confirmed data. If you enter quantities but don't click Confirm Receiving first, you'll see old data (or no tags).
 </div>
 
 <div class="callout callout-warn">
@@ -158,11 +161,11 @@ If you placed a reorder for the same brand/season, the reorder is a <strong>sepa
 
 ## Reverse a receive
 
-Made a mistake? You can reverse:
+Made a mistake? You can reverse a whole shipment (reversing part of one isn't supported):
 
-1. Receiving tab → click <strong>Reverse Receive</strong>
-2. Select the variants and quantities to reverse
-3. Confirm — Shopify inventory reduces by that amount; the audit log records the reversal
+1. Open the shipment — from the success screen, or the past-shipments list on the order.
+2. Click <strong>Reverse</strong>.
+3. Confirm — Shopify inventory comes back down and the shipment is undone.
 
 <div class="callout callout-warn">
 <div class="callout-title">Heads up</div>

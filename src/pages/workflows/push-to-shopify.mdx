@@ -6,7 +6,7 @@ description: Write products, variants, images, metafields, tags, and barcodes to
 
 # Push to Shopify
 
-Take approved styles and write them to your Shopify store. This is the moment ThreadCloud goes from "your private working space" to "live on the storefront".
+Take approved styles and create them as products in your Shopify store. Push creates each product as a **draft** — your full product data is in Shopify, ready to go live, but not visible to shoppers yet.
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
@@ -49,18 +49,18 @@ What happens:
 3. The SKU is generated and written; the same value is also written into Shopify's `barcode` field (for label-printer fallback)
 4. All 60+ Shopify metafields get written (`tc_core`, `tc_measure`, `tc_trade`)
 5. Images upload to Shopify's CDN
-6. Product status is set to `ACTIVE` (live on storefront immediately)
+6. The product is created as a **draft** (not visible to shoppers yet)
 
-The ambient bar fires <span class="badge badge-info">SHUTTLING COLOURS</span> while it runs. Typical speed: ~3 seconds per style. A 50-style order takes ~3 minutes.
+A progress bar shows how far along the push is. Typical speed is a few seconds per style, so a 50-style order takes a couple of minutes.
 
-<div class="callout callout-warn">
-<div class="callout-title">Heads up — push is live</div>
-The moment a style pushes successfully, it's <strong>live on the storefront</strong>. If you push a product with the wrong price or images, customers can see and buy it. Verify before you push.
+<div class="callout callout-info">
+<div class="callout-title">When does it actually go live?</div>
+Push does <strong>not</strong> put products on the storefront. Each product lands as a <strong>draft</strong>. Products are activated on your point-of-sale channel when you <a href="/workflows/receiving/">receive</a> the shipment. You control when a product goes live on the online store — so a wrong price on a freshly-pushed draft is not visible to customers yet. Still, fix it before you go live.
 </div>
 
 ## During the push
 
-Watch the order page. Each style flips from <span class="badge badge-ok">READY</span> to <span class="badge badge-ok">APPROVED</span> as it lands in Shopify. If any fail, they flip to <span class="badge badge-danger">ERROR</span> with an inline message.
+Watch the Enrich page. Each style moves into the <strong>Pushed</strong> group as it lands in Shopify. If any fail, they show an inline error you can read and retry.
 
 You can navigate away during the push — it'll keep running in the background. The ambient bar tells you when it's done.
 
@@ -85,12 +85,11 @@ To retry only the failed rows: select them in the order grid → click <strong>P
 
 ## Re-pushing existing products
 
-If a product is already on Shopify and you change something in ThreadCloud (description, fabric, occasion, etc.), you need to re-push for the change to show on the storefront.
+If a product is already on Shopify and you change something in ThreadCloud (description, fabric, occasion, etc.), you re-push for the change to show. The bulk <strong>Push to Shopify</strong> button only creates <em>new</em> products — to update ones already in Shopify, use re-push:
 
-1. Edit the style in Enrich
-2. Save your changes
-3. Click <strong>Push to Shopify</strong> — it'll detect existing products and run an update instead of a create
-4. The Shopify product handle stays the same (URL doesn't break)
+1. Edit the style in Enrich.
+2. Click <strong>Re-push all</strong> at the top to update every changed live product, or <strong>Re-push</strong> on a single tile to update just that one.
+3. The product's status and handle stay the same — a draft stays a draft, a live product stays live, and the storefront URL doesn't break.
 
 <div class="callout callout-info">
 <div class="callout-title">What gets overwritten on re-push</div>
@@ -120,8 +119,8 @@ If you pushed by mistake or with wrong data:
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Pushing before supplier confirmation</div>
-If you push before the supplier has confirmed the PO, the storefront shows products you might end up not ordering. Wait for <span class="badge badge-ok">CONFIRMED</span> before pushing.
+<div class="callout-title">Pushing a half-finished order</div>
+Pushed products are drafts, so they won't hit the storefront before you're ready. But pushing an order that isn't final makes for messy cleanup. Finish the order first, and if you use the supplier ack flow, wait for the supplier's confirmation.
 </div>
 
 <div class="callout callout-warn">
