@@ -1,142 +1,110 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Reorder
-description: Re-buy what's selling. ThreadCloud surfaces sell-through and lets you pick exact variants and quantities to re-up.
+description: Restock what's selling. Search a product you already carry (or run a saved list), set how many by size, send to the supplier, and check it in.
 ---
 
 # Reorder
 
-When a style is selling fast, you reorder it. ThreadCloud's reorder flow shows sell-through, age, and weeks-of-supply per variant so you can place targeted re-buys instead of guessing.
+Reorder is how you restock something you already carry. You find the product, set how many you want in each size, send the order to the supplier, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">When to use</div>
-Weekly — typically Monday morning when you review the prior week's sales. Or anytime a hot item hits a sell-through threshold you want to maintain.
+<div class="callout-title">Last verified against the app: 2026-06-29</div>
+If a button name here doesn't match what you see on screen, the app changed and this page is stale — tell the team.
 </div>
 
-## What ThreadCloud surfaces
-
-For every style currently in stock, you see:
-
-- **Units sold** in the last 7 / 14 / 30 days
-- **Sell-through rate** (% of received qty that's been sold)
-- **Inventory age** (days since first received)
-- **Weeks of supply** (current stock ÷ recent weekly sales rate)
-- **Per-variant** breakdown — what sizes are running low
-
-## The reorder flow
+## Quick path
 
 <ol class="steps">
-  <li><strong>Open Reorder</strong> — dashboard sidebar → Reorder</li>
-  <li><strong>Filter to candidates</strong> — by brand, season, or stock threshold</li>
-  <li><strong>Pick styles & variants</strong> — select the exact rows to re-up</li>
-  <li><strong>Set quantities</strong> — per variant</li>
-  <li><strong>Create reorder PO</strong> — generates a new order targeting the same supplier</li>
-  <li><strong>Send to supplier</strong> — same supplier-ack flow as a new order</li>
-  <li><strong>Push to Shopify on confirmation</strong> — only re-pushes the new variants, doesn't duplicate products</li>
+  <li><strong>Open Reorder</strong> from the sidebar.</li>
+  <li><strong>Find the product</strong> — search for one you carry, or click <strong>Run</strong> on a saved list.</li>
+  <li><strong>Set how many, by size</strong> — type the quantities. They save on their own.</li>
+  <li><strong>Send to the supplier</strong> on the PO tab (or use <strong>Save &amp; Receive</strong> to skip it).</li>
+  <li><strong>Check it in</strong> on the Receive tab when the box arrives.</li>
 </ol>
 
-## Stage 1 — Open Reorder
+<div class="callout callout-tip">
+<div class="callout-title">Where "what should I reorder?" lives</div>
+The reorder screen is for placing the restock. To decide <em>what</em> to restock — what's selling, what's running low — use the <a href="/planning/trading/">Trading dashboard</a>. It surfaces reorder candidates from sell-through and weeks-of-supply, and links straight into a reorder.
+</div>
 
-From the dashboard sidebar, click <strong>Reorder</strong>. You land on the Reorder workspace — a table of every currently-stocked style with sell-through context.
+## Two ways to start
 
-## Stage 2 — Filter
+Open <strong>Reorder</strong> from the sidebar. The page is a search, split into two panels:
 
-Top of the page:
+- <strong>Products</strong> (left) — search your Shopify catalog. Type at least 2 letters. Each result shows a thumbnail, brand, colour, stock count, and dots for how complete the product data is. Click a product to start a reorder.
+- <strong>Saved lists</strong> (right) — your saved restock plans. <strong>Recent</strong> shows the last few; <strong>Browse by brand</strong> groups the rest. Click <strong>Run</strong> on any list to start a reorder pre-filled with those products and sizes.
 
-| Filter | What it does |
-|---|---|
-| **Brand** | One brand at a time, or all |
-| **Buying Season** | Restricts to e.g. PF2025 only |
-| **Min sell-through** | "Show me only styles selling >30%" |
-| **Min weeks of supply remaining** | "Show me only styles with &lt;2 weeks left" |
-| **Age** | "Show me only styles received >30 days ago" |
+A reorder is locked to one brand. If you try to add a product from a different brand, the app says so and blocks it. Run a second reorder for the second brand.
 
-The defaults surface high-velocity / low-stock combinations — most reorders come from this set.
+## The Pick / PO / Receive tabs
 
-## Stage 3 — Pick styles
+Once you start, you're in the reorder workspace. Three tabs across the top track where you are:
 
-The table shows one row per style. Click any row to expand the size grid underneath — that's where you decide exactly which variants need re-up.
+- <strong>01 Pick</strong> — choose products and quantities
+- <strong>02 PO</strong> — review and send to the supplier
+- <strong>03 Receive</strong> — check in what arrives
 
-For each variant cell you'll see:
+## 01 Pick — set quantities
 
-- **Current stock**
-- **Sold (30d)**
-- **Reorder qty** input (empty)
+Each product shows a row of size cells. Type how many you want in each size.
 
-Type a quantity in the reorder qty field. ThreadCloud suggests a quantity based on recent velocity (the "Suggested" pill next to the input). You can take the suggestion or override.
+- <strong>Quantities save on their own</strong> about a second after you stop typing. There is no Save button — watch for the small <em>Saving…</em> then <em>Saved</em> note.
+- Each size cell shows a <strong>stock badge</strong> so you know what's already on the floor:
+  - <strong>0</strong> — out
+  - <strong>1–3</strong> — low
+  - <strong>4+</strong> — in stock
+  - <strong>—</strong> — not in Shopify yet (stock unknown)
+- If you started from a saved list, the cell also shows the plan snapshot, e.g. <em>plan 20 · have 15</em>.
+- Trousers and other two-axis sizes (waist × inseam) lay out as a grid, not a single row.
 
 <div class="callout callout-tip">
-<div class="callout-title">Tip — partial vs full reorder</div>
-You don't have to reorder every variant of a style. A common pattern: reorder only the sizes that sold through (e.g. just M and L if XS and XL are still sitting). The grid view makes this easy to see at a glance.
+<div class="callout-title">Earmark for a waiting customer</div>
+If a customer is waiting on a size, click <strong>add earmark</strong> on that cell, type their name (or pick a Shopify customer). The earmark guarantees that size is on the order — the quantity bumps up to cover it. Earmarks show on the Receive tab so you know who to call when it lands.
 </div>
 
-## Stage 4 — Confirm reorder
+Other things on the Pick tab:
 
-Once you've filled in quantities across one or more styles, click <strong>Create Reorder</strong> at the top.
+- <strong>Cancel after</strong> — an optional date the supplier shouldn't ship past.
+- <strong>Order discount</strong> — a percent off the whole order. (Per-line discounts grey out when this is set; they never stack.)
+- <strong>Add another product</strong> — search at the bottom to add more products from the same brand.
+- <strong>Save as plan</strong> — save these products and sizes as a reusable restock list. Next season, click <strong>Run</strong> and it's all there.
 
-You'll see a confirmation:
+When you're done, use the footer:
 
-- Total styles affected
-- Total units
-- Total cost (at the original cost prices, FX'd to store currency)
-- Suggested delivery window
+- <strong>Go to PO</strong> — the normal path (send to the supplier first).
+- <strong>Save &amp; Receive</strong> — skip the PO and go straight to receiving. Use this when you're not sending a formal PO (e.g. you already placed the order by phone). Only available before a PO has been sent.
 
-Pick a delivery window, confirm. ThreadCloud creates a new order in the same buying season, marked as a **reorder of order #X**.
+## 02 PO — send to the supplier
 
-## Stage 5 — Send to supplier
+The PO tab shows the purchase order for the supplier: styles, sizes, quantities, and the supplier's contact. From here you can:
 
-The new reorder PO behaves like any other order:
+- <strong>Email brand contact</strong> — opens an email to the supplier, pre-filled.
+- <strong>Generate PO link</strong> / <strong>Download PO</strong> — a clean copy to send or print.
+- <strong>Mark PO as Sent</strong> — records that it's out. This moves you to the Receive tab.
 
-1. Open the order
-2. PO tab → review the lines (should match what you selected)
-3. Click <strong>Send to Supplier</strong>
-4. Wait for confirmation
-
-When the supplier confirms, push to Shopify. **This won't duplicate the existing products** — it'll update the existing variants' stock count (when the shipment is received), and won't create new products unless you reordered a size that doesn't yet exist on the variant.
-
-## Stage 6 — Receive
-
-When the reorder shipment arrives, receive it like any other order — see [Receiving](/workflows/receiving/). The received qty adds to the existing Shopify variant inventory.
-
-## Re-pushing reorders
-
-If you reordered a new size that wasn't in the original push (e.g. you added Size 56 to the reorder of a suit that originally went up to 54), the push step will create the new variant on the existing product. Existing variants get inventory bumps; no product duplication.
-
-## Sell-through math
-
-The "sold (30d)" figure is computed from Shopify's order data, synced periodically:
-
-- ThreadCloud pulls Shopify orders for the last 30 days
-- Matches each order line to the variant
-- Aggregates per variant, per style
-
-If the sell-through number looks wrong:
-
-- Check if the Shopify Order Sync ran recently — under Settings → AI & Models there's a "Sync sell-through now" button
-- Otherwise wait — sync runs every 6 hours
-
-## Common mistakes
-
-<div class="callout callout-warn">
-<div class="callout-title">Reordering all sizes</div>
-The temptation is to reorder a "full size run" — but if XS and 3XL sat the first time, they'll sit again. <strong>Reorder only the sizes that sold</strong>. The grid view is built for this.
+<div class="callout callout-info">
+<div class="callout-title">If the supplier confirms changes</div>
+Some suppliers confirm availability per size before shipping. When they do, you'll see two ways to accept: <strong>Accept as quoted</strong> (take what they offered) or <strong>Accept reduced quantities</strong> (they couldn't fill everything). Whichever you pick pre-fills the Receive tab, so you're not counting against quantities the supplier already said they can't ship.
 </div>
 
-<div class="callout callout-warn">
-<div class="callout-title">Ignoring weeks-of-supply on the upside</div>
-A style with 26 weeks of supply doesn't need a reorder, even if sell-through looks healthy. The seasonal window will close before you can sell through the existing stock. Reorder for items with <strong>4–8 weeks of supply</strong> — those are the sweet spot.
-</div>
+## 03 Receive — check it in
 
-<div class="callout callout-warn">
-<div class="callout-title">Reordering at the wrong cost</div>
-ThreadCloud reuses the original FX-locked cost when calculating reorder total. If the supplier raised prices between the original and reorder, your margin math is off. Verify the supplier's current pricing before clicking <strong>Send to Supplier</strong>.
-</div>
+When the box arrives, open the Receive tab. It uses the same size grid as Pick. Each cell shows what's still outstanding and a quantity box pre-filled for you:
 
-## Auto-reorder rules (manual today)
+- the supplier's confirmed quantity, if they responded;
+- 0 if they marked that size unavailable;
+- the full remaining amount if there was no supplier response.
 
-ThreadCloud doesn't auto-place reorders. Every reorder is a manual decision. Auto-reorder timers are on the roadmap.
+Adjust any cell for a partial shipment, then click <strong>Confirm receive</strong>. Sizes turn green when fully received. You can come back and receive again for later boxes.
+
+## If it goes wrong
+
+- <strong>"That product belongs to a different brand"</strong> — a reorder is one brand only. Finish this one, then start another for the other brand.
+- <strong>Quantities didn't save</strong> — they save a second after you stop typing. If you see <em>Save failed</em>, check your connection and re-type the cell.
+- <strong>Stuck status, or anything else</strong> — see <a href="/runbook/">If something breaks</a>.
 
 ## Next steps
 
-- [Trading](/planning/trading/) — sell-through dashboard, identify candidates earlier
-- [Receiving](/workflows/receiving/) — when the reorder arrives
+- <a href="/planning/trading/">Trading dashboard</a> — decide what to reorder (sell-through, weeks of supply).
+- <a href="/workflows/receiving/">Receiving</a> — full receiving + label printing.

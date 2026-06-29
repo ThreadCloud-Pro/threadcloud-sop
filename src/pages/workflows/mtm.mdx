@@ -1,168 +1,91 @@
 ---
 layout: ../../layouts/Doc.astro
-title: MTM (Made-to-Measure)
-description: Capture customer measurements, build a one-off MTM order, send specs to the supplier, fit on arrival.
+title: Custom orders
+description: One-off made-to-measure and special orders. Drop in the supplier confirmation, review the details, take a deposit, and receive on arrival.
 ---
 
-# MTM (Made-to-Measure)
+# Custom orders
 
-A different shape of workflow from regular buying. One customer, one garment, one production run. The flow optimizes for measurement accuracy and supplier spec clarity.
+Custom orders are one-off special orders: a made-to-measure suit, a special-order jacket, anything you buy for a single customer. You start from the supplier's confirmation, review the details, send the customer a deposit, and receive the item when it lands.
 
 <div class="callout callout-info">
-<div class="callout-title">When to use</div>
-A customer wants a custom suit, jacket, shirt, or trouser. MTM brands you've set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a> can be ordered through this flow.
+<div class="callout-title">Last verified against the app: 2026-06-29</div>
+This screen is labelled <strong>Custom orders</strong> in the app (it used to be called MTM). If a button name here doesn't match, the app changed and this page is stale — tell the team.
 </div>
 
-## The MTM flow
+## Quick path
 
 <ol class="steps">
-  <li><strong>Open MTM</strong> — sidebar → MTM</li>
-  <li><strong>Pick customer</strong> — existing or create new</li>
-  <li><strong>Pick brand + garment type</strong></li>
-  <li><strong>Enter measurements</strong> — chest, sleeve, body length, etc.</li>
-  <li><strong>Pick fabric</strong> — from the brand's recipe</li>
-  <li><strong>Pick options</strong> — lapel, button stance, lining, etc. (brand-specific)</li>
-  <li><strong>Review spec sheet</strong> — what gets sent to the supplier</li>
-  <li><strong>Send to supplier</strong> — emailed PDF spec + Shopify draft order for deposit</li>
-  <li><strong>On arrival: receive + fit appointment</strong></li>
+  <li><strong>New custom order</strong> — drop in the supplier confirmation, or enter it by hand.</li>
+  <li><strong>Review</strong> — check the customer, the item details, and the price.</li>
+  <li><strong>Create draft</strong> — sends the customer a Shopify draft order for the deposit.</li>
+  <li><strong>Mark received</strong> when it arrives, and enter the final cost.</li>
+  <li><strong>Fit the customer</strong> when they come in.</li>
 </ol>
 
-## Stage 1 — Open MTM
+## Start a custom order
 
-Sidebar → MTM. You land on the MTM dashboard showing open MTM orders by status:
+From the sidebar, open <strong>Custom orders</strong> and click <strong>New custom order</strong>. Two ways in:
 
-- <span class="badge">DRAFT</span> — being built
-- <span class="badge badge-info">SENT</span> — sent to supplier
-- <span class="badge badge-warn">IN PRODUCTION</span> — supplier confirmed
-- <span class="badge badge-ok">RECEIVED</span> — landed in store
-- <span class="badge badge-ok">FIT COMPLETE</span> — customer picked up
+- <strong>Drop in the supplier confirmation</strong> — a PDF, image, or text file (up to 25 MB). The AI reads it and pulls out the customer, the supplier and reference, the items and options, the price, and any measurements it can see. This is the fast path when the brand sent you a confirmation.
+- <strong>Enter manually</strong> — click this for a phoned-in order. It skips the upload and gives you a blank order to fill in.
 
-Click <strong>New MTM Order</strong> to start.
+Either way you land on the <strong>Review</strong> screen with whatever was found pre-filled.
 
-## Stage 2 — Customer
+## The Review / Sent / Fit tabs
 
-Pick from existing Shopify customers or create new (name, email, phone). The customer record links to the MTM order so when the garment arrives, the customer gets a fit-appointment email automatically.
+Three tabs track where the order is:
 
-## Stage 3 — Brand + garment type
+- <strong>02 Review</strong> — check and complete the details
+- <strong>03 Sent</strong> — sent to the supplier, waiting for the item
+- <strong>04 Fit</strong> — fit notes after the customer picks up
 
-Pick the brand. Only brands with an MTM recipe (set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a>) appear in the dropdown.
+(Upload is step 01 and happens before the tabs.)
 
-Pick the garment type — Suit, Sport Jacket, Trouser, Shirt, etc. The next step's fields adapt to the garment.
+## 02 Review — check the details
 
-## Stage 4 — Measurements
+Everything on this screen <strong>saves on its own</strong> as you go (no Save button). Work top to bottom:
 
-Enter measurements in the order the form prompts:
-
-For tailored upper-body garments:
-- **Chest**
-- **Sleeve length**
-- **Body length**
-- **Shoulder width**
-- **Neck** (shirts)
-
-For lower-body:
-- **Waist**
-- **Hip / seat**
-- **Thigh**
-- **Inseam**
-- **Rise** (front and back)
-
-Each measurement has a "guidance image" — click the small icon next to the field to see where to measure. Use either inches or centimeters (toggle at the top); the system stores both.
+- <strong>Customer</strong> — type a name, or search your Shopify customers and link the right one. If they're new, create them here. If they've ordered before, you'll see their past custom-order count.
+- <strong>Supplier</strong> — pick the brand and enter the supplier's reference number. Add an estimated delivery date.
+- <strong>Measurements</strong> — toggle <strong>IN</strong> or <strong>CM</strong> at the top. Only the measurements that matter for the item type show. If the customer is linked and has been measured before, their <strong>fit profile</strong> appears on the right so you can compare.
+- <strong>Items</strong> — one card per garment or product. Pick the type, fabric, and options (lapel, vents, lining, and so on), enter the unit cost and the retail price, and note any adjustments. Click <strong>Add garment</strong> for more. Custom orders aren't limited to tailoring — accessories, ties, and scarves work too.
+- <strong>Pricing</strong> — set the currency, and an optional <strong>deposit</strong> in your store currency.
 
 <div class="callout callout-tip">
-<div class="callout-title">Speed tip — Customer Profile</div>
-If you've made MTM for this customer before, their measurements are saved on their profile. Click <strong>Load from Profile</strong> at the top to pre-fill. Then adjust if anything's changed (weight, etc.).
+<div class="callout-title">The fit profile saves you re-measuring</div>
+When a customer is linked, ThreadCloud snapshots their measurements onto the order. Next time, their profile pre-fills, and over time it learns their adjustments (e.g. always shorten the sleeve a touch).
 </div>
 
-## Stage 5 — Fabric
+## Create the draft (take the deposit)
 
-Pick from the brand's available fabric library. Each entry shows:
+When the details are right, click <strong>Create draft</strong>. ThreadCloud creates a <strong>Shopify draft order</strong> for the customer with the deposit amount, and moves the order to <strong>Sent</strong>. Send the draft-order link to the customer for payment.
 
-- Fabric code (e.g. "FN-1234")
-- Composition (e.g. 100% Worsted Wool)
-- Mill (e.g. Loro Piana)
-- Swatch image
-- Lead time (in weeks)
-- Cost
+<div class="callout callout-warn">
+<div class="callout-title">Always take the deposit</div>
+Custom orders are non-returnable. The deposit is the customer's commitment before you commit to the supplier. Walk the customer through the spec before you create the draft — once it's with the supplier, changes are expensive or impossible.
+</div>
 
-ThreadCloud pre-computed the retail price using the brand's MTM markup recipe — you can override per-order.
+## Receive on arrival
 
-## Stage 6 — Options
+When the item lands, open the order (it's on the <strong>Sent</strong> tab) and click <strong>Mark received</strong>. Enter the final cost per item and any receiving notes, then save. You can print the receiving document (units and cost per item) for your records. Use <strong>Edit receipt</strong> if you need to correct the cost later.
 
-Brand-specific. Lardini's recipe gives you different options than Lubiam's. Typical for a tailored jacket:
+## Fit notes
 
-- **Lapel**: Notch, Peak, Shawl
-- **Button stance**: 1B, 2B, 3-roll-2
-- **Vents**: Center, Side, None
-- **Lining**: Full, Half, Unlined
-- **Pockets**: Flap, Patch, Jetted, Ticket
-- **Buttonholes**: AMF on collar, Milanese on lapel, etc.
-- **Trouser fit**: Slim, Regular, Pleat detail
-
-Pick each. The recipe restricts you to combinations the supplier actually offers — you can't accidentally pick something that can't be produced.
-
-## Stage 7 — Review spec sheet
-
-Click <strong>Generate Spec</strong>. ThreadCloud builds a one-page PDF:
-
-- Customer name + email
-- Garment type + fabric
-- All measurements (in cm and inches)
-- All option selections, with images where the brand provides them
-- Special notes field — any custom instructions
-
-Review carefully. Once you send, changes require contacting the supplier directly.
-
-## Stage 8 — Send to supplier + deposit
-
-Click <strong>Send to Supplier</strong>. Two things happen:
-
-1. **Spec PDF emailed** to the supplier's MTM contact
-2. **Shopify draft order** created for the customer with the deposit amount (configured per brand — typically 50% of retail)
-
-The draft order link goes to the customer for payment. When the customer pays, the order flips to <span class="badge badge-info">SENT</span>.
+The <strong>Fit</strong> tab is where post-pickup fit notes will live — observed alterations that feed back into the customer's fit profile.
 
 <div class="callout callout-info">
-<div class="callout-title">Why deposit before supplier sends</div>
-MTM is non-returnable. The deposit confirms customer commitment before you commit to the supplier. Skip this step at your own risk.
+<div class="callout-title">Not live yet</div>
+Fit notes are still being built. For now, keep alteration notes on the order's receiving notes or the customer's record, and we'll migrate them when the Fit tab ships.
 </div>
 
-### Supplier confirmation
+## If it goes wrong
 
-When the supplier confirms the production, the MTM order flips to <span class="badge badge-warn">IN PRODUCTION</span>. Lead time is typically 6–10 weeks.
-
-## Stage 9 — Receive + fit
-
-When the garment arrives:
-
-1. Open the MTM order
-2. Click <strong>Receive</strong> — same UX as a regular receive, but for one item
-3. Print the MTM-specific label (includes customer name + garment type)
-4. ThreadCloud automatically emails the customer that the garment is ready
-5. When the customer comes in, run the fit appointment
-
-### Fit appointment notes
-
-After the fit, log notes on the customer's profile under "Fit notes". This feeds back into future MTM orders — if a customer always needs sleeves shortened 1cm, the next order pre-fills with that correction.
-
-## Common mistakes
-
-<div class="callout callout-warn">
-<div class="callout-title">Sending the spec before customer confirms the design</div>
-Once it's at the supplier, changes are expensive (or impossible). Walk the customer through every option in the spec PDF before clicking Send.
-</div>
-
-<div class="callout callout-warn">
-<div class="callout-title">Picking a fabric with long lead time for a deadline customer</div>
-The fabric library shows lead time. If a customer needs the garment for a wedding 8 weeks out, don't pick a fabric with a 6-week lead — production needs another 4–6 on top.
-</div>
-
-<div class="callout callout-warn">
-<div class="callout-title">Forgetting the deposit</div>
-Send-without-deposit is possible (button is enabled) but you're on the hook if the customer flakes. <strong>Always take the deposit.</strong>
-</div>
+- <strong>The upload didn't read the confirmation well</strong> — that's fine. Fix the fields on Review, or start over with <strong>Enter manually</strong>.
+- <strong>Create draft is greyed out</strong> — every item needs a type set. Fill in any blank item type.
+- <strong>Anything else</strong> — see <a href="/runbook/">If something breaks</a>.
 
 ## Next steps
 
-- [Settings → Brands & Suppliers](/settings/brands-suppliers/) — set up new MTM brands
-- [Receiving](/workflows/receiving/) — when the MTM order lands
+- <a href="/settings/brands-suppliers/">Brands &amp; Suppliers</a> — set up the brand you're ordering from.
+- <a href="/workflows/receiving/">Receiving</a> — the regular (non-custom) receiving flow.

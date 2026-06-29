@@ -13,11 +13,16 @@ The tier-2 pass. After Build Order's quick parse, Enrich fills in everything els
 On every order after parse, before push. Usually auto-runs in the background — you only intervene if a row gets flagged for review.
 </div>
 
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-06-29</div>
+If a button name here doesn't match the app, it changed and this page is stale — tell the team.
+</div>
+
 ## When Enrich runs
 
 Three triggers:
 
-1. **Automatically** after parse — fires on background worker once Submit for Review happens
+1. **Automatically** after parse — a background pass starts once you save the parsed order
 2. **Manually** — click <strong>Enrich</strong> on the order's Enrich tab
 3. **Per-style** — click any style tile → drawer → "Re-enrich this style" button
 
@@ -47,9 +52,7 @@ For every style on the order, AI fills in:
 
 ## Working the Enrich page
 
-Open the order → click the **Enrich** tab.
-
-You'll see a grid of style cards. Each card shows:
+Open the order → click the **Enrich** tab. Styles are grouped into <strong>Pending</strong> (not yet approved), <strong>Approved</strong>, and <strong>Pushed</strong> (live in Shopify). Each card shows:
 
 - Image
 - Editorial preview of the description
@@ -78,25 +81,16 @@ Edit any field inline. Click <strong>Apply Edit</strong> to save and re-generate
 Cards with no flags can usually be approved in one click. Reserve attention for the ones with yellow review flags.
 </div>
 
-### Bulk approve
+### Approve
 
-Once all cards look good:
-
-1. Click <strong>Batch Approve</strong> at the top of the Enrich tab
-2. Confirms how many styles will flip to <span class="badge badge-ok">READY</span>
-3. Click <strong>Approve</strong>
-
-Only styles that pass completeness checks get approved — anything with empty critical fields stays in review.
+Approve a single style with its <strong>Approve</strong> button, or click <strong>Approve all ready</strong> at the top to approve everything that's complete. A style can only be approved when it has a title, a unit cost, a retail price, and at least one size with a quantity — if something's missing, the app tells you which field. Use <strong>Skip</strong> to set a style aside, and <strong>Restore</strong> to bring it back.
 
 ## Editing the description specifically
 
-The AI description follows brand-voice rules set in [Settings → AI & Models](/settings/ai-models/). To customize per-style:
+The AI description follows the brand-voice rules in [Settings → AI & Models](/settings/ai-models/). To change one:
 
-1. Click the style card → description field
-2. Edit the text directly
-3. Click <strong>Apply Edit</strong>
-
-Or click <strong>Regenerate</strong> next to the description field — runs the AI again with the current brand voice.
+1. Open the style and edit the description text directly.
+2. Or click <strong>Generate</strong> to write a fresh one, or <strong>Regen Product</strong> to redo the photo read, fields, title, and description together.
 
 <div class="callout callout-warn">
 <div class="callout-title">Heads up</div>
@@ -126,7 +120,7 @@ If a field doesn't appear, that means the gating rules decided it's not relevant
 
 ## Brand Recipes
 
-Some brands have a "recipe" — a set of pre-filled defaults that override AI for known fields. E.g. Lubiam's MTM recipe pre-fills construction, lapel, button stance, lining for every Lubiam MTM order.
+Some brands have a "recipe" — pre-filled defaults that override AI for known fields. For example, a brand's custom-order recipe can pre-fill construction, lapel, button stance, and lining on every order from that brand.
 
 Recipes are managed by the Owner under [Settings → Brands & Suppliers](/settings/brands-suppliers/). The team doesn't need to touch them.
 

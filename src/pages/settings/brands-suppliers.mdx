@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Brands & Suppliers
-description: Add brands, link them to suppliers, configure MTM recipes, set brand codes and markup defaults.
+description: Add brands, link them to suppliers and contacts, set brand codes and markup defaults, and configure custom-order recipes.
 ---
 
 # Brands & Suppliers
@@ -13,15 +13,19 @@ The brand and supplier directory. Every product is tied to a brand; every brand 
 Before placing the first order with a new brand or supplier. Setup takes 2 minutes; skipping it blocks Build Order from completing.
 </div>
 
-## The shape of the data
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-06-29</div>
+If a screen or tab here doesn't match the app, it changed and this page is stale — tell the team.
+</div>
 
-ThreadCloud uses a graph model under the hood:
+## How brands and suppliers fit together
 
-- **Party** — generic entity (a brand, a supplier, an agent)
-- **PartyRole** — what role(s) the party plays (Brand, Supplier, Agent)
-- **Mandate** — "Supplier X reps Brand Y in Territory Z"
+- A **brand** is what shows on the storefront (Lardini, Drake's).
+- A **supplier** is who bills you. A brand is linked to its supplier.
+- Some brands bill you directly — in that case the brand is its own biller, with no separate supplier record needed.
+- A brand can also have an **agent** (a sales rep or showroom) and named **contacts**, each with an office or cell number, for orders and acks.
 
-For day-to-day use, you'll just see **Brands** and **Suppliers**. The graph runs underneath.
+For day-to-day use you'll just work with **Brands** and **Suppliers**.
 
 ## Adding a brand
 
@@ -63,37 +67,18 @@ If the code you want collides with an existing brand, the system suggests an alt
    - **Brands they rep** (multi-select)
 4. Click <strong>Create</strong>
 
-## Linking brands to suppliers
+## Linking a brand to its supplier and contacts
 
-A brand can have multiple suppliers (e.g. one for North America, one for Europe). Set this up via mandates:
+1. Open the brand.
+2. Set its **supplier** (who bills you). If the brand bills you directly, mark it as its own biller instead of picking a separate supplier.
+3. Add **contacts** — the people you email for orders and acks. Each contact can have an office or cell number and a role, and you can flag who gets CC'd on outbound orders.
+4. Optionally set an **agent** (the sales rep or showroom that reps the brand).
 
-1. Open the brand
-2. Click <strong>Mandates</strong>
-3. Click <strong>New Mandate</strong>
-4. Pick supplier + territory (or "all territories")
-5. Save
+## Custom-order recipes
 
-For day-to-day use, you'll almost always have one supplier per brand. The graph supports more if you need it.
+If a brand does custom orders (made-to-measure and special orders), it can have a **recipe** that teaches ThreadCloud how to read that brand's confirmations — its field labels, option names, and defaults. The Owner sets this up per brand; the team doesn't usually touch it.
 
-## MTM brand recipes
-
-If a brand offers MTM (Made-to-Measure), you need a recipe. The recipe defines:
-
-- **Available fabrics** — code, composition, mill, lead time, swatch image, retail markup
-- **Available options** — lapel styles, vents, lining, etc. (constrained to what the supplier actually offers)
-- **Measurement fields required** — for this brand's MTM
-- **Deposit %** (typically 50%)
-
-To set up an MTM recipe:
-
-1. Open the brand
-2. Click the <strong>MTM</strong> tab
-3. Toggle "Offers MTM" on
-4. Click <strong>Import Fabric Library</strong> — upload the supplier's fabric CSV (format documented when you first import)
-5. Configure available options (lapel / vents / lining / etc.)
-6. Save
-
-Once saved, the brand becomes available in the [MTM workflow](/workflows/mtm/).
+Once a brand has a recipe, its confirmations parse cleanly in the [Custom orders](/workflows/mtm/) flow.
 
 ## Editing existing brands & suppliers
 
@@ -136,4 +121,4 @@ Existing orders keep their original markup. Changing it only affects future orde
 ## Next steps
 
 - [Build Order](/workflows/build-order/) — order from a configured brand
-- [MTM](/workflows/mtm/) — create an MTM order against a brand recipe
+- [Custom orders](/workflows/mtm/) — create a custom order against a brand recipe
