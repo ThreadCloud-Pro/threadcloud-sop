@@ -1,0 +1,146 @@
+---
+layout: ../../layouts/Doc.astro
+title: First-time setup
+description: Install ThreadCloud, accept terms, configure brands, set up AI, map categories, and enrich your existing catalog. About 30 minutes total.
+---
+
+# First-time setup
+
+Everything from installing ThreadCloud to a fully-enriched catalog with working storefront filters. The in-app wizard is four steps and takes about two minutes; enriching your existing catalog afterwards is where the time goes — and where the payoff is.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-06-30</div>
+If a step or button name here doesn't match the app, it changed and this page is stale — tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">Who does this</div>
+The store <strong>Owner</strong> runs first-time setup — it installs metafield definitions and authorises Shopify access. You only do it once per store.
+</div>
+
+## Before you start
+
+- A Shopify store you own (Partner-approved or live).
+- Owner access to that store.
+- Optional but recommended: an Anthropic API key (for AI descriptions + linesheet parsing). You can add it during setup or later.
+
+## Install from the Shopify App Store
+
+Install ThreadCloud like any Shopify app. On first open it asks you to approve the access scopes (read + write products and metafields). Approve, and you land on <strong>Step 1</strong>.
+
+## Step 1 — Welcome & Terms
+
+The opening screen explains what ThreadCloud unlocks: <strong>Smart Filters</strong> (storefront facets), <strong>Buy Analytics</strong> (OTB, blended margin, brand scorecards, sell-through), and <strong>58 structured data points</strong> per product.
+
+<strong>What the button does:</strong> "Accept & Continue" installs <strong>58 metafield definitions</strong> into your Shopify store and authorises ThreadCloud to read and write product metafields. No existing product data is touched, and you can uninstall cleanly from Settings at any time.
+
+<div class="callout callout-info">
+<div class="callout-title">If you're upgrading an existing store</div>
+This screen reads "Install Updates" instead — same one-click action, never loses product data. Run <strong>Re-push All Products</strong> in Settings afterward so the new definitions reach already-live products.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">If metafields don't install</div>
+If the success state doesn't appear, or filters don't show up later, re-open the app — Step 1 is safe to re-run. Persistent failure → [If something breaks](/runbook/).
+</div>
+
+## Step 2 — Brand setup
+
+ThreadCloud scans your store and tells you how many brands it found across how many active products. Configure them two ways:
+
+- <strong>Bulk import</strong> — click <strong>Download template</strong>, fill in the CSV (brand, code, country, supplier), then <strong>Import CSV</strong> to pre-load your whole supplier registry at once. Fastest for an established store.
+- <strong>Individually</strong> — for each detected brand, set Country, Supplier / Agent, and a short Brand bio. The <strong>✦ Fill with AI</strong> button drafts the country and bio for well-known brands; niche brands you fill in manually.
+
+<div class="callout callout-tip">
+<div class="callout-title">Brand codes</div>
+Each brand gets a short code (e.g. "LRD" for Lardini) used in SKUs and identity. The app proposes one from the brand name — keep it short and unique.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">"Fill with AI" needs AI set up first</div>
+If you haven't added an API key yet, AI fill won't work. Either set the key in Step 3 first, or fill brands manually now and revisit.
+</div>
+
+## Step 3 — AI setup (optional but recommended)
+
+Paste your Anthropic API key to unlock AI descriptions and linesheet parsing. Get a key at <strong>console.anthropic.com</strong> — they start with <code>sk-ant-</code>.
+
+<div class="callout callout-info">
+<div class="callout-title">Billing</div>
+AI usage is billed to <strong>your</strong> Anthropic account. ThreadCloud does not mark up or charge for AI calls. Add or change the key anytime in [Settings → AI & Models](/settings/ai-models/).
+</div>
+
+You can <strong>Skip</strong> this and add the key later — the rest of ThreadCloud works without it; you just won't get AI descriptions or auto-parse until it's set.
+
+## Step 4 — Category mapping
+
+Map each Shopify <strong>product type</strong> to a ThreadCloud <strong>category</strong> (and an optional subcategory). This powers financials and assortment analysis. Map at least one to continue, then click <strong>Finish Setup</strong>.
+
+Behind the scenes, Finish Setup scans your active products and seeds the legacy-enrichment queue.
+
+<div class="callout callout-warn">
+<div class="callout-title">Large catalogs</div>
+With 250+ products the scan runs in batches and can take a few minutes. <strong>Keep the tab open</strong> until it lands you on the dashboard.
+</div>
+
+## Step 5 — Enrich your existing catalog ⭐
+
+This is the step that turns a freshly-installed store into a working one: every existing product gets a category, colour group, fabric, country, and the metafields that drive storefront filters. Finish Setup kicks it off; you complete it on the Legacy Enrichment page.
+
+After setup you land on the dashboard with a <strong>"Setup complete — enriching legacy products in background"</strong> banner, and a persistent <strong>catalog enrichment</strong> banner appears whenever the queue has work. Click it, or open [Settings → Legacy Enrichment](/settings/legacy-enrichment/).
+
+### The fast path (clean catalog)
+
+1. Open <strong>Settings → Legacy Enrichment</strong>.
+2. Classification may already be running from Step 4 — if not, click <strong>Run Classification</strong> and watch the ambient bar finish. You can navigate away while it runs.
+3. Open the <strong>Ready</strong> tab → <strong>Apply Selected</strong>. Filters go live on the storefront.
+
+### The review path (mixed metadata)
+
+1. Open the <strong>Needs Review</strong> tab — these rows are missing a field, not wrong. Most just need a Colour Group or Pattern set.
+2. For each row, either click the inferred values to <strong>Confirm as-is</strong>, or set the missing field and save. Use <strong>bulk edit</strong> to set the same value across many selected rows at once.
+3. Then <strong>Apply Selected</strong>.
+
+<div class="callout callout-info">
+<div class="callout-title">"Needs Review" does not mean the AI was wrong</div>
+It means a field is missing or low-confidence. Confirming as-is is one click. The full per-tab walkthrough lives on [Settings → Legacy Enrichment](/settings/legacy-enrichment/).
+</div>
+
+<div class="callout callout-tip">
+<div class="callout-title">Rough timing</div>
+About 5 min for 500 products, 20 min for 2,000, 50 min for 5,000 — classification plus apply, at parallel speed.
+</div>
+
+## What to check when you're done
+
+<div class="callout callout-info">
+<div class="callout-title">Verification checklist</div>
+- A sample product in Shopify admin has <code>tc_core.category</code> populated.
+- The storefront shows smart-filter facets with real values.
+- Settings → Legacy Enrichment <strong>Applied</strong> tab shows your catalog.
+- The settings dashboard's Legacy Enrichment tile shows a live count.
+- (If you set an API key) a new Build Order parses and enriches.
+</div>
+
+## Common issues
+
+<div class="callout callout-warn">
+<div class="callout-title">"Fill with AI" or descriptions do nothing</div>
+No Anthropic key set. Add it in [Settings → AI & Models](/settings/ai-models/).
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Classification looks stalled</div>
+It runs in the background and the ambient bar shows progress — you can leave the page. If counts never move, re-open Legacy Enrichment; persistent issues → [If something breaks](/runbook/).
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">The wizard reset mid-flow</div>
+The wizard keeps progress in the browser session. Clearing the cache mid-setup restarts it — harmless, just re-walk the steps.
+</div>
+
+## Next steps
+
+- [Build Order](/workflows/build-order/) — your first new order
+- [Settings → Legacy Enrichment](/settings/legacy-enrichment/) — the full enrichment walkthrough
+- [Settings → AI & Models](/settings/ai-models/) — tune the AI voice
