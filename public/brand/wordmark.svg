@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ThreadCloud horizontal lockup. Color mark on cream background with
+  the wordmark set in Geist 600 (falls back to system-ui if Geist is
+  not available at render time). 960x256 canvas gives a comfortable
+  ~3.75:1 aspect ratio for app listings, headers, and README banners.
+
+  The canvas is deliberately light (cream #F2ECE0) so the logo has a
+  ground for platforms that composite it on light surfaces. For dark
+  contexts, use the stacked monochrome variant instead.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 256" width="960" height="256">
+  <rect width="960" height="256" fill="#F2ECE0"/>
+
+  <!-- Mark: color weave + TC overlay, inset 64px from left with 64px vertical padding -->
+  <g transform="translate(64 64) scale(1.067)">
+    <g stroke="#1A1612" stroke-linecap="butt" fill="none">
+      <line stroke-width="12" x1="0" y1="30" x2="120" y2="30"/>
+      <line stroke-width="10" x1="60" y1="0" x2="60" y2="120"/>
+      <line stroke-width="12" x1="0" y1="60" x2="120" y2="60"/>
+      <line stroke-width="10" x1="30" y1="0" x2="30" y2="120"/>
+      <line stroke-width="12" x1="0" y1="90" x2="120" y2="90"/>
+    </g>
+    <g stroke-width="13" fill="none" stroke-linecap="butt">
+      <line stroke="#B86A1F" x1="30" y1="30" x2="90" y2="30"/>
+      <line stroke="#B86A1F" x1="60" y1="30" x2="60" y2="90"/>
+      <polyline stroke="#A8442A" points="90,60 30,60 30,90 90,90"/>
+    </g>
+  </g>
+
+  <!-- Wordmark: Geist 600, letter-spacing -0.025em -->
+  <text
+    x="252" y="160"
+    font-family="Geist Variable, Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif"
+    font-weight="600"
+    font-size="96"
+    letter-spacing="-2.4"
+  >
+    <tspan fill="#1A1612">thread</tspan><tspan fill="#5C5247">cloud</tspan>
+  </text>
+</svg>
