@@ -100,6 +100,11 @@ const path = rawPath;
           </svg>
           <span class="brand-name">ThreadCloud <span class="brand-name-quiet">SOPs</span></span>
         </a>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
         <form class="search" role="search" data-pagefind-ignore>
           <input
             type="search"
@@ -159,7 +164,7 @@ const path = rawPath;
     </script>
 
     <div class="layout">
-      <aside class="sidebar" data-pagefind-ignore>
+      <aside class="sidebar" id="sidebar" data-pagefind-ignore>
         <nav>
           {navigation.map((section) => (
             <div class="nav-section">
@@ -254,6 +259,20 @@ const path = rawPath;
           results.hidden = true;
         }
       });
+
+      // Mobile nav: the hamburger toggles the sidebar; tapping a link closes it.
+      const navToggle = document.getElementById("nav-toggle");
+      const sidebar = document.getElementById("sidebar");
+      navToggle?.addEventListener("click", () => {
+        const open = sidebar?.classList.toggle("open") ?? false;
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      sidebar?.addEventListener("click", (e) => {
+        if ((e.target as HTMLElement).closest("a")) {
+          sidebar.classList.remove("open");
+          navToggle?.setAttribute("aria-expanded", "false");
+        }
+      });
     </script>
 
     <style>
@@ -331,6 +350,26 @@ const path = rawPath;
       .brand-name-quiet {
         color: var(--text-muted);
         font-style: italic;
+      }
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        width: 38px;
+        height: 34px;
+        padding: 7px 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .nav-toggle-bar {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
       }
 
       .search {
@@ -461,8 +500,12 @@ const path = rawPath;
 
       @media (max-width: 900px) {
         .layout { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
-        .sidebar { position: static; max-height: none; }
-        .header-inner { flex-direction: column; gap: 12px; align-items: stretch; padding: 12px 16px; }
+        .sidebar { position: static; max-height: none; display: none; }
+        .sidebar.open { display: block; }
+        .nav-toggle { display: inline-flex; }
+        .header-inner { flex-wrap: wrap; gap: 12px; align-items: center; padding: 12px 16px; }
+        .brand { flex: 1; }
+        .search { flex-basis: 100%; max-width: none; order: 3; }
         .search-results { right: 16px; left: 16px; width: auto; }
       }
     </style>
