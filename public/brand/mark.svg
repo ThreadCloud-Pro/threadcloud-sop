@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ThreadCloud mark (monochrome). Five-thread weave, ink on cream or
+  cream on ink depending on context. Uses currentColor so consumers
+  can tint by setting the parent's color.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="512" height="512">
+  <g stroke="currentColor" stroke-linecap="butt" fill="none">
+    <line stroke-width="12" x1="0" y1="30" x2="120" y2="30"/>
+    <line stroke-width="10" x1="60" y1="0" x2="60" y2="120"/>
+    <line stroke-width="12" x1="0" y1="60" x2="120" y2="60"/>
+    <line stroke-width="10" x1="30" y1="0" x2="30" y2="120"/>
+    <line stroke-width="12" x1="0" y1="90" x2="120" y2="90"/>
+  </g>
+</svg>

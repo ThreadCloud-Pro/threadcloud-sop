@@ -89,7 +89,15 @@ const path = rawPath;
     <header class="site-header">
       <div class="header-inner">
         <a href="/" class="brand">
-          <span class="brand-mark">◐</span>
+          <svg class="brand-mark" id="brand-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <g stroke="currentColor" stroke-linecap="butt" fill="none">
+              <line stroke-width="12" x1="0" y1="30" x2="120" y2="30" />
+              <line stroke-width="10" x1="60" y1="0" x2="60" y2="120" />
+              <line stroke-width="12" x1="0" y1="60" x2="120" y2="60" />
+              <line stroke-width="10" x1="30" y1="0" x2="30" y2="120" />
+              <line stroke-width="12" x1="0" y1="90" x2="120" y2="90" />
+            </g>
+          </svg>
           <span class="brand-name">ThreadCloud <span class="brand-name-quiet">SOPs</span></span>
         </a>
         <form class="search" role="search" data-pagefind-ignore>
@@ -104,6 +112,51 @@ const path = rawPath;
         </form>
       </div>
     </header>
+
+    <div id="tc-egg-toast" aria-hidden="true"></div>
+    <script is:inline>
+      /* Easter egg: type "thread" anywhere (not in a field). First time per
+         session, the five threads weave in and a line appears; after that,
+         a quieter pulse. Discoverable, never in the way. */
+      (function () {
+        var POOL = [
+          "You pulled the right thread.",
+          "Hand-stitched in Toronto.",
+          "Every stitch saves a buyer thirty seconds.",
+          "If you're reading this, the wiki is working.",
+          "Tailored, not patched.",
+          "There are no shortcuts, only better seams.",
+          "Cut once. Or once and a half.",
+          "Made by a tailor tired of spreadsheets."
+        ];
+        var buf = "", timer = null;
+        function fire() {
+          var mark = document.getElementById("brand-mark");
+          var toast = document.getElementById("tc-egg-toast");
+          if (!sessionStorage.getItem("tc_egg")) {
+            sessionStorage.setItem("tc_egg", "1");
+            if (mark) { mark.classList.remove("tc-weave"); void mark.offsetWidth; mark.classList.add("tc-weave"); }
+            if (toast) {
+              toast.textContent = POOL[(Date.now() >> 8) % POOL.length];
+              toast.classList.add("show");
+              setTimeout(function () { toast.classList.remove("show"); }, 4200);
+            }
+          } else if (mark) {
+            mark.classList.remove("tc-pulse"); void mark.offsetWidth; mark.classList.add("tc-pulse");
+          }
+        }
+        document.addEventListener("keydown", function (e) {
+          var t = e.target;
+          if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
+          if (e.key && e.key.length === 1 && /[a-z]/i.test(e.key)) {
+            buf = (buf + e.key.toLowerCase()).slice(-6);
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(function () { buf = ""; }, 1500);
+            if (buf === "thread") { buf = ""; fire(); }
+          }
+        });
+      })();
+    </script>
 
     <div class="layout">
       <aside class="sidebar" data-pagefind-ignore>
@@ -229,10 +282,46 @@ const path = rawPath;
       }
       .brand:hover { border-bottom: 0; color: var(--text); }
       .brand-mark {
-        font-size: 22px;
+        width: 22px;
+        height: 22px;
         color: var(--primary);
-        font-family: var(--font-serif);
+        display: block;
+        flex: none;
       }
+      /* Easter egg: the five threads weave in. */
+      #brand-mark.tc-weave line {
+        stroke-dasharray: 120;
+        stroke-dashoffset: 120;
+        animation: tc-weave-draw 0.85s ease forwards;
+      }
+      #brand-mark.tc-weave line:nth-child(2) { animation-delay: 0.1s; }
+      #brand-mark.tc-weave line:nth-child(3) { animation-delay: 0.2s; }
+      #brand-mark.tc-weave line:nth-child(4) { animation-delay: 0.3s; }
+      #brand-mark.tc-weave line:nth-child(5) { animation-delay: 0.4s; }
+      @keyframes tc-weave-draw { to { stroke-dashoffset: 0; } }
+      #brand-mark.tc-pulse { animation: tc-pulse 0.6s ease; transform-origin: center; }
+      @keyframes tc-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+      #tc-egg-toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 40;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 14px 18px;
+        max-width: 320px;
+        box-shadow: var(--shadow-lift);
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 17px;
+        color: var(--text);
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        pointer-events: none;
+      }
+      #tc-egg-toast.show { opacity: 1; transform: translateY(0); }
       .brand-name {
         font-family: var(--font-serif);
         font-size: 22px;
