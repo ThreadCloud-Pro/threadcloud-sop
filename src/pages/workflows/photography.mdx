@@ -1,0 +1,145 @@
+---
+layout: ../../layouts/Doc.astro
+title: Photography
+description: Sync product photos from a shoot folder into Shopify, set alt text and SEO filenames automatically, and see exactly what's still missing an image.
+---
+
+# Photography
+
+Photography is where a shoot becomes a live storefront image. You name your files by SKU, point ThreadCloud at the folder, and it uploads each photo to Shopify, names it for SEO, writes alt text, and attaches it to the right product. Two more cards on the same page tell you how much of the storefront still has no image and which exact products to shoot next.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-07-04</div>
+If a button name here doesn't match what you see on screen, the app changed and this page is stale — tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+After a shoot, once the products already exist on Shopify. Photography comes <strong>after</strong> Push and Receiving — a photo can only land on a product that's already been pushed to the store.
+</div>
+
+## What you'll need
+
+- A folder of finished shots, each named by the product's SKU (see below)
+- The products already **pushed to Shopify** (Photography matches a file to a product by SKU)
+- Files as **JPEG or PNG** — HEIC/HEIF straight off an iPhone won't upload
+
+## Name the files by SKU
+
+ThreadCloud finds the right product from the filename. Name each shot `SKU_1.jpg`, `SKU_2.jpg`, `SKU_3.jpg`, and so on:
+
+- The number after the underscore is the shot order.
+- The **lowest number is the hero** — Shopify features the first image attached to a product, so `_1` becomes the main storefront photo.
+- The extension can be `.jpg`, `.jpeg`, or `.png`.
+
+<div class="callout callout-tip">
+<div class="callout-title">One product, several angles</div>
+`ABC123_1.jpg`, `ABC123_2.jpg`, `ABC123_3.jpg` all attach to the same product, hero first. Shoot as many angles as you like — just keep the base SKU identical and bump the number.
+</div>
+
+## The photography flow
+
+<ol class="steps">
+  <li><strong>Open Photography</strong> from the sidebar.</li>
+  <li><strong>Choose shoot folder</strong> — the whole folder of SKU-named images.</li>
+  <li><strong>Sync to Shopify</strong> — files upload one at a time, hero first.</li>
+  <li><strong>Watch the status chips</strong> — Pushed / Skipped / No match / Failed.</li>
+  <li><strong>Scan storefront</strong> — see the coverage % and what's still missing.</li>
+  <li><strong>Work the shoot list</strong> — drill into the exact products with no photo.</li>
+</ol>
+
+## Stage 1 — Sync a shoot folder
+
+In the **Sync photos** card, click <strong>Choose shoot folder</strong> and pick the folder. ThreadCloud reads the image files only (it ignores anything that isn't an image) and shows you the count it's about to sync.
+
+Click <strong>Sync to Shopify</strong>. Files go up **one at a time**, sorted so each product's hero lands first. A <strong>Stop</strong> button halts the run mid-folder if you need it — anything already synced stays synced.
+
+For each file, ThreadCloud:
+
+1. Resolves the SKU in the filename to a Shopify product.
+2. Cleans the image — rotates by EXIF, caps the long edge, strips camera metadata, converts to JPEG.
+3. Classifies the shot (front, back, side, detail, flat lay, on model) with a quick vision call.
+4. Builds an **SEO filename** (`brand-title-colour-NN.jpg`) and **alt text** from the product's brand, title, and colour plus that shot type.
+5. Uploads the bytes to **Shopify's own CDN** and attaches the image to the product.
+
+You'll see a status chip per file:
+
+- <span class="badge badge-ok">PUSHED</span> — attached to the product
+- <span class="badge badge-info">SKIPPED</span> — already synced before (safe to re-run a folder)
+- <span class="badge badge-warn">NO MATCH</span> — no Shopify product for that SKU yet
+- <span class="badge badge-danger">FAILED</span> — the file couldn't be read (e.g. HEIC)
+
+The ambient bar reads *Hanging the shoot* while it runs and *Photos hung* when it's done.
+
+<div class="callout callout-tip">
+<div class="callout-title">Re-running a folder is safe</div>
+ThreadCloud remembers every file it's already pushed (by store, SKU, and filename). Sync the same folder twice and the done ones simply skip — only new or renamed files upload. Add a couple of new angles later and re-sync the whole folder without fear of duplicates.
+</div>
+
+## Stage 2 — Scan storefront coverage
+
+The **Storefront photo coverage** card answers one question: how much of what's for sale has a picture?
+
+Click <strong>Scan storefront</strong> (or <strong>Re-scan storefront</strong>). ThreadCloud reads your **active, in-stock** Shopify products and counts how many carry a customer-facing image, then shows the headline: a big percentage plus "X of Y in-stock products have an image · N still to shoot."
+
+<div class="callout callout-warn">
+<div class="callout-title">Coverage is the storefront, not your TC crops</div>
+This counts the image a shopper would see on Shopify. A product can have a rich reference crop inside ThreadCloud and still show nothing online — that still counts as a gap. Coverage is the honest "what's live" number.
+</div>
+
+A few things it does on purpose:
+
+- **Draft, archived, and zero-inventory products are excluded** — the list is what's actually for sale, not noise.
+- The scan is **cached**. If you re-scan too soon it keeps the last good number and shows a soft warning rather than wiping it.
+
+## Stage 3 — Work the shoot list
+
+Below coverage, the **Shoot list** card turns the gap into a to-do list: brands (vendors) that are missing photos, most-needed first.
+
+- Click a **brand name** to open that vendor's products in Shopify admin.
+- Click the **row** to expand it to the exact products with no image — title, colour, SKU, season, first-receive date, and price — each linking straight to the product in Shopify admin.
+
+Shoot those, re-sync the folder, and re-scan. The percentage climbs and the products drop off the list.
+
+<div class="callout callout-info">
+<div class="callout-title">The list is capped for focus</div>
+Each vendor shows up to 60 missing products at a time, with a "+N more (re-scan after shooting these)" note. Clear the visible batch, re-scan, and the next ones surface. Legacy products with no ThreadCloud record show a blank detail row — the SKU and Shopify link still work.
+</div>
+
+## Studio access (owner only)
+
+If you shoot through **Straight Goods Studio** instead of syncing a folder by hand, the Owner connects the two in the **Connect to Straight Goods Studio** card:
+
+1. Click <strong>Grant access</strong> — ThreadCloud mints a per-store token, scoped to pushing product images only.
+2. **Copy the token now** — it's shown **once**. Paste it into the Studio.
+3. <strong>Rotate token</strong> re-mints it (and kills the old one); <strong>Revoke</strong> turns access off.
+
+From then on the Studio pushes finished shots straight to Shopify through the same pipeline as the folder sync — same SKU matching, same SEO and alt text.
+
+<div class="callout callout-warn">
+<div class="callout-title">Owner only</div>
+Granting, rotating, and revoking Studio access is limited to the Owner. Buyers can sync folders and scan coverage; viewers see an explainer only.
+</div>
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Shooting before the product is on Shopify</div>
+Photography matches a file to a product by SKU, and that only works once the product has been pushed. Sync a SKU with no Shopify product yet and it comes back <span class="badge badge-warn">NO MATCH</span> — nothing breaks, but nothing lands either. Push first, then shoot.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Files not named by SKU</div>
+A file the system can't read a SKU from can't be matched. Keep the name `SKU_1.jpg` — the base is the exact product SKU, the number is the order.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">HEIC / HEIF straight off the phone</div>
+iPhone HEIC files fail up front with a clear message. Export or convert to JPEG first, then re-sync — the failed ones will go through.
+</div>
+
+## Next steps
+
+- [Push to Shopify](/workflows/push-to-shopify/) — get products live before you shoot them
+- [Receiving](/workflows/receiving/) — a product shows in coverage once it's in stock
+- [Enrich](/workflows/enrich/) — titles, colours, and brand that become the SEO filename and alt text
