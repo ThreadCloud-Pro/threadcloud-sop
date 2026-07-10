@@ -172,8 +172,36 @@ Made a mistake? You can reverse a whole shipment (reversing part of one isn't su
 Reverse only works <strong>before</strong> any of the reversed variants have sold. If sales have already happened against the received inventory, email [hello@threadcloud.io](mailto:hello@threadcloud.io) before reversing.
 </div>
 
+## Receiving a size you didn't order
+
+The grid isn't limited to the sizes on the original PO. If a supplier ships a size that wasn't ordered (a substitute, or one extra piece thrown in), and that size already exists as a variant on the product in Shopify, it shows up in the grid ready to receive — just enter the count against it like any other row. If the product doesn't carry that variant yet, it isn't a receiving problem: raise a reorder or a variant fix first.
+
+## Fix a wrong size
+
+Sometimes the size that lands doesn't match what's sewn into the garment — usually a linesheet parse that misread a size on a dense grid (a "45" pulled from the row next to the real "44"). You'll normally catch this holding the item at the receiving table, once the physical label disagrees with what ThreadCloud says you received.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+The garment's own size label doesn't match the size ThreadCloud received it as, for a size you've already confirmed in this shipment. Trust the sewn-in label over the system.
+</div>
+
+<ol class="steps">
+  <li><strong>Open the shipment</strong> — from the receiving success screen, or the past-shipments list on the order.</li>
+  <li>Find the wrong size's row and click <strong>Fix size</strong>.</li>
+  <li><strong>Enter the correct size</strong> — a dropdown for simple scales (collar, belt, shoe), separate Waist and Inseam boxes for trousers, or Chest size + Length for jackets. You're never typing a free-form size string — the input matches whatever scale the rest of the product already uses, so there's no format to get wrong.</li>
+  <li><strong>Confirm.</strong> One click does the rest: the wrong size's received units come back out (Shopify and ThreadCloud both), the correct size is added to the product as a new variant with the same metafields and filters as its siblings, the units you already counted move onto it, and the wrong size is removed from the product.</li>
+  <li><strong>Reprint the tag</strong> for that unit — it now prints under the correct size.</li>
+</ol>
+
+<div class="callout callout-warn">
+<div class="callout-title">If the wrong size also showed up in an earlier shipment</div>
+The fix only moves units received in THIS shipment. If the same wrong size has stock from an earlier shipment too, the wrong variant stays on the product (with that earlier stock) until that shipment is fixed as well — ThreadCloud tells you when this happens rather than silently leaving two variants live.
+</div>
+
+This is a stock correction, not a re-receive: the order's locked FX rate and its POS publishing aren't touched.
+
 ## Next steps
 
 - [Labels](/workflows/labels/) — print details + fallback options
 - [Reorder](/workflows/reorder/) — re-buy what's selling
-- [Trading](/planning/trading/) — watch sell-through
+- [Merchandising](/planning/trading/) — watch sell-through

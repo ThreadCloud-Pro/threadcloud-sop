@@ -25,7 +25,7 @@ If a button name here doesn't match what you see on screen, the app changed and 
 
 <div class="callout callout-tip">
 <div class="callout-title">Where "what should I reorder?" lives</div>
-The reorder screen is for placing the restock. To decide <em>what</em> to restock — what's selling, what's running low — use the <a href="/planning/trading/">Trading dashboard</a>. It surfaces reorder candidates from sell-through and weeks-of-supply, and links straight into a reorder.
+The reorder screen is for placing the restock. To decide <em>what</em> to restock — what's selling, what's running low — use the <a href="/planning/trading/">Merchandising</a>. It surfaces reorder candidates from sell-through and weeks-of-supply, and links straight into a reorder.
 </div>
 
 ## Two ways to start
@@ -50,13 +50,18 @@ Once you start, you're in the reorder workspace. Three tabs across the top track
 Each product shows a row of size cells. Type how many you want in each size.
 
 - <strong>Quantities save on their own</strong> about a second after you stop typing. There is no Save button — watch for the small <em>Saving…</em> then <em>Saved</em> note.
-- Each size cell shows a <strong>stock badge</strong> so you know what's already on the floor:
+- Each size cell shows a <strong>stock badge</strong> pulled live from Shopify every time you open the page — not a cached count:
   - <strong>0</strong> — out
   - <strong>1–3</strong> — low
   - <strong>4+</strong> — in stock
   - <strong>—</strong> — not in Shopify yet (stock unknown)
-- If you started from a saved list, the cell also shows the plan snapshot, e.g. <em>plan 20 · have 15</em>.
+- If you started from a saved list, the cell also shows the plan snapshot next to the live count, e.g. <em>plan 20 · have 15</em> — <em>plan</em> is what you had in mind when you saved the list, <em>have</em> is what's actually on hand right now.
 - Trousers and other two-axis sizes (waist × inseam) lay out as a grid, not a single row.
+
+<div class="callout callout-tip">
+<div class="callout-title">Product cards show the supplier reference, not the SKU</div>
+Where a supplier reference is on file for the brand, the product card leads with that instead of the ThreadCloud SKU — useful when you're cross-checking against a paper linesheet or the supplier's own catalog. Falls back to the SKU only when no reference exists.
+</div>
 
 <div class="callout callout-tip">
 <div class="callout-title">Earmark for a waiting customer</div>
@@ -106,5 +111,5 @@ Adjust any cell for a partial shipment, then click <strong>Confirm receive</stro
 
 ## Next steps
 
-- <a href="/planning/trading/">Trading dashboard</a> — decide what to reorder (sell-through, weeks of supply).
+- <a href="/planning/trading/">Merchandising</a> — decide what to reorder (sell-through, weeks of supply).
 - <a href="/workflows/receiving/">Receiving</a> — full receiving + label printing.
