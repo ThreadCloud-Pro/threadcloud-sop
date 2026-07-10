@@ -172,6 +172,26 @@ Made a mistake? You can reverse a whole shipment (reversing part of one isn't su
 Reverse only works <strong>before</strong> any of the reversed variants have sold. If sales have already happened against the received inventory, email [hello@threadcloud.io](mailto:hello@threadcloud.io) before reversing.
 </div>
 
+## Make POS-ready
+
+A buying-order product only becomes sellable at the register when a clean first receive activates it and publishes it to your Point of Sale channel. If that step gets disrupted — a size-scale correction mid-flow, or a stock edit made by hand in Shopify admin instead of through receiving — the product can end up sitting Active in Shopify but invisible on POS, with no obvious way back.
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+A product you know you've received shows up fine in Shopify admin but a cashier can't find it on the register.
+</div>
+
+<ol class="steps">
+  <li>Open the order's receiving page.</li>
+  <li>Click <strong>Make POS-ready</strong>.</li>
+  <li>ThreadCloud re-runs activation for every received product on the order and reports how many are genuinely POS-ready now.</li>
+</ol>
+
+<div class="callout callout-warn">
+<div class="callout-title">Only touches received stock</div>
+This can't be used to skip receiving — it only acts on products with actual received units. A never-received, still-zero-stock product stays untouched. Online Store publication for regular stock isn't affected either way.
+</div>
+
 ## Receiving a size you didn't order
 
 The grid isn't limited to the sizes on the original PO. If a supplier ships a size that wasn't ordered (a substitute, or one extra piece thrown in), and that size already exists as a variant on the product in Shopify, it shows up in the grid ready to receive — just enter the count against it like any other row. If the product doesn't carry that variant yet, it isn't a receiving problem: raise a reorder or a variant fix first.
