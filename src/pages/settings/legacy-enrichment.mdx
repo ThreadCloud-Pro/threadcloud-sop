@@ -6,7 +6,7 @@ description: Bulk-classify and enrich existing Shopify products that were create
 
 # Legacy Enrichment
 
-The retroactive upgrade flow. Takes your existing Shopify catalog (products created before ThreadCloud, or by another tool) and stamps them with ThreadCloud's metafields so they show up in smart filters, financials, and trading views.
+The retroactive upgrade flow. Takes your existing Shopify catalog (products created before ThreadCloud, or by another tool) and stamps them with ThreadCloud's metafields so they show up in smart filters, financials, and Merchandising views.
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
@@ -22,7 +22,7 @@ The page is shaped as a numbered checklist. Walk it top to bottom.
   <li><strong>AI Classification</strong> — AI fills in category, colour, fabric, etc. per job</li>
   <li><strong>Review & Fix</strong> — Walk the table, fix low-confidence rows</li>
   <li><strong>Apply to Shopify</strong> — Write metafields back to Shopify products</li>
-  <li><strong>Import to Database</strong> — Optional. Backfills the ThreadCloud database with the enriched products (only needed for dashboard/trading)</li>
+  <li><strong>Import to Database</strong> — Optional. Backfills the ThreadCloud database with the enriched products (only needed for dashboard/Merchandising)</li>
 </ol>
 
 ## Step 1 — Seed Products
@@ -150,7 +150,7 @@ If you want to overwrite existing values (e.g. re-classifying everything after i
 
 Only relevant if you want the legacy products to appear in:
 - ThreadCloud's dashboard order list
-- Trading dashboard sell-through
+- Merchandising sell-through
 - Financials roll-up
 
 If you only care about smart filters working on the storefront, skip Step 5.

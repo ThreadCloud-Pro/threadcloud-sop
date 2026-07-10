@@ -36,7 +36,7 @@ export const navigation: NavSection[] = [
     items: [
       { href: "/planning/buying-seasons/", title: "Buying Seasons" },
       { href: "/planning/budget-otb/", title: "Budget & OTB" },
-      { href: "/planning/trading/", title: "Trading Dashboard" },
+      { href: "/planning/trading/", title: "Merchandising" },
       { href: "/planning/financials/", title: "Financials" },
     ],
   },

@@ -9,7 +9,7 @@ description: One-off made-to-measure and special orders. Drop in the supplier co
 Custom orders are one-off special orders: a made-to-measure suit, a special-order jacket, anything you buy for a single customer. You start from the supplier's confirmation, review the details, send the customer a deposit, and receive the item when it lands.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-06-29</div>
+<div class="callout-title">Last verified against the app: 2026-07-10</div>
 This screen is labelled <strong>Custom orders</strong> in the app (it used to be called MTM). If a button name here doesn't match, the app changed and this page is stale — tell the team.
 </div>
 
@@ -31,6 +31,11 @@ From the sidebar, open <strong>Custom orders</strong> and click <strong>New cust
 - <strong>Enter manually</strong> — click this for a phoned-in order. It skips the upload and gives you a blank order to fill in.
 
 Either way you land on the <strong>Review</strong> screen with whatever was found pre-filled.
+
+<div class="callout callout-tip">
+<div class="callout-title">One customer, several garments, several confirmations</div>
+If a customer's order came as more than one supplier confirmation (say, a jacket from one maker and trousers from another), drop all the files in at once — the upload zone takes multiple files. ThreadCloud reads each one and merges them into a single order: the customer and pricing details come from whichever file has them, and every garment from every file lands on the one order. One unreadable file in the batch doesn't block the rest — you'll just need to fill that garment in by hand on Review.
+</div>
 
 ## The Review / Sent / Fit tabs
 
@@ -57,6 +62,12 @@ Everything on this screen <strong>saves on its own</strong> as you go (no Save b
 When a customer is linked, ThreadCloud snapshots their measurements onto the order. Next time, their profile pre-fills, and over time it learns their adjustments (e.g. always shorten the sleeve a touch).
 </div>
 
+### Combine garments into one priced Suit or Set
+
+An order with more than one garment doesn't have to price each one separately. Tick the checkbox on two or more garment cards and a <strong>"Combine N — bill as one"</strong> pill appears; tap it to group them under a single cost and retail price (or tap <strong>All one item</strong> to group everything on the order in one go). ThreadCloud names the group for you: a jacket-family top plus trousers becomes a <strong>Suit</strong>; any other combination (a shirt and tie, or two shirts) becomes a <strong>Set</strong>.
+
+A grouped block shows one cost/retail pair and an <strong>Ungroup</strong> button — ungrouping restores each garment's own price, nothing is lost. An order can hold several groups at once (Suit 1, Suit 2, a standalone Set) alongside ungrouped garments; each group pushes to Shopify as its own product. Every group and every standalone item needs a price before <strong>Create draft</strong> unlocks.
+
 ## Create the draft (take the deposit)
 
 When the details are right, click <strong>Create draft</strong>. ThreadCloud creates a <strong>Shopify draft order</strong> for the customer with the deposit amount, and moves the order to <strong>Sent</strong>. Send the draft-order link to the customer for payment.
@@ -69,6 +80,15 @@ Custom orders are non-returnable. The deposit is the customer's commitment befor
 ## Receive on arrival
 
 When the item lands, open the order (it's on the <strong>Sent</strong> tab) and click <strong>Mark received</strong>. Enter the final cost per item and any receiving notes, then save. You can print the receiving document (units and cost per item) for your records. Use <strong>Edit receipt</strong> if you need to correct the cost later.
+
+## On the sales floor (POS)
+
+The <strong>Custom Orders</strong> tile in POS lists every order that's sent, received, or fitted, has a linked Shopify customer, and hasn't been paid on POS yet. Each row shows the customer, the garments, the status, the deposit already on file, the ETA, and the total price (once every garment on the order has a price set). Tap a row to load its items — and the linked customer — straight into the cart for checkout.
+
+<div class="callout callout-tip">
+<div class="callout-title">If loading a row fails</div>
+You'll get a clear error toast and stay on the list — it won't silently drop you back out. Nothing is added to the cart until you see the "Loaded" confirmation.
+</div>
 
 ## Fit notes
 

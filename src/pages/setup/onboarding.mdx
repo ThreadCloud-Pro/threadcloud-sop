@@ -1,21 +1,21 @@
 ---
 layout: ../../layouts/Doc.astro
 title: First-time setup
-description: Install ThreadCloud, accept terms, configure brands, set up AI, map categories, and enrich your existing catalog. About 30 minutes total.
+description: Install ThreadCloud, accept terms, connect your rack, and enrich your existing catalog. About 2 minutes for the wizard.
 ---
 
 # First-time setup
 
-Everything from installing ThreadCloud to a fully-enriched catalog with working storefront filters. The in-app wizard is four steps and takes about two minutes; enriching your existing catalog afterwards is where the time goes — and where the payoff is.
+Everything from installing ThreadCloud to a fully-enriched catalog with working storefront filters. The in-app wizard is three quick screens plus a finishing screen and takes about two minutes; enriching your existing catalog afterwards is where the time goes — and where the payoff is.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-06-30</div>
-If a step or button name here doesn't match the app, it changed and this page is stale — tell the team.
+<div class="callout-title">Last verified against the app: 2026-07-10</div>
+If a screen or button name here doesn't match the app, it changed and this page is stale — tell the team.
 </div>
 
 <div class="callout callout-info">
 <div class="callout-title">Who does this</div>
-The store <strong>Owner</strong> runs first-time setup — it installs metafield definitions and authorises Shopify access. You only do it once per store.
+The store <strong>Owner</strong> runs first-time setup — it installs metafield definitions and authorises Shopify access. You only do it once per store. Progress is saved on the server as you go, so closing the tab and coming back later resumes exactly where you left off — it doesn't reset.
 </div>
 
 ## Before you start
@@ -26,42 +26,31 @@ The store <strong>Owner</strong> runs first-time setup — it installs metafield
 
 ## Install from the Shopify App Store
 
-Install ThreadCloud like any Shopify app. On first open it asks you to approve the access scopes (read + write products and metafields). Approve, and you land on <strong>Step 1</strong>.
+Install ThreadCloud like any Shopify app. On first open it asks you to approve the access scopes (read + write products and metafields). Approve, and the wizard opens full-screen in place of the dashboard.
 
-## Step 1 — Welcome & Terms
+## Screen 1 — Welcome
 
-The opening screen explains what ThreadCloud unlocks: <strong>Smart Filters</strong> (storefront facets), <strong>Buy Analytics</strong> (OTB, blended margin, brand scorecards, sell-through), and <strong>58 structured data points</strong> per product.
+The opening screen explains what ThreadCloud unlocks: <strong>Smart Filters</strong> (storefront facets), <strong>Buy Analytics</strong> (OTB, blended margin, brand scorecards, sell-through), and <strong>58 structured data points</strong> per product. One button: <strong>Begin setup</strong>.
 
-<strong>What the button does:</strong> "Accept & Continue" installs <strong>58 metafield definitions</strong> into your Shopify store and authorises ThreadCloud to read and write product metafields. No existing product data is touched, and you can uninstall cleanly from Settings at any time.
-
-<div class="callout callout-info">
-<div class="callout-title">If you're upgrading an existing store</div>
-This screen reads "Install Updates" instead — same one-click action, never loses product data. Run <strong>Re-push All Products</strong> in Settings afterward so the new definitions reach already-live products.
-</div>
+<strong>What the button does:</strong> installs the metafield definitions and authorises ThreadCloud to read and write product metafields, then automatically — no separate steps for you to run — pulls your store's name, currency, and timezone from Shopify (only filling in values you haven't already set yourself), provisions the storefront filter token, seeds the standard set of delivery-window templates, and scans your active catalog for the brands and product types already in it. No existing product data is touched.
 
 <div class="callout callout-warn">
-<div class="callout-title">If metafields don't install</div>
-If the success state doesn't appear, or filters don't show up later, re-open the app — Step 1 is safe to re-run. Persistent failure → [If something breaks](/runbook/).
+<div class="callout-title">If setup doesn't complete</div>
+If the screen doesn't advance, or filters don't show up later, re-open the app — Screen 1 is safe to re-run. Persistent failure → [If something breaks](/runbook/).
 </div>
 
-## Step 2 — Brand setup
+## Screen 2 — Your rack
 
-ThreadCloud scans your store and tells you how many brands it found across how many active products. Configure them two ways:
+A green banner confirms what setup just did automatically (store name, currency, delivery-window count, "storefront filters connected"), then shows the brands ThreadCloud detected in your catalog as tap-to-toggle chips — all selected by default. Tap one to leave it out for now.
 
-- <strong>Bulk import</strong> — click <strong>Download template</strong>, fill in the CSV (brand, code, country, supplier), then <strong>Import CSV</strong> to pre-load your whole supplier registry at once. Fastest for an established store.
-- <strong>Individually</strong> — for each detected brand, set Country, Supplier / Agent, and a short Brand bio. The <strong>✦ Fill with AI</strong> button drafts the country and bio for well-known brands; niche brands you fill in manually.
+<strong>What the buttons do:</strong> <strong>Confirm & continue</strong> creates a brand record for each selected vendor and seeds the enrichment queue for your catalog. <strong>Skip for now</strong> moves on without creating any brands — do this and set brands up later from Brand Registry if you'd rather not decide chip-by-chip during setup.
 
 <div class="callout callout-tip">
-<div class="callout-title">Brand codes</div>
-Each brand gets a short code (e.g. "LRD" for Lardini) used in SKUs and identity. The app proposes one from the brand name — keep it short and unique.
+<div class="callout-title">Bulk-importing a large supplier registry</div>
+The wizard itself is chip-by-chip. If you have a big existing supplier list to load in one shot, skip this screen and use the CSV import in <strong>Settings → Brands & Suppliers</strong> instead — same bulk-import tool the old wizard used, just moved out of the setup flow.
 </div>
 
-<div class="callout callout-warn">
-<div class="callout-title">"Fill with AI" needs AI set up first</div>
-If you haven't added an API key yet, AI fill won't work. Either set the key in Step 3 first, or fill brands manually now and revisit.
-</div>
-
-## Step 3 — AI setup (optional but recommended)
+## Screen 3 — The engine
 
 Paste your Anthropic API key to unlock AI descriptions and linesheet parsing. Get a key at <strong>console.anthropic.com</strong> — they start with <code>sk-ant-</code>.
 
@@ -70,29 +59,27 @@ Paste your Anthropic API key to unlock AI descriptions and linesheet parsing. Ge
 AI usage is billed to <strong>your</strong> Anthropic account. ThreadCloud does not mark up or charge for AI calls. Add or change the key anytime in [Settings → AI & Models](/settings/ai-models/).
 </div>
 
-You can <strong>Skip</strong> this and add the key later — the rest of ThreadCloud works without it; you just won't get AI descriptions or auto-parse until it's set.
+<strong>What the buttons do:</strong> <strong>Switch it on</strong> validates the key looks right and saves it. <strong>I'll add it later</strong> skips it — the rest of ThreadCloud works without it; you just won't get AI descriptions or auto-parse until it's set.
 
-## Step 4 — Category mapping
+## Finishing screen — your store is dressed
 
-Map each Shopify <strong>product type</strong> to a ThreadCloud <strong>category</strong> (and an optional subcategory). This powers financials and assortment analysis. Map at least one to continue, then click <strong>Finish Setup</strong>.
+A short celebration screen with a checklist of what setup just did (delivery windows, brands, catalog classifying, metafields). One button: <strong>Enter ThreadCloud</strong>.
 
-Behind the scenes, Finish Setup scans your active products and seeds the legacy-enrichment queue.
-
-<div class="callout callout-warn">
-<div class="callout-title">Large catalogs</div>
-With 250+ products the scan runs in batches and can take a few minutes. <strong>Keep the tab open</strong> until it lands you on the dashboard.
+<div class="callout callout-info">
+<div class="callout-title">This click is what finishes setup</div>
+Setup isn't marked complete until you click <strong>Enter ThreadCloud</strong> on this screen — that's deliberate, so you see the celebration instead of getting bounced straight to the dashboard.
 </div>
 
-## Step 5 — Enrich your existing catalog ⭐
+## After the wizard: enrich your existing catalog ⭐
 
-This is the step that turns a freshly-installed store into a working one: every existing product gets a category, colour group, fabric, country, and the metafields that drive storefront filters. Finish Setup kicks it off; you complete it on the Legacy Enrichment page.
+This is the step that turns a freshly-installed store into a working one: every existing product gets a category, colour group, fabric, country, and the metafields that drive storefront filters. The wizard already seeded the queue when you confirmed your brands on Screen 2 — you finish it on the Legacy Enrichment page.
 
-After setup you land on the dashboard with a <strong>"Setup complete — enriching legacy products in background"</strong> banner, and a persistent <strong>catalog enrichment</strong> banner appears whenever the queue has work. Click it, or open [Settings → Legacy Enrichment](/settings/legacy-enrichment/).
+You land on the dashboard with a <strong>"Setup complete — enriching legacy products in background"</strong> banner, and a persistent <strong>catalog enrichment</strong> banner appears whenever the queue has work. Click it, or open [Settings → Legacy Enrichment](/settings/legacy-enrichment/).
 
 ### The fast path (clean catalog)
 
 1. Open <strong>Settings → Legacy Enrichment</strong>.
-2. Classification may already be running from Step 4 — if not, click <strong>Run Classification</strong> and watch the ambient bar finish. You can navigate away while it runs.
+2. Classification may already be running from setup — if not, click <strong>Run Classification</strong> and watch the ambient bar finish. You can navigate away while it runs.
 3. Open the <strong>Ready</strong> tab → <strong>Apply Selected</strong>. Filters go live on the storefront.
 
 ### The review path (mixed metadata)
@@ -125,18 +112,13 @@ About 5 min for 500 products, 20 min for 2,000, 50 min for 5,000 — classificat
 ## Common issues
 
 <div class="callout callout-warn">
-<div class="callout-title">"Fill with AI" or descriptions do nothing</div>
+<div class="callout-title">"Switch it on" or descriptions do nothing</div>
 No Anthropic key set. Add it in [Settings → AI & Models](/settings/ai-models/).
 </div>
 
 <div class="callout callout-warn">
 <div class="callout-title">Classification looks stalled</div>
 It runs in the background and the ambient bar shows progress — you can leave the page. If counts never move, re-open Legacy Enrichment; persistent issues → [If something breaks](/runbook/).
-</div>
-
-<div class="callout callout-warn">
-<div class="callout-title">The wizard reset mid-flow</div>
-The wizard keeps progress in the browser session. Clearing the cache mid-setup restarts it — harmless, just re-walk the steps.
 </div>
 
 ## Next steps
