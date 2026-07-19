@@ -21,6 +21,9 @@ The on-call playbook. Match the symptom on the left to the fix on the right. If 
 | "Missing access token" error | This was a real bug — it's been fixed. If you see it, refresh the page. If still broken after refresh, email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
 | Parse times out on a PDF | **[Try Excel](#parse-timeout)** — see below |
 | Apply Selected says "0 ready" | Some rows are still <span class="badge badge-warn">NEEDS REVIEW</span>. Filter to "Needs review", fix each, then re-select. |
+| Clean Catalog reports no safe fixes | Review the source facts and the Legacy Enrichment queue. Ambiguous or incomplete rows are intentionally review-only; do not force an overwrite. |
+| Inventory refresh fails on an untracked variant | **[Inventory snapshot refresh](#inventory-snapshot-refresh)** — the last good snapshot is retained. |
+| Historical performance is unavailable | **[Historical ledger access](#historical-ledger-access)** — do not infer history from current stock. |
 | Catalog rolled back wrong | **[Undo via Legacy Enrichment](#wrong-rollback)** |
 | Order status won't change | Refresh. If still stuck, **[check the supplier ack](#stuck-status)**. |
 
@@ -109,6 +112,26 @@ You applied enrichment to a batch and the results are wrong.
 <div class="callout-title">Why this works</div>
 Every Apply step saves a snapshot of the existing values before overwriting. Rollback writes the snapshot back. This works for up to 90 days after the apply.
 </div>
+
+## Inventory snapshot refresh
+
+The Inventory Snapshot refresh reads Shopify inventory and rebuilds the snapshot. It does not write
+product metafields. Variants with inventory tracking disabled are excluded from physical totals, and
+a missing tracking signal for MTO, STOCK, or NOS fails closed so an unknown quantity is not reported
+as zero.
+
+<ol class="steps">
+  <li>Wait for the refresh to finish and check whether the page retained the last good snapshot.</li>
+  <li>Fix the tracking or source issue, then run one refresh.</li>
+  <li>If it fails again, stop retrying and record the product or variant id for support. Do not use the resulting total for a buying decision.</li>
+</ol>
+
+## Historical ledger access
+
+Historical sales requires the app's Shopify <code>read_all_orders</code> grant. If the page asks for
+reauthorization, that is an app permission state, not a calculation to work around. Ask the owner to
+reauthorize the staging app, then retry once. Until the ledger is available, historical scorecards
+and MTO receipt-backed sell-through remain unavailable; current physical on-hand is not a substitute.
 
 ## Stuck status
 

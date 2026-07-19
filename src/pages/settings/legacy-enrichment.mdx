@@ -13,6 +13,29 @@ The retroactive upgrade flow. Takes your existing Shopify catalog (products crea
 Once at install — ThreadCloud Support runs this during onboarding to bring an existing Shopify catalog into the ThreadCloud schema. Re-run after big bulk imports of legacy products from another tool.
 </div>
 
+## Clean Catalog MVP
+
+Use **Clean Catalog** when the goal is to restore core merchandising facts without running vision
+over the entire legacy catalog. It runs in the background, so you can leave the page and return to
+the status card. It refreshes reviewed rows only: category, subcategory, brand, colour group,
+colour name, pattern, season, stock type, source/schema timestamps, and canonical size scale.
+
+It does **not** infer or overwrite advanced fabric, construction, care, fit, occasion, or pack
+attributes. Ambiguous or incomplete rows remain in **Needs review** and are not written to Shopify.
+This is the safe one-click path for making the core merchandising views useful again.
+
+### Clean Catalog smoke check
+
+1. Open **Settings → Legacy Enrichment** and start **Clean Catalog**.
+2. Confirm the run is in progress, navigate away, then return and verify the counts changed.
+3. Open one refreshed product and verify category, subcategory, brand, colour, season, stock type,
+   and size scale. Do not expect advanced attributes from this MVP.
+4. Run **Merchandising → Inventory Snapshot** and confirm the refreshed timestamp and tracked
+   physical on-hand disclosure.
+
+If the action reports zero safe fixes, review the source facts first. Do not force an overwrite of
+ambiguous rows.
+
 ## The five-step workflow
 
 The page is shaped as a numbered checklist. Walk it top to bottom.

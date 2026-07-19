@@ -14,6 +14,39 @@ If a tab or card name here doesn't match the app, it changed and this page is st
 </div>
 
 <div class="callout callout-info">
+<div class="callout-title">Current merchandising MVP truth</div>
+Inventory Snapshot uses Shopify physical <code>on_hand</code> for variants with inventory tracking
+enabled and discloses untracked variants instead of silently treating them as zero. A failed
+refresh preserves the last good snapshot. This is an on-hand and known-cost view, not a historical
+sales report.
+</div>
+
+## Merchandising MVP smoke walk
+
+1. **Settings → Legacy Enrichment:** run Clean Catalog only for reviewed legacy rows. Verify core
+   fields and leave ambiguous rows in Needs review.
+2. **Merchandising → Inventory Snapshot:** confirm “Tracked physical on hand, known cost”, a recent
+   refresh timestamp, units/styles, cost/retail, and the tracked-physical disclosure.
+3. Switch between **Brand**, **Category**, and **Subcategory**. Open size curves and check that
+   sizes use the expected category scale rather than Unknown.
+4. Use season, brand, and category filters. No rows is a data result; a blank page or error is a defect.
+5. Open one brand and one category scorecard. Treat values as directional until the historical
+   ledger and receipt denominator gates are green.
+
+### Stock-type interpretation
+
+- **MTO** is seasonal product made for the store. The decision metric is sell-through against a
+  factual received/receipt denominator.
+- **STOCK** is made-to-order product with vendor backup inventory. Use velocity/turns only when
+  physical and cost inputs are complete.
+- **NOS** is evergreen carryover product with longer vendor replenishment. Use velocity/turns.
+- **SPECIAL** is a customer-driven special/custom order. Keep it separate from normal stock
+  rankings unless source facts explicitly link it to a normal assortment.
+
+Until receipt history is complete, the app withholds MTO sell-through rather than manufacturing a
+denominator. Do not substitute current on-hand for received units.
+
+<div class="callout callout-info">
 <div class="callout-title">When to use</div>
 Weekly. Monday morning is the natural cadence — review prior week's sales, identify reorder candidates, identify markdown candidates.
 </div>
