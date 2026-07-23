@@ -111,7 +111,12 @@ After classification, the table shows every job. Each row has:
 - Pattern
 - Status: <span class="badge badge-ok">READY</span> or <span class="badge badge-warn">NEEDS REVIEW</span>
 
-Filter pills at the top: All / Needs review / Ready.
+Filter pills at the top: All / Needs review / Ready. Next to them, a <strong>Brand</strong> dropdown ("All brands (N)", then each vendor with its review count) narrows the table to one brand. The brand filter stacks on top of the tab filter, and everything downstream (sort, pagination, checkboxes, Select All Ready) acts on exactly the filtered set. Changing brand or tab resets the page and clears any selection, so a bulk action can never silently include rows you can't see.
+
+<div class="callout callout-tip">
+<div class="callout-title">Tip: select a range fast</div>
+<strong>Shift-click</strong> a row's checkbox to select every row between it and the last one you clicked (the whole range takes the clicked row's state). The anchor is per-page, so a range can't span pages.
+</div>
 
 ### Walking the Needs Review queue
 
@@ -138,11 +143,24 @@ To set the same value across many rows:
 4. Pick the field + value once
 5. Click <strong>Apply</strong> — updates every selected row
 
+### Suggest seasons from product age
+
+Legacy products often have no clean season tag. Click <strong>Suggest seasons from product age</strong> (it reads "Dating the rack…" while it runs) to fill the Season on rows where it's empty, inferred from each product's Shopify creation date (a Feb-to-Jul date reads as SS, Aug-to-Dec as FW, and a January product as the prior year's FW, for example SS-23 or FW-23). It only fills <strong>blank</strong> Season cells, never overwrites one you set, and never changes a row's status: every suggestion still flows through the normal review and confirm. Products Shopify can't date keep an empty Season.
+
+<div class="callout callout-tip">
+<div class="callout-title">Tip: unknown vintage</div>
+For genuinely pre-ThreadCloud product with no meaningful season, type <strong>LEGACY</strong> in the Season field. It is accepted as a valid unknown-vintage season, so the row can go Ready instead of sticking on "Missing: Season".
+</div>
+
+### Decide stock types once per brand
+
+When a brand's products are almost all the same stock type, don't edit them row by row. The <strong>Decide once per brand</strong> card (it appears once there's enough reviewed history) lists each brand with its awaiting-decision and reviewed-history counts and a <strong>Set stock type</strong> dropdown (Leave for review / MTO / Stock / NOS / Special). Pick one and click <strong>Apply to N products</strong>. When a brand's reviewed history is lopsided (at least 80% one type across at least 5 samples) that type is pre-selected for you. It never overwrites a stock type you set by hand, and each write re-checks the row, so a concurrent edit always wins.
+
 ## Step 4 — Apply to Shopify
 
 Once your rows are mostly Ready:
 
-1. Click <strong>Select All Ready</strong> (top of the table)
+1. Click <strong>Select All Ready (N)</strong> (top of the table). It selects the Ready rows in the <strong>current filtered view</strong>, so the button's count and what actually gets staged always agree. If you've filtered to one brand, only that brand's Ready rows are selected.
 2. Click <strong>Apply Selected</strong>
 3. Confirms how many will be written. If you selected mixed Ready + Needs Review, it warns about how many will be skipped
 4. Click <strong>Write metafields to N products</strong>

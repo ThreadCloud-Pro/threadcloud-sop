@@ -14,7 +14,7 @@ On every order after parse, before push. Usually auto-runs in the background —
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-06-29</div>
+<div class="callout-title">Last verified against the app: 2026-07-23</div>
 If a button name here doesn't match the app, it changed and this page is stale — tell the team.
 </div>
 
@@ -84,6 +84,14 @@ Cards with no flags can usually be approved in one click. Reserve attention for 
 ### Approve
 
 Approve a single style with its <strong>Approve</strong> button, or click <strong>Approve all ready</strong> at the top to approve everything that's complete. A style can only be approved when it has a title, a unit cost, a retail price, and at least one size with a quantity — if something's missing, the app tells you which field. Use <strong>Skip</strong> to set a style aside, and <strong>Restore</strong> to bring it back.
+
+## Collection context
+
+Below the images on the Enrich page is a <strong>Collection context</strong> box: free text that gets woven into every product description on the next generate (put title and copy directions here too). Type your notes, then click <strong>Save context</strong> (or press <strong>⌘/Ctrl+Enter</strong>). The button stays disabled until you've changed something, the eyebrow shows <em>saving…</em> / <em>unsaved</em> / <em>saved ✓</em>, and a <strong>Discard</strong> button restores the last saved text. Saving is an explicit click now, not a background timer, so you decide when it's committed; anything you type while a save is in flight is never clobbered.
+
+### Model context documents
+
+The context-images panel accepts <strong>PDFs</strong> as well as photos, so you can drop a supplier's per-model fit guide (for example an Alberto sheet listing fits for ROBI, PIPE, LUIS) straight in. There is no attach-to-model step; just drop it. When a document names a <strong>model</strong> and a <strong>fit</strong> but carries no article or colour code, the Fit Type auto-fills on <strong>every colourway of that model</strong> (fit is colour-independent). It is gap-fill only, so it won't overwrite a fit you set by hand, and a bare model name with no facts attached is ignored.
 
 ## Editing the description specifically
 

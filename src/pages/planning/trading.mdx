@@ -9,7 +9,7 @@ description: Open to buy, sell-through, action queue, and on-hand inventory. The
 The selling-window operations surface — was called <strong>Trading</strong>, renamed and rebuilt around six tabs. Once inventory lands, Merchandising tells you what's selling, what's aging, and what to act on this week.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-07-10</div>
+<div class="callout-title">Last verified against the app: 2026-07-23</div>
 If a tab or card name here doesn't match the app, it changed and this page is stale — tell the team.
 </div>
 
@@ -77,7 +77,7 @@ The same scorecard shape as Brands, grouped by category instead — gross margin
 
 ## Orders
 
-Per-order buy detail — unchanged from before the rebuild.
+Per-order buy detail. The scorecard columns (Planned at cost, Recorded retail, Recorded IMU%, OTB Var, Receipt%) now report the <strong>known-cost subset</strong> instead of blanking a whole order because one style is uncosted: each row shows what is known and, when some units are missing a value, a small "X of Y costed" or "X of Y priced" coverage line beneath it. Recorded IMU% is computed only over units that carry <strong>both</strong> a cost and a retail, and OTB Var still waits until <strong>every</strong> unit is costed (a partial buy against a whole-order target would read as false headroom).
 
 ## Buying Seasons
 
