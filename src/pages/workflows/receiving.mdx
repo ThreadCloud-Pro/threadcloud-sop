@@ -159,9 +159,49 @@ The print link reads from confirmed data. If you enter quantities but don't clic
 If you placed a reorder for the same brand/season, the reorder is a <strong>separate order</strong> in ThreadCloud — even if the supplier shipped both together. Receive each order separately so sell-through math stays correct.
 </div>
 
+## Fix a wrong size
+
+The garment in your hands is a 47cm, but the order says 45cm — the size was mis-read when the linesheet was parsed, and nobody caught it until the tags were going on.
+
+<div class="callout callout-warn">
+<div class="callout-title">Don't unreceive it first</div>
+The instinct is to back the unit out and start again. Don't. <strong>Fix size</strong> already does the unreceive for you, and doing it by hand first hides the button you need — it only appears on rows that show received units.
+</div>
+
+<ol class="steps">
+  <li>Open the <strong>receiving document</strong> for the shipment the unit arrived on — from the success screen, or the past-shipments list on the order.</li>
+  <li>Find the row with the wrong size. At the far right there are two buttons.</li>
+  <li>Click <strong>Fix size</strong>. Not <strong>Adjust</strong> — Adjust only changes quantities.</li>
+  <li>Enter the correct size and confirm <strong>once</strong>. Wait for the bar at the top to settle.</li>
+  <li>Go to the order's <strong>Receive</strong> tab and check the size run. The wrong size is gone; the correct one is there, carrying the ordered quantity.</li>
+  <li>Receive the corrected size as normal, then print and apply its tag. Bin the old one.</li>
+</ol>
+
+One tap does all of it: backs the received units out of Shopify, creates the correct size as a full variant with the same metafields and SKU pattern as its siblings, moves both the ordered and the received quantities across, keeps the original received date so ageing and markdown stay honest, and deletes the wrong variant. The order's locked FX rate and POS publishing are left alone.
+
+### The receiving document will still show the old size
+
+This is the part that catches people out. **A receiving document is a permanent record of what was booked in that day, not a live stock list.** After a successful correction it still lists 45cm, and it always will. That is deliberate — an audit trail must not rewrite itself.
+
+<div class="callout callout-info">
+<div class="callout-title">Where to check whether it worked</div>
+The order's <strong>Receive</strong> tab, never the receiving document. The Receive tab is live truth. If the size run there shows the corrected size and not the wrong one, the fix worked.
+</div>
+
+Press Fix size a second time on a row you already corrected and ThreadCloud tells you it was <strong>already corrected</strong>, and does nothing. That is a reassurance, not an error.
+
+### When it won't run
+
+<div class="callout callout-warn">
+<div class="callout-title">"Size X is already on this style"</div>
+The size you're switching to is already in the run — the order genuinely has both. ThreadCloud stops before changing anything. Pick a size that isn't already there, or if the run itself is wrong, correct it in Build and re-push.
+</div>
+
+If a correction stops partway it tells you which step it stopped at. Nothing is silently half-done, but the wrong size may still be present — check the Receive tab before retrying, and email [hello@threadcloud.io](mailto:hello@threadcloud.io) if the run looks wrong.
+
 ## Reverse a receive
 
-Made a mistake? You can reverse a whole shipment (reversing part of one isn't supported):
+Made a mistake across a whole delivery? You can reverse an entire shipment. To back out a single size, use [Fix size](#fix-a-wrong-size) instead — it is scoped to one row and leaves the rest of the shipment intact.
 
 1. Open the shipment — from the success screen, or the past-shipments list on the order.
 2. Click <strong>Reverse</strong>.
