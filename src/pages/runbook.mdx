@@ -26,6 +26,8 @@ The on-call playbook. Match the symptom on the left to the fix on the right. If 
 | Historical performance is unavailable | **[Historical ledger access](#historical-ledger-access)** — do not infer history from current stock. |
 | Catalog rolled back wrong | **[Undo via Legacy Enrichment](#wrong-rollback)** |
 | Order status won't change | Refresh. If still stuck, **[check the supplier ack](#stuck-status)**. |
+| Wrong size received | **[Fix size](/workflows/receiving/#fix-a-wrong-size)** on the receiving document. Do not unreceive it first — that hides the button. |
+| Fixed a size but the document still shows the old one | Correct and expected. A receiving document is a permanent record of that day, not live stock. Check the order's **Receive** tab instead. |
 
 ---
 
