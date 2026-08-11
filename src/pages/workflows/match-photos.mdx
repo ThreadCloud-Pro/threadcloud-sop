@@ -1,0 +1,126 @@
+---
+layout: ../../layouts/Doc.astro
+title: Match buying photos
+description: Move loose supplier and showroom photos from the shared order pool onto the correct Build products, including photos added before a successful parse.
+---
+
+# Match buying photos
+
+Turn a loose camera roll into correctly placed buying photos before Enrich. ThreadCloud keeps the photos in one order pool, reads printed product identity when it can, ranks the active Build products, and leaves uncertain cases for you.
+
+<div class="callout callout-info">
+<div class="callout-title">The workflow order</div>
+First make the product rows correct. Then match photos. Then Enrich. A photo recommendation should never be used to hide a wrong style, colour, size scale, or quantity in Build.
+</div>
+
+## This is not the Photography workspace
+
+**Match buying photos** belongs to the buying workflow. It places supplier, showroom, and appointment photos on products while the order is being built.
+
+**Photography** is the later production workflow. It matches finished shoot files to products that already exist in Shopify by SKU. See [Photography](/workflows/photography/) after the products have been pushed.
+
+## What you need
+
+- A ThreadCloud order
+- The supplier order file, if one is available
+- Loose buying photos from the supplier, showroom, appointment, or camera roll
+- Correct active product rows in Build before you accept recommendations
+
+The files do not have to arrive in that order. You can add photos before the supplier order parses, after it parses, or in the same intake session.
+
+## Add the files
+
+Drop the supplier document and photos into the Build intake, or add photos from a product's **+ Add photo** control.
+
+ThreadCloud stores loose buying photos in the order's shared pool. A photo can wait there without a product match. It is not discarded just because there are no saved products yet or because the first parse fails.
+
+### How the queue is sorted
+
+Photos with a trustworthy date taken are ordered from oldest to newest. ThreadCloud reads that date from the original photo before converting it for storage. A strict camera filename timestamp is used when the image has no readable capture metadata.
+
+Photos with no trustworthy date taken stay after the dated photos in a stable order. ThreadCloud does not pretend file modification time is the moment the photo was taken.
+
+## Confirm product truth first
+
+Before matching, review the active Build rows and correct:
+
+1. Style or article code and colour code
+2. Product category
+3. Size scale
+4. Size quantities, when the supplier source includes them
+
+This is the identity set used for recommendations. Products that were superseded by a reparse or explicitly skipped are not valid matching targets.
+
+## Open Match photos
+
+On any product tile, click **Match photos**. The button shows the number of unplaced photos when the pool has any.
+
+The modal shows one photo at a time, the system's read beneath it, and the active products ranked on the right. You can filter the product list by style, title, or colour without changing its ranked order.
+
+### Read the recommendation state
+
+| What you see | What it means | What to do |
+|---|---|---|
+| **Top match found** | One active product is the strongest supported recommendation | Confirm the printed identity in the photo, then assign it |
+| **Ambiguous product evidence** | The read points toward products but does not identify one unique winner | Inspect the tag, filter the products, and choose manually |
+| **No product identity read** | No usable product identity was recovered | Re-read, zoom into the label, or assign manually |
+
+ThreadCloud is deliberately conservative. A visual colour impression can help sort candidates, but it cannot prove which product the photo belongs to. Automatic placement requires exact active product identity evidence. A combined tag read such as a style and colour printed without a separator can still be recovered when it resolves exactly against the active products.
+
+## Place each photo
+
+- **Assign** adds the photo to that product and advances to the next photo.
+- **+ Also** adds the same photo to another product and keeps it in the queue. Use this when one frame contains more than one product or tag.
+- Drag the photo onto a product tile for the same result as **Assign**.
+- **Skip** parks the photo at the back of the current queue. It does not delete it.
+- **Undo last placement** reverses your most recent assignment.
+- Zoom and rotate when the printed tag is hard to inspect.
+
+When the queue is complete, close the modal. The Build product carousels refresh to show the saved placements.
+
+### Choose an existing pool photo
+
+Use **Choose from pool** on a product when you need a photo that is already placed elsewhere. Match photos works through unplaced photos; the pool picker is the inspection path for every stored photo.
+
+### Remove a wrong placement or change the hero
+
+Remove a photo from a product with its **Remove** control. That removal is preserved instead of being silently undone by background reconciliation.
+
+In the larger Enrich carousel, select a photo and click **Make hero** when it should be the first product image. Matching a photo and choosing the hero are separate decisions.
+
+## If the first parse failed
+
+1. Leave the photos in the shared pool.
+2. Retry or reparse the supplier order.
+3. Review the new Build rows and fix product identity, category, size scale, and quantity.
+4. Open **Match photos** again.
+5. Review the new recommendations and place the remaining photos.
+
+A successful reparse changes the active product identity set. ThreadCloud then evaluates waiting weak or unmatched photos against the new truth. You do not need to delete and upload the camera roll again.
+
+## Re-read weak photos
+
+If the modal header shows **Re-read**, use it for photos with no read, an empty read, or only weak evidence such as a colour without a printed article code.
+
+Re-read uses the stored photo and runs in small batches. It is bounded so the same weak photo cannot trigger an endless loop. If the product identities change after a reparse, that photo can receive one fresh evaluation against the new active set.
+
+<div class="callout callout-warn">
+<div class="callout-title">Still no match?</div>
+Use zoom to inspect the tag, search the product rail, and assign manually. If the correct product is missing, stop and fix or add the Build row first. Do not attach the photo to a similar-looking product as a placeholder.
+</div>
+
+## What is preserved automatically
+
+- Photos added before a successful parse
+- Original capture chronology when it can be verified
+- Manual assignments across later background reconciliation
+- A manual removal from a specific product
+- Uncertain photos in triage until you decide where they belong
+
+## Done means
+
+- The active Build products are correct
+- Every useful buying photo is on the correct product or products
+- Unusable photos have been deliberately skipped or left for review
+- The intended hero is selected where needed
+- You are ready to continue to [Enrich](/workflows/enrich/)

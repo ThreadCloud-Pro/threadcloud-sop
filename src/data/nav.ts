@@ -22,6 +22,7 @@ export const navigation: NavSection[] = [
     title: "Daily workflows",
     items: [
       { href: "/workflows/build-order/", title: "Build Order" },
+      { href: "/workflows/match-photos/", title: "Match buying photos" },
       { href: "/workflows/enrich/", title: "Enrich" },
       { href: "/workflows/push-to-shopify/", title: "Push to Shopify" },
       { href: "/workflows/receiving/", title: "Receiving" },

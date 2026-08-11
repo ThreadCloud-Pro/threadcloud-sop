@@ -20,14 +20,15 @@ Every time you place a new buying order with a supplier. Replaces the old "make 
 - The supplier set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a>
 - Roughly known **delivery window** (start–end dates)
 
-## The five stages
+## The six stages
 
 <ol class="steps">
   <li><strong>Create the order</strong> — pick brand, season, delivery window</li>
   <li><strong>Parse</strong> — upload linesheet, AI extracts every style</li>
   <li><strong>Review & fix</strong> — eyeball the grid, fix anything wrong</li>
+  <li><strong>Match buying photos</strong> — place loose supplier and showroom photos on the correct products</li>
   <li><strong>Submit for supplier review</strong> — send ack link, wait for confirmation</li>
-  <li><strong>Push to Shopify</strong> — see the <a href="/workflows/push-to-shopify/">Push SOP</a></li>
+  <li><strong>Enrich and push to Shopify</strong> — finish the product record, then see the <a href="/workflows/push-to-shopify/">Push SOP</a></li>
 </ol>
 
 ## Stage 1 — Create the order
@@ -73,6 +74,8 @@ Don't navigate away during the first parse. The page is hooked up to revalidate 
 
 See the [runbook: parse timeout](/runbook/#parse-timeout). Short version: try once more, then ask the supplier for Excel, then add styles manually as a last resort.
 
+Photos you already added remain in the order's shared pool. Retry or reparse the supplier order first. Once the product rows are correct, ThreadCloud evaluates the waiting photos against that new product truth. See [Match buying photos](/workflows/match-photos/) for the recovery flow.
+
 ## Stage 3 — Review & fix
 
 Scroll the style grid. Each tile shows:
@@ -115,7 +118,13 @@ If the supplier added a style after sending the linesheet:
 2. Fill in the form
 3. Click <strong>Save</strong> — it appears at the bottom of the grid
 
-## Stage 4 — Submit for supplier review
+## Stage 4 — Match buying photos
+
+After the product identities, categories, size scales, and quantities are correct, place the order's loose buying photos. Open **Match photos** from a product tile and work through the queue.
+
+ThreadCloud keeps photos that arrived before the order was parsed, and a successful reparse can produce fresh recommendations for them. Known capture dates are shown oldest first. See the complete [Match buying photos SOP](/workflows/match-photos/).
+
+## Stage 5 — Submit for supplier review
 
 This sends the supplier a link to confirm the parsed order before you commit to it.
 
@@ -146,9 +155,9 @@ If the supplier marked changes on the ack form:
 3. Click <strong>Accept</strong> next to each row you agree with, or override manually
 4. Click <strong>Apply changes</strong> to commit
 
-## Stage 5 — Push to Shopify
+## Stage 6 — Enrich and push to Shopify
 
-Once status is <span class="badge badge-ok">CONFIRMED</span>, you're ready to push. See the [Push to Shopify SOP](/workflows/push-to-shopify/).
+Once status is <span class="badge badge-ok">CONFIRMED</span>, complete [Enrich](/workflows/enrich/) using the corrected, photo-matched products. Then follow the [Push to Shopify SOP](/workflows/push-to-shopify/).
 
 ## Common mistakes
 
@@ -180,6 +189,7 @@ You don't need to think about these — they happen on push:
 
 ## Next steps
 
-- [Enrich](/workflows/enrich/) — what happens between parse and push
+- [Match buying photos](/workflows/match-photos/) — place loose supplier and showroom photos after product review
+- [Enrich](/workflows/enrich/) — complete the corrected, photo-matched products before push
 - [Push to Shopify](/workflows/push-to-shopify/) — the actual writing of products
 - [Receiving](/workflows/receiving/) — when the shipment arrives
