@@ -1,0 +1,18 @@
+language: en-US
+reviews:
+  auto_review:
+    # Summon-only, matching the app and marketing repos: CodeRabbit is
+    # metered per file, and marking PR #14 ready here on 2026-09-14
+    # triggered a billed default review. Reviews run only when summoned
+    # with @coderabbitai review. The gate on this repo is Codex plus
+    # astro build.
+    enabled: false
+    base_branches:
+      - main
+  profile: chill
+  request_changes_workflow: false
+  path_filters:
+    - "!package-lock.json"
+    - "!public/**"
+chat:
+  auto_reply: true
