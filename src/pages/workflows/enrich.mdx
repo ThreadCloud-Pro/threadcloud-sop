@@ -1,32 +1,32 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Enrich
-description: Fill in the deep product attributes that make smart filters, financials, and storefront descriptions work.
+description: Fill in the deep product attributes that make smart filters, financials, and storefront descriptions work, then approve and send to Shopify.
 ---
 
 # Enrich
 
-The tier-2 pass. After Build Order's quick parse, Enrich fills in everything else: descriptions, fit notes, fabric details, country of origin, occasion tags, and 60+ Shopify metafields.
+The tier-2 pass. After Build Order's quick parse, Enrich fills in everything else: descriptions, fit notes, fabric details, country of origin, occasion tags, and the Shopify metafields behind smart filters. It is also where you approve each product and where you see, per product, whether Shopify really has it.
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-On every order after parse, before push. Usually auto-runs in the background — you only intervene if a row gets flagged for review.
+On every order after parse, before push. The background pass usually runs on its own. You step in to review, approve, and clear anything the page says needs attention.
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-07-23</div>
-If a button name here doesn't match the app, it changed and this page is stale — tell the team.
+<div class="callout-title">Last verified against the app: 2026-09-14</div>
+If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
 ## When Enrich runs
 
 Three triggers:
 
-1. **Automatically** after parse — a background pass starts once you save the parsed order
-2. **Manually** — click <strong>Enrich</strong> on the order's Enrich tab
-3. **Per-style** — click any style tile → drawer → "Re-enrich this style" button
+1. **Automatically** after parse. A background pass starts once you save the parsed order.
+2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It reads your documents and notes into every product that can take them. The button is greyed out when no AI provider is set up or nothing on the order can be filled.
+3. **One product.** Open the product and click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists). This redoes the photo read, fields, title, and description together for that product.
 
-You shouldn't need to manually fire it for normal orders. The auto-trigger handles 95% of cases.
+You shouldn't need to fire it by hand for normal orders.
 
 ## What Enrich actually does
 
@@ -34,75 +34,182 @@ For every style on the order, AI fills in:
 
 ### Customer-facing
 - **Web description** (the long product description on the storefront)
-- **Fit notes** — how the garment runs (slim / regular / relaxed) and sizing advice
-- **Occasion** — when to wear it (Business / Casual / Resort / Formal)
+- **Fit notes**: how the garment runs (slim / regular / relaxed) and sizing advice
+- **Occasion**: when to wear it (Business / Casual / Resort / Formal)
 
 ### Structured metafields (smart filters read these)
-- **Category + Subcategory** — the canonical TC taxonomy
-- **Colour Group** — the canonical colour bucket (Black, Navy, Brown, etc.) for filter facets
-- **Pattern** — Solid / Stripe / Check / etc.
-- **Fabric content** — primary fibre + composition
-- **Country of origin** — Italy, Japan, Portugal, etc.
-- **Fit type** — Slim, Regular, Classic, Relaxed
-- **Construction attributes** (for tailoring) — lapel, button stance, lining, vents, canvas type, etc.
+- **Category + Subcategory**: the canonical TC taxonomy
+- **Colour Group**: the canonical colour bucket (Black, Navy, Brown, etc.) for filter facets
+- **Pattern**: Solid / Stripe / Check / etc.
+- **Fabric content**: primary fibre + composition
+- **Country of origin**: Italy, Japan, Portugal, etc.
+- **Fit type**: Slim, Regular, Classic, Relaxed
+- **Construction attributes** (for tailoring): lapel, button stance, lining, vents, canvas type, etc.
 
 ### Identity
-- **Vendor Ref** — supplier's internal style code (separate from the Shopify SKU)
-- **Brand Code** — short brand prefix (e.g. "LRD" for Lardini)
+- **Vendor Ref**: supplier's internal style code (separate from the Shopify SKU)
+- **Brand Code**: short brand prefix (e.g. "LRD" for Lardini)
 
-## Working the Enrich page
+## The Enrich screen
 
-Open the order → click the **Enrich** tab. Styles are grouped into <strong>Pending</strong> (not yet approved), <strong>Approved</strong>, and <strong>Pushed</strong> (live in Shopify). Each card shows:
+Open the order and click the <strong>Enrich</strong> tab. Top to bottom:
 
-- Image
-- Editorial preview of the description
-- Tier-1 fields (category, colour, etc.)
-- Tier-2 fields (fit, fabric, occasion)
-- An <strong>Apply Edit</strong> button per card
-- A green checkmark if the style is complete, yellow flag if needs review
+1. **Product details** heading with three buttons: <strong>Documents &amp; notes</strong> (opens the context panel), a Shopify button, and <strong>Update All</strong>.
+2. **A one-line status** that only appears when something needs you. It names the most urgent item and gives one button for it. It reads, in priority order: a product detail error, then "N products need Shopify verification", then a review item, then "Sending changes to Shopify" while a push runs, then "Shopify sync needs attention. Changes saved here have not updated Shopify." if a push did not land.
+3. **The filter bar**: <strong>All products</strong> / <strong>To review</strong> switch on the left, a search box ("Search name, style or colour"), a <strong>Filters</strong> button, and the <strong>Tiles</strong> / <strong>List</strong> view switch.
+4. **Select all** checkbox and the bulk action bar (appears once something is selected).
+5. **The worklist**: every pending and approved product in one list, pending first. There are no Pending / Approved / Pushed sections any more.
+6. **Skipped**: a collapsed section at the bottom for products you skipped. Click <strong>Show</strong> to open it.
 
-### Reviewing a style card
+If the order was re-submitted from Build and some products fell off it, a line under the list says "N products no longer included in this order" with a <strong>Review in Parse &amp; Build</strong> button.
 
-Click the card to expand the field grid. Walk down the fields top-to-bottom:
+### The Shopify button
+
+The second button at the top changes with the order's real state:
+
+| Reads | Means |
+|---|---|
+| <strong>Send to Shopify (N)</strong> | N products have something Shopify has not received: never created, edited since the last push, or a size not yet linked. Click to open the push confirmation. |
+| <strong>Shopify needs attention</strong> | Nothing to send, but at least one product is "Pushed but unverified" (see below). |
+| <strong>Shopify up to date</strong> | Every product on the order is "Pushed and verified". |
+| <strong>No Shopify changes</strong> | Nothing to send and nothing verified yet. |
+
+The button is greyed out while a push is running.
+
+## All products vs To review
+
+- <strong>All products</strong> shows every pending and approved product.
+- <strong>To review</strong> narrows to the products that still need a decision: every pending product, plus any product the engine flagged after its last run. The count on the switch is that number.
+
+An approved product with a fresh engine flag shows an <strong>Accept review</strong> button in its footer. Click it to accept the current result and clear the flag.
+
+## Filters
+
+Click <strong>Filters</strong>. The button shows a count, e.g. "Filters (2)", when any are active. Three dropdowns:
+
+| Filter | Choices |
+|---|---|
+| Approval | All products, Needs attention, Approved, Skipped in review |
+| Missing detail | Any detail, Title, Description, then every enrich field the order's pack uses |
+| Shopify | All products, Needs verification, Not created, Changes to send, Up to date |
+
+"Skipped in review" is a product you skipped on this screen. It is separate from a product left out of a re-submitted Build. They used to share one bucket; they no longer do.
+
+Under the dropdowns:
+
+- <strong>Clear filters</strong>
+- <strong>See all missing details</strong>: lists each missing field with a count, e.g. "Fabric content · 12". Click one to filter the list to just those products.
+- <strong>Import barcodes</strong>: appears once at least one product has been pushed.
+
+Drag-to-reorder is off while any filter or search is active.
+
+## Tiles vs List
+
+The <strong>Tiles</strong> / <strong>List</strong> switch is remembered per user. Both views open the same editor when you click a product; only the collapsed presentation changes.
+
+- **Tiles**: a grid. Each tile carries a status chip: <strong>Ready to review</strong>, <strong>Incomplete</strong>, <strong>Approved</strong>, or <strong>Skipped</strong>. "Ready to review" means the product would pass the Approve check (title, cost, MSRP, at least one ordered size). "Incomplete" means Approve would refuse it.
+- **List**: a compact row per product with a drag grip, the supplier reference, and a field completeness bar.
+
+If two products on the order read identically (same codes), both are marked as twins so you can tell them apart before approving.
+
+## Reviewing a product
+
+Click a product to open its editor in place. Walk down the fields top to bottom:
 
 | Field | What to check |
 |---|---|
 | Web Description | Reads well? No "elevate your wardrobe" cliches? Correct fabric mentioned? |
 | Fit Type | Matches what you know about the brand's fit |
 | Occasion | At least one selected, more if applicable |
-| Fabric content | Matches the linesheet (this is the most-common AI miss) |
+| Fabric content | Matches the linesheet (this is the most common AI miss) |
 | Country of Origin | Only "prestige" origins get mentioned in description (Italy, Japan, etc.) |
-| Category/Subcategory | Should be correct from parse — verify |
+| Category/Subcategory | Should be correct from parse. Verify. |
 
-Edit any field inline. Click <strong>Apply Edit</strong> to save and re-generate dependent fields (e.g. changing the fabric will re-generate the description).
+Fields save as you edit them. If a save fails, the editor shows "Your change could not be saved." with a <strong>Retry saves</strong> button. While a product is saving, or has a failed save, the page will not let you open another product or leave the tab: you get <strong>Stay and finish</strong> or <strong>Leave without saving</strong>.
 
 <div class="callout callout-tip">
 <div class="callout-title">Speed tip</div>
-Cards with no flags can usually be approved in one click. Reserve attention for the ones with yellow review flags.
+Products with no flags and a "Ready to review" chip can usually be approved in one click. Spend your attention on the ones in <strong>To review</strong>.
 </div>
 
-### Approve
+## Approve
 
-Approve a single style with its <strong>Approve</strong> button, or click <strong>Approve all ready</strong> at the top to approve everything that's complete. A style can only be approved when it has a title, a unit cost, a retail price, and at least one size with a quantity — if something's missing, the app tells you which field. Use <strong>Skip</strong> to set a style aside, and <strong>Restore</strong> to bring it back.
+Each product's footer has the actions for its state:
+
+| State | Buttons |
+|---|---|
+| Pending | <strong>Skip</strong>, <strong>Approve</strong> |
+| Approved | <strong>Accept review</strong> (only when flagged), <strong>Unapprove</strong>, then <strong>Push to Shopify</strong> (not created yet) or <strong>Push update</strong> (already in Shopify) |
+| Skipped | <strong>Restore</strong> |
+
+Every state also has <strong>Flag</strong>, which marks the product for attention.
+
+### What Approve checks
+
+Approve refuses only on the four facts a product cannot ship without: a product title, a unit cost, a retail price, and at least one size with a quantity. If one is missing, the app names it.
+
+Everything else is advisory. If the engine could not settle the product behind your approval, the product is still approved. A line appears under the button starting with "Approved." followed by the actual reason and what clears it. The product is approved by you, not settled by the engine, and the line says so. It does not ask you to reload.
+
+The same applies to <strong>Approve all ready</strong>: the products are approved, and any engine advisory shows once above the list.
+
+<div class="callout callout-info">
+<div class="callout-title">Approval and push are separate gates</div>
+Approving a product does not push it. A product approved over an advisory still has to clear the push gate before it reaches Shopify. See <a href="/workflows/push-to-shopify/">Push to Shopify</a>.
+</div>
+
+## Bulk actions
+
+Tick the checkbox on any products (or <strong>Select all</strong>). The bar shows:
+
+- <strong>Apply edit</strong>: set one field across the selection.
+- <strong>Approve N</strong>
+- <strong>Push selected</strong>
+- <strong>More</strong> menu: <strong>Approve all ready (N)</strong> (only when some pending products pass the Approve check), <strong>Generate showroom flatlays</strong>, <strong>Skip</strong>, <strong>Clear selection</strong>.
+
+Every bulk action is greyed out while another bulk action is running, and while a product editor is mid-save or holding a failed save. Finish or retry the save first.
+
+## Shopify state per product
+
+Under each product's footer there is one line for what Shopify actually has. There are exactly three states:
+
+| Line | Meaning |
+|---|---|
+| <strong>Pushed and verified</strong> | Shopify itself confirmed a linked inventory item for every ordered size. This is the only state that counts as pushed. |
+| <strong>Pushed but unverified</strong> | Shopify has the product, but at least one ordered size is not linked to a variant. The line names the sizes and says to push the style again to link them. A product with no ordered sizes also reads this way: "This product exists in Shopify. Add sizes before receiving." |
+| <strong>Not pushed</strong> | "This product has not been created in Shopify yet." |
+
+### Verify with Shopify
+
+If a previous push did not record a product identity, the line reads "Not pushed" with the reason "A previous push did not record a product identity, so pushing again is fenced." and offers a <strong>Verify with Shopify</strong> button.
+
+Verify asks Shopify what it has for this style and links what it finds. It never creates a product, so it is safe on a row whose identity is in doubt. When it finds one, the line reads "Found this style's existing Shopify product by SKU and linked it. No product was created." (or "by handle"). If it finds nothing, the error shows under the button.
+
+The top-of-page status line also routes you here: "N products need Shopify verification" with a <strong>Verify product</strong> button (one product) or <strong>Review products (N)</strong> (several).
+
+### What "Pushed" means for receiving
+
+Receiving books against the variant links. A product that is "Pushed but unverified" cannot be received against its unlinked sizes. Clear it in Enrich first.
 
 ## Collection context
 
-Below the images on the Enrich page is a <strong>Collection context</strong> box: free text that gets woven into every product description on the next generate (put title and copy directions here too). Type your notes, then click <strong>Save context</strong> (or press <strong>⌘/Ctrl+Enter</strong>). The button stays disabled until you've changed something, the eyebrow shows <em>saving…</em> / <em>unsaved</em> / <em>saved ✓</em>, and a <strong>Discard</strong> button restores the last saved text. Saving is an explicit click now, not a background timer, so you decide when it's committed; anything you type while a save is in flight is never clobbered.
+Click <strong>Documents &amp; notes</strong> to open the context panel. The <strong>Collection context</strong> box is free text that gets woven into every product description on the next generate (put title and copy directions here too). Type your notes, then click <strong>Save context</strong> (or press <strong>Cmd/Ctrl+Enter</strong>). The button stays disabled until you've changed something, the label shows saving / unsaved / saved, and a <strong>Discard</strong> button restores the last saved text. Saving is an explicit click, not a background timer, so you decide when it's committed; anything you type while a save is in flight is never lost.
 
 ### Model context documents
 
-The context-images panel accepts <strong>PDFs</strong> as well as photos, so you can drop a supplier's per-model fit guide (for example an Alberto sheet listing fits for ROBI, PIPE, LUIS) straight in. There is no attach-to-model step; just drop it. When a document names a <strong>model</strong> and a <strong>fit</strong> but carries no article or colour code, the Fit Type auto-fills on <strong>every colourway of that model</strong> (fit is colour-independent). It is gap-fill only, so it won't overwrite a fit you set by hand, and a bare model name with no facts attached is ignored.
+The context panel accepts <strong>PDFs</strong> as well as photos, so you can drop a supplier's per-model fit guide (for example an Alberto sheet listing fits for ROBI, PIPE, LUIS) straight in. There is no attach-to-model step; just drop it. When a document names a <strong>model</strong> and a <strong>fit</strong> but carries no article or colour code, the Fit Type auto-fills on <strong>every colourway of that model</strong> (fit is colour-independent). It is gap-fill only, so it won't overwrite a fit you set by hand, and a bare model name with no facts attached is ignored.
 
 ## Editing the description specifically
 
 The AI description follows the brand-voice rules in [Settings → AI & Models](/settings/ai-models/). To change one:
 
-1. Open the style and edit the description text directly.
-2. Or click <strong>Generate</strong> to write a fresh one, or <strong>Regen Product</strong> to redo the photo read, fields, title, and description together.
+1. Open the product and edit the description text directly.
+2. Or click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists) to redo the photo read, fields, title, and description together.
+
+If a regenerate could not write copy, the product says so in one line: what happened and what to do next, for example "No copy came back for this product, so its description is still empty. Add a line to Notable details or buyer notes and regenerate this product." If the copy saved here but Shopify did not confirm it, the line tells you to push the product again.
 
 <div class="callout callout-warn">
 <div class="callout-title">Heads up</div>
-If you edit a description manually and then change the fabric or COO later, the description does <strong>not</strong> auto-update. It's locked to your manual edit. To re-link it: click Regenerate.
+If you edit a description manually and then change the fabric or COO later, the description does <strong>not</strong> auto-update. It's locked to your manual edit. To re-link it, click Regenerate.
 </div>
 
 ## Per-subcategory attribute fields
@@ -128,48 +235,33 @@ If a field doesn't appear, that means the gating rules decided it's not relevant
 
 ## Brand Recipes
 
-Some brands have a "recipe" — pre-filled defaults that override AI for known fields. For example, a brand's custom-order recipe can pre-fill construction, lapel, button stance, and lining on every order from that brand.
+Some brands have a "recipe": pre-filled defaults that override AI for known fields. For example, a brand's custom-order recipe can pre-fill construction, lapel, button stance, and lining on every order from that brand.
 
 Recipes are managed by the Owner under [Settings → Brands & Suppliers](/settings/brands-suppliers/). The team doesn't need to touch them.
-
-## When AI flags a style for review
-
-A row gets <span class="badge badge-warn">NEEDS REVIEW</span> when:
-
-- Category confidence < 70% (AI not sure what kind of garment it is)
-- Colour confidence < 70%
-- One of the critical fields (fabric, COO) was extracted with low confidence
-- The vendor ref couldn't be matched to a known supplier ref pattern
-
-To clear the flag:
-
-1. Open the card
-2. Fix any empty or wrong field
-3. Click <strong>Apply Edit</strong>
-4. The flag clears automatically once all critical fields are filled
-
-If the AI got it right and you just want to confirm:
-
-- Click <strong>Confirm as-is</strong> in the card footer (it's a separate button from Apply Edit). Flips the row to <span class="badge badge-ok">READY</span> without changing any values.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
 <div class="callout-title">Approving cards with empty fabric</div>
-If fabric is empty when you approve, the product pushes to Shopify with no fabric metafield. Smart filter "shop by fabric" misses these products. <strong>Always fill fabric before approving.</strong>
+If fabric is empty when you approve, the product pushes to Shopify with no fabric metafield. Smart filter "shop by fabric" misses these products. <strong>Always fill fabric before approving.</strong> Use Filters → Missing detail → Fabric content to find them.
 </div>
 
 <div class="callout callout-warn">
 <div class="callout-title">Wrong COO going public</div>
-Country of origin shows on the storefront for prestige origins (Italy, Japan, etc.). If parse extracted "Tunisia" but the linesheet actually says "Italy" — fix it before approving. Hard to undo after products are live.
+Country of origin shows on the storefront for prestige origins (Italy, Japan, etc.). If parse extracted "Tunisia" but the linesheet actually says "Italy", fix it before approving. Hard to undo after products are live.
 </div>
 
 <div class="callout callout-warn">
 <div class="callout-title">Editing the description after push</div>
-If you push to Shopify and then edit the description in Enrich, you need to push again to see the change on the storefront. The metafield update doesn't propagate without a push.
+If you push to Shopify and then edit the description in Enrich, you need to push again to see the change on the storefront. The Shopify button will read <strong>Send to Shopify (N)</strong> until you do.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Treating "Pushed but unverified" as done</div>
+The product exists in Shopify but a size is not linked. Receiving cannot book that size. Push the product again (or Verify with Shopify when offered) until it reads "Pushed and verified".
 </div>
 
 ## Next steps
 
 - [Push to Shopify](/workflows/push-to-shopify/)
-- [Settings → AI & Models](/settings/ai-models/) — to tune the AI voice
+- [Settings → AI & Models](/settings/ai-models/) to tune the AI voice

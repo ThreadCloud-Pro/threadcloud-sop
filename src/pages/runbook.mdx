@@ -28,6 +28,22 @@ The on-call playbook. Match the symptom on the left to the fix on the right. If 
 | Order status won't change | Refresh. If still stuck, **[check the supplier ack](#stuck-status)**. |
 | Wrong size received | **[Fix size](/workflows/receiving/#fix-a-wrong-size)** on the receiving document. Do not unreceive it first — that hides the button. |
 | Fixed a size but the document still shows the old one | Correct and expected. A receiving document is a permanent record of that day, not live stock. Check the order's **Receive** tab instead. |
+| Reorder says "Could not verify Shopify cost. Try again." | **[Reorder cost read](#reorder-cost-read)**. Nothing was created; pick again in a moment. |
+| Reorder says "Variant costs differ in Shopify. Review them before reordering." | **[Reorder variant costs](#reorder-variant-costs)**. Fix the costs in Shopify first. |
+| Reorder product reads "Source cost needed" or "has no supplier cost on file" | **[No supplier cost on file](#no-supplier-cost)**. Enter the cost once, or set it in Shopify. |
+| "ThreadCloud could not fill every missing Shopify cost. The reorder was still created." | Informational. The reorder is fine. Set the cost on the product in Shopify when convenient. |
+| Reorder PO tab shows "Purchase order not issued" | **[Reorder PO not issued](#reorder-po-not-issued)**. Read the reason under the heading. |
+| "Edit product details" says "Product details could not be opened" or "could not be saved" | **[Product repair from Reorder](#product-repair)**. |
+| Enrich product reads "Pushed but unverified" | **[Unverified Shopify product](#unverified-product)**. Push the product again to link the named sizes. |
+| Enrich product reads "Not pushed" with "pushing again is fenced" | **[Fenced push](#fenced-push)**. Click **Verify with Shopify**. It never creates a product. |
+| Enrich Approve landed but a line under it starts with "Approved." | Not an error. The product is approved by you; the engine could not settle it. The line names the reason and the fix. Do what it says, or move on. |
+| Enrich bulk buttons are greyed out | A product editor is mid-save or holding a failed save. Finish it or click **Retry saves**, then the bar comes back. |
+| Supplier says the link reads "This order needs a corrected PO number" | **[No real PO number](#no-po-number)**. Assign a PO number, re-issue, send the new link. |
+| Supplier says the link reads "This purchase order was revised after this link was sent" | You re-issued the PO. Send them the current link from the PO tab. |
+| Supplier says the link reads "This order was revised while you were reviewing it" | Nothing on your side. They refresh the page and answer again. |
+| Supplier review says "This review moved on. Reloading." | Someone else changed the review at the same time. Let it reload, then continue. |
+| Confirmed cost line shows red "currency differs" or "Not applied." | **[Confirmed cost refused](#confirmed-cost-refused)**. |
+| Apply product details says "would duplicate another product" | Two products would end up with the same supplier reference. Untick or correct the model and colour codes, then apply again. |
 
 ---
 
@@ -134,6 +150,99 @@ Historical sales requires the app's Shopify <code>read_all_orders</code> grant. 
 reauthorization, that is an app permission state, not a calculation to work around. Ask the owner to
 reauthorize the staging app, then retry once. Until the ledger is available, historical scorecards
 and MTO receipt-backed sell-through remain unavailable; current physical on-hand is not a substitute.
+
+## Reorder cost read
+
+A new reorder takes its cost from Shopify, and refuses to open on an incomplete cost read. "Could not verify Shopify cost. Try again." means Shopify did not answer, or answered with an incomplete read. Nothing was created.
+
+<ol class="steps">
+  <li>Wait a moment, then pick the product again.</li>
+  <li>If it fails three times in a row, check <a href="https://www.shopify.com/status">status.shopify.com</a>.</li>
+  <li>If Shopify is healthy and it still refuses, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the product name. Do not work around it by typing a cost from memory.</li>
+</ol>
+
+## Reorder variant costs
+
+"Variant costs differ in Shopify. Review them before reordering." means the sizes of that product carry different costs in Shopify. ThreadCloud will not guess which one is right.
+
+<ol class="steps">
+  <li>Open the product in Shopify Admin. Check the cost per item on each variant.</li>
+  <li>Set them to the same figure.</li>
+  <li>Pick the product again in Reorder.</li>
+</ol>
+
+## No supplier cost
+
+The picked card reads <strong>Source cost needed</strong>, or adding the product says it "has no supplier cost on file, and ThreadCloud has no record of buying it."
+
+<ol class="steps">
+  <li>From the Reorder search: type the <strong>Unit cost</strong> and its currency, then click <strong>Open reorder</strong>.</li>
+  <li>From inside a reorder workspace: set the cost on the product in Shopify (or receive it through ThreadCloud once), then add it.</li>
+  <li>A saved list skips these products and names them as "left out". Reorder each on its own from the search.</li>
+</ol>
+
+## Reorder PO not issued
+
+The PO tab shows <strong>Purchase order not issued</strong> and a reason. Match it:
+
+| Reason | Fix |
+|---|---|
+| "There is nothing to send. Complete at least one product before issuing this purchase order." | Go back to Pick (<strong>Edit reorder</strong>) and set at least one size quantity. |
+| "This purchase order has already been sent. Open an amendment to revise and re-issue it." | It is issued. To change it, open an amendment, then <strong>Re-issue PO</strong>. |
+| "This purchase order cannot be revised because receiving has started." | Expected. Receiving freezes the PO. Place a new reorder for anything extra. |
+| "This purchase order was issued by another request. Reload the page to see the current version." | Someone else issued it at the same time. Reload. |
+| "N ordered lines cannot be committed" | Those products are missing a fact the supplier needs. <strong>Edit reorder</strong> and fill it in. |
+
+## Product repair
+
+<strong>Edit product details</strong> on a reorder line opens the product in Catalog Repair. "Product details could not be opened" or "Product details could not be saved" means that hand-off failed.
+
+<ol class="steps">
+  <li>Try once more.</li>
+  <li>If a field shows <strong>Edit not saved</strong>, re-enter it. The save refuses until every unsaved field is entered again ("Re-enter the unsaved details before saving this product.").</li>
+  <li>If a repair failed earlier, Settings → Legacy Enrichment lists it with a <strong>Retry repair</strong> button.</li>
+  <li>Still failing: email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the product name.</li>
+</ol>
+
+## Unverified product
+
+An Enrich product reads <strong>Pushed but unverified</strong>. Shopify has the product, but at least one ordered size is not linked to a variant. Receiving cannot book that size.
+
+<ol class="steps">
+  <li>Read the line. It names the sizes.</li>
+  <li>Click <strong>Push update</strong> on that product (or <strong>Push selected</strong> on several). The push links the missing sizes.</li>
+  <li>It should now read <strong>Pushed and verified</strong>. If the line reads "This product exists in Shopify. Add sizes before receiving." the product has no ordered sizes: add them in Build Order.</li>
+</ol>
+
+## Fenced push
+
+An Enrich product reads <strong>Not pushed</strong> with "A previous push did not record a product identity, so pushing again is fenced." A push may have created the product, but ThreadCloud never got the id back. Pushing again could create a duplicate, so it is blocked.
+
+<ol class="steps">
+  <li>Click <strong>Verify with Shopify</strong> on that product. It asks Shopify what it has and links it. It never creates a product.</li>
+  <li>If it finds one, the line reads "Found this style's existing Shopify product by SKU and linked it. No product was created." Carry on.</li>
+  <li>If it finds nothing, the error shows under the button. Check Shopify Admin for a draft with the product's SKU. If there is none, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> before pushing again.</li>
+</ol>
+
+## No PO number
+
+The supplier opens the acknowledgement link and sees "This order needs a corrected PO number. Please ask the buyer to issue a corrected purchase order and acknowledgement link." The order has no real PO number, so nothing can be acknowledged against it. This happens on older orders that were sent before PO numbers were assigned.
+
+<ol class="steps">
+  <li>Open the order. If the PO tab says "This legacy order has no purchase order number. Assign one before issuing it.", assign one.</li>
+  <li>Re-issue the PO.</li>
+  <li>Send the supplier the new link (<strong>Email brand contact</strong> or <strong>Supplier ack link</strong>).</li>
+</ol>
+
+## Confirmed cost refused
+
+On the supplier review, a ticked cost came back red instead of green.
+
+| Line reads | Meaning | Fix |
+|---|---|---|
+| "currency differs" beside the line | The confirmation states the cost in a currency other than the order's. It is refused, not converted. | Check the document. If the supplier really changed currency, that is a conversation with them, not a tick. |
+| Refusal naming a changed order cost | The order's cost moved after you opened the review (someone edited it in Build). | Reload the review and tick again against the current figure. |
+| "Not applied." with no reason | The apply did not reach that line. | Reload and apply again. If it repeats, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a>. |
 
 ## Stuck status
 
