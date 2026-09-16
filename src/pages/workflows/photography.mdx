@@ -80,7 +80,7 @@ ThreadCloud remembers every file it's already pushed (by store, SKU, and filenam
 
 The **Storefront photo coverage** card answers one question: how much of what's for sale has a picture?
 
-Click <strong>Scan storefront</strong> (or <strong>Re-scan storefront</strong>). ThreadCloud reads your **active, in-stock** Shopify products and counts how many carry a customer-facing image, then shows the headline: a big percentage plus "X of Y in-stock products have an image · N still to shoot."
+The scan runs by itself when you open the page and the last one is more than an hour old (owners and buyers). You can still click <strong>Re-scan storefront</strong> any time. ThreadCloud reads your **active, in-stock** Shopify products and counts how many carry a customer-facing image, then shows the headline: a big percentage plus "X of Y in-stock products have an image · N still to shoot · M not for the shoot."
 
 <div class="callout callout-warn">
 <div class="callout-title">Coverage is the storefront, not your TC crops</div>
@@ -90,14 +90,20 @@ This counts the image a shopper would see on Shopify. A product can have a rich 
 A few things it does on purpose:
 
 - **Draft, archived, and zero-inventory products are excluded** — the list is what's actually for sale, not noise.
+- **Products that will never be shot are excluded too**: gift cards, anything with nothing to ship (alterations, services, deposits), and products whose type or tags say made to measure, MTM, custom, bespoke, alteration, service or tailoring. They show up only as the "not for the shoot" count.
 - The scan is **cached**. If you re-scan too soon it keeps the last good number and shows a soft warning rather than wiping it.
 
 ## Stage 3 — Work the shoot list
 
-Below coverage, the **Shoot list** card turns the gap into a to-do list: brands (vendors) that are missing photos, most-needed first.
+Below coverage, the **Shoot list** card turns the gap into a to-do list: brands (vendors) that are missing photos, newest arrivals first. Inside a brand the products are ordered by the date they were first received, so the latest delivery is always at the top.
 
+- **Sort** switches between newest arrivals and most to shoot. **Last 30 days** narrows the list to what arrived this month.
 - Click a **brand name** to open that vendor's products in Shopify admin.
 - Click the **row** to expand it to the exact products with no image — title, colour, SKU, season, first-receive date, and price — each linking straight to the product in Shopify admin.
+
+### Pull the products with the pick list
+
+Press <strong>Pick list</strong> to turn the same list into a floor view for your phone: one big row per product under its brand. Tap a product as you pull it from the rack. It greys out and drops to the bottom of its brand, and the count at the top of the brand goes down. Picks stay on that phone until the product is shot or you press <strong>Clear picks</strong>, so you can reload or come back later. <strong>Print</strong> prints only the list, with a box beside each product, for anyone who prefers paper.
 
 Shoot those, re-sync the folder, and re-scan. The percentage climbs and the products drop off the list.
 
