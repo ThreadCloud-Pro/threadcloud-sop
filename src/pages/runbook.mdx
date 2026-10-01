@@ -1,232 +1,224 @@
 ---
 layout: ../layouts/Doc.astro
 title: If something breaks
-description: The on-call playbook. Match the symptom to the fix.
+description: Match the symptom to the fix. What store staff can do, and when to contact ThreadCloud.
 ---
 
 # If something breaks
 
-The on-call playbook. Match the symptom on the left to the fix on the right. If you've tried the fix and it didn't work, **don't keep trying** — email ThreadCloud Support at [hello@threadcloud.io](mailto:hello@threadcloud.io).
+Match the symptom to the fix. If you've tried the fix once and it didn't work, **don't keep trying**. Email ThreadCloud Support at [hello@threadcloud.io](mailto:hello@threadcloud.io) with the page you were on, the order or product, and a screenshot.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a message here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-tip">
+<div class="callout-title">Start with Settings</div>
+Most "is it broken?" questions are answered by the store health tiles at the top of <a href="/settings/store-health/">Settings</a>. Open the tile that isn't <strong>Current</strong> and press the one button on its panel.
+</div>
 
 ## Quick triage
 
 | Symptom | What to do |
 |---|---|
-| Page is blank / 500 error | Refresh once. Then **[restart the worker](#worker-stuck)**. Then email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
-| AI classification stuck or not progressing | **[Stop and restart](#classification-stuck)** — see below |
-| Label printer not printing | **[Use Shopify Admin fallback](#printer-fallback)** — fully supported |
-| Supplier didn't get the email | **[Resend from PO tab](#resend-supplier)** |
-| Shopify says "rate limit exceeded" | **Wait 60 seconds and try again.** The worker retries automatically. |
-| Image upload failed | Re-upload the same image. If it fails twice, the image is too large — resize to under 4MB and retry. |
-| "Missing access token" error | This was a real bug — it's been fixed. If you see it, refresh the page. If still broken after refresh, email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
-| Parse times out on a PDF | **[Try Excel](#parse-timeout)** — see below |
-| Apply Selected says "0 ready" | Some rows are still <span class="badge badge-warn">NEEDS REVIEW</span>. Filter to "Needs review", fix each, then re-select. |
-| Clean Catalog reports no safe fixes | Review the source facts and the Legacy Enrichment queue. Ambiguous or incomplete rows are intentionally review-only; do not force an overwrite. |
-| Inventory refresh fails on an untracked variant | **[Inventory snapshot refresh](#inventory-snapshot-refresh)** — the last good snapshot is retained. |
-| Historical performance is unavailable | **[Historical ledger access](#historical-ledger-access)** — do not infer history from current stock. |
-| Catalog rolled back wrong | **[Undo via Legacy Enrichment](#wrong-rollback)** |
-| Order status won't change | Refresh. If still stuck, **[check the supplier ack](#stuck-status)**. |
-| Wrong size received | **[Fix size](/workflows/receiving/#fix-a-wrong-size)** on the receiving document. Do not unreceive it first — that hides the button. |
-| Fixed a size but the document still shows the old one | Correct and expected. A receiving document is a permanent record of that day, not live stock. Check the order's **Receive** tab instead. |
-| Reorder says "Could not verify Shopify cost. Try again." | **[Reorder cost read](#reorder-cost-read)**. Nothing was created; pick again in a moment. |
-| Reorder says "Variant costs differ in Shopify. Review them before reordering." | **[Reorder variant costs](#reorder-variant-costs)**. Fix the costs in Shopify first. |
-| Reorder product reads "Source cost needed" or "has no supplier cost on file" | **[No supplier cost on file](#no-supplier-cost)**. Enter the cost once, or set it in Shopify. |
-| "ThreadCloud could not fill every missing Shopify cost. The reorder was still created." | Informational. The reorder is fine. Set the cost on the product in Shopify when convenient. |
-| Reorder PO tab shows "Purchase order not issued" | **[Reorder PO not issued](#reorder-po-not-issued)**. Read the reason under the heading. |
-| "Edit product details" says "Product details could not be opened" or "could not be saved" | **[Product repair from Reorder](#product-repair)**. |
-| Enrich product reads "Pushed but unverified" | **[Unverified Shopify product](#unverified-product)**. Push the product again to link the named sizes. |
-| Enrich product reads "Not pushed" with "pushing again is fenced" | **[Fenced push](#fenced-push)**. Click **Verify with Shopify**. It never creates a product. |
-| Enrich Approve landed but a line under it starts with "Approved." | Not an error. The product is approved by you; the engine could not settle it. The line names the reason and the fix. Do what it says, or move on. |
-| Enrich bulk buttons are greyed out | A product editor is mid-save or holding a failed save. Finish it or click **Retry saves**, then the bar comes back. |
-| Supplier says the link reads "This order needs a corrected PO number" | **[No real PO number](#no-po-number)**. Assign a PO number, re-issue, send the new link. |
+| Page is blank or shows an error | Reload once. If every page fails, see [Big failures](#big-failures). |
+| A background job looks stuck | **[Stuck background work](#stuck-background-work)** |
+| Catalog checking stopped | **[Catalog setup stopped](#catalog-setup-stopped)** |
+| Label printer not printing | **[Printer problems](#printer-problems)** |
+| Supplier didn't get the PO | **[Resend to the supplier](#resend-to-the-supplier)** |
+| Linesheet won't read in Parse &amp; Build | **[Linesheet won't read](#linesheet-wont-read)** |
+| Photo upload says "iPhone HEIC photos can't be shown yet. Export as JPEG and add again." | Export the photo as JPEG (on iPhone, share it as JPEG or change the camera format to Most Compatible) and add it again. |
+| Shopify says "rate limit exceeded" | Wait a minute and try again. ThreadCloud retries on its own. |
+| Merchandising page says "Merchandising access is not enabled for your account" | Ask the account owner to turn it on in [Team access](/settings/users-roles/). |
+| A Merchandising figure shows a mark instead of a number | Not an error. Read the reason in the **Notes** at the foot of the page. See [Withheld figures](#withheld-figures). |
+| Receiving refuses sizes because a Shopify stock sync is unresolved | **[Shopify stock writes](#shopify-stock-writes)** |
+| Wrong size received | **[Fix size](/workflows/receiving/#fix-a-wrong-size)** on the receiving document. Don't unreceive it first; that hides the button. |
+| Fixed a size but the document still shows the old one | Expected. A receiving document is a record of that day, not live stock. Check the order's **Receive** tab instead. |
+| Catalog publish went wrong | **[Roll back published products](#roll-back-published-products)** |
+| Spec sheet reads "Couldn't read" | Try a cleaner PDF or a sharper photo. See [Brand fit](/settings/brand-fit/). |
+| Reorder says "Could not verify Shopify cost. Try again." | **[Reorder cost read](#reorder-cost-read)**. Nothing was created. |
+| Reorder says "Variant costs differ in Shopify. Review them before reordering." | **[Reorder variant costs](#reorder-variant-costs)** |
+| Reorder product reads "Source cost needed" or "has no supplier cost on file" | **[No supplier cost on file](#no-supplier-cost)** |
+| "ThreadCloud could not fill every missing Shopify cost. The reorder was still created." | Information only. The reorder is fine. Set the cost on the product in Shopify when convenient. |
+| Reorder PO tab shows "Purchase order not issued" | **[Reorder PO not issued](#reorder-po-not-issued)** |
+| "Product details could not be opened" or "could not be saved" | **[Product repair from Reorder](#product-repair)** |
+| Enrich product reads **Pushed but unverified** | **[Unverified Shopify product](#unverified-product)** |
+| Enrich product reads **Not pushed** with "pushing again is fenced" | **[Fenced push](#fenced-push)** |
+| Enrich Approve worked but a line under it starts with "Approved." | Not an error. You approved it; ThreadCloud couldn't settle one detail. The line names the reason and the fix. Do what it says, or move on. |
+| Enrich bulk buttons are greyed out | A product is mid-save or holding a failed save. Finish it or click **Retry saves**. |
+| Supplier says the link reads "This order needs a corrected PO number" | **[No real PO number](#no-po-number)** |
 | Supplier says the link reads "This purchase order was revised after this link was sent" | You re-issued the PO. Send them the current link from the PO tab. |
-| Supplier says the link reads "This order was revised while you were reviewing it" | Nothing on your side. They refresh the page and answer again. |
-| Supplier review says "This review moved on. Reloading." | Someone else changed the review at the same time. Let it reload, then continue. |
-| Confirmed cost line shows red "currency differs" or "Not applied." | **[Confirmed cost refused](#confirmed-cost-refused)**. |
-| Apply product details says "would duplicate another product" | Two products would end up with the same supplier reference. Untick or correct the model and colour codes, then apply again. |
+| Supplier says the link reads "This order was revised while you were reviewing it" | Nothing on your side. They reload the page and answer again. |
+| Supplier review says "This review moved on. Reloading." | Someone else changed the review at the same time. Let it reload, then carry on. |
+| A confirmed cost came back red: "currency differs" or "Not applied." | **[Confirmed cost refused](#confirmed-cost-refused)** |
+| Applying product details says "would duplicate another product" | Two products would end up with the same supplier reference. Untick or correct the model and colour codes, then apply again. |
+| PO sent long ago, no supplier confirmation | **[No supplier confirmation](#no-supplier-confirmation)** |
+| Settings shows a **Store reset** row | **[Store reset](#store-reset)** |
 
 ---
 
-## Worker stuck
+## Stuck background work
 
-If a background process (classification, enrich, push) appears frozen:
-
-<ol class="steps">
-  <li>Refresh the page. The worker auto-resumes from where it left off.</li>
-  <li>If still stuck, click <strong>Stop</strong> on the workflow surface, wait 5 seconds, then click the run button again.</li>
-  <li>If still stuck after 5 minutes, the worker may have hit an external API outage. Wait 15 minutes and retry once.</li>
-  <li>If still broken: email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with a screenshot.</li>
-</ol>
-
-## Classification stuck
-
-The progress bar isn't moving and the ETA isn't updating.
+Reading a linesheet, writing copy, checking the catalog and pushing products all run in the background. The bar at the top of the page shows them working.
 
 <ol class="steps">
-  <li>Click <strong>Stop</strong> on the AI Classification step. Wait for it to confirm "Stopping…" → "Run Classification".</li>
-  <li>Click <strong>Run Classification</strong> again. The worker picks up only the pending rows.</li>
-  <li>If the same row keeps failing, open the error drawer ("View errors" link at the top) — see what it says.</li>
-  <li>If it's an Anthropic API error, just keep retrying. The API recovers on its own.</li>
+  <li>Reload the page. Background work picks up where it left off.</li>
+  <li>If it has a <strong>Stop</strong> button, click it, wait for it to stop, then start it again. It only picks up the work that is left, so nothing is done twice.</li>
+  <li>Open <a href="/settings/store-health/">Settings</a>. If the <strong>AI engines</strong> tile isn't <strong>Current</strong>, open it and press its button.</li>
+  <li>If your AI provider is having an outage, wait 15 minutes and try once more.</li>
+  <li>Still stuck: email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with a screenshot.</li>
 </ol>
 
-<div class="callout callout-info">
-<div class="callout-title">Why this matters</div>
-The worker is designed to be safe to stop and restart at any point. It only claims rows in <code>pending</code> status, so re-running never duplicates work or wastes an AI call.
-</div>
+## Catalog setup stopped
 
-## Printer fallback
-
-The Dymo label printer isn't responding, is out of labels, or jams repeatedly.
+[Catalog setup](/settings/legacy-enrichment/) reads **Checking is stopped**, or says the catalog scan stopped.
 
 <ol class="steps">
-  <li>Open Shopify Admin → Products.</li>
-  <li>In the search bar, type <code>tag:tc-order-247</code> (replace <code>247</code> with the order ID — find it in the URL of the order page in ThreadCloud, e.g. <code>/app/orders/<strong>247</strong>/receiving</code>).</li>
-  <li>Select all rows that need labels. Click <strong>More actions</strong> → <strong>Print barcode labels</strong>.</li>
-  <li>Choose your label size (Avery 5160 30-up sheet is the safest), pick the products, hit Print.</li>
+  <li>If it says to, press <strong>Check products</strong> or <strong>Scan</strong> to pick it back up. Products already found are kept.</li>
+  <li>If some products could not be checked, open the <strong>Problems</strong> tab and read the reason on each.</li>
+  <li>If the <strong>Catalog</strong> tile in Settings offers <strong>Run catalog scan again</strong>, press it once. If it refuses, it says why; follow that.</li>
 </ol>
 
-<div class="callout callout-tip">
-<div class="callout-title">Why this works now</div>
-ThreadCloud writes the SKU into Shopify's variant <code>barcode</code> field on every push. Shopify Admin reads from that field. So the SKU you'd see on a TC label is exactly what gets printed.
-</div>
+## Printer problems
 
-<div class="callout callout-warn">
-<div class="callout-title">Heads up</div>
-The Shopify Admin label format isn't identical to TC's Dymo layout (no brand name, no colour name — just barcode + SKU + price). It's a working fallback, not a like-for-like replacement.
-</div>
-
-## Resend supplier
-
-The supplier says they didn't get the PO email, or you closed the window before saving.
+The label printer isn't responding, is out of labels, or jams.
 
 <ol class="steps">
-  <li>Open the order → click the <strong>PO</strong> tab.</li>
-  <li>Scroll to the bottom and click <strong>Send to supplier</strong> again. The email re-sends with a fresh token.</li>
-  <li>If the supplier already responded on the previous link, the new link supersedes it. Tell the supplier to ignore the old email.</li>
+  <li>Check the printer is on, connected, and loaded with the right labels. Print one test label from the printer's own software.</li>
+  <li>If your browser blocks the print window, allow pop-ups for ThreadCloud, or open the label from the link the page shows.</li>
+  <li>To reprint one label, open <strong>Logistics</strong> and use <strong>Reprint a product label</strong>: scan the barcode or search the product.</li>
+  <li>For a whole order, open the order's labels again from receiving. See <a href="/workflows/labels/">Print Labels</a>.</li>
 </ol>
 
-## Parse timeout
-
-PDF parsing hangs or shows "Parse failed".
+## Resend to the supplier
 
 <ol class="steps">
-  <li>Try the same file again — once. Transient timeouts happen.</li>
-  <li>If it fails twice, ask the supplier for an Excel version of the linesheet. Excel parses much faster and more reliably.</li>
-  <li>If neither is available, open the order and click <strong>Add Style</strong> — manually add the rows. Slow but bulletproof.</li>
+  <li>Open the order, then the <strong>PO</strong> tab.</li>
+  <li>Click <strong>Email brand contact</strong> to open a ready-made email, or <strong>Supplier ack link</strong> to copy the supplier's link and send it yourself.</li>
+  <li>If you changed the order since sending, use <strong>Re-issue PO</strong> first. The new link replaces the old one; tell the supplier to use the newest email.</li>
 </ol>
 
-## Wrong rollback
+If **Email brand contact** says there is no brand contact on file, add the order contact on the brand's **People** room in [Brand Registry](/settings/brands-suppliers/).
 
-You applied enrichment to a batch and the results are wrong.
+## Linesheet won't read
+
+Parse &amp; Build can't read the supplier's file, or the read fails.
 
 <ol class="steps">
-  <li>Open <strong>Settings → Legacy Enrichment</strong>.</li>
-  <li>Scroll past the workflow to the <strong>Applied</strong> table at the bottom.</li>
-  <li>Select the rows you want to undo. Click <strong>Rollback</strong>.</li>
-  <li>Confirm. ThreadCloud restores the previous metafield values from the snapshot it took before applying.</li>
+  <li>Try the same file once more.</li>
+  <li>Ask the supplier for a spreadsheet version of the linesheet. Spreadsheets read faster and more reliably than PDFs.</li>
+  <li>For a photo, retake it flat and in good light.</li>
+  <li>If neither works, add the styles by hand in Parse &amp; Build. Slow, but it always works.</li>
 </ol>
 
-<div class="callout callout-info">
-<div class="callout-title">Why this works</div>
-Every Apply step saves a snapshot of the existing values before overwriting. Rollback writes the snapshot back. This works for up to 90 days after the apply.
-</div>
+## Withheld figures
 
-## Inventory snapshot refresh
+Merchandising, Stock and Money show a mark instead of a number when the evidence for it isn't complete. That is on purpose: ThreadCloud won't show a number it can't prove.
 
-The Inventory Snapshot refresh reads Shopify inventory and rebuilds the snapshot. It does not write
-product metafields. Variants with inventory tracking disabled are excluded from physical totals, and
-a missing tracking signal for MTO, STOCK, or NOS fails closed so an unknown quantity is not reported
-as zero.
+- Hover the mark, or read the **Notes** (or **Not yet available**) at the foot of the page. Each one says why, and what would clear it.
+- Some clear on their own by a date, such as Turns and GMROI on a new store.
+- Some need an action, such as setting stock types or costs. Do what it says.
+- Don't use a blank as zero, and don't re-label products just to make a figure appear.
+
+## Shopify stock writes
+
+Receiving refuses some sizes with a message that a Shopify stock sync is unresolved. ThreadCloud sent a stock change to Shopify and never got confirmation, so it won't send another for that size until the first is settled.
 
 <ol class="steps">
-  <li>Wait for the refresh to finish and check whether the page retained the last good snapshot.</li>
-  <li>Fix the tracking or source issue, then run one refresh.</li>
-  <li>If it fails again, stop retrying and record the product or variant id for support. Do not use the resulting total for a buying decision.</li>
+  <li>Don't re-enter the receipt.</li>
+  <li>Open <strong>Settings → Automations</strong>, the <strong>Shopify stock</strong> row. It names the sizes.</li>
+  <li>Someone with owner access presses <strong>Read Shopify back</strong>, then checks those sizes in Shopify before entering anything again.</li>
 </ol>
 
-## Historical ledger access
+The full procedure is on [Shopify stock sync](/workflows/shopify-stock-sync/).
 
-Historical sales requires the app's Shopify <code>read_all_orders</code> grant. If the page asks for
-reauthorization, that is an app permission state, not a calculation to work around. Ask the owner to
-reauthorize the staging app, then retry once. Until the ledger is available, historical scorecards
-and MTO receipt-backed sell-through remain unavailable; current physical on-hand is not a substitute.
+## Roll back published products
+
+You published products from [Catalog setup](/settings/legacy-enrichment/) and the facts are wrong.
+
+<ol class="steps">
+  <li>Open <strong>Catalog setup</strong>, then the <strong>Published</strong> tab.</li>
+  <li>Tick the products to undo, then <strong>Rollback Selected (N)</strong>.</li>
+  <li>Confirm. ThreadCloud restores the values the products had before it published.</li>
+</ol>
 
 ## Reorder cost read
 
-A new reorder takes its cost from Shopify, and refuses to open on an incomplete cost read. "Could not verify Shopify cost. Try again." means Shopify did not answer, or answered with an incomplete read. Nothing was created.
+A new reorder takes its cost from Shopify and won't open on an incomplete cost read. "Could not verify Shopify cost. Try again." means Shopify didn't answer, or answered with an incomplete read. Nothing was created.
 
 <ol class="steps">
   <li>Wait a moment, then pick the product again.</li>
-  <li>If it fails three times in a row, check <a href="https://www.shopify.com/status">status.shopify.com</a>.</li>
-  <li>If Shopify is healthy and it still refuses, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the product name. Do not work around it by typing a cost from memory.</li>
+  <li>If it fails three times in a row, check <a href="https://www.shopifystatus.com">Shopify's status page</a>.</li>
+  <li>If Shopify is healthy and it still refuses, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the product name. Don't work around it by typing a cost from memory.</li>
 </ol>
 
 ## Reorder variant costs
 
-"Variant costs differ in Shopify. Review them before reordering." means the sizes of that product carry different costs in Shopify. ThreadCloud will not guess which one is right.
+"Variant costs differ in Shopify. Review them before reordering." means the sizes of that product carry different costs in Shopify. ThreadCloud won't guess which is right.
 
 <ol class="steps">
-  <li>Open the product in Shopify Admin. Check the cost per item on each variant.</li>
+  <li>Open the product in Shopify Admin. Check the cost per item on each size.</li>
   <li>Set them to the same figure.</li>
   <li>Pick the product again in Reorder.</li>
 </ol>
 
 ## No supplier cost
 
-The picked card reads <strong>Source cost needed</strong>, or adding the product says it "has no supplier cost on file, and ThreadCloud has no record of buying it."
+The picked card reads **Source cost needed**, or adding the product says it "has no supplier cost on file".
 
 <ol class="steps">
   <li>From the Reorder search: type the <strong>Unit cost</strong> and its currency, then click <strong>Open reorder</strong>.</li>
-  <li>From inside a reorder workspace: set the cost on the product in Shopify (or receive it through ThreadCloud once), then add it.</li>
-  <li>A saved list skips these products and names them as "left out". Reorder each on its own from the search.</li>
+  <li>From inside a reorder: set the cost on the product in Shopify (or receive it through ThreadCloud once), then add it.</li>
+  <li>A saved list skips these products and names them as left out. Reorder each on its own from the search.</li>
 </ol>
 
 ## Reorder PO not issued
 
-The PO tab shows <strong>Purchase order not issued</strong> and a reason. Match it:
+The PO tab shows **Purchase order not issued** and a reason. Match it:
 
 | Reason | Fix |
 |---|---|
-| "There is nothing to send. Complete at least one product before issuing this purchase order." | Go back to Pick (<strong>Edit reorder</strong>) and set at least one size quantity. |
-| "This purchase order has already been sent. Open an amendment to revise and re-issue it." | It is issued. To change it, open an amendment, then <strong>Re-issue PO</strong>. |
+| "There is nothing to send. Complete at least one product before issuing this purchase order." | Go back with **Edit reorder** and set at least one size quantity. |
+| "This purchase order has already been sent. Open an amendment to revise and re-issue it." | It is issued. To change it, open an amendment, then **Re-issue PO**. |
 | "This purchase order cannot be revised because receiving has started." | Expected. Receiving freezes the PO. Place a new reorder for anything extra. |
 | "This purchase order was issued by another request. Reload the page to see the current version." | Someone else issued it at the same time. Reload. |
-| "N ordered lines cannot be committed" | Those products are missing a fact the supplier needs. <strong>Edit reorder</strong> and fill it in. |
+| "N ordered lines cannot be committed" | Those products are missing a fact the supplier needs. **Edit reorder** and fill it in. |
 
 ## Product repair
 
-<strong>Edit product details</strong> on a reorder line opens the product in Catalog Repair. "Product details could not be opened" or "Product details could not be saved" means that hand-off failed.
+**Edit product details** on a reorder line opens the product for repair. "Product details could not be opened" or "Product details could not be saved" means that hand-off failed.
 
 <ol class="steps">
   <li>Try once more.</li>
-  <li>If a field shows <strong>Edit not saved</strong>, re-enter it. The save refuses until every unsaved field is entered again ("Re-enter the unsaved details before saving this product.").</li>
-  <li>If a repair failed earlier, Settings → Legacy Enrichment lists it with a <strong>Retry repair</strong> button.</li>
+  <li>If a field shows <strong>Edit not saved</strong>, enter it again. The save refuses until every unsaved field is entered again.</li>
+  <li>If a repair failed earlier, it is on the <strong>Problems</strong> tab of <a href="/settings/legacy-enrichment/">Catalog setup</a> with <strong>Retry repair</strong>.</li>
   <li>Still failing: email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the product name.</li>
 </ol>
 
 ## Unverified product
 
-An Enrich product reads <strong>Pushed but unverified</strong>. Shopify has the product, but at least one ordered size is not linked to a variant. Receiving cannot book that size.
+An Enrich product reads **Pushed but unverified**. Shopify has the product, but at least one ordered size isn't linked to a Shopify variant, so receiving can't book that size.
 
 <ol class="steps">
   <li>Read the line. It names the sizes.</li>
   <li>Click <strong>Push update</strong> on that product (or <strong>Push selected</strong> on several). The push links the missing sizes.</li>
-  <li>It should now read <strong>Pushed and verified</strong>. If the line reads "This product exists in Shopify. Add sizes before receiving." the product has no ordered sizes: add them in Build Order.</li>
+  <li>It should now read <strong>Pushed and verified</strong>. If it reads "This product exists in Shopify. Add sizes before receiving.", the product has no ordered sizes: add them in Parse &amp; Build.</li>
 </ol>
 
 ## Fenced push
 
-An Enrich product reads <strong>Not pushed</strong> with "A previous push did not record a product identity, so pushing again is fenced." A push may have created the product, but ThreadCloud never got the id back. Pushing again could create a duplicate, so it is blocked.
+An Enrich product reads **Not pushed**, with a line saying pushing again is fenced. A push may have created the product, but ThreadCloud never heard back. Pushing again could create a duplicate, so it is blocked.
 
 <ol class="steps">
   <li>Click <strong>Verify with Shopify</strong> on that product. It asks Shopify what it has and links it. It never creates a product.</li>
-  <li>If it finds one, the line reads "Found this style's existing Shopify product by SKU and linked it. No product was created." Carry on.</li>
+  <li>If it finds one, the line says it found the existing Shopify product and linked it, and that no product was created. Carry on.</li>
   <li>If it finds nothing, the error shows under the button. Check Shopify Admin for a draft with the product's SKU. If there is none, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> before pushing again.</li>
 </ol>
 
 ## No PO number
 
-The supplier opens the acknowledgement link and sees "This order needs a corrected PO number. Please ask the buyer to issue a corrected purchase order and acknowledgement link." The order has no real PO number, so nothing can be acknowledged against it. This happens on older orders that were sent before PO numbers were assigned.
+The supplier opens their link and sees "This order needs a corrected PO number." The order has no real PO number, which happens on older orders.
 
 <ol class="steps">
   <li>Open the order. If the PO tab says "This legacy order has no purchase order number. Assign one before issuing it.", assign one.</li>
@@ -240,45 +232,55 @@ On the supplier review, a ticked cost came back red instead of green.
 
 | Line reads | Meaning | Fix |
 |---|---|---|
-| "currency differs" beside the line | The confirmation states the cost in a currency other than the order's. It is refused, not converted. | Check the document. If the supplier really changed currency, that is a conversation with them, not a tick. |
-| Refusal naming a changed order cost | The order's cost moved after you opened the review (someone edited it in Build). | Reload the review and tick again against the current figure. |
-| "Not applied." with no reason | The apply did not reach that line. | Reload and apply again. If it repeats, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a>. |
+| "currency differs" beside the line | The confirmation gives the cost in a currency other than the order's. It is refused, not converted. | Check the document. If the supplier really changed currency, that is a conversation with them, not a tick. |
+| A refusal naming a changed order cost | The order's cost moved after you opened the review. | Reload the review and tick again. |
+| "Not applied." with no reason | The apply didn't reach that line. | Reload and apply again. If it repeats, email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
 
-## Stuck status
+## No supplier confirmation
 
-An order is stuck at "Sent to supplier" forever.
+Home's **Needs you** shows **PO sent · no supplier confirmation logged** with **Log confirmation**.
 
 <ol class="steps">
-  <li>Check if the supplier has responded — open the order → PO tab → look for the supplier ack timestamp.</li>
-  <li>If they have responded, the page may need a refresh. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (hard refresh).</li>
-  <li>If they haven't, click <strong>Approve as-is</strong> on the PO tab — this skips the supplier loop and marks the order confirmed manually.</li>
+  <li>Check with the supplier that they received the PO. If not, <a href="#resend-to-the-supplier">resend it</a>.</li>
+  <li>If they confirmed by email or document rather than through their link, click <strong>Log confirmation</strong> and log it. See <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>.</li>
 </ol>
+
+## Store reset
+
+A store reset clears ThreadCloud's records and then the store's products and orders in Shopify. It is only possible on stores ThreadCloud has set up for testing. While one is unfinished, **Settings → Automations** shows a **Store reset** row, and catalog capture, Clean Catalog and Shopify stock writes stand down for the store.
+
+<ol class="steps">
+  <li>Leave it while the row has no button. The Shopify part may still be running.</li>
+  <li>If the row shows <strong>Resume the reset</strong>, check with ThreadCloud first, then the account owner presses it.</li>
+</ol>
+
+<div class="callout callout-danger">
+<div class="callout-title">Never press Resume the reset after products were put back</div>
+Resume clears whatever is in the store now. If anyone has added products to Shopify since the reset failed, Resume deletes them. Stop and email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> instead.
+</div>
 
 ---
 
-## Big-picture failures
+## Big failures
 
-These are the rare ones. If you see one of these, **email ThreadCloud Support immediately** at [hello@threadcloud.io](mailto:hello@threadcloud.io) — don't try to fix them yourself.
+These are rare. Don't try to fix them yourself.
 
-| Symptom | What it means |
+| Symptom | What to do |
 |---|---|
-| Every page across the app is 500 | Production deploy is broken. Possibly a Fly.io outage or a bad merge to main. ThreadCloud Support handles this. |
-| All Anthropic calls failing for 30+ min | Anthropic API outage. Status: [status.anthropic.com](https://status.anthropic.com). Nothing to do except wait. |
-| Shopify Admin won't load at all | Shopify outage. Status: [status.shopify.com](https://www.shopify.com/status). Wait. |
-| Bank-side currency feed says the wrong rate | The multi-provider FX fallback should catch this. If somehow all three providers are wrong, set the FX manually on the order (Receiving tab) and email [hello@threadcloud.io](mailto:hello@threadcloud.io). |
-| A push wrote products with bad data | Don't panic. Pull them back: Shopify Admin → filter by `tag:tc-order-{id}` → bulk-delete. Then re-push from ThreadCloud after fixing the source. |
+| Every ThreadCloud page fails | Email [hello@threadcloud.io](mailto:hello@threadcloud.io). ThreadCloud handles it. |
+| Linesheet reading and copy fail for 30 minutes or more | Your AI provider may be down. Check [status.anthropic.com](https://status.anthropic.com). Wait; work resumes on its own. |
+| Shopify Admin won't load at all | Shopify outage. Check [Shopify's status page](https://www.shopifystatus.com). Wait. |
+| A push wrote products with bad data | Don't delete products in Shopify. Email [hello@threadcloud.io](mailto:hello@threadcloud.io) with the order. Fix the source in ThreadCloud and push again once advised. |
 
-## What only the Owner should do
+## What only the owner should do
 
-- Approve a push of more than 200 products at once
-- Edit the AI prompts (Settings → AI & Models)
-- Change the metafield namespace or schema
-- Use the dev tools page (`/app/settings/dev`)
+Talk to the store owner before you:
 
-These are platform-level operations and only ThreadCloud Support should handle them:
+- Push more than 200 products at once.
+- Change [AI &amp; Pipeline](/settings/ai-models/) writing settings or the AI key.
+- Change the [Delivery calendar](/settings/delivery-windows/).
+- Publish or roll back catalog facts in [Catalog setup](/settings/legacy-enrichment/).
+- Press any recovery button in **Settings → Automations**.
+- Use **Reset All**, **Reset windows** or **Reset all suppliers &amp; brands**.
 
-- Run direct database operations
-- Merge code to `main` (production)
-- Manual `fly deploy` to recover a broken production deploy
-
-If your fingers are hovering over any of those, stop and ask.
+If your finger is hovering over any of those, stop and ask.

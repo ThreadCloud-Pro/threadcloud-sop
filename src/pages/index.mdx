@@ -1,45 +1,72 @@
 ---
 layout: ../layouts/Doc.astro
 title: Welcome
-description: Standard operating procedures for the ThreadCloud team — buying, enriching, pushing, receiving, and reordering.
+description: Standard operating procedures for store staff using ThreadCloud. Buying, enriching, pushing, receiving, merchandising and reordering.
 ---
 
 # ThreadCloud SOPs
 
-A working manual for the team. Pick a workflow on the left, follow the steps, and you're done. Press <kbd>/</kbd> to search anything.
+A working manual for the store team. Pick a page on the left, follow the steps, and you're done. Press <kbd>/</kbd> to search anything.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a screen or button name here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
 
 ## Start here
 
 If you're new, read these first:
 
-- **[Glossary](/glossary/)** — what every screen and word actually means
-- **[If something breaks](/runbook/)** — the on-call playbook when things go sideways
+- **[Home](/home/)**: the two desks you land on when you open ThreadCloud
+- **[Glossary](/glossary/)**: what every screen and word means
+- **[If something breaks](/runbook/)**: what to do, and when to contact ThreadCloud
+
+## Finding your way around
+
+ThreadCloud opens inside your Shopify admin. The menu on the left of Shopify lists ThreadCloud's sections:
+
+| Menu item | What it opens |
+|---|---|
+| **ThreadCloud** | [Home](/home/): the Merchandising desk and the Sales floor desk |
+| **Buying Plan** | [Buying Plan](/planning/buying-seasons/): each buying season's plan and budget |
+| **Merchandising** | [Merchandising](/planning/trading/): how the store and each brand are selling |
+| **Money** | [Money](/planning/money/): store financials for a period |
+| **Brand Registry** | [Brand Registry](/settings/brands-suppliers/): brands, suppliers and agents |
+| **Photography** | [Photography](/workflows/photography/) |
+| **Logistics** | [Logistics](/workflows/logistics/): shipments in motion, label reprints, and the register of sent and unsent purchase orders |
+| **Transfer Out** | [Transfer Out](/workflows/transfer-out/): returns to vendor and the Returns Counter |
+| **Settings** | [Settings and store health](/settings/store-health/) |
+
+Buying Plan, Merchandising and Money appear only for people the store owner has given Merchandising access. See [Team access](/settings/users-roles/).
 
 ## What ThreadCloud is for
 
-ThreadCloud is the buying operating system for the store. It does five things, in this order:
+ThreadCloud runs the buying work from the supplier appointment to the sales floor:
 
 <ol class="steps">
   <li>
-    <strong>Build an order</strong> — upload a supplier linesheet, AI extracts every style, size, colour, and price into a clean grid you can review and edit.
+    <strong>Build an order</strong>: drop a supplier linesheet into <strong>Parse &amp; Build</strong>. ThreadCloud reads every style, colour, size and price into a table you review and correct.
   </li>
   <li>
-    <strong>Enrich</strong> — descriptions, fit notes, fabric, country of origin, occasion, and 60+ Shopify metafields filled in by AI and approved by you.
+    <strong>Send the purchase order</strong>: issue the PO and send the supplier their confirmation link. Log their confirmation when it comes back.
   </li>
   <li>
-    <strong>Push to Shopify</strong> — products, variants, images, metafields, tags, and barcodes written in one batch. Products land as drafts; they go live when you receive the shipment.
+    <strong>Enrich</strong>: descriptions, fit notes, fabric, country of origin and the product facts that drive your storefront filters, drafted by ThreadCloud and approved by you.
   </li>
   <li>
-    <strong>Receive</strong> — when the shipment arrives, mark received quantities, lock the FX rate, and print labels (Dymo or fallback Avery).
+    <strong>Push to Shopify</strong>: products, sizes, photos and product facts written to Shopify in one go.
   </li>
   <li>
-    <strong>Reorder & trade</strong> — sell-through, age, weeks-of-supply, brand scorecards. Re-buy what's working, mark down what isn't.
+    <strong>Receive</strong>: when the shipment arrives, count what came in, record measurements and print labels.
+  </li>
+  <li>
+    <strong>Sell and reorder</strong>: read sell-through, stock and money in Merchandising, then reorder what is working.
   </li>
 </ol>
 
-## What's in scope today
+## How each page is laid out
 
-This site covers every screen the team will touch for day-to-day operations. Each workflow has:
+Every workflow page has:
 
 - **What it does** in one sentence
 - **When to use it**
@@ -49,21 +76,10 @@ This site covers every screen the team will touch for day-to-day operations. Eac
 
 <div class="callout callout-tip">
 <div class="callout-title">Print or pin</div>
-Every page works as a single-purpose reference. If your team prefers paper, hit print — the layout collapses cleanly.
+Every page works as a single-purpose reference. If your team prefers paper, print it. The layout collapses cleanly.
 </div>
 
-## Reading the screens
-
-Throughout the SOPs, you'll see these badges referring to ThreadCloud UI states:
-
-<p>
-  <span class="badge badge-ok">READY</span>
-  <span class="badge badge-warn">NEEDS REVIEW</span>
-  <span class="badge badge-info">CLASSIFYING</span>
-  <span class="badge badge-danger">ERROR</span>
-</p>
-
-And these visual cues:
+## Callouts on these pages
 
 <div class="callout callout-tip">
 <div class="callout-title">Tip</div>
@@ -72,12 +88,12 @@ A faster way to do something, or something that's easy to miss.
 
 <div class="callout callout-warn">
 <div class="callout-title">Heads up</div>
-An action with consequences — read before clicking.
+An action with consequences. Read before clicking.
 </div>
 
 <div class="callout callout-danger">
 <div class="callout-title">Don't</div>
-Something the team should never do without the Owner's sign-off.
+Something the team should never do without the store owner's sign-off.
 </div>
 
 <div class="callout callout-info">
@@ -88,5 +104,5 @@ The reason behind a step that looks optional but isn't.
 ---
 
 <p style="color: var(--text-subtle); font-size: 13px;">
-  This wiki is editable. If a step is wrong or missing, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> and we'll update it.
+  If a step is wrong or missing, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> and we'll update it.
 </p>

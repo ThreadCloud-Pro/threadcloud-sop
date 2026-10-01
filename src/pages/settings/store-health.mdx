@@ -1,0 +1,140 @@
+---
+layout: ../../layouts/Doc.astro
+title: Settings and store health
+description: The Settings page. Store health tiles and what each verb does, quick settings, the six chapters, and the Automations page.
+---
+
+# Settings and store health
+
+**Settings** in the ThreadCloud menu opens on a dashboard. The top tells you, in one word per part of the store, whether ThreadCloud is working. Below it are quick links, the Clean Catalog card, and every setting grouped into six chapters.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a tile or label here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Whenever numbers look stale, a background job seems stuck, or something on another page says to check Settings. Start here before emailing ThreadCloud.
+</div>
+
+## Store health
+
+Six tiles, one for each part of the store:
+
+| Tile | Answers |
+|---|---|
+| **Storefront filters** | Are your shopper filters wired the way this catalog expects? |
+| **AI engines** | Are AI runs (reading linesheets, writing copy) landing? |
+| **Catalog** | Has ThreadCloud written your catalog's product facts? |
+| **Shopify sync** | Are your Shopify orders arriving? |
+| **Sales history** | Is the record of past sales complete? |
+| **Nightly capture** | Is the daily stock count current? |
+
+### Reading a tile
+
+- **The word** is the answer: for example **Current**, **1 failed**, **532 to review**, **Not checked**, **Running now**.
+- **The coloured bar** along the top and **the small mark** beside the name say the same thing at a glance: a check, an exclamation, a question mark, or an arc while something is running.
+- **The last line** says when that part last reached an outcome, for example **checked 12m ago** or **never checked**.
+
+<div class="callout callout-tip">
+<div class="callout-title">"Not checked" is not a fault</div>
+A grey tile with a question mark means ThreadCloud hasn't looked yet. Nothing is known to be broken. The button on its panel is the one that gets the evidence.
+</div>
+
+### Opening a tile
+
+Tap a tile that isn't current to open its panel. A panel has four things:
+
+<ol class="steps">
+  <li>What is wrong, with a count.</li>
+  <li>The items or reasons behind the count. Names are a sample; the count is exact.</li>
+  <li>The last good run, sync or capture.</li>
+  <li>One button, which names where it takes you or what it does.</li>
+</ol>
+
+Only the most urgent tile's button is filled in. Do that one first.
+
+### The buttons you'll meet
+
+| Tile | Button | What it does |
+|---|---|---|
+| Storefront filters | **Run the filter check** | Checks Shopify's filters now. Account owner only; staff see **Open Storefront** instead. |
+| AI engines | **Check the AI connection**, or **Open** an order | A provider or key fault goes to [AI &amp; Pipeline](/settings/ai-models/). A fault with one order's file opens that order to run it again. |
+| Catalog | **Run catalog scan again** | Starts the catalog scan again when the automatic one stopped. |
+| Catalog | **Open Clean Catalog** | Opens [Catalog setup](/settings/legacy-enrichment/) to review what is waiting. |
+| Catalog | **Update the definitions** | Brings ThreadCloud's product fact definitions in Shopify up to date. |
+| Shopify sync | **Open the Orders row** | Opens Automations at the Orders row. |
+| Sales history | **Open the Sales history row** | Opens Automations at the Sales history row. |
+| Nightly capture | **Open the Inventory row** | Opens Automations at the Inventory row. |
+
+<div class="callout callout-info">
+<div class="callout-title">When "Run catalog scan again" refuses</div>
+It replaces the button with the reason. It refuses when catalog scanning isn't switched on for the store (ask ThreadCloud), when a scan is already running, when the scan state can't be read just now, when Clean Catalog is still writing, and when the last scan is less than 24 hours old.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">An AI failure that says it's ours</div>
+If a failed run reads "ThreadCloud hit an internal error on this run. This is ours to fix, not yours.", email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the reference code it shows.
+</div>
+
+## Below the tiles
+
+- **Quick settings**: four shortcuts: **Delivery calendar**, **Restock plans**, **Product writing** and (for the account owner) **Team access**.
+- **Work in progress**: background jobs running now, when there are any.
+- **Clean Catalog**: your catalog's status in a line, and **Open Clean Catalog**.
+- **Settings chapters**: **Find the right setting**. Search with the words you use in the store (try "logo", "price rounding", "filters" or "sync"), or browse the six chapters.
+
+| Chapter | What's in it |
+|---|---|
+| **Store &amp; team** | Store profile, [Team access](/settings/users-roles/), Data sharing |
+| **Buying &amp; planning** | [Delivery calendar](/settings/delivery-windows/), Financial mappings, Receiving readiness (account owner) |
+| **Catalog &amp; content** | Product writing ([AI &amp; Pipeline](/settings/ai-models/)), Required product facts, Storefront size guide |
+| **Storefront** | Restock plans, Storefront activation, Search and Discovery filters. See [Storefront](/settings/theme/). |
+| **Automations** | Orders, sales history, inventory, Shopify stock (below) |
+| **My preferences** | Your own appearance (light or dark), density, Home shortcut and opening period |
+
+## Receiving readiness
+
+**Settings → Buying &amp; planning → Receiving readiness** (account owner) checks every open order against Shopify before the goods arrive. It is read only: nothing is written to ThreadCloud or Shopify.
+
+<ol class="steps">
+  <li>Click <strong>Run the check</strong>. Run it before the first delivery of each season.</li>
+  <li>Read the findings: each style with units to come that would be blocked at receiving, and why (for example, not on Shopify yet).</li>
+  <li>Use <strong>Repair</strong> on a finding, or fix it on the order. Then <strong>Run again</strong>.</li>
+</ol>
+
+When nothing is wrong it says **Every style with units to come will receive cleanly.**
+
+## Automations
+
+**Settings → Automations** ("what runs itself") has one row per job. Click a row that needs attention to open it.
+
+| Row | What it runs | Recovery buttons you may see |
+|---|---|---|
+| **Orders** | Shopify order sync, every hour | **Run the sync now** |
+| **Sales history** | The record of past sales | **Capture the baseline**, **Rebuild sales history**, **Retry skipped orders**, **Resume historical ledger**, **Resume from saved checkpoint** |
+| **Inventory** | The nightly stock position and the hourly on-hand sweep | **Capture today's position**, **Resume sweeping this store** |
+| **Shopify stock** | Every stock change receiving sends to Shopify | **Read Shopify back** |
+| **Store reset** | Shown only while a store reset is unfinished | **Resume the reset** |
+| **Catalog** | Products published, and refinements waiting | **Refine catalog** |
+
+Recovery buttons say who can press them. The sales history buttons and **Resume the reset** are for the store's account owner (**Store account owner only**); others need owner access (**Owners only**).
+
+### Shopify stock
+
+The row reads **Every stock write confirmed by Shopify** when all is well, or **N stock writes awaiting confirmation**. Receiving refuses those sizes until each one is settled. They are settled with **Read Shopify back**, which needs owner access. The full procedure is on [Shopify stock sync](/workflows/shopify-stock-sync/).
+
+### Store reset
+
+A store reset is only possible on stores ThreadCloud has set up for testing. If one is unfinished, the row says when it started and that catalog capture, Clean Catalog and Shopify stock writes are standing down until it finishes. See [If something breaks](/runbook/#store-reset).
+
+## The bar at the top of every page
+
+The thin bar at the top of ThreadCloud pages shows background AI work as it runs, for example **Combing the rack** while the catalog scan runs. When nothing is running it reads **Nothing on the loom**. That's about AI work only; the tiles here are the store's health.
+
+## Next steps
+
+- [If something breaks](/runbook/)
+- [Team access](/settings/users-roles/)
+- [Catalog setup](/settings/legacy-enrichment/)

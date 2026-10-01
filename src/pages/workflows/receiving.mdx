@@ -1,252 +1,214 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Receiving
-description: Log received quantities, lock the FX rate, and print labels when the shipment arrives.
+description: Count the boxes against the order, confirm the shipment, print hang tags, and fix a receipt when something was booked wrong.
 ---
 
 # Receiving
 
-When the boxes arrive, you open the receiving page, count what's in them, mark received quantities per variant, and print labels. This is the most physical workflow — usually done at the receiving table with a phone or tablet next to the open boxes.
+When the boxes arrive, you open the order's **Receive** tab, count what's in them against the order, and confirm the shipment. ThreadCloud books the stock into Shopify, locks the exchange rate, puts the products on your Point of Sale, and prints the hang tags. It's usually done at the receiving table with a tablet beside the open boxes.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-The moment a shipment arrives. Don't wait — receiving in ThreadCloud the same day keeps inventory and sell-through accurate.
+The day a buying order's shipment arrives. For a reorder, use the Receive tab inside the reorder (see <a href="/workflows/reorder/">Reorder</a>). For a custom order, see <a href="/workflows/mtm/">Custom orders</a>.
 </div>
 
 ## What you'll need
 
-- The physical shipment + packing list
-- A printer connected (Dymo 30336 or fallback — see [Labels](/workflows/labels/))
-- The order ID (find it in the email confirmation or under the order in TC)
+- The boxes and the packing list
+- The Dymo label printer loaded with 30336 labels (see <a href="/workflows/labels/">Print Labels</a>)
+- A tape measure, if you're capturing measurements
 
-## The receiving flow
+## Quick path
 
 <ol class="steps">
-  <li><strong>Open the receiving page</strong> — Order → Receiving tab</li>
-  <li><strong>Enter received quantities per size</strong></li>
-  <li><strong>Confirm Receiving</strong> — the FX rate locks the first time you confirm</li>
-  <li><strong>Print labels</strong> — from the success screen</li>
-  <li><strong>Apply labels to the physical items</strong></li>
-  <li><strong>Move to store shelves or stockroom</strong></li>
+  <li><strong>Open the order's Receive tab.</strong></li>
+  <li><strong>Check the shipment details</strong>: date, reference, location and exchange rate.</li>
+  <li><strong>Enter what's in the box</strong>, size by size, in <strong>Receiving Now</strong>.</li>
+  <li><strong>Receive shipment</strong> (or <strong>Receive partial shipment</strong>).</li>
+  <li><strong>Print</strong> the hang tags and the receiving document from <strong>Ready to print</strong>.</li>
+  <li><strong>Tag and shelve</strong> the goods.</li>
 </ol>
 
-## Stage 1 — Open the receiving page
+## Stage 1: Find the order
 
-Two ways:
+Any of these gets you to the Receive tab:
 
-- From the dashboard: click the order → Receiving tab
-- From the URL bar: `/app/orders/{order-id}/receiving`
+- **Home, Sales floor desk.** Orders whose receiving is due show under **Needs you** with a <strong>Receive</strong> button. **Coming to the floor** shows incoming orders, soonest first, each with <strong>Open the haul</strong> and <strong>Receive</strong>.
+- **Logistics, Receiving Log.** The **Expected** tab lists every order with a delivery window, its **Receipt %** and a status (for example **In Window** or **Past Window**). Click a row.
+- **The order itself.** Click the <strong>Receive</strong> tab in the order header.
 
-The page has two parts. At the top, a **shipment** card: the date, a reference, the location, the **exchange rate** (editable only the first time you receive), and a notes box for damages or partial boxes. Below it, a **grid** of every style with its sizes, showing the **ordered** quantity, a box for the **received** quantity, and what's still **outstanding**.
+## Stage 2: Check the shipment details
 
-## Stage 2 — Enter received quantities
+The top of the page shows **Receiving into**, the shipment reference, and a running count, for example "112 of 186" with a percentage.
 
-For each variant:
+The **Tag the box** card ("Date, reference, where it lands.") holds:
 
-1. Tap the cell
-2. Type the count from the box
-3. Move to the next
-
-<div class="callout callout-tip">
-<div class="callout-title">Speed tip</div>
-If the entire shipment matches the ordered qty exactly (rare but happens), click <strong>Receive All as Ordered</strong> at the top. It pre-fills every received cell with the ordered qty. Then just spot-check and save.
-</div>
-
-### When ordered ≠ received
-
-If you got fewer than ordered:
-
-- Enter the actual count. ThreadCloud will mark it as a **discrepancy** in the order's audit log.
-- The order will sit in <span class="badge badge-warn">PARTIAL</span> status — fine for now. Resolve when the rest of the shipment arrives or when you accept the short.
-
-If you got more than ordered (rare):
-
-- Enter the larger count.
-- Add a note in the discrepancy log.
-- Verify with the supplier — they may have over-shipped intentionally as a sample.
-
-If a variant didn't ship at all:
-
-- Leave it at zero. The order stays <span class="badge badge-warn">PARTIAL</span>.
-
-<div class="callout callout-tip">
-<div class="callout-title">Capture measurements and fit while you're here</div>
-Each style has an optional <strong>Add measurements</strong> panel (chest, sleeve, waist, and so on, by category) and a <strong>fit offset</strong> dropdown (runs large / true to size / runs small). Filling these at receiving means the storefront and hang tag carry accurate sizing. To leave a style out of this shipment entirely, tick <strong>Skip this style</strong>.
-</div>
-
-## Stage 3 — Confirm & lock FX
-
-Click <strong>Confirm Receiving</strong>.
-
-What happens:
-
-- Received quantities write to Shopify's inventory (immediately available for purchase)
-- The FX rate locks at the current rate from the multi-provider feed
-- The order's total cost recalculates with the locked rate
+| Field | What to check |
+|---|---|
+| **Date** | Today, unless you're booking a delivery late. |
+| **Reference** | Filled in for you. Used on the receiving document and the tags. |
+| **Location** | The Shopify location the stock goes into. |
+| **Exchange rate** | Only on an order in another currency. Check it is a normal rate for the currency (for example around 1.5 for EUR to CAD), not 1.0. It reads "Locks on confirm" the first time and "Locked at ..." after that. |
+| **Notes** | Anything worth remembering: a partial box, a damaged unit, a late ship date. |
 
 <div class="callout callout-info">
-<div class="callout-title">Why FX locking matters</div>
-The FX rate snapshot is your <strong>cost truth</strong>. Even if rates fluctuate over the next 12 months, your margin calculations stay anchored to the rate the day inventory landed. Don't override this.
+<div class="callout-title">Why the exchange rate locks</div>
+The rate on the day the stock lands is your cost truth. Later shipments on the same order reuse it, so your margins stay anchored to it however rates move afterwards.
 </div>
 
-If you need to set the FX rate manually (rare — only if the live feed is wrong):
+If some products aren't in Shopify yet, a note says so. You can still book the stock now: ThreadCloud keeps the count and sends it to Shopify when each product is pushed from Enrich (<strong>OPEN PUSH QUEUE</strong> takes you there).
 
-1. Receiving tab → FX Rate row → click the rate
-2. Type the override
-3. Click Confirm. ThreadCloud locks your manual rate instead.
+## Stage 3: Enter what's in the box
 
-## Stage 4 — Print labels
+Each product shows its sizes in rows: **Size**, **Ordered**, **Prev. Rcvd** (received in earlier shipments), **Receiving Now** and **Outstanding**. Type the count from the box into **Receiving Now**.
 
-When you confirm, a success screen offers <strong>Print labels</strong> (and <strong>Print doc</strong> for the receiving document). Click <strong>Print labels</strong>: a new tab opens with the hang tags, one per received unit, for the Dymo 30336 (54×25mm). Press <kbd>Ctrl</kbd>+<kbd>P</kbd>, select the Dymo, print.
+Tools above the list:
 
-Label contents:
+- **Search** ("Search style, color, size") to find a product fast.
+- <strong>Fill outstanding</strong> fills every outstanding quantity for the products showing. Use it when the box matches the order, then spot-check.
+- <strong>Clear quantities</strong> empties what you typed.
+- <strong>Include visible</strong> and <strong>Exclude visible</strong> tick or untick the products showing. Untick a product (its checkbox) to leave it out of this shipment.
 
-- Brand name + style name
-- Colour
-- Size (large, on the right)
-- SKU (small, below)
-- Barcode (Code 128B of the SKU)
-- Retail price
-
-<div class="callout callout-tip">
-<div class="callout-title">Tip — print in batches</div>
-If you have 10 styles to receive but only the first 5 boxes are open, save those first and print just those labels. You can come back later for the rest — the print preview only shows labels for the just-saved batch.
-</div>
-
-### If the printer fails
-
-Three fallbacks, in order of how-close-to-TC-labels they look:
-
-1. **Avery 5160 sheet labels on a regular printer** — the print preview prints fine to any printer; just load sheet labels instead of Dymo rolls. Looks identical to the TC label, just on stickier paper.
-2. **Shopify Admin native print** — see the [runbook printer fallback](/runbook/#printer-fallback). Works because TC writes SKUs into the Shopify variant barcode field.
-3. **Hand-write SKUs on tags** — last resort. Use the SKU shown on the receiving page.
-
-## Stage 5 — Apply labels & shelve
-
-Apply each label to its physical item. Move to the store or stockroom.
-
-The order's status flips:
-
-- <span class="badge badge-warn">PARTIAL</span> if some variants are still at 0 received
-- <span class="badge badge-ok">RECEIVED</span> once every variant has received qty ≥ ordered qty
-
-## Returning to a partial order
-
-If a shipment arrives in two parts (common with EU suppliers):
-
-1. Receive what arrived in part 1 — save
-2. Order sits in <span class="badge badge-warn">PARTIAL</span>
-3. When part 2 arrives, open the same Receiving page
-4. Enter the *additional* received qty (not cumulative — just what arrived in part 2)
-5. Save again
-
-ThreadCloud adds the two saves together for the total received. The audit log shows each receive event separately.
-
-## Common mistakes
+The line under the tools tells you how many products are showing, receivable and included.
 
 <div class="callout callout-warn">
-<div class="callout-title">Receiving in CAD when you bought in EUR</div>
-If the order's currency is EUR but you somehow set the receiving FX to 1.0, your costs are wildly off. Verify the FX before saving — it should be a normal exchange rate (e.g. 0.7 for EUR→CAD), not 1.0.
+<div class="callout-title">Two products that look the same</div>
+If two products on the order share a name and colour, ThreadCloud warns you on the row. Match the supplier code on the garment before you tick it.
 </div>
 
+### When the count doesn't match the order
+
+- **Fewer than ordered:** enter what arrived. The rest stays outstanding and the order stays open.
+- **More than the current order, but within the PO the supplier was sent:** ThreadCloud asks you to confirm ("Some quantities exceed the current draft but fit the issued PO."). Check the carton and the PO first.
+- **More than the PO:** refused. You can't receive more than was ordered.
+- **A size you didn't order:** if the product already has that size in Shopify, it shows as its own row marked **not ordered**. Enter the count. It's kept separate, so it doesn't count against what the supplier still owes.
+
+### Measurements and fit
+
+Each product has a <strong>Measurements</strong> panel. Measure the garment at the **Measured Size** shown (your store's sample size for that scale) and fill in what you can. When the product has a brand model, the brand's spec shows beside each field so you can spot a garment that's off. Measurements you save here appear on the product page's size chart as measured on the garment.
+
+The **Fit** selector records how the product runs: **-2 Very large**, **-1 Runs large**, **True to size**, **+1 Runs small**, **+2 Very small**.
+
+## Stage 4: Confirm
+
+Click <strong>Receive shipment</strong>. If not everything on the order has arrived, the button reads <strong>Receive partial shipment</strong>. <strong>Export CSV</strong> beside it downloads a Shopify-format file of what you're about to receive, if you need it.
+
+When it lands, a **Receiving confirmed** banner shows the units and lines received, and:
+
+- **FX locked at ...** the first time, with "Shopify costs updated".
+- **N products now live on POS**. Your cashiers can sell them.
+- Lines booked in ThreadCloud and queued for Shopify, if some products weren't pushed yet.
+
 <div class="callout callout-warn">
-<div class="callout-title">Forgetting to save before printing</div>
-The print link reads from confirmed data. If you enter quantities but don't click Confirm Receiving first, you'll see old data (or no tags).
+<div class="callout-title">If the banner warns you</div>
+<strong>Shopify stock not confirmed on N units</strong>: the receipt is recorded, but Shopify didn't confirm the stock for the sizes named. Check those sizes in Shopify before selling them (see <a href="/workflows/shopify-stock-sync/">Shopify stock sync</a>).<br />
+<strong>Shopify kept the old cost</strong>: push the order again from Enrich to write the cost.<br />
+<strong>N products did not reach Point of Sale</strong>: use <strong>Make POS-ready</strong> (below).
 </div>
 
-<div class="callout callout-warn">
-<div class="callout-title">Receiving a re-order against the original order</div>
-If you placed a reorder for the same brand/season, the reorder is a <strong>separate order</strong> in ThreadCloud — even if the supplier shipped both together. Receive each order separately so sell-through math stays correct.
+Don't confirm twice. If a confirm matches one that is already running or already recorded, ThreadCloud says so and records nothing a second time. Wait a few seconds and reload.
+
+## Stage 5: Print tags and the receiving document
+
+Right after you confirm, **Ready to print** opens: "N hang tags for this shipment, plus the receiving doc for your records." Tags print at 54 × 25 mm on the Dymo 30336, one per unit, in a new tab.
+
+- <strong>Print both</strong>: tags, then the receiving document.
+- <strong>Tags only</strong>
+- <strong>Doc only</strong>
+- <strong>Skip for now</strong>: you can print later from the receipt or from Logistics.
+
+To reprint the tags for one product, use the tag button on that product's row. Everything about printing, and what to do if the printer fails, is on <a href="/workflows/labels/">Print Labels</a>.
+
+## Stage 6: Tag and shelve
+
+Put each tag on its garment and move the stock to the floor or the stockroom. The Receive tab in the header then reads, for example, "186 of 186".
+
+## A shipment in more than one box
+
+Receive what arrived, then come back to the same Receive tab when the rest lands. Enter only what's in the new boxes; ThreadCloud adds it to what was already received. Each confirm makes its own receipt.
+
+Past receipts are listed under **Shipment records** ("Received to date"), each with its reference, unit count, date and exchange rate. Click <strong>Open receipt</strong> to see one.
+
+## The receipt (receiving document)
+
+A receipt is the permanent record of what was booked in that day. Open it from **Shipment records**, or from **Logistics, Receiving Log, Shipments**. The top shows the supplier, order, PO number and **FX Rate (locked)**, and each product lists **Ordered**, **Prev. Received**, **This Shipment** and **Total Received**, with a note when it is short or still outstanding.
+
+Buttons: <strong>Export CSV</strong>, <strong>Print</strong> (the document), <strong>Reprint Labels</strong>, <strong>Reverse</strong> and <strong>Back</strong>.
+
+<div class="callout callout-info">
+<div class="callout-title">The receipt doesn't rewrite itself</div>
+After you correct something, the receipt still shows what was booked that day. That's deliberate. To see where stock stands now, look at the order's <strong>Receive</strong> tab, not the receipt.
 </div>
 
-## Reverse a receive
+## Fix a wrong size
 
-Made a mistake across a whole delivery? You can reverse an entire shipment. To back out a single size, use [Fix size](#fix-a-wrong-size) instead — it is scoped to one row and leaves the rest of the shipment intact.
+Sometimes the size that lands doesn't match what's sewn into the garment, usually because the parse misread a size on a dense sheet. Trust the garment's label.
 
-1. Open the shipment — from the success screen, or the past-shipments list on the order.
-2. Click <strong>Reverse</strong>.
-3. Confirm — Shopify inventory comes back down and the shipment is undone.
+<ol class="steps">
+  <li><strong>Open the receipt</strong> that booked it.</li>
+  <li>On that product, click <strong>Correct</strong>. A dialog asks what is wrong.</li>
+  <li><strong>Choose the fix</strong> from the options below.</li>
+  <li><strong>Confirm</strong>, then reprint the tag for that unit. It now prints the right size.</li>
+</ol>
+
+| Option | Use it when |
+|---|---|
+| **Received quantity** | You booked too many or too few. <strong>Receive more</strong> or <strong>Unreceive</strong> a quantity of one size. This makes a separate adjustment document and leaves the original intact. |
+| **One mis-parsed size** | The size itself is wrong (a "45" that should be a "44"). Pick the **Wrong size**, pick the correct one, and click <strong>Fix size</strong>. The units move to the correct size, which is added to the product, and the wrong size comes off. |
+| **Units on the wrong size** | Units were booked on the wrong one of two sizes the product already has. Click <strong>Move units</strong>. Only for products not yet in Shopify; for a product already in Shopify, use Received quantity instead. |
+| **Whole size run** | The whole run is shifted or on the wrong scale. Shift every size, or change to another scale. Stock and product details stay attached. |
+| **Unreceive entire style** | Take every unit of this product off this receipt. Other products stay received. |
+
+You always pick sizes from a list that matches the product's scale, so there's no format to get wrong. If the correct size is already on the product, ThreadCloud stops before changing anything ("already exists on this style").
+
+A fix on a product that isn't in Shopify yet is saved in ThreadCloud and goes to Shopify with the first push. The line says so ("Corrected here; syncs to Shopify at first push").
+
+## Reverse a whole shipment
+
+If a whole receipt was wrong, open it and click <strong>Reverse</strong>. The dialog tells you how many units across how many products it will take back out of stock, and that the receipt will be deleted. Click <strong>Reverse shipment</strong>. Shopify stock comes back down, and you can receive again with the right counts.
+
+The order's locked exchange rate and its POS publishing stay as they are. Reversing is a stock correction, not a rewind of the order.
 
 <div class="callout callout-warn">
-<div class="callout-title">Heads up</div>
-Reverse only works <strong>before</strong> any of the reversed variants have sold. If sales have already happened against the received inventory, email [hello@threadcloud.io](mailto:hello@threadcloud.io) before reversing.
+<div class="callout-title">Reverse before anything sells</div>
+If some of that stock has already sold, talk to the Owner before reversing. To fix one size, use <strong>Correct</strong> instead of reversing everything.
 </div>
 
 ## Make POS-ready
 
-A buying-order product only becomes sellable at the register when a clean first receive activates it and publishes it to your Point of Sale channel. If that step gets disrupted — a size-scale correction mid-flow, or a stock edit made by hand in Shopify admin instead of through receiving — the product can end up sitting Active in Shopify but invisible on POS, with no obvious way back.
+A received product should be sellable at the register. If a cashier can't find one, click <strong>Make POS-ready</strong> at the top of the Receive tab. It makes every received product on the order active and puts it on the Point of Sale channel again.
 
-<div class="callout callout-info">
-<div class="callout-title">When to use</div>
-A product you know you've received shows up fine in Shopify admin but a cashier can't find it on the register.
-</div>
+It only touches products with received stock. It can't be used to skip receiving.
 
-<ol class="steps">
-  <li>Open the order's receiving page.</li>
-  <li>Click <strong>Make POS-ready</strong>.</li>
-  <li>ThreadCloud re-runs activation for every received product on the order and reports how many are genuinely POS-ready now.</li>
-</ol>
+## Sending stock back
+
+If you need to return part of a delivery to the supplier, the **Returned to vendor** card on the Receive tab shows what has gone back so far. Click <strong>Transfer out / RTV</strong> to return stock from this order. See <a href="/workflows/transfer-out/">Transfer Out</a>.
+
+## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Only touches received stock</div>
-This can't be used to skip receiving — it only acts on products with actual received units. A never-received, still-zero-stock product stays untouched. Online Store publication for regular stock isn't affected either way.
-</div>
-
-## Receiving a size you didn't order
-
-The grid isn't limited to the sizes on the original PO. If a supplier ships a size that wasn't ordered (a substitute, or one extra piece thrown in), and that size already exists as a variant on the product in Shopify, it shows up in the grid ready to receive — just enter the count against it like any other row. If the product doesn't carry that variant yet, it isn't a receiving problem: raise a reorder or a variant fix first.
-
-## Fix a wrong size
-
-Sometimes the size that lands doesn't match what's sewn into the garment — usually a linesheet parse that misread a size on a dense grid (a "45" pulled from the row next to the real "44"). You'll normally catch this holding the item at the receiving table, once the physical label disagrees with what ThreadCloud says you received.
-
-<div class="callout callout-info">
-<div class="callout-title">When to use</div>
-The garment's own size label doesn't match the size ThreadCloud received it as, for a size you've already confirmed in this shipment. Trust the sewn-in label over the system.
+<div class="callout-title">Exchange rate at 1.0 on a foreign order</div>
+If the order is in EUR and the rate reads 1.0, every cost is wrong. Fix the rate before you confirm the first shipment. It locks after that.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Don't unreceive it first</div>
-The instinct is to back the unit out and start again. Don't. <strong>Fix size</strong> already does the unreceive for you, and unreceiving by hand hides the button you need — it only appears on rows that still show received units.
+<div class="callout-title">Receiving a reorder against the original order</div>
+A reorder is its own order, even if the supplier shipped it with the original. Receive each against its own order so your numbers stay right.
 </div>
-
-<ol class="steps">
-  <li><strong>Open the shipment</strong> — from the receiving success screen, or the past-shipments list on the order.</li>
-  <li>Find the wrong size's row and click <strong>Fix size</strong>.</li>
-  <li><strong>Enter the correct size</strong> — a dropdown for simple scales (collar, belt, shoe), separate Waist and Inseam boxes for trousers, or Chest size + Length for jackets. You're never typing a free-form size string — the input matches whatever scale the rest of the product already uses, so there's no format to get wrong.</li>
-  <li><strong>Confirm.</strong> One click does the rest: the wrong size's received units come back out (Shopify and ThreadCloud both), the correct size is added to the product as a new variant with the same metafields and filters as its siblings, the units you already counted move onto it, and the wrong size is removed from the product.</li>
-  <li><strong>Reprint the tag</strong> for that unit — it now prints under the correct size.</li>
-</ol>
 
 <div class="callout callout-warn">
-<div class="callout-title">If the wrong size also showed up in an earlier shipment</div>
-The fix only moves units received in THIS shipment. If the same wrong size has stock from an earlier shipment too, the wrong variant stays on the product (with that earlier stock) until that shipment is fixed as well — ThreadCloud tells you when this happens rather than silently leaving two variants live.
+<div class="callout-title">Unreceiving by hand to fix a size</div>
+Don't unreceive a unit and receive it again on another size. Use <strong>Correct</strong> on the receipt so the record keeps where the units are.
 </div>
-
-This is a stock correction, not a re-receive: the order's locked FX rate and its POS publishing aren't touched.
-
-### The receiving document will still show the old size
-
-This is the part that catches people out. **A receiving document is a permanent record of what was booked in that day, not a live stock list.** After a successful correction it still lists the wrong size, and it always will. That is deliberate — an audit trail must not rewrite itself.
-
-<div class="callout callout-info">
-<div class="callout-title">Where to check whether it worked</div>
-The order's <strong>Receive</strong> tab, never the receiving document. The Receive tab is live truth. If the size run there shows the corrected size and not the wrong one, the fix worked.
-</div>
-
-Press Fix size a second time on a row you already corrected and ThreadCloud tells you it was <strong>already corrected</strong>, and does nothing. That is a reassurance, not an error.
-
-### When it won't run
-
-<div class="callout callout-warn">
-<div class="callout-title">"Size X is already on this style"</div>
-The size you're switching to is already in the run — the order genuinely has both. ThreadCloud stops before changing anything. Pick a size that isn't already there, or if the run itself is wrong, correct it in Build and re-push.
-</div>
-
-If a correction stops partway it tells you which step it stopped at. Nothing is silently half-done, but the wrong size may still be present — check the Receive tab before retrying, and email [hello@threadcloud.io](mailto:hello@threadcloud.io) if the run looks wrong.
 
 ## Next steps
 
-- [Labels](/workflows/labels/) — print details + fallback options
-- [Reorder](/workflows/reorder/) — re-buy what's selling
-- [Merchandising](/planning/trading/) — watch sell-through
+- [Print Labels](/workflows/labels/): printing details and fallbacks
+- [Transfer Out](/workflows/transfer-out/): send stock back to a supplier
+- [Merchandising](/planning/trading/): watch sell-through

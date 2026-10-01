@@ -1,128 +1,199 @@
 ---
 layout: ../../layouts/Doc.astro
 title: First-time setup
-description: Install ThreadCloud, accept terms, connect your rack, and enrich your existing catalog. About 2 minutes for the wizard.
+description: Install ThreadCloud and walk the setup as the store owner sees it. Connect, Brand, Catalog, First workflow and Wiring, with readiness and reset.
 ---
 
 # First-time setup
 
-Everything from installing ThreadCloud to a fully-enriched catalog with working storefront filters. The in-app wizard is three quick screens plus a finishing screen and takes about two minutes; enriching your existing catalog afterwards is where the time goes — and where the payoff is.
+Everything from installing ThreadCloud to a store that is ready to use. Setup is one guided walk in five parts. Each part is proven from your own store before ThreadCloud calls it done.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-07-10</div>
-If a screen or button name here doesn't match the app, it changed and this page is stale — tell the team.
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a screen or button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
 <div class="callout callout-info">
 <div class="callout-title">Who does this</div>
-The store <strong>Owner</strong> runs first-time setup — it installs metafield definitions and authorises Shopify access. You only do it once per store. Progress is saved on the server as you go, so closing the tab and coming back later resumes exactly where you left off — it doesn't reset.
+The store's <strong>account owner</strong> (the person who owns the Shopify store) runs setup. Staff who open ThreadCloud during setup can watch progress but can't answer the questions; their screens say <strong>Only the account owner can answer this.</strong> Progress is saved as you go. You can close the tab and come back, and setup resumes where you left it.
 </div>
 
 ## Before you start
 
-- A Shopify store you own (Partner-approved or live).
-- Owner access to that store.
-- Optional but recommended: an Anthropic API key (for AI descriptions + linesheet parsing). You can add it during setup or later.
+- Owner access to your Shopify store.
+- Your install link from ThreadCloud. ThreadCloud arranges the install with you directly.
+- Optional: an Anthropic API key, so ThreadCloud can read linesheets and write product copy. You can add it during setup or later.
+- Optional: your store logo.
 
-## Install from the Shopify App Store
+## Install
 
-Install ThreadCloud like any Shopify app. On first open it asks you to approve the access scopes (read + write products and metafields). Approve, and the wizard opens full-screen in place of the dashboard.
+<ol class="steps">
+  <li>Open the install link ThreadCloud sent you, signed in to your Shopify admin as the account owner.</li>
+  <li>Approve the access ThreadCloud asks for.</li>
+  <li>ThreadCloud opens full screen with the setup walk in place of Home.</li>
+</ol>
 
-## Screen 1 — Welcome
+## The setup rail
 
-The opening screen explains what ThreadCloud unlocks: <strong>Smart Filters</strong> (storefront facets), <strong>Buy Analytics</strong> (OTB, blended margin, brand scorecards, sell-through), and <strong>58 structured data points</strong> per product. One button: <strong>Begin setup</strong>.
+The left side of every setup screen is a rail with the five parts and a one-word status for each:
 
-<strong>What the button does:</strong> installs the metafield definitions and authorises ThreadCloud to read and write product metafields, then automatically — no separate steps for you to run — pulls your store's name, currency, and timezone from Shopify (only filling in values you haven't already set yourself), provisions the storefront filter token, seeds the standard set of delivery-window templates, and scans your active catalog for the brands and product types already in it. No existing product data is touched.
+| Part | What it covers |
+|---|---|
+| **01 Connect** | ThreadCloud reads your store and catalog |
+| **02 Brand** | Your logo, your description voice, your AI key |
+| **03 Catalog** | ThreadCloud labels your existing catalog |
+| **04 First workflow** | One real order, start to finish |
+| **05 Wiring** | Sales history, stock, and storefront filters |
+
+| Status | Meaning |
+|---|---|
+| **Done** | Proven from your store |
+| **Now** | The part you're on |
+| **Later** | Not reached yet |
+| **Held** | You skipped or set it aside. It waits for you. |
+| **Attention** | Something needs fixing. The screen names the fix. |
+
+Under the rail: **Your progress is saved. You can close this tab and come back.**
+
+## 01 Connect: "Let ThreadCloud read your store."
+
+### Welcome
+
+<ol class="steps">
+  <li>The first screen shows three things ThreadCloud unlocks: <strong>Smart filters</strong>, <strong>Buy analytics</strong>, <strong>58 data points</strong>.</li>
+  <li>Click <strong>Begin setup</strong>. It reads <strong>Warming the loom</strong> while it works.</li>
+</ol>
+
+**What Begin setup does:** installs ThreadCloud's product fact definitions in your Shopify store. No product data is touched.
+
+### Catalog read
+
+ThreadCloud reads your active Shopify catalog. A **Catalog read** panel shows progress. **Leaving this screen is safe. The read keeps its place.**
+
+### What do you sell?
+
+<ol class="steps">
+  <li>Under <strong>What do you sell?</strong>, tick <strong>Menswear &amp; Accessories</strong>, <strong>Womenswear &amp; Accessories</strong>, or both. <strong>Tick all that apply.</strong></li>
+  <li>Click <strong>Confirm</strong>. If your catalog already answers the question clearly, ThreadCloud states it instead of asking.</li>
+  <li>If you answer while the read is still running, it says <strong>Saved. ThreadCloud applies it when the read lands.</strong></li>
+  <li>Click <strong>Continue to brand setup</strong>.</li>
+</ol>
+
+## 02 Brand: "Make it sound and look like your store."
+
+One screen, three blocks. **Choose a voice and confirm your mark. Skip if you like; you can return.**
+
+<ol class="steps">
+  <li><strong>01 Your mark</strong>: add the logo your team already uses. ThreadCloud prepares it for purchase orders without changing the original. When saved it reads <strong>MARK CONFIRMED</strong>.</li>
+  <li><strong>02 Your voice</strong>: pick one of the prepared description voices. Click <strong>Preview on one of your products</strong> to see how it reads. Optional: <strong>Your website</strong> and up to three <strong>Inspiration</strong> sites. If you already have written guidance, click <strong>I already have detailed guidance</strong> to go to <a href="/settings/ai-models/">AI &amp; Pipeline</a>.</li>
+  <li><strong>03 Your engine key</strong>: paste your Anthropic API key and click <strong>Save the key</strong>. The screen has a short <strong>How to get a key</strong> guide.</li>
+  <li>Click <strong>Confirm brand</strong>, or <strong>Skip for now</strong>.</li>
+</ol>
+
+<div class="callout callout-info">
+<div class="callout-title">AI billing</div>
+AI is billed to your own Anthropic account. ThreadCloud never marks it up. The store sets up without a key; you just won't get linesheet reading or product copy until one is saved. Add or change it any time in <a href="/settings/ai-models/">AI &amp; Pipeline</a>.
+</div>
 
 <div class="callout callout-warn">
-<div class="callout-title">If setup doesn't complete</div>
-If the screen doesn't advance, or filters don't show up later, re-open the app — Screen 1 is safe to re-run. Persistent failure → [If something breaks](/runbook/).
+<div class="callout-title">A wrong key</div>
+ThreadCloud saves the key without calling Anthropic, so a wrong key shows up the first time ThreadCloud writes copy, not on this screen. Anthropic keys start with <code>sk-ant-</code>.
 </div>
 
-## Screen 2 — Your rack
+## 03 Catalog: "Let ThreadCloud label your catalog."
 
-A green banner confirms what setup just did automatically (store name, currency, delivery-window count, "storefront filters connected"), then shows the brands ThreadCloud detected in your catalog as tap-to-toggle chips — all selected by default. Tap one to leave it out for now.
+ThreadCloud fills in what it can prove from your own store: what each product is, its fabric and care, construction, colour, sizes and season. **Anything it cannot prove it leaves exactly as you have it. Nothing is guessed, and nothing is deleted.**
 
-<strong>What the buttons do:</strong> <strong>Confirm & continue</strong> creates a brand record for each selected vendor and seeds the enrichment queue for your catalog. <strong>Skip for now</strong> moves on without creating any brands — do this and set brands up later from Brand Registry if you'd rather not decide chip-by-chip during setup.
+<ol class="steps">
+  <li>Optional: click <strong>Set your always-in-stock tags</strong> and enter the Shopify tags you use for NOS products, separated by commas. Click <strong>Save</strong>. Products with those tags are marked always-in-stock; everything else is a seasonal buy.</li>
+  <li>Click <strong>Continue</strong>. That is your whole part of this step.</li>
+  <li>Labelling runs in the background. The screen says <strong>Labelling your catalog. Nothing needs your eye.</strong> You can leave the page.</li>
+</ol>
+
+If labelling finishes with some details that didn't go through, or stops, the screen says so and offers **Refine catalog** (and **Try again** where that will help). The full review lives in [Catalog setup](/settings/legacy-enrichment/).
+
+## 04 First workflow: "Do the work once, for real."
+
+One real order, parsed, ordered, enriched, pushed and received. The panel **Your first real buying cycle** lists six steps, each with its own button:
+
+| Step | Button |
+|---|---|
+| **Create the first buying order** | **Create order** |
+| **Read the first linesheet** | **Open Parse &amp; Build** |
+| **Commit the purchase order** | **Open purchase order** |
+| **Enrich and publish one product** | **Open Enrich** |
+| **Confirm storefront filters** | **Check storefront filters** |
+| **Receive the first shipment** | **Open receiving** |
+
+Each step opens once the step above it is done. A finished step reads **Witnessed**. You can set a step aside for later. The workflow pages cover each step: [Parse & Build](/workflows/build-order/), [Enrich](/workflows/enrich/), [Push to Shopify](/workflows/push-to-shopify/), [Receiving](/workflows/receiving/).
+
+## 05 Wiring: "Connect the numbers and the storefront."
+
+Sales, stock and shopper filters, each proven from your store or named as waiting.
+
+### Store readiness
+
+The **Store readiness** panel has one card each for **Catalog**, **Catalog enrichment**, **Sales**, **Inventory** and **Storefront filters**. Each card shows **Ready**, **Ready with review**, **Needs attention**, **Stale** or **Not proven**, with a button to the fix where there is one. The badge at the top reads **CORE READY** or **ATTENTION**. You can keep working while attention items are repaired.
+
+### Guided storefront setup: "Help shoppers narrow the rack"
+
+Shopify's filter app is called Search &amp; Discovery. Follow the three numbered steps:
+
+<ol class="steps">
+  <li><strong>1. Install Search &amp; Discovery</strong>: the free app from Shopify. Click <strong>Open App Store</strong>. Skip this if it is already installed.</li>
+  <li><strong>2. Add the filter sources</strong>: click <strong>Open Shopify filters</strong>, choose Filters, Add filter, then add each source in the list below the steps.</li>
+  <li><strong>3. Check the live result</strong>: come back and click <strong>Check now</strong> (the first time it reads <strong>Connect checker</strong>). ThreadCloud checks Shopify directly.</li>
+</ol>
+
+The **Core filters** list names nine sources that must pass before setup can finish: Size, Color, Brand, Category, Type, Fit, Pattern, Material and Made In. A source that is wrong shows what to do: **Add this source**, **Use Variant scope**, or **Rename**. More sources are under **Add when relevant to your assortment**.
 
 <div class="callout callout-tip">
-<div class="callout-title">Bulk-importing a large supplier registry</div>
-The wizard itself is chip-by-chip. If you have a big existing supplier list to load in one shot, skip this screen and use the CSV import in <strong>Settings → Brands & Suppliers</strong> instead — same bulk-import tool the old wizard used, just moved out of the setup flow.
+<div class="callout-title">The theme embed</div>
+Your theme also needs to support filtering to show them. Optional: switch on the <strong>TC Smart Filters</strong> embed under App embeds in the theme editor (<strong>Open theme editor</strong>), then Save. See <a href="/settings/theme/">Storefront</a>.
 </div>
 
-## Screen 3 — The engine
+## Ready: "Your store is set."
 
-Paste your Anthropic API key to unlock AI descriptions and linesheet parsing. Get a key at <strong>console.anthropic.com</strong> — they start with <code>sk-ant-</code>.
+When every part is proven, the walk says **Your store is set.** From the Catalog part on, **Back to the desk** under the rail takes you to [Home](/home/). Until everything is proven, Home shows a quiet **Finish setting up** tile with the progress line, and the account owner may also see:
 
-<div class="callout callout-info">
-<div class="callout-title">Billing</div>
-AI usage is billed to <strong>your</strong> Anthropic account. ThreadCloud does not mark up or charge for AI calls. Add or change the key anytime in [Settings → AI & Models](/settings/ai-models/).
+- **Confirm delivery calendar**: check the default delivery windows in [Delivery calendar](/settings/delivery-windows/), then click **This calendar is right**.
+- **Finish storefront**: the theme embed and fit callout in [Storefront](/settings/theme/).
+- **Refine catalog**: check what ThreadCloud found in your catalog.
+
+## Starting setup over
+
+<div class="callout callout-danger">
+<div class="callout-title">Reset is for test stores only</div>
+A <strong>Reset this walkthrough</strong> link appears under the setup rail only on stores ThreadCloud has set up for testing. On your live store you will not see it. If you think your live store needs to start setup again, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a>. Don't try to undo setup by hand in Shopify.
 </div>
 
-<strong>What the buttons do:</strong> <strong>Switch it on</strong> validates the key looks right and saves it. <strong>I'll add it later</strong> skips it — the rest of ThreadCloud works without it; you just won't get AI descriptions or auto-parse until it's set.
-
-## Finishing screen — your store is dressed
-
-A short celebration screen with a checklist of what setup just did (delivery windows, brands, catalog classifying, metafields). One button: <strong>Enter ThreadCloud</strong>.
-
-<div class="callout callout-info">
-<div class="callout-title">This click is what finishes setup</div>
-Setup isn't marked complete until you click <strong>Enter ThreadCloud</strong> on this screen — that's deliberate, so you see the celebration instead of getting bounced straight to the dashboard.
-</div>
-
-## After the wizard: enrich your existing catalog ⭐
-
-This is the step that turns a freshly-installed store into a working one: every existing product gets a category, colour group, fabric, country, and the metafields that drive storefront filters. The wizard already seeded the queue when you confirmed your brands on Screen 2 — you finish it on the Legacy Enrichment page.
-
-You land on the dashboard with a <strong>"Setup complete — enriching legacy products in background"</strong> banner, and a persistent <strong>catalog enrichment</strong> banner appears whenever the queue has work. Click it, or open [Settings → Legacy Enrichment](/settings/legacy-enrichment/).
-
-### The fast path (clean catalog)
-
-1. Open <strong>Settings → Legacy Enrichment</strong>.
-2. Classification may already be running from setup — if not, click <strong>Run Classification</strong> and watch the ambient bar finish. You can navigate away while it runs.
-3. Open the <strong>Ready</strong> tab → <strong>Apply Selected</strong>. Filters go live on the storefront.
-
-### The review path (mixed metadata)
-
-1. Open the <strong>Needs Review</strong> tab — these rows are missing a field, not wrong. Most just need a Colour Group or Pattern set.
-2. For each row, either click the inferred values to <strong>Confirm as-is</strong>, or set the missing field and save. Use <strong>bulk edit</strong> to set the same value across many selected rows at once.
-3. Then <strong>Apply Selected</strong>.
-
-<div class="callout callout-info">
-<div class="callout-title">"Needs Review" does not mean the AI was wrong</div>
-It means a field is missing or low-confidence. Confirming as-is is one click. The full per-tab walkthrough lives on [Settings → Legacy Enrichment](/settings/legacy-enrichment/).
-</div>
-
-<div class="callout callout-tip">
-<div class="callout-title">Rough timing</div>
-About 5 min for 500 products, 20 min for 2,000, 50 min for 5,000 — classification plus apply, at parallel speed.
-</div>
+If a store reset was started, **Settings → Automations** shows a **Store reset** row until it finishes. See [If something breaks](/runbook/#store-reset).
 
 ## What to check when you're done
 
 <div class="callout callout-info">
 <div class="callout-title">Verification checklist</div>
-- A sample product in Shopify admin has <code>tc_core.category</code> populated.
-- The storefront shows smart-filter facets with real values.
-- Settings → Legacy Enrichment <strong>Applied</strong> tab shows your catalog.
-- The settings dashboard's Legacy Enrichment tile shows a live count.
-- (If you set an API key) a new Build Order parses and enriches.
+- Store readiness reads <strong>CORE READY</strong>.
+- The storefront shows filter facets with real values.
+- <a href="/settings/store-health/">Settings store health</a> shows <strong>Current</strong> on Storefront filters, Catalog and Shopify sync.
+- <a href="/settings/legacy-enrichment/">Catalog setup</a> shows your catalog as published.
+- (If you saved an API key) a new order's linesheet reads in Parse &amp; Build.
 </div>
 
 ## Common issues
 
 <div class="callout callout-warn">
-<div class="callout-title">"Switch it on" or descriptions do nothing</div>
-No Anthropic key set. Add it in [Settings → AI & Models](/settings/ai-models/).
+<div class="callout-title">Descriptions or linesheet reading do nothing</div>
+No Anthropic key saved. Add it in <a href="/settings/ai-models/">AI &amp; Pipeline</a>.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Classification looks stalled</div>
-It runs in the background and the ambient bar shows progress — you can leave the page. If counts never move, re-open Legacy Enrichment; persistent issues → [If something breaks](/runbook/).
+<div class="callout-title">The catalog read or labelling looks stalled</div>
+Both run in the background and the bar at the top of the page shows progress. You can leave the page. If counts never move, open <a href="/settings/store-health/">Settings</a> and read the <strong>Catalog</strong> tile. Persistent issues: <a href="/runbook/">If something breaks</a>.
 </div>
 
 ## Next steps
 
-- [Build Order](/workflows/build-order/) — your first new order
-- [Settings → Legacy Enrichment](/settings/legacy-enrichment/) — the full enrichment walkthrough
-- [Settings → AI & Models](/settings/ai-models/) — tune the AI voice
+- [Home](/home/): where you land after setup
+- [Parse & Build](/workflows/build-order/): your next order
+- [Catalog setup](/settings/legacy-enrichment/): review what labelling left for you

@@ -1,124 +1,124 @@
 ---
 layout: ../../layouts/Doc.astro
-title: Brands & Suppliers
-description: Add brands, link them to suppliers and contacts, set brand codes and markup defaults, and configure custom-order recipes.
+title: Brand Registry
+description: The directory of brands, suppliers and agents, and the brand record with its About, Models, Kit and People rooms.
 ---
 
-# Brands & Suppliers
+# Brand Registry
 
-The brand and supplier directory. Every product is tied to a brand; every brand is tied to a supplier (or sometimes multiple). This page is where they're set up.
+**Brand Registry** in the ThreadCloud menu is the directory of every brand you carry, the suppliers who bill you, and the agents who introduce brands. Each brand opens to its **brand record**: its facts, its fit, its photography and its people.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a tab or field here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-Before placing the first order with a new brand or supplier. Setup takes 2 minutes; skipping it blocks Build Order from completing.
+Before the first order with a new brand. A brand needs a record and a code before Parse & Build can complete.
 </div>
 
-<div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-06-29</div>
-If a screen or tab here doesn't match the app, it changed and this page is stale — tell the team.
-</div>
+## How brands, suppliers and agents fit together
 
-## How brands and suppliers fit together
+- A **brand** is what shows on the storefront.
+- A **supplier** is who bills you: the entity on the invoice. A brand points to its supplier.
+- An **agent** is the firm that introduces a brand to your store, such as a sales agency or showroom. Optional.
+- **Biller pending** on a brand means its supplier isn't set yet. That's normal for an agent-introduced brand until you know who invoices.
 
-- A **brand** is what shows on the storefront (Lardini, Drake's).
-- A **supplier** is who bills you. A brand is linked to its supplier.
-- Some brands bill you directly — in that case the brand is its own biller, with no separate supplier record needed.
-- A brand can also have an **agent** (a sales rep or showroom) and named **contacts**, each with an office or cell number, for orders and acks.
+## The registry
 
-For day-to-day use you'll just work with **Brands** and **Suppliers**.
+Three tabs: **Brands**, **Suppliers**, **Agents**. The search box finds brands, codes, suppliers and contacts.
 
-## Adding a brand
+Each brand tile shows its code, its name, **· inactive** if it is no longer active, **biller pending** if it has no supplier, and **Foundation ✓** or **Draft** for the state of its brand facts. Click a tile to open the brand record.
 
-1. Settings → Brands & Suppliers → Brands tab
-2. Click <strong>New Brand</strong>
-3. Fill in:
-   - **Name** (the brand name as shown on the storefront)
-   - **Brand code** (2–4 char prefix used in SKUs, e.g. "LRD" for Lardini — must be unique across the store)
-   - **Country of origin** (optional, but enables auto-fill in Enrich)
-   - **Default markup** (% used to compute retail from cost — typically 2.4x for most menswear)
-   - **Brand voice override** (optional — overrides the global brand voice for descriptions of this brand only)
+### Add a brand
 
-4. Click <strong>Create</strong>
-
-### Brand codes
-
-The brand code is a 2–4 char prefix that goes into every SKU for the brand. Pick well — changing it later requires re-stamping every SKU.
-
-Good codes: short, distinctive, capitalized.
-
-- ✅ `LRD` (Lardini)
-- ✅ `DRK` (Drake's)
-- ✅ `KIT` (Kiton)
-- ❌ `LARD` (too long — eats SKU space)
-- ❌ `L` (too short — collisions)
-- ❌ `1` (numeric — confusing)
-
-If the code you want collides with an existing brand, the system suggests an alternative.
-
-## Adding a supplier
-
-1. Settings → Brands & Suppliers → Suppliers tab
-2. Click <strong>New Supplier</strong>
-3. Fill in:
-   - **Name** (the legal/billing name)
-   - **Contact email** (where supplier ack links and POs go)
-   - **Default currency** (EUR / USD / GBP / etc.)
-   - **Default delivery lead time** (weeks)
-   - **Brands they rep** (multi-select)
-4. Click <strong>Create</strong>
-
-## Linking a brand to its supplier and contacts
-
-1. Open the brand.
-2. Set its **supplier** (who bills you). If the brand bills you directly, mark it as its own biller instead of picking a separate supplier.
-3. Add **contacts** — the people you email for orders and acks. Each contact can have an office or cell number and a role, and you can flag who gets CC'd on outbound orders.
-4. Optionally set an **agent** (the sales rep or showroom that reps the brand).
-
-## Custom-order recipes
-
-If a brand does custom orders (made-to-measure and special orders), it can have a **recipe** that teaches ThreadCloud how to read that brand's confirmations — its field labels, option names, and defaults. The Owner sets this up per brand; the team doesn't usually touch it.
-
-Once a brand has a recipe, its confirmations parse cleanly in the [Custom orders](/workflows/mtm/) flow.
-
-## Editing existing brands & suppliers
-
-Open the brand or supplier → make changes → save. Most fields can be changed freely. Exceptions:
-
-- **Brand code** — changing this requires re-stamping every SKU of every product from that brand. Email [hello@threadcloud.io](mailto:hello@threadcloud.io) before changing — this is a sensitive operation.
-- **Default currency on supplier** — only affects future orders. Existing orders keep their original currency.
-
-## Archiving
-
-If you stop carrying a brand:
-
-1. Open the brand
-2. Click <strong>Archive</strong>
-3. Confirms — the brand stops appearing in dropdowns but existing products stay searchable
-4. To resurrect later: click Unarchive
+<ol class="steps">
+  <li>On the <strong>Brands</strong> tab, click <strong>Add Brand</strong>.</li>
+  <li>Enter the brand name as shown on the storefront.</li>
+  <li>Enter the code: the 3-character code used in SKUs.</li>
+  <li><strong>Default supplier</strong>: pick who invoices. For an agent-introduced brand, choose the skip option and set the biller later.</li>
+  <li><strong>Agent</strong>: optional, the firm that introduces the brand.</li>
+  <li>Click <strong>Add Brand</strong>.</li>
+</ol>
 
 <div class="callout callout-warn">
-<div class="callout-title">Don't delete</div>
-There's no delete button. Archive only. Deleting a brand would orphan products. <strong>Use archive instead.</strong>
+<div class="callout-title">Pick the code carefully</div>
+The brand code goes into every SKU for the brand. Changing it later means re-stamping SKUs. Email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> before changing a code on a brand that already has products.
 </div>
+
+### Add a supplier
+
+<ol class="steps">
+  <li>On the <strong>Suppliers</strong> tab, click <strong>Add Supplier</strong>.</li>
+  <li>Fill in <strong>Name</strong> (required), <strong>Country</strong>, <strong>City</strong>, <strong>Currency</strong>, <strong>Payment Terms</strong>, <strong>Website</strong>, <strong>Notes</strong>.</li>
+  <li>Click <strong>Add Supplier</strong>.</li>
+</ol>
+
+Each order carries its own currency, chosen when you create it.
+
+### Bulk import
+
+Under **Bulk import** at the foot of the registry:
+
+- Download the **CSV TEMPLATE**, fill it in, then **Import or update from CSV**. A first import creates suppliers, brands and agents; a re-import updates existing rows in place.
+- **Export current registry** downloads what is in ThreadCloud now. Edit it and import it back.
+
+<div class="callout callout-danger">
+<div class="callout-title">Danger zone</div>
+<strong>Reset all suppliers &amp; brands</strong> wipes the registry and asks you to type a confirmation phrase. Don't use it on a live store without talking to ThreadCloud first.
+</div>
+
+## The brand record
+
+A brand opens to four rooms. Switch with the tabs under the brand name.
+
+### About
+
+- **Brand details**: brand name and brand code. Click **Save details**.
+- **The Foundation**: source-cited facts about the brand, such as **Headquarters**, **Founders**, **Heritage**, **Known for**, **Typical materials** and **Typical construction**. Click **Research with Claude** to fill them from the brand's own sources (it needs an Anthropic key in [AI &amp; Pipeline](/settings/ai-models/)). Edit anything, then **Save draft** or **Approve**. Approved facts feed product descriptions. **Do not claim** lists things the copy must never say.
+- **Description intro**: your own opening line for this brand's product descriptions.
+- **Billed via** and **Agency**: the brand's supplier and agent.
+- **B2B portal**: the brand's wholesale portal link, if it has one (**Add B2B portal**).
+- **Publish to store**: publishes the brand story to your Shopify store.
+
+### Models
+
+The garments you keep buying from the brand, their bodies, size runs and measurements, and the supplier's spec sheets. See [Brand fit](/settings/brand-fit/).
+
+### Kit
+
+- **Resources**: logos, linesheets, lookbooks, campaign and seasonal images, documents and web links, filtered by season (**Add resource**).
+- **Product photography**: drop photos here. Name them by style and colour code (for example `LD1234_010_front.jpg`) and ThreadCloud matches each to the style. Photos it can't match show under **Unmatched**.
+
+### People
+
+Everyone you deal with for this brand, in three groups: the brand's own team, the supplier's people and the agency's people.
+
+<ol class="steps">
+  <li>Click <strong>Add person</strong>. Enter name, role, email and phone, and where they work.</li>
+  <li>Tick <strong>CC on order emails</strong> to copy them when you email an order for this brand.</li>
+  <li>Filed in the wrong group? Use <strong>Move to another group</strong>. Their details move with them.</li>
+</ol>
+
+## Deleting a brand
+
+**Danger Zone → Delete Brand** on the brand record. It can't be undone and affects every purchase order that references the brand. If you've simply stopped carrying a brand, don't delete it. Its orders and history stay with the record.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Two brands with the same name</div>
-ThreadCloud allows duplicates (legitimate when a brand splits collections), but the dropdowns get confusing. Use a suffix to disambiguate (e.g. "Lardini" and "Lardini MTM").
+<div class="callout-title">No supplier email for orders</div>
+If nobody on the brand's People room has an email, <strong>Email brand contact</strong> on the PO tab can't address the order. Add the order contact before sending the first PO.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Skipping the supplier email</div>
-The supplier ack flow needs an email. If it's blank, the PO never sends and you'll wonder why the supplier didn't confirm.
-</div>
-
-<div class="callout callout-warn">
-<div class="callout-title">Changing default markup mid-season</div>
-Existing orders keep their original markup. Changing it only affects future orders. So you may end up with mixed markups in one season — not necessarily wrong, but be aware.
+<div class="callout-title">Two records for one brand</div>
+Search the registry before adding a brand. If two records exist for one brand, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> rather than deleting one.
 </div>
 
 ## Next steps
 
-- [Build Order](/workflows/build-order/) — order from a configured brand
-- [Custom orders](/workflows/mtm/) — create a custom order against a brand recipe
+- [Brand fit](/settings/brand-fit/): models, bodies and spec sheets
+- [Parse & Build](/workflows/build-order/): order from a brand in the registry
+- [Custom orders](/workflows/mtm/)

@@ -1,99 +1,127 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Budget & OTB
-description: Open-to-Buy tracking. See what's planned vs committed across the season's categories.
+description: Set a season's open-to-buy, split it by category, subcategory and brand, and track what is placed against it. Plus the Budget tab on each order.
 ---
 
-# Budget & OTB
+# Budget &amp; OTB
 
-Open-to-Buy. The classic retail planning view — for each category in a buying season, how much budget remains unspent. Use it during the buying calendar to keep the season on plan.
+Open to buy is the season budget you haven't spent yet. In ThreadCloud you set it on the season page in **[Buying Plan](/planning/buying-seasons/)**, split it on the **Plan** tab, and check each order against it on the order's **Budget** tab.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a column or button here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-Before every supplier appointment. The OTB tells you how much room is left in each category — drives what you order at the appointment.
+Before every supplier appointment. The Plan tab tells you how much room is left in each category, which drives what you order at the appointment.
 </div>
 
-## What you see
+## Set the season's OTB
 
-Open a buying season → click <strong>Budget</strong> tab. You see one row per category, with:
+<ol class="steps">
+  <li>Open <strong>Buying Plan</strong> and click the season.</li>
+  <li>Click the <strong>Total OTB</strong> tile (it reads <strong>Click to set</strong> on a new season).</li>
+  <li>Type the season's budget at cost, in store currency. Press <kbd>Enter</kbd> to save or <kbd>Esc</kbd> to cancel.</li>
+</ol>
 
-| Column | What it means |
+The **Planned at cost** tile beside it now shows the share of OTB used, and what is still open.
+
+## Split it on the Plan tab
+
+The **Plan** tab is one table grouped by category, then subcategory, then brand.
+
+<ol class="steps">
+  <li><strong>Category budget</strong>: on a category's heading row, set a top-down dollar budget for the category. Subcategory plans distribute within it.</li>
+  <li><strong>Subcategory plan</strong>: click the <strong>Plan</strong> cell on a subcategory row to set its amount.</li>
+  <li><strong>Brand plan</strong>: click <strong>+ brand</strong> under a subcategory to track a brand there before any order exists, then set its plan amount.</li>
+  <li>On <strong>By Brand</strong>, <strong>+ category</strong> plans a category under a brand before any order exists.</li>
+</ol>
+
+If the parts add up to more than the whole, a warning mark appears: **Subcategory plans exceed the category budget**, or **Brand plans exceed the subcategory plan**.
+
+### The columns
+
+| Column | Meaning |
 |---|---|
-| **Category** | Suit / Blazer / Knitwear / etc. |
-| **Planned** | Dollars budgeted for this category in this season |
-| **Committed** | Dollars you've ordered (sum of all order line totals at cost) |
-| **OTB** | Planned − Committed. What's left to spend. |
-| **% of plan** | Visual indicator of how much of the plan is used |
+| **Plan** | The amount you planned for this row |
+| **Seasonal** | Placed cost for seasonal (MTO) buys |
+| **Repeats** | Placed cost for STOCK and NOS, the replenishment of known winners |
+| **Committed** | Cost on orders whose PO has been sent |
+| **Uncommitted** | Cost on orders still in build, PO not sent yet |
+| **Units** | Units placed. Hover a value to see how many units the plan affords. |
+| **Avg Unit** | Average cost per unit across the costed units in the row |
+| **Variance** | How much of the plan is placed: **N% used · room** (under 90%), **close** (90 to 100%), **over** (100% or more) |
 
-A category showing <span class="badge badge-warn">OVER PLAN</span> means you've ordered more than budgeted. Not necessarily bad — a strong category may deserve over-spending. But surface it before you keep stacking.
+Brand rows also show last season's cost of goods sold and margin for that brand and subcategory when there is one, as a reference for this season's plan.
 
-## How OTB updates
+A row marked **legacy plan** was planned under an older category name. Click **Move plan** and choose the current category before editing it.
 
-Every time you create or push an order:
+## How the numbers update
 
-1. ThreadCloud sums the order's line totals at cost (qty × cost, FX'd to store currency)
-2. Buckets them by the styles' categories
-3. Adds to the season's committed total
+Placed cost updates as you build orders. An order counts from the moment its styles have quantities and costs, whether or not its PO has been sent. **Committed** and **Uncommitted** tell the two apart.
 
-So the OTB is live — assuming the supplier confirms the order. Drafts that haven't been pushed yet are also counted, so you don't blow the plan by accident on drafts.
+Costs in another currency are converted to store currency. Where ThreadCloud used an estimated rate, the tile says **includes a resolved FX estimate**. The exchange rate locks for good when the order is first received.
 
-## Using OTB to plan an appointment
+<div class="callout callout-warn">
+<div class="callout-title">Uncosted units</div>
+If some units have no cost yet, the totals cover only the costed units and say so ("Totals cover N of M units"). Variance chips show a dash rather than a percentage that would understate what you've used. Cost every style before you trust the variance.
+</div>
 
-Before a supplier meeting:
+<div class="callout callout-warn">
+<div class="callout-title">Styles with no stock type</div>
+If any style has no stock type, the Plan and By Brand tabs say <strong>Plan rollups are withheld because N styles need a Stock Type.</strong> Set the stock type on Enrich, then come back.
+</div>
 
-1. Open the relevant buying season → Budget tab
-2. Look at the OTB column
-3. For categories where OTB is high, you have room — order more
-4. For categories where OTB is at or below zero, you're full — only buy if you're rebalancing
+## The Budget tab on an order
+
+Every order has a **Budget** tab (after Parse &amp; Build, Enrich and Receive). It shows this one order against the season:
+
+| Part | What it shows |
+|---|---|
+| **this PO planned at cost** and **season planned at cost** | The order's cost next to the whole season's |
+| **Planned styles**, **Planned units** | The order's size, with average depth per style |
+| PO cap | Click **Set per-PO cap** to give this one order its own ceiling. The tile then shows the share of the cap used. |
+| Brand allocation | The brand's share of the season. Click it to edit (**Set allocation**). Split into **Seasonal** and **Repeats**, with a repeats reserve for **Stock + NOS** (**Set reserve**). |
+| **By Category** | Styles, units, planned-cost share, target %, variance and recorded IMU per category |
+| **Size Curves** | Units by size for each category |
+| **Order Recap** | **Top Styles by Units**, and totals by delivery |
+
+Brand allocation and the repeats reserve can only be edited once the order belongs to a buying season.
+
+## Using OTB at an appointment
+
+<ol class="steps">
+  <li>Open the season in Buying Plan, on the <strong>Plan</strong> tab.</li>
+  <li>Find the categories and the brand you are meeting.</li>
+  <li>Where the variance reads <strong>room</strong>, there is budget left. Where it reads <strong>close</strong> or <strong>over</strong>, buy only if you are moving money from another category.</li>
+  <li>After the appointment, build the order. The Plan tab updates as soon as the order has quantities and costs.</li>
+</ol>
 
 ## Adjusting the plan mid-season
 
-If reality drifts from your original plan — e.g. you decide to lean into a category that's selling — you can rebalance:
-
-1. Open the buying season header → click <strong>Edit Plan</strong>
-2. Move dollars between categories
-3. Save
-
-This doesn't change committed dollars. It only changes Planned, which changes OTB.
+Change any plan amount the same way you set it. That changes the plan, not what you placed.
 
 <div class="callout callout-warn">
 <div class="callout-title">Heads up</div>
-Rebalancing during the season is fine, but if you do it constantly the plan becomes meaningless. Try to set a strong plan up-front and stick to it; only rebalance for material shifts.
+Rebalancing during the season is fine, but if you do it constantly the plan stops meaning anything. Set a strong plan up front and only rebalance for real shifts.
 </div>
-
-## Common patterns
-
-### Locking categories at the start of the season
-
-For categories you don't want to overspend on (e.g. niche / risky ones), set the planned dollars conservatively. The OTB column will turn red quickly and signal "stop ordering".
-
-### Seeing where you over-bought last year
-
-End-of-season, look at Committed vs Planned across categories. The ones with negative OTB (over-spent) are the ones to reduce in next year's plan.
-
-## Weeks of Supply integration
-
-The Budget tab also surfaces a per-category Weeks of Supply (WOS) number:
-
-- Estimated weeks until the current inventory sells through, at the current rate
-- Helps you decide: do I have room to buy more, or am I already drowning?
-
-A category with high OTB but also high WOS (lots of inventory sitting) is a signal to slow down even though you have budget.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Committing past plan without knowing</div>
-If you don't check the Budget tab before placing orders, you can be way over plan by the time you notice. Make checking the OTB part of your supplier-appointment prep.
+<div class="callout-title">Not checking before the appointment</div>
+If you don't check the Plan tab before placing orders, you can be well over plan by the time you notice.
 </div>
 
 <div class="callout callout-warn">
 <div class="callout-title">Confusing committed with received</div>
-Committed = ordered. Received = arrived. An order placed but not yet shipped still counts as committed. The Budget view tracks dollars regardless of physical receipt.
+Committed means the PO was sent. Received means it arrived. An order not yet shipped still counts against the plan.
 </div>
 
 ## Next steps
 
-- [Buying Seasons](/planning/buying-seasons/) — set up the plan that drives OTB
-- [Merchandising](/planning/trading/) — when products start selling, track velocity
-- [Financials](/planning/financials/) — full-stack financial view
+- [Buying Plan](/planning/buying-seasons/): the season page and its other tabs
+- [Merchandising](/planning/trading/): once product starts selling
+- [Parse & Build](/workflows/build-order/): build the next order into the season

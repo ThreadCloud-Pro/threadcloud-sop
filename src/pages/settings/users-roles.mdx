@@ -1,79 +1,72 @@
 ---
 layout: ../../layouts/Doc.astro
-title: Users & Roles
-description: Add team members, assign roles, manage access.
+title: Team access
+description: Who can use ThreadCloud, how the account owner grants Merchandising access, and which actions are for the account owner only.
 ---
 
-# Users & Roles
+# Team access
 
-ThreadCloud uses three roles. Pick the lowest one that lets a person do their job.
+ThreadCloud uses your Shopify staff accounts. Anyone on your Shopify staff who can open the ThreadCloud app can use it. On top of that, two things are decided per person: whether they see **Merchandising**, and whether they are the store's **account owner**.
 
-| Role | What they can do |
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+## Who is who
+
+| Person | What they get |
 |---|---|
-| **Owner** | Everything. Exactly one Owner per store — usually the founder or buying lead. |
-| **Buyer** | All workflows: Build Order, Enrich, Push, Receiving, Reorder, Custom orders, Merchandising, Financials. Can read settings but not change AI prompts or theme. |
-| **Viewer** | Read-only. Useful for accountants, supplier reps, anyone who needs visibility but shouldn't edit. |
+| **Account owner** | The person who owns the Shopify store. Everything, always, including Merchandising and the owner-only actions below. |
+| **Staff** | Every other Shopify staff member who opens ThreadCloud. All the daily workflows. Merchandising only if the owner turns it on. |
 
-## Adding a user
+There are no separate invitations in ThreadCloud. To give someone access, add them as staff in Shopify and give them access to the ThreadCloud app there. They appear in ThreadCloud's list after they first open it.
 
-1. Settings → Users & Roles
-2. Click <strong>Invite User</strong>
-3. Enter email + role
-4. Click <strong>Send Invite</strong> — they receive an email with a sign-in link
+## Turn on Merchandising for a staff member
 
-They sign in with their Shopify account. The role gets applied on first login.
+Merchandising access covers **Buying Plan**, **Merchandising** and **Money**: buying seasons, brand scorecards, orders, stock and the store's financial figures.
 
-## Changing a user's role
+<ol class="steps">
+  <li>The account owner opens <strong>Settings → Store &amp; team → Team access</strong> (also a <strong>Quick settings</strong> tile). The page is titled <strong>Users &amp; access</strong>.</li>
+  <li>Under <strong>Merchandising access</strong>, find the person. The table shows <strong>Name</strong>, <strong>Email</strong>, <strong>Account</strong> (Owner or Staff), <strong>Merchandising</strong> and <strong>Last seen</strong>.</li>
+  <li>Tick the box in the <strong>Merchandising</strong> column. It reads <strong>Enabled</strong>. Untick it to turn it off.</li>
+</ol>
 
-1. Settings → Users & Roles → find the user in the table
-2. Click the role dropdown next to their name
-3. Pick the new role
-4. Confirms — takes effect on their next page load
+The account owner's row reads **Always on**. Only the account owner can open this page.
 
-## Removing a user
+<div class="callout callout-info">
+<div class="callout-title">What staff see without it</div>
+Buying Plan, Merchandising and Money disappear from the menu. If they follow a link to one of those pages, it says: Merchandising access is not enabled for your account. Ask the store owner to grant it in Settings > Users.
+</div>
 
-1. Settings → Users & Roles → find the user
-2. Click <strong>Revoke Access</strong>
-3. Confirm — their next page load will show a "no access" page
+## Actions for the account owner only
 
-This doesn't delete their Shopify account, just their access to ThreadCloud.
+Some actions change the whole store or reach into Shopify, so ThreadCloud keeps them for the account owner. Where a staff member would see one, the screen says who can do it, for example **Store account owner only** or **Only the account owner can answer this.** They include:
 
-## Who gets what role
+- Answering the setup walk's questions and finishing setup. See [First-time setup](/setup/onboarding/).
+- Testing, replacing or clearing the AI key. See [AI &amp; Pipeline](/settings/ai-models/).
+- Granting Merchandising access, on this page.
+- Changing the store's season calendar in the Merchandising gear.
+- **Run the filter check** on the Storefront filters tile, and **Receiving readiness** in Settings.
+- The sales history recovery buttons and **Resume the reset** in **Settings → Automations**. See [Settings and store health](/settings/store-health/).
 
-| Person | Role | Why |
-|---|---|---|
-| Founder / buying lead | Owner | Full control |
-| Sales associate doing receiving | Buyer | Needs to operate Receiving + Labels |
-| Accountant | Viewer | Reads Financials, doesn't edit |
-| Manager doing reorders | Buyer | Needs to operate Reorder + Merchandising |
-| Supplier rep checking ack status | Viewer | Reads their own orders, doesn't edit |
+## Read-only stores
 
-## What only Owner can do
-
-These are gated to the Owner only:
-
-- Edit AI prompts (Settings → AI & Models)
-- Change the metafield schema
-- Use dev tools (`/app/settings/dev`)
-- Set up new brands with custom-order recipes
-- Adjust theme configuration
-- Reset / wipe data
-
-Buyers and Viewers will see these pages but get a "permission denied" message if they try to act.
+If a screen says your shop role is read-only, ThreadCloud has set the whole store to view only. Email [hello@threadcloud.io](mailto:hello@threadcloud.io).
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Giving Owner to multiple people</div>
-There should be exactly one Owner per store. Multiple Owners create coordination problems on settings changes. <strong>Use Buyer for anyone else who needs write access.</strong>
+<div class="callout-title">Forgetting to remove access when staff leave</div>
+Access follows the Shopify staff account. Remove or limit the person's staff account in Shopify when they leave. Add it to your offboarding checklist.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Forgetting to revoke when staff leave</div>
-ThreadCloud access persists until you explicitly revoke. Add "Revoke ThreadCloud access" to your offboarding checklist.
+<div class="callout-title">Giving Merchandising to everyone</div>
+Money shows the store's sales, costs and margin. Turn on Merchandising for the people who buy and plan, not for every staff member.
 </div>
 
 ## Next steps
 
-- [Brands & Suppliers](/settings/brands-suppliers/) — assign brands a buyer is responsible for
-- [Runbook](/runbook/) — what Buyers can self-serve vs. need Owner for
+- [Settings and store health](/settings/store-health/)
+- [If something breaks](/runbook/): what staff can do and when to contact ThreadCloud

@@ -6,7 +6,7 @@ description: Fill in the deep product attributes that make smart filters, financ
 
 # Enrich
 
-The tier-2 pass. After Build Order's quick parse, Enrich fills in everything else: descriptions, fit notes, fabric details, country of origin, occasion tags, and the Shopify metafields behind smart filters. It is also where you approve each product and where you see, per product, whether Shopify really has it.
+The second pass. After Parse & Build reads the order, Enrich fills in everything else: descriptions, fit notes, fabric details, country of origin, occasion tags, and the Shopify metafields behind smart filters. It is also where you approve each product and where you see, per product, whether Shopify really has it.
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
@@ -14,7 +14,7 @@ On every order after parse, before push. The background pass usually runs on its
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-09-14</div>
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -22,7 +22,7 @@ If a button name here doesn't match the app, it changed and this page is stale. 
 
 Three triggers:
 
-1. **Automatically** after parse. A background pass starts once you save the parsed order.
+1. **Automatically** after Parse & Build. A background pass starts once you click <strong>Enrich for web</strong> on the parsed order.
 2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It reads your documents and notes into every product that can take them. The button is greyed out when no AI provider is set up or nothing on the order can be filled.
 3. **One product.** Open the product and click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists). This redoes the photo read, fields, title, and description together for that product.
 
@@ -49,17 +49,19 @@ For every style on the order, AI fills in:
 ### Identity
 - **Vendor Ref**: supplier's internal style code (separate from the Shopify SKU)
 - **Brand Code**: short brand prefix (e.g. "LRD" for Lardini)
+- **Model**: the brand's model or fit the product is cut on (see [Brand model and measurements](#brand-model-and-measurements))
 
 ## The Enrich screen
 
 Open the order and click the <strong>Enrich</strong> tab. Top to bottom:
 
-1. **Product details** heading with three buttons: <strong>Documents &amp; notes</strong> (opens the context panel), a Shopify button, and <strong>Update All</strong>.
-2. **A one-line status** that only appears when something needs you. It names the most urgent item and gives one button for it. It reads, in priority order: a product detail error, then "N products need Shopify verification", then a review item, then "Sending changes to Shopify" while a push runs, then "Shopify sync needs attention. Changes saved here have not updated Shopify." if a push did not land.
-3. **The filter bar**: <strong>All products</strong> / <strong>To review</strong> switch on the left, a search box ("Search name, style or colour"), a <strong>Filters</strong> button, and the <strong>Tiles</strong> / <strong>List</strong> view switch.
-4. **Select all** checkbox and the bulk action bar (appears once something is selected).
-5. **The worklist**: every pending and approved product in one list, pending first. There are no Pending / Approved / Pushed sections any more.
-6. **Skipped**: a collapsed section at the bottom for products you skipped. Click <strong>Show</strong> to open it.
+1. **The order header**, shared with every tab of the order (see <a href="/workflows/build-order/#the-order-header">Parse & Build</a>). On Enrich it also carries the **Enrich settings** control: **Product title guidance**, **Brand voice**, **Description order** and **Never use** (words the copy must never use). These govern every generate and regenerate on the store.
+2. **Product details** heading with three buttons: <strong>Documents &amp; notes</strong> (opens the context panel), a Shopify button, and <strong>Update All</strong>.
+3. **A one-line status** that only appears when something needs you. It names the most urgent item and gives one button for it. It reads, in priority order: a product detail error, then "N products need Shopify verification", then a review item, then "Sending changes to Shopify" while a push runs, then "Shopify sync needs attention. Changes saved here have not updated Shopify." if a push did not land.
+4. **The filter bar**: <strong>All products</strong> / <strong>To review</strong> switch on the left, a search box ("Search name, style or colour"), a <strong>Filters</strong> button, and the <strong>Tiles</strong> / <strong>List</strong> view switch.
+5. **Select all** checkbox and the bulk action bar (appears once something is selected).
+6. **The worklist**: every pending and approved product in one list, pending first.
+7. **Skipped**: a collapsed section at the bottom for products you skipped. Click <strong>Show</strong> to open it.
 
 If the order was re-submitted from Build and some products fell off it, a line under the list says "N products no longer included in this order" with a <strong>Review in Parse &amp; Build</strong> button.
 
@@ -69,7 +71,7 @@ The second button at the top changes with the order's real state:
 
 | Reads | Means |
 |---|---|
-| <strong>Send to Shopify (N)</strong> | N products have something Shopify has not received: never created, edited since the last push, or a size not yet linked. Click to open the push confirmation. |
+| <strong>Send to Shopify (N)</strong> | N products have something Shopify has not received: never created, edited since the last push, or a size not yet linked. Click to open the push confirmation (see <a href="/workflows/push-to-shopify/">Push to Shopify</a>). |
 | <strong>Shopify needs attention</strong> | Nothing to send, but at least one product is "Pushed but unverified" (see below). |
 | <strong>Shopify up to date</strong> | Every product on the order is "Pushed and verified". |
 | <strong>No Shopify changes</strong> | Nothing to send and nothing verified yet. |
@@ -91,7 +93,7 @@ Click <strong>Filters</strong>. The button shows a count, e.g. "Filters (2)", wh
 |---|---|
 | Approval | All products, Needs attention, Approved, Skipped in review |
 | Missing detail | Any detail, Title, Description, then every enrich field the order's pack uses |
-| Shopify | All products, Needs verification, Not created, Changes to send, Up to date |
+| Shopify | All products, Needs attention, Needs verification, Not created, Changes to send, Up to date |
 
 "Skipped in review" is a product you skipped on this screen. It is separate from a product left out of a re-submitted Build. They used to share one bucket; they no longer do.
 
@@ -139,10 +141,10 @@ Each product's footer has the actions for its state:
 | State | Buttons |
 |---|---|
 | Pending | <strong>Skip</strong>, <strong>Approve</strong> |
-| Approved | <strong>Accept review</strong> (only when flagged), <strong>Unapprove</strong>, then <strong>Push to Shopify</strong> (not created yet) or <strong>Push update</strong> (already in Shopify) |
+| Approved | <strong>Accept review</strong> (only when flagged), <strong>Unapprove</strong>, then <strong>Push to Shopify</strong> (not created yet: creates just this product, as a draft) or <strong>Push update</strong> (already in Shopify: sends your edits and keeps its status) |
 | Skipped | <strong>Restore</strong> |
 
-Every state also has <strong>Flag</strong>, which marks the product for attention.
+Every state also has <strong>Flag</strong>, which marks the product for attention. It then reads <strong>Flagged</strong>.
 
 ### What Approve checks
 
@@ -212,32 +214,17 @@ If a regenerate could not write copy, the product says so in one line: what happ
 If you edit a description manually and then change the fabric or COO later, the description does <strong>not</strong> auto-update. It's locked to your manual edit. To re-link it, click Regenerate.
 </div>
 
-## Per-subcategory attribute fields
+## Fields that depend on the product
 
-Some fields only appear when the style's subcategory makes them relevant:
+Some fields only appear when the product's category makes them relevant. Tailored jackets and suits show construction details such as lapel, button stance, vents, construction and lining. Dress shirts show collar and cuff. Trousers show rise. Knitwear and polos show **Knit weight** (Lightweight or Heavyweight: does it fit under a blazer?). Footwear shows **Formality** (Dress, Smart Casual or Casual).
 
-| Field | Shows for |
-|---|---|
-| **Lapel Style** | Suits, Blazers, Sport Jackets, dressy outerwear |
-| **Button Stance** | Suits, Blazers, Sport Jackets |
-| **Vents** | Tailored jackets |
-| **Construction** (canvas type) | Tailored jackets |
-| **Lining** | Tailored jackets, structured outerwear |
-| **Collar Style** | Dress shirts |
-| **Cuff Style** | Dress shirts |
-| **Sole Type** | Footwear |
-| **Toe Shape** | Footwear |
-| **Fastening** | Footwear |
-| **Ply** | Knitwear |
-| **Rise** | Pants, Shorts |
+If a field doesn't appear, the app decided it isn't relevant for this product's category. You can't force it visible from the screen. If the category itself is wrong, fix the category first and the right fields appear.
 
-If a field doesn't appear, that means the gating rules decided it's not relevant for this subcategory. You can't force it visible from the UI.
+## Brand model and measurements
 
-## Brand Recipes
+Open a product and use the **Model** field to pick the brand model it is cut on (<strong>Pick a model</strong>). Models come from the brand's record in the Brand Registry. A model that isn't confirmed yet shows **Unconfirmed**.
 
-Some brands have a "recipe": pre-filled defaults that override AI for known fields. For example, a brand's custom-order recipe can pre-fill construction, lapel, button stance, and lining on every order from that brand.
-
-Recipes are managed by the Owner under [Settings → Brands & Suppliers](/settings/brands-suppliers/). The team doesn't need to touch them.
+Once a product has a model, its measurements show the brand's own spec beside them, at the same size, so you can see at a glance if a measurement is off. Measurements saved here go to Shopify on the next push, and feed the size chart on the product page.
 
 ## Common mistakes
 
