@@ -1,118 +1,140 @@
 ---
 layout: ../../layouts/Doc.astro
-title: AI & Models
-description: Anthropic API key, model selection, brand voice, prompt overrides, and sync settings.
+title: AI & Pipeline
+description: The AI key, the engines ThreadCloud runs, how product descriptions are written, and pricing, purchase order and receiving defaults.
 ---
 
-# AI & Models
+# AI &amp; Pipeline
 
-The control surface for everything AI does in ThreadCloud. Parse, enrich, classify, describe — all of it routes through this configuration.
+**Settings → Catalog &amp; content → Product writing** opens the **AI &amp; Pipeline** page. It holds the AI key, shows which AI engines ThreadCloud runs, and sets how product copy is written. It also carries the pricing, purchase order and receiving defaults.
 
-<div class="callout callout-danger">
-<div class="callout-title">Only the Owner edits this</div>
-The team should never change prompts, models, or API keys. If something looks off, refresh the page or email ThreadCloud Support at [hello@threadcloud.io](mailto:hello@threadcloud.io).
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a section or field here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
-## What lives here
+<div class="callout callout-danger">
+<div class="callout-title">Owner territory</div>
+Changes here affect every product ThreadCloud writes. Only the store owner should change them. Only the Shopify account owner can test, replace or clear the AI key.
+</div>
 
-Settings → AI & Models has four sections:
+Use the search box at the top (for example "MSRP", "brand voice", "FX lock") to jump to a setting. Each section opens and closes with its heading.
 
-### 1. API key
-The Anthropic API key. Stored encrypted, never echoed back in the UI after save.
+## Technical controls
 
-To rotate:
+### The API key
 
-1. Get new key from console.anthropic.com
-2. Paste into the field
-3. Click <strong>Save</strong>
-4. Old key auto-revokes after 24h
+The store's own AI key. It is stored encrypted and never shown again after saving. It reads **Key configured** once saved.
 
-### 2. Model selection
-Which Claude model handles each workstream:
+<ol class="steps">
+  <li>Get a key from your AI provider. For Anthropic, keys start with <code>sk-ant-</code>.</li>
+  <li>Click <strong>Replace API key</strong> and paste it. Leaving the field blank keeps the key you have.</li>
+  <li>Save.</li>
+</ol>
 
-| Workstream | Default model | Why |
-|---|---|---|
-| Parse (Tier-1) | claude-haiku-4-5 | Fast, cheap, structured extraction |
-| Enrich (Tier-2) | claude-haiku-4-5 | Same — accuracy-sensitive but bounded |
-| Description | claude-sonnet-4-6 | Prose quality matters more than speed |
-| Classify (Legacy Enrich) | claude-haiku-4-5 | Volume-sensitive, structured output |
+<div class="callout callout-info">
+<div class="callout-title">Which provider</div>
+Anthropic is required for reading photos and images. Description writing also works with OpenAI or Google keys. AI usage is billed to your own account; ThreadCloud does not mark it up.
+</div>
 
-Override per-workstream if needed. Generally don't.
+### AI Engines
 
-### 3. Brand voice + description rules
-The editorial voice used for storefront descriptions:
+A panel lists the engines and the model each one runs. The status at the top reads **Operational**, or **No API key**.
 
-- **Brand voice** — paragraph describing the tone (e.g. "Understated luxury. Inform, don't sell. Lead with fabric and construction.")
-- **Structure** — what to lead with (fabric → construction → fit → COO → occasion)
-- **Avoid rules** — words and phrases to never use ("elevate", "timeless", "effortless", "perfect for any occasion")
-
-Changes apply to new descriptions and any re-generated descriptions. Existing descriptions stay as they were.
-
-### 4. Prompt overrides (advanced)
-Per-prompt overrides for specific extraction rules:
-
-| Prompt key | What it controls |
+| Engine | What it does |
 |---|---|
-| `description.style` | Description structure rules |
-| `description.cooFilter` | Which countries get mentioned in description prose |
-| `description.bulletPoints` | Whether to use bullet points in descriptions |
-| `extraction.fabricContent` | Custom rules for fabric extraction |
-| `extraction.occasionRule` | Custom rules for occasion classification |
+| **Parse** | Reads PDFs, linesheets and images |
+| **Swatch** | Reads swatch and colour cards |
+| **Enrich** | Pulls structured product facts |
+| **Describe** | Writes the customer-facing description |
+| **Brand Research** | Heritage and provenance for the brand record |
 
-Edit at your own risk. Each override is a free-form prompt that gets injected at AI call time.
+ThreadCloud chooses these models and updates them after testing on real orders. You don't pick models any more. The dot beside an engine pulses while it is working.
 
-## Sync controls
+## Build &amp; Parse controls
 
-At the bottom of the page:
+### MSRP Pricing
 
-- **Sync sell-through now** — triggers an immediate Shopify Order Sync (otherwise runs every 6 hours)
-- **Reset AI cache** — clears Anthropic prompt cache (rarely needed)
-- **Re-run enrichment on all draft orders** — useful after changing brand voice
+| Field | What it does |
+|---|---|
+| **MSRP Multiplier** | Landed cost × multiplier = suggested retail price |
+| **Round MSRP to nearest** | Rounds the suggested price up to the nearest dollar amount |
+| **Prices end in** | One digit, 0 to 9. When set it replaces the round-up and only ever moves a price up. Leave blank for no ending. |
+
+**Storefront size guide** links to the size conversions your filters use. See [Storefront](/settings/theme/#size-guide).
+
+## Enrich
+
+How ThreadCloud writes product descriptions on the Enrich tab.
+
+### Brand Voice
+
+| Field | What it does |
+|---|---|
+| **Tone and style** | How the copy should sound. Used in every description. |
+| **Output structure** | What to include, in order, one per line |
+| **Creativity** | **Low** (focused, consistent), **Balanced**, or **High** (creative, varied) |
+| **Words and phrases to avoid** | Words the writer will never use |
+
+**Technical writing rules** (folded) holds advanced instructions for the description writer. Leave them to ThreadCloud unless asked.
+
+Click **Save writing settings**. Changes apply to new and regenerated descriptions. Existing descriptions stay as they are until regenerated on Enrich.
+
+### Product description appendix
+
+| Field | What it does |
+|---|---|
+| **Fit advice** | The "Fit:" line per fit. Leave a field empty for the default. |
+| **Fine print by stock type** | A small note at the foot of the description, chosen by the product's stock type |
+| **Show the supplier "Style:" code on the product page** | When off, the supplier's article, model and colour code stay internal and are not printed for shoppers |
+
+Click **Save appendix**.
+
+### Occasions, category mappings and always-in-stock tags
+
+- **Occasion Taxonomy**: the occasions your store uses, each with a short definition so ThreadCloud can classify products.
+- **Category Mappings**: how your own product types map to ThreadCloud categories.
+- **Always in stock**: the Shopify tags that mark NOS products, for example `nos, core, carryover`.
+
+## Purchase Orders
+
+- **Require ship and cancel dates on purchase orders**
+- **Default ship window (days)**: days between the order date and the expected ship date
+
+## Receiving
+
+- **FX Rate Lock**: the exchange rate locks automatically on an order's first receipt. Locked rates are never recalculated.
+- **Measurement Baselines**: how many categories have measurement ranges set from receiving.
+
+## Saving
+
+**Save settings** saves the page. **Reset to defaults** puts every field back to ThreadCloud's defaults.
 
 ## Common patterns
 
-### After changing brand voice
+### After changing the brand voice
 
-1. Save new brand voice
-2. Click "Re-run enrichment on all draft orders" — this regenerates descriptions for any orders in <span class="badge">DRAFT</span> status
-3. Existing live products on Shopify need a per-order re-push to pick up the new voice
+1. Save the new voice.
+2. Open an order's **Enrich** tab and regenerate the descriptions you want in the new voice.
+3. Push those products again to update Shopify.
 
-### When AI is throwing 429s (rate limits)
+### When the AI is down or slow
 
-Anthropic rate limit hit. Two options:
-
-1. Wait — limits reset every minute, and the retry logic handles it
-2. Upgrade the Anthropic plan if you're constantly hitting the wall
-
-Don't switch to a smaller model — that's a different fix and usually wrong.
-
-### Anthropic outage
-
-If status.anthropic.com shows an incident:
-
-- Don't kick workers manually — they're already retrying
-- Don't change the API key
-- Don't change the model
-- Just wait
+If your provider's status page shows an incident, don't change the key. Parse and Enrich wait and retry on their own. If it lasts more than 30 minutes, see [If something breaks](/runbook/).
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Pasting an invalid API key</div>
-Throws no error on save — only fails at next AI call. Test by triggering one classification on a small dataset after rotating the key.
+<div class="callout-title">A wrong key</div>
+ThreadCloud doesn't call your provider when you save, so a wrong key only shows the next time ThreadCloud reads a linesheet or writes copy. After changing the key, read one small linesheet to check it. The <strong>AI engines</strong> tile in <a href="/settings/store-health/">Settings</a> shows if runs are failing.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Editing the description prompt before testing</div>
-Always test prompt changes against 5–10 styles before applying to a full order. Use a small draft order or the legacy enrichment dry-run.
-</div>
-
-<div class="callout callout-danger">
-<div class="callout-title">Don't switch to a non-Anthropic provider</div>
-The prompts are tuned to Claude's structured-output behavior. OpenAI or Gemini will return malformed JSON and break extraction. <strong>Stick with Anthropic.</strong>
+<div class="callout-title">Changing the voice without testing</div>
+Try a voice change on a few styles before regenerating a whole order.
 </div>
 
 ## Next steps
 
-- [Legacy Enrichment](/settings/legacy-enrichment/) — bulk-classify the existing catalog
-- [Settings → Brands & Suppliers](/settings/brands-suppliers/) — brand-specific overrides
+- [Catalog setup](/settings/legacy-enrichment/): label your existing catalog
+- [Brand Registry](/settings/brands-suppliers/): brand-level details used in descriptions

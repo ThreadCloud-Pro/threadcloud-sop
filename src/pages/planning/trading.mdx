@@ -1,151 +1,168 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Merchandising
-description: Open to buy, sell-through, action queue, and on-hand inventory. The selling-window operations surface.
+description: How the store and each brand are selling. The Overview with its Brands table, the Seasons page, the shared period picker and filters, and the older reports.
 ---
 
 # Merchandising
 
-The selling-window operations surface — was called <strong>Trading</strong>, renamed and rebuilt around six tabs. Once inventory lands, Merchandising tells you what's selling, what's aging, and what to act on this week.
+**Merchandising** in the ThreadCloud menu answers "how are we selling, and what needs attention?" It has four tabs, each with one job:
+
+| Tab | Its job |
+|---|---|
+| **Overview** | How the store is doing this period, and which brands need attention |
+| **Seasons** | How one buying season has performed over its life |
+| **Stock** | What you hold, what it is worth, how old it is and how fast it moves. See [Stock](/planning/stock/). |
+| **Money** | Store financials for a period. See [Money](/planning/money/). |
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-07-23</div>
-If a tab or card name here doesn't match the app, it changed and this page is stale — tell the team.
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a tab or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Current merchandising MVP truth</div>
-Inventory Snapshot uses Shopify physical <code>on_hand</code> for variants with inventory tracking
-enabled and discloses untracked variants instead of silently treating them as zero. A failed
-refresh preserves the last good snapshot. This is an on-hand and known-cost view, not a historical
-sales report.
+<div class="callout-title">Who sees it</div>
+Merchandising needs Merchandising access, granted by the account owner in <a href="/settings/users-roles/">Team access</a>.
 </div>
-
-## Merchandising MVP smoke walk
-
-1. **Settings → Legacy Enrichment:** run Clean Catalog only for reviewed legacy rows. Verify core
-   fields and leave ambiguous rows in Needs review.
-2. **Merchandising → Inventory Snapshot:** confirm “Tracked physical on hand, known cost”, a recent
-   refresh timestamp, units/styles, cost/retail, and the tracked-physical disclosure.
-3. Switch between **Brand**, **Category**, and **Subcategory**. Open size curves and check that
-   sizes use the expected category scale rather than Unknown.
-4. Use season, brand, and category filters. No rows is a data result; a blank page or error is a defect.
-5. Open one brand and one category scorecard. Treat values as directional until the historical
-   ledger and receipt denominator gates are green.
-
-### Stock-type interpretation
-
-- **MTO** is seasonal product made for the store. The decision metric is sell-through against a
-  factual received/receipt denominator.
-- **STOCK** is made-to-order product with vendor backup inventory. Use velocity/turns only when
-  physical and cost inputs are complete.
-- **NOS** is evergreen carryover product with longer vendor replenishment. Use velocity/turns.
-- **SPECIAL** is a customer-driven special/custom order. Keep it separate from normal stock
-  rankings unless source facts explicitly link it to a normal assortment.
-
-Until receipt history is complete, the app withholds MTO sell-through rather than manufacturing a
-denominator. Do not substitute current on-hand for received units.
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-Weekly. Monday morning is the natural cadence — review prior week's sales, identify reorder candidates, identify markdown candidates.
+Weekly. Monday morning works: read last week's sales, then the brands that need attention, then what to reorder.
 </div>
 
-## The six tabs
+## The header, on every tab
 
-Sidebar → Merchandising. Across the top: <strong>Overview</strong>, <strong>Brands</strong>, <strong>Categories</strong>, <strong>Orders</strong>, <strong>Buying Seasons</strong>, <strong>Inventory Snapshot</strong>.
+- **Left**: the page title, or a breadcrumb like **Merchandising › Brand** on a brand page.
+- **Right**: the **period picker**, a search button, and a gear for your settings.
+- **Below**: the four tabs, and **⋯** for the older reports.
+
+### The period picker
+
+One button that states the period in words, for example **Last 30 days** or **FW-26 season**. Click it to choose:
+
+| Group | Choices |
+|---|---|
+| **Seasons** | Your buying seasons. Choosing one reads the page over that season. |
+| **Quick ranges** | **This month**, **Last month**, **Last 30 days**, **Last 90 days**, **Year to date** |
+| **Custom** | Two dates (both days count) and **Apply** |
+
+When you pick a date range, a second button beside it names the season shown next to the period (**Season beside** the period). The choice is saved in the page address, so a view can be bookmarked or shared.
+
+### Filters
+
+Click **+ Filter** to add a filter for **Brand**, **Category** or **Stock type**. Each filter becomes a chip. Click a chip to change it, or **×** to remove it. Stock type options are **Seasonal MTO**, **Seasonal Stock**, **Never Out of Stock** and **Special Orders**, plus **Unclassified** for products with no stock type.
+
+### Search and the gear
+
+- **Search** finds a brand, product or order. A brand result opens that brand's page.
+- **The gear** (**Merchandising settings**) holds your **Home shortcut** (whether the Merchandising tile on Home opens **Merchandising** or **Money**), your **Opening period** for Money (**Last 30 days** or **Current season**), and the store's **Season calendar**: when **Spring &amp; Summer** and **Fall &amp; Winter** start and end, as month and day. Only the store owner can change the season calendar.
 
 ## Overview
 
-The home tab, scoped to one buying season at a time. Six cards:
+### The figures
 
-- <strong>Open to Buy</strong> — committed spend against target, split into seasonal buy vs reorder spend, with a concentration flag if you're overweight in one place.
-- <strong>Sell-Through</strong> — % sold of what's landed, either for this season or across your whole portfolio.
-- <strong>Act Now</strong> — one merged queue of markdown candidates, reorder candidates, and margin flags, so you aren't checking three separate lists.
-- <strong>Delivery Watch</strong> — a progress bar of what's actually landed against what's on order.
-- Two cards marked <strong>Coming</strong> (Size Curve Alarm, Margin Truth) — placeholders for features not shipped yet. Safe to ignore for now.
+The figures are grouped by what they are counted over, with one heading per group:
 
-Click any row in Act Now to jump straight to acting on it (reorder or markdown).
+| Group | Figures |
+|---|---|
+| The period you picked | **Net sales**, **Units sold** |
+| The season | **Sell-through**, **Delivery fill**. **Season page** links to the season. |
+| **Now** | **On hand**. **Stock** links to the Stock tab. |
 
-## Brands
+If no buying season exists yet, the page says **No buying season is ready.** and offers **See whole-store numbers** (Money) and **Open Buying Plan**.
 
-A whole-store scorecard, not scoped to one season: total brand count, gross sales, sell-through, and on-hand value at the top, then a sortable table of every enriched brand with its gross margin % and year-over-year sell-through trend. Use this to compare brands against each other, not just within one season's buy.
+### Brands
 
-## Categories
+The store table: one row per brand, the heart of the Overview.
 
-The same scorecard shape as Brands, grouped by category instead — gross margin and trend per category, whole-store.
+| Column | Meaning |
+|---|---|
+| **Brand** | Click to open the [brand page](/planning/brand-page/) |
+| **Sold**, **Net sales** | In the period you picked |
+| **Sell-through**, **Fill** | Over the season's life |
+| **On hand**, **Cover** | Now. Cover is weeks of cover, for STOCK and NOS only. |
+| **Letter** | The state of the brand letter for the period. See [Brand page](/planning/brand-page/#the-letter). |
 
-## Orders
+- **Filter brands** narrows the list as you type.
+- **Sort brands** by **Sold**, **Net sales** or **Season sell-through**.
+- **Show all N brands** shows the full list.
+- **CSV** downloads the table as you see it.
 
-Per-order buy detail. The scorecard columns (Planned at cost, Recorded retail, Recorded IMU%, OTB Var, Receipt%) now report the <strong>known-cost subset</strong> instead of blanking a whole order because one style is uncosted: each row shows what is known and, when some units are missing a value, a small "X of Y costed" or "X of Y priced" coverage line beneath it. Recorded IMU% is computed only over units that carry <strong>both</strong> a cost and a retail, and OTB Var still waits until <strong>every</strong> unit is costed (a partial buy against a whole-order target would read as false headroom).
+### The rail
 
-## Buying Seasons
+**The rail** shows products as cards with their picture, sorted by **Sold**, **Left**, **Velocity**, **Margin** or **Age**. Each card links to the product in Shopify admin and on your storefront where those exist.
 
-Season and OTB planning — unchanged from before the rebuild.
+### Breakdown
 
-## Inventory Snapshot
+One row per **Category**, **Subcategory** or **Stock type** (pick the cut at the top right). Columns: **Units sold**, **Net sales**, **Units left**, **On hand at cost**, **Sell-through**. Click a column heading to sort. On the Category cut, click a row's arrow to open its subcategories. Click a row's name to filter the whole page to it. **CSV** exports the rows in the order you sorted them. On a date range, the breakdown is by **Season** only.
 
-Was called <strong>Assortment</strong>. On-hand inventory (received minus sold), in three cuts on one page:
+### Sizes
 
-- <strong>Headline table</strong> — on-hand units, cost, retail, margin %, and style count, grouped by Brand, Category, or Subcategory (toggle at the top). If a snapshot predates retail-price capture, the retail/margin columns show a prompt to refresh instead of a dash.
-- <strong>By size</strong> — a bar chart per category showing on-hand units across that category's full size run (different scales for the same category, e.g. raw EU sizes vs reorder sizes, are normalized onto one consistent scale so the curve reads cleanly).
-- <strong>By colour</strong> — on-hand units and value by colour group; any colour holding 40%+ of a category's value is flagged <strong>Concentrated</strong> — a markdown-exposure warning.
+Sold size curves per category, so you can see which sizes sell and which sit. **Check these sizes** flags sizes worth a look.
 
-Filter by Brand, Category, and Season at the top of the page — the filters are in the URL, so a filtered view is bookmarkable and shareable. An <strong>"Inventory as of"</strong> stamp on the masthead shows how fresh the on-hand figures are.
+### Notes
 
-<div class="callout callout-tip">
-<div class="callout-title">Refreshing the snapshot</div>
-Click <strong>Refresh catalog</strong> to pull current on-hand counts from Shopify. It runs in the background with a live progress bar and ETA (an ambient-bar notice shows "X of Y variants" as it goes) — you can navigate away and it keeps running. If a refresh gets stuck, the lock auto-clears after a few minutes and you can just click Refresh again; there's no need to wait it out or ask for a manual reset.
-</div>
+Any figure ThreadCloud can't prove shows a mark instead of a number. The reason, and what would clear it, is in the **Notes** at the foot of the page. A withheld figure is not zero.
 
-## Season scoping
+## Seasons
 
-Overview, Brands, and Categories share the same season picker (a row of season pills, plus "All" on the scorecard tabs — Overview always needs one specific season). Inventory Snapshot's Season filter is a dropdown alongside Brand and Category instead of pills, but does the same job.
+One buying season over its whole life. Pick the season in the period picker. Filters: Brand, Category, and one Stock type.
 
-## Sync schedule
+| Chapter | What it shows |
+|---|---|
+| **01 The season in figures** | **Net sales**, **Net units**, **Sell-through**, **Gross margin**, **Received** |
+| **02 Sell-through by cohort, category and brand** | Cut by **cohort** (stock type), **category** or **brand**. Columns include **Net units**, **Net sales**, **Sell-through** and **Shortfall**. Rows link to the brand's **scorecard**. **CSV** exports it. |
+| **03 The delivery drill** | Each order in the season: **Order**, **Delivery window**, **Ordered**, **Received**, **Fill** |
+| **04 Carryover at cost** | Current STOCK and NOS at cost. This one is not limited to the season. |
+| **05 Not published, and why** | Every figure that is withheld, with its reason |
 
-Sell-through numbers sync from Shopify orders automatically every 6 hours in the background. If the numbers look stale, trigger a manual sync from <strong>Settings → AI & Models → "Sync sell-through now"</strong> — should complete in under a minute. On-hand inventory (Inventory Snapshot) is separate: it only updates when you click <strong>Refresh catalog</strong> on that tab.
+If no order exists for the season yet, the delivery drill says so. If the store has no buying season, the page reads **No season to read.**
 
-## Common patterns
+## More reports (⋯)
 
-### Monday morning review
+The **⋯** at the end of the tab row opens the older reports. They keep their own tab row.
 
-15 minutes:
+| Report | Use it for |
+|---|---|
+| **Performance overview** | The earlier whole-store summary |
+| **Brand history** | Brand scorecards over every season |
+| **Category history** | Category scorecards over every season |
+| **Order scorecards** | One row per order: styles, units, **Planned at cost**, **Recorded retail**, **Recorded IMU%**, **OTB Var**, **Receipt%**, status |
+| **Performance drill-down** | Product-level performance and current inventory together |
 
-1. Open Merchandising → Overview for the current season.
-2. Check <strong>Act Now</strong> — work top to bottom: reorder, markdown, and margin flags all live here now.
-3. Check <strong>Delivery Watch</strong> for anything that should have landed and hasn't.
-4. Switch to <strong>Sell-Through</strong> — sort for the top and bottom performers.
-5. If a brand or category looks off across the whole store (not just this season), check the <strong>Brands</strong> or <strong>Categories</strong> tab for the wider trend.
+## Where the numbers come from
 
-That's the week's tasks set.
+- **Sales** come from your Shopify orders. ThreadCloud syncs orders every hour. See **Settings → Automations**.
+- **On hand** comes from a nightly count of your Shopify stock, plus an hourly sweep.
+- **Season** figures use the season calendar in the gear.
 
-### End-of-season post-mortem
+If numbers look stale, open [Settings](/settings/store-health/) and read the **Shopify sync** and **Nightly capture** tiles.
 
-After a season closes, use:
+## Monday morning review
 
-- <strong>Brands</strong> / <strong>Categories</strong> — whole-store scorecards for next year's buying plan (lean into high sell-through, high-margin performers).
-- <strong>Inventory Snapshot</strong> — what's still sitting, by size and by colour, to plan markdowns before the next delivery window.
+<ol class="steps">
+  <li>Open <strong>Merchandising</strong>. Set the period to <strong>Last 30 days</strong> or the current season.</li>
+  <li>Read the <strong>Brands</strong> table. Sort by <strong>Season sell-through</strong> and look at the top and bottom.</li>
+  <li>Open a brand that looks off for its products and sizes.</li>
+  <li>Check <strong>Stock</strong> for what is old or not moving.</li>
+  <li>Reorder what is working from <a href="/workflows/reorder/">Reorder</a>.</li>
+</ol>
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Acting on stale sell-through</div>
-If the last sync ran a few hours ago and a big batch of orders came through, the numbers underrepresent reality. Hit "Sync now" before acting on close-to-the-line numbers.
+<div class="callout-title">Comparing a period figure with a season figure</div>
+Net sales and Units sold are for the period you picked. Sell-through and Delivery fill are for the season's whole life. The group headings say which is which. Don't read a season figure as if it covered last month.
 </div>
 
 <div class="callout callout-warn">
 <div class="callout-title">Reordering off sell-through alone</div>
-A high-sell-through style that's still well-stocked doesn't need a reorder yet — cross-check against Open to Buy and Delivery Watch before committing more spend.
-</div>
-
-<div class="callout callout-warn">
-<div class="callout-title">Comparing a season-scoped number against a whole-store one</div>
-Overview's cards are scoped to one season; Brands and Categories are whole-store. A brand that looks flat on this season's Overview can still be a strong performer whole-store on the Brands tab — check both before writing a brand off.
+A style with high sell-through that is still well stocked doesn't need a reorder yet. Check On hand and Cover first.
 </div>
 
 ## Next steps
 
-- [Reorder](/workflows/reorder/) — act on reorder candidates
-- [Financials](/planning/financials/) — margin and cost roll-up
-- [Buying Seasons](/planning/buying-seasons/) — pivot for the planning context
+- [Brand page and letter](/planning/brand-page/)
+- [Stock](/planning/stock/)
+- [Money](/planning/money/)
+- [Reorder](/workflows/reorder/)

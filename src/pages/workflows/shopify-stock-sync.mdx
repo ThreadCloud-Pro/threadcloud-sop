@@ -1,0 +1,63 @@
+---
+layout: ../../layouts/Doc.astro
+title: Shopify stock sync
+description: What it means when receiving says Shopify didn't confirm the stock, where to see unconfirmed stock writes, and how the Owner settles them.
+---
+
+# Shopify stock sync
+
+Every time receiving changes stock in Shopify (a receipt, a reversal, an adjustment, a size fix), ThreadCloud writes the change down first and then waits for Shopify to confirm it. Most of the time Shopify answers in a second and you never see any of this. This page is for the rare time it doesn't.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+When a receiving screen warns "Shopify stock not confirmed", or refuses a size and sends you to <strong>Settings, Automations, Shopify stock</strong>.
+</div>
+
+## What you might see while receiving
+
+**After a receipt: "Shopify stock not confirmed on N units"**, with the sizes. The receipt is recorded in ThreadCloud, but Shopify didn't confirm the stock for those sizes. Check those sizes in Shopify before selling them.
+
+**Before a receipt: a refusal that names sizes**, for example "A Shopify stock sync for sizes 48, 50 is unresolved since 20 minutes ago; resolve it under Settings / Automations, Shopify stock, then receive again." An earlier stock change on the same size was never confirmed. ThreadCloud won't stack a new change on top of it until it's settled. **Nothing was booked by this attempt.**
+
+<div class="callout callout-danger">
+<div class="callout-title">Don't just enter it again</div>
+An unconfirmed change may still have landed in Shopify. If you re-enter the quantities before it's settled, the stock can be counted twice. Settle it first, then check the size in Shopify, then receive.
+</div>
+
+## Where to look
+
+Open <strong>Settings</strong>, then **Automations**, and find the **Shopify stock** row. It reads one of:
+
+| Row reads | Meaning |
+|---|---|
+| **Every stock write confirmed by Shopify** | Nothing outstanding from receiving. |
+| **N stock writes awaiting confirmation** | Open the row: it names the sizes. "Receiving refuses these sizes until each one is settled." |
+| **Recording only** | Unconfirmed writes are recorded but receiving isn't refusing anything. |
+| **Ledger could not be read** | ThreadCloud couldn't read its own record. That is not the same as all clear. Try again shortly. |
+
+This row is receiving's record only. Custom orders and Transfer Out send their own stock changes and don't show here.
+
+## Settling it (Owner)
+
+<ol class="steps">
+  <li>On the <strong>Shopify stock</strong> row, the Owner clicks <strong>Read Shopify back</strong>. It reads <strong>Reading Shopify back</strong>, then <strong>Shopify read back</strong>.</li>
+  <li>Read what it recorded for each size. It only reads from Shopify; it never sends the change again.</li>
+  <li>Check each named size in Shopify against the change that was attempted, and correct it there if needed.</li>
+  <li>Go back to the receipt and receive again, entering only what Shopify doesn't already have.</li>
+</ol>
+
+What the read-back can tell you:
+
+- **Shopify already applied the change.** The units are already in Shopify. Don't enter them again.
+- **Shopify was read and the change was set aside** with the quantity Shopify shows now. That's a number to check against, not proof either way. Look at the size in Shopify and decide.
+- **Shopify couldn't be read for some sizes.** Those sizes still refuse; try again in a moment.
+
+## Next steps
+
+- [Receiving](/workflows/receiving/)
+- [If something breaks](/runbook/)

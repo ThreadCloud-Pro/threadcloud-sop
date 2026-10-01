@@ -1,0 +1,126 @@
+---
+layout: ../../layouts/Doc.astro
+title: Transfer Out
+description: Send stock back to a supplier (RTV) with the Returns Counter. Pick the brand, scan the tags, pick a reason, and transfer out. Park a count, pick it up on another device, or void a transfer.
+---
+
+# Transfer Out
+
+**Transfer Out** is how stock leaves the store to go back to its maker: a return to vendor (RTV), a defective piece, or anything else that goes out the back door. You pick the brand, scan the tags of what's going back, and press **Transfer out**. ThreadCloud takes the units out of Shopify, records the cost they were booked at, and gives you a document to print and send with the box.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Any time stock physically leaves to go back to a supplier. Don't adjust the stock by hand in Shopify: a transfer keeps the cost and the paper trail.
+</div>
+
+## What you'll need
+
+- The garments going back, with their hang tags
+- A barcode scanner (USB or Bluetooth), or the tags' SKUs to type
+- The supplier's RMA or credit-note number, if they gave you one
+- A Shopify inventory location connected in Settings. Without one, the page says so and won't transfer.
+
+## Quick path
+
+<ol class="steps">
+  <li>Open <strong>Transfer Out</strong> from the menu. It opens the <strong>Returns Counter</strong>.</li>
+  <li><strong>Pick the brand</strong> the stock goes back to.</li>
+  <li><strong>Scan each tag.</strong> Repeats stack the count.</li>
+  <li><strong>Pick a reason</strong>: Return to supplier, Defective or Other.</li>
+  <li>Press <strong>Transfer out</strong>, then open and print the document.</li>
+</ol>
+
+## Stage 1: Pick the brand
+
+The counter asks "Who is it going back to?". Start typing the brand ("Type a brand"). The list shows **Brands holding stock**, narrowing to **Matching brands** as you type. Press Enter to open the top match, or click one.
+
+A brand that already has a count open, on any device, is marked. If you open one, ThreadCloud asks what to do:
+
+- <strong>Resume parked count</strong>: carry on where someone left off.
+- <strong>Start fresh</strong>: throw that count away and begin again.
+- <strong>Pick a different brand</strong>
+
+## Stage 2: Scan the tags
+
+The scan bar ("Scan any tag") stays focused, so a scanner can just keep firing. There is no accept step:
+
+- Each scan adds a unit to its line. Scan the same tag again and the count goes up.
+- To pull a lot at once, use **or pull by tag**: search the brand's stock by season, colour or a word, then click <strong>Add all</strong>. A single transfer holds up to 250 lines; past that, send what you have and sweep again.
+- Each product shows as a row with **Product**, **Colour**, **Supplier Ref**, **Units**, **Unit** cost and **Value**, and a cell per size. Tap a size cell to take one off. Click the x to take the whole product off.
+- If a product has no supplier reference on file, type it off the garment in **Add ref**.
+
+Things that look like errors but aren't:
+
+- **"Old tag: which size is on it?"** Older tags carry the style's code, not the size's. Tap the size that's on the garment. The line can't be transferred until you answer.
+- **Another brand's tag is refused.** A transfer goes to one brand. Start a separate count for the other brand.
+- **The count stops at what's on hand.** You can't count more units than the store holds.
+
+Costs show as **unverified** until ThreadCloud has re-checked them. If costs are held in more than one currency, the total isn't added up; each line still shows its own.
+
+## Stage 3: Reason and transfer
+
+Pick the **Reason**: **Return to supplier**, **Defective** or **Other**. Then press <strong>Transfer out</strong>. It reads **Transferring...** and then opens the new document.
+
+<div class="callout callout-info">
+<div class="callout-title">Why the transfer can move fewer units than you counted</div>
+"The counter stops at units on hand across the whole store. The transfer follows Shopify's available figure at the transfer location, which is lower wherever stock sits at another location or is committed to open orders." Neither number is wrong. Check the document for what actually moved.
+</div>
+
+If stock moved while you were counting (a sale, for example), nothing is transferred and the counter names the lines to remove or rescan. Fix them and press Transfer out again.
+
+## Park a count and finish it later
+
+Press <strong>Save and close</strong> to park a count. It's saved on the server, so a count started on the stockroom laptop can be finished on the floor iPad. The ledger below the counter lists every parked count with <strong>Resume count</strong> and <strong>Start fresh</strong>.
+
+When you resume, ThreadCloud re-checks every line's stock and cost, so <strong>Transfer out</strong> stays greyed out for a moment until that lands.
+
+If the save reached your device but not the server, it says "It is saved on this device only; the shared copy did not answer." Save again when you're back online.
+
+## The document
+
+Each transfer gets a document (for example `RTV-...`) showing the products, sizes, units, the cost each unit was booked at, the reason and the date. On the document:
+
+- <strong>Print RTV</strong> to send a copy with the box.
+- <strong>Export CSV</strong> for your books.
+- <strong>Back to transfer out</strong> returns to the counter.
+
+When the supplier gives you an RMA or credit-note number, type it into **Supplier reference: RMA / credit note** on the transfer's row in the **Transfer-out ledger** and click <strong>Save reference</strong>. Until then the document reads "Awaiting RMA or credit-note number".
+
+## Void a transfer
+
+If a transfer was a mistake, click <strong>Void</strong> on its row in the ledger (or on the document). ThreadCloud asks, in units: "Void RTV-... ? 12 units go back on the shelf and back into Shopify. The document stays, marked VOID." Confirm, and the units come back into stock.
+
+The document isn't deleted: it stays in the ledger marked void, so the record of what happened is kept. Viewers don't see the Void button.
+
+## Returning stock from one order
+
+To send back part of a specific delivery, open that order's **Receive** tab and click <strong>Transfer out / RTV</strong> on the **Returned to vendor** card. That page lists what was received on the order, with how many of each can still go back:
+
+1. Set the **Transfer date**, the **Reason**, the **Supplier reference** if you have one, and a **Detail** line (for example the defect).
+2. Enter how many of each line go back.
+3. Click <strong>Create transfer-out record</strong>.
+
+The order's **RTV records** are listed underneath. General stock that wasn't received on this order goes through the Returns Counter instead.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Adjusting stock in Shopify instead</div>
+Taking units out by hand in Shopify loses the cost and the record. Always transfer out from ThreadCloud.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Two people counting the same brand</div>
+A brand has one shared count. If someone else changed it on another device, the counter tells you and throws nothing away. Look at what's there before you start fresh.
+</div>
+
+## Next steps
+
+- [Receiving](/workflows/receiving/): where the stock came in
+- [Logistics](/workflows/logistics/): receiving log and reprints
+- [If something breaks](/runbook/)

@@ -1,0 +1,111 @@
+---
+layout: ../layouts/Doc.astro
+title: Home
+description: The two desks you land on when you open ThreadCloud. Merchandising for buying work, Sales floor for reorders, custom orders and deliveries.
+---
+
+# Home
+
+Home is the first screen when you open ThreadCloud from your Shopify admin. It has two desks. Switch between them with the **Merchandising | Sales floor** toggle at the top right, next to **Settings**.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a tile or label here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-tip">
+<div class="callout-title">Which desk opens first</div>
+ThreadCloud remembers the desk you last chose, on this device. The first time, people who can create buying orders land on <strong>Merchandising</strong>, and everyone else lands on <strong>Sales floor</strong>.
+</div>
+
+## Search
+
+The search bar under the title reads **Search orders, POs, styles, customers, brands**. Click it, or press <kbd>⌘</kbd>+<kbd>K</kbd> (<kbd>Ctrl</kbd>+<kbd>K</kbd> on Windows). Results are grouped: **Needs you**, **Orders**, **Styles**, **Customers**, **Brands** and **Go to** (pages and Settings destinations).
+
+- Use the arrow keys to move, <kbd>Enter</kbd> to open, <kbd>Esc</kbd> to close.
+- With nothing typed, it shows what needs you and your recent orders.
+- Try a brand, a PO number, an article code, or a customer name.
+
+## The Merchandising desk
+
+For buyers. The line under the greeting counts your orders **in progress**, the **styles open**, and what is **committed** at cost.
+
+### Tiles
+
+| Tile | What it opens |
+|---|---|
+| **New buying order** | Start an order from a supplier linesheet. See [Parse & Build](/workflows/build-order/). Shown only to people who can create orders. |
+| **Merchandising board** or **Money** | Merchandising. It reads **Money** until your first buying season exists. Shown only with Merchandising access. |
+| **Staff playbook** | ThreadCloud basics, with a link you can share with staff. |
+
+While a new store is still finishing setup, the account owner may also see **Confirm delivery calendar**, **Finish storefront**, **Refine catalog** and **Finish setting up**. See [First-time setup](/setup/onboarding/).
+
+### Needs you
+
+The list of things waiting on a person, most urgent first. Each row has one button:
+
+| Row says | Button | Where it goes |
+|---|---|---|
+| **Supplier response** · Review the changes your supplier sent back | **Review** | The order's supplier review |
+| purchase order ready to send | **Send PO** | The order's PO tab |
+| N styles approved, not yet pushed | **Push N** | The order's Enrich tab, nearest delivery window first |
+| PO sent · no supplier confirmation logged | **Log confirmation** | The order's PO tab, oldest first |
+| **Catalog enrichment** · N need review | **Review** | [Catalog setup](/settings/legacy-enrichment/) |
+
+The first five show. Click **Show N more** to see the rest. When nothing is waiting it reads **Desk clear.**
+
+### Open orders
+
+Below Needs you, your orders are grouped by buying season. Click a season heading to open or close it. Each order row shows the brand, the season code, and its stage:
+
+| Stage | Meaning |
+|---|---|
+| **Building** | The order is still in Parse &amp; Build |
+| **Enriching** | Product facts are being reviewed and approved |
+| **Push ready** | Approved styles are waiting to go to Shopify |
+| **Receiving** | Products are in Shopify and units are still to arrive |
+| **Live** | Everything ordered has been received |
+
+**+ Add order to** a season starts a new order in that season.
+
+## The Sales floor desk
+
+For the floor team. The line under the greeting counts orders **on the way**, any that are **overdue**, your **reorders**, and **custom orders open**.
+
+### Tiles
+
+| Tile | What it opens |
+|---|---|
+| **Reorder** | Restock from the catalog. See [Reorder](/workflows/reorder/). |
+| **Custom order** | A made-to-measure or special order for one customer. See [Custom orders](/workflows/mtm/). |
+| **Staff playbook** | ThreadCloud basics. |
+
+### Reorders and Custom orders
+
+Two lists sit under the tiles. Each is closed until you open it, and shows three rows until you ask for more. An empty list says **No reorders yet.** or **No custom orders yet.**
+
+### Coming to the floor
+
+A row of covers, one per incoming order, soonest delivery first. Swipe or use the arrows to move through them. An order that can be received shows **Receive**. If nothing has a delivery window yet it reads **Delivery windows appear here once orders carry them.**
+
+## Catalog enrichment banner
+
+If your existing catalog has products waiting for a decision, a **Catalog enrichment** banner appears at the top of both desks. Click it to open [Catalog setup](/settings/legacy-enrichment/).
+
+## Common questions
+
+<div class="callout callout-warn">
+<div class="callout-title">I can't see New buying order</div>
+Creating buying orders needs the store's buying access. If the tile is missing and you should have it, ask the store's account owner, then ThreadCloud.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">I can't see Merchandising or Money</div>
+Those need Merchandising access. The account owner turns it on for you in <a href="/settings/users-roles/">Team access</a>.
+</div>
+
+## Next steps
+
+- [Parse & Build](/workflows/build-order/): your first buying order
+- [Merchandising](/planning/trading/): how the store is selling
+- [Settings and store health](/settings/store-health/)

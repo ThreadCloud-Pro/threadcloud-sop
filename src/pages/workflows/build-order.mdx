@@ -1,185 +1,201 @@
 ---
 layout: ../../layouts/Doc.astro
-title: Build Order
-description: Turn a supplier linesheet into a fully structured order in ThreadCloud. From PDF upload to approved styles ready for Shopify push.
+title: Parse & Build
+description: Start a buying order, drop the order and the appointment photos on the table, let ThreadCloud read them, check what it built, and send the purchase order.
 ---
 
-# Build Order
+# Parse & Build
 
-Turn a supplier linesheet into a fully structured order. The heaviest workflow in ThreadCloud — and the most important. Get this right and everything downstream just works.
+Parse & Build is the first tab of every buying order. You drop the supplier's order and everything from the appointment onto one table, press **Parse**, and ThreadCloud reads it into products with sizes, quantities, costs and prices. You check what it built, then send the purchase order and move on to Enrich.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+This screen used to be called Build Order. If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-Every time you place a new buying order with a supplier. Replaces the old "make a spreadsheet, manually create products in Shopify" process.
+Every time you place a new buying order with a supplier. To restock something you already carry, use <a href="/workflows/reorder/">Reorder</a> instead. For a one-off made-to-measure or special order for one customer, use <a href="/workflows/mtm/">Custom orders</a>.
 </div>
 
-## What you'll need before you start
+## What you'll need
 
-- The supplier's linesheet (PDF or Excel)
-- The order's **buying season** (e.g. PF2025) — set up under <a href="/planning/buying-seasons/">Buying Seasons</a> if it doesn't exist yet
-- The supplier set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a>
-- Roughly known **delivery window** (start–end dates)
+- The supplier's order: a PDF, Excel (XLS or XLSX) or CSV linesheet, or photos of a handwritten order
+- Any appointment photos: swatch cards, hang tags, garments on the rail
+- The brand set up under <a href="/settings/brands-suppliers/">Brands & Suppliers</a>
+- Delivery windows set up under <a href="/settings/delivery-windows/">Delivery Windows</a>
 
-## The five stages
+## Quick path
 
 <ol class="steps">
-  <li><strong>Create the order</strong> — pick brand, season, delivery window</li>
-  <li><strong>Parse</strong> — upload linesheet, AI extracts every style</li>
-  <li><strong>Review & fix</strong> — eyeball the grid, fix anything wrong</li>
-  <li><strong>Submit for supplier review</strong> — send ack link, wait for confirmation</li>
-  <li><strong>Push to Shopify</strong> — see the <a href="/workflows/push-to-shopify/">Push SOP</a></li>
+  <li><strong>New buying order</strong> on the home screen: pick the brand, then the delivery window.</li>
+  <li><strong>Drop the files</strong> on the table and check each one is marked Order or Context.</li>
+  <li><strong>Parse</strong>: ThreadCloud reads the order and the photos into products.</li>
+  <li><strong>Check the order</strong>: clear the <strong>to check</strong> notes and place any leftover photos.</li>
+  <li><strong>Send PO</strong> to the supplier, then <strong>Enrich for web</strong> to get the products ready for Shopify.</li>
 </ol>
 
-## Stage 1 — Create the order
+## Stage 1: Create the order
 
-Open ThreadCloud and click <strong>New Order</strong> from the dashboard (or `/app` → New).
+On the home screen, the **Merchandising** desk has a tile called <strong>New buying order</strong> ("drop a linesheet · build an order"). Only people who can create buying orders see it.
 
-You'll be asked for:
+1. **Pick the brand.** Type in the search box or pick from **Recent**. If the brand isn't there, add it first in <a href="/settings/brands-suppliers/">Brands & Suppliers</a>.
+2. **Pick the delivery window.** Choose the **Year**, check the currency (click it to change it for this order), then click the window card, for example "Spring & Summer 2026". Click <strong>SHOW ALL SEASONS</strong> if the one you want isn't listed.
 
-| Field | What to enter | Notes |
-|---|---|---|
-| Brand | Pick from dropdown | If brand is missing, add it first under [Brands & Suppliers](/settings/brands-suppliers/) |
-| Supplier | Auto-fills based on brand | Override only if the brand has multiple suppliers |
-| Buying Season | Pick from dropdown | Must exist under [Buying Seasons](/planning/buying-seasons/) |
-| Delivery Window | Pick a window | Each window is e.g. "Aug 15 – Sep 1, 2025" — set up under [Delivery Windows](/settings/delivery-windows/) |
-| Order Currency | Auto-fills from supplier | Override only if this PO is in a different currency than the supplier default |
+Clicking a window creates the order straight away and opens Parse & Build. ThreadCloud names the PO for you from the brand code and the season, and adds `-02`, `-03` when you place more than one order for the same brand and window.
 
-Click <strong>Create</strong>. You land on the new order's page with an empty Parse zone.
+If you see "Set up delivery windows in Settings before creating an order", the store has no delivery windows yet. Use **Go to Settings**.
+
+## The order header
+
+Every tab of an order (**Parse & Build**, **Enrich**, **Receive**, **Budget**) shares one slim header:
+
+- The **brand** and **delivery window** as the title.
+- The **Delivery** dates, which you can click and edit in place. Click **+ Add dates** if there are none.
+- **Order settings**, which opens the order's settings (below).
+- On the tab row: **Supplier**, **Currency**, the supplier's confirmation number (**Conf**, or **+ Conf #** to add one) and the supplier **Contact** (or **+ Contact**).
+
+### Order Settings
+
+<strong>Order settings</strong> opens a dialog where you can change the brand, the delivery window, the **Order Currency** (the supplier's invoice currency), the **Supplier Order Reference** (their order or confirmation number, which you can search from the home screen), the **Supplier Contact**, and the **Build view** (**Tiles** or **Grid**). Click <strong>Apply</strong> to save.
+
+## Stage 2: Drop the files
+
+An empty order shows a table that reads "Nothing woven yet. Drop the order and everything from the appointment." You can:
+
+- drag files onto the table,
+- click <strong>Add files</strong>,
+- click <strong>Take photos</strong> on a phone or tablet to use the camera, or
+- click <strong>Start with one product</strong> to type a product in by hand.
+
+Each file lands on the table as a card, and the table sorts it for you:
+
+- **Order** files become products. A linesheet or an order form goes here.
+- **Context** files inform the order but add no products of their own: a fit guide, a price list, a care sheet. They sit on their own **Context** shelf.
+
+Check every card. If a file is in the wrong place, click **Order** or **Context** on its card to flip it. Click the x to remove a file. A file ThreadCloud can't take shows **Not added** with the reason, for example an unsupported file type or an iPhone HEIC photo ("Export as JPEG and add again").
+
+Photos go on the **Photos** pile on the right. Type anything worth knowing in the **Notes** line under the table, for example "Made in Italy. Blue stickers mark the colours ordered."
 
 <div class="callout callout-tip">
-<div class="callout-title">Tip</div>
-The order's <strong>id</strong> appears in the URL (e.g. <code>/app/orders/<strong>247</strong>/...</code>). Write this down — it becomes the <code>tc-order-247</code> tag on every product, so you can search Shopify Admin for "everything from this PO".
+<div class="callout-title">Drop everything at once</div>
+A linesheet, a few swatch cards and twenty rail photos can all go in one drop. ThreadCloud reads the sheets first, then the photos, and places each photo on the product it belongs to.
 </div>
 
-## Stage 2 — Parse
+## Stage 3: Parse
 
-Drag the supplier's PDF or Excel onto the Parse zone, or click to browse.
+Press the big <strong>Parse</strong> bar under the table.
 
-What happens behind the scenes:
+While it reads, each sheet shows as a card that fills as it goes (**Waiting**, **Reading**, then the number of styles it found). Beside them runs a count of **Styles**, **Units**, cost and **IMU**, and a live line names the sheet it is on. A time estimate appears once two sheets have finished. You can leave the page; the parse keeps running.
 
-1. ThreadCloud uploads the file
-2. AI reads it (vision pass for PDFs, structured pass for Excel)
-3. Each style is extracted with: style code, colour, sizes, retail price, cost, fabric, country of origin, and a dozen other fields
-4. The styles appear as **tiles** in the order grid, one tile per style
+To abandon a parse, press <strong>Stop</strong> on the live line. That discards this parse and keeps whatever was already on the order.
 
-**Expected time:** 25–60 seconds for a typical PDF. The <span class="badge badge-info">PARSING</span> ambient bar fires at the top of the screen.
+When it finishes, the table shrinks to one band, for example "24 styles woven." with the time, sheets, units, cost and IMU under it, and your products show underneath. Use **+ Add files** on the band to add more later, and **Context** to see the files and notes again.
 
-<div class="callout callout-warn">
-<div class="callout-title">Heads up</div>
-Don't navigate away during the first parse. The page is hooked up to revalidate when parsing finishes, but if you click around you might miss the tile updates. Wait for the ambient bar to flip to "Document threaded".
-</div>
+If a sheet shows **Could not read**, try it once more, then ask the supplier for an Excel or a cleaner PDF. See <a href="/runbook/">If something breaks</a>.
 
-### If parse fails
+## Stage 4: Check the order
 
-See the [runbook: parse timeout](/runbook/#parse-timeout). Short version: try once more, then ask the supplier for Excel, then add styles manually as a last resort.
+### The "to check" notes
 
-## Stage 3 — Review & fix
+Anything ThreadCloud wants you to look at is gathered in one place: a door on the table that reads, for example, **3 to check**. It opens by itself once the parse finishes if there is something new. Notes you will meet:
 
-Scroll the style grid. Each tile shows:
+| Note | What to do |
+|---|---|
+| **Not read** | A file could not be read. Try again or add it another way. |
+| **Quantities unpicked** or **Quantities still open** | Some quantities did not come through. Type them from the order. |
+| **Sizes cleared** | The size run on a product did not add up and was cleared. Re-enter it. |
+| **Thread ran short** | The sheet was cut off before the end. Check the last products against the paper. |
+| **Fields to review** | The parse was unsure of some fields. Open each named product and check. |
+| **Confirm currency** | Check the order currency matches the supplier's invoice. |
+| **Without quantities** | These products have no quantities, so a PO cannot carry them yet. |
 
-- Style code, colour, retail price
-- Size grid with quantities
-- A small image (if the supplier included one)
-- A <span class="badge badge-warn">NEEDS REVIEW</span> badge if AI wasn't confident
+Click a product in the panel to jump to it. Put a note away once you've dealt with it.
 
-Click any tile to open the **edit drawer** on the right. From there you can fix:
+### Photos to place
+
+If some photos did not land on a product, the band reads **N photos to place**. Click it to open the photo sheet ("No style yet"). Photos are grouped, and a burst of the same garment shows as one card:
+
+- **Placed for you**: photos ThreadCloud placed by reasoning. Check them. Click <strong>Looks right</strong> to keep them all, or <strong>Take off</strong> on any that are wrong (<strong>Put back</strong> undoes it).
+- **Likely**: ThreadCloud has a good guess. Click <strong>Place</strong> on each, or <strong>Place all</strong>.
+- **Labels**: photos of tags and labels. <strong>Keep as context</strong> keeps them as reference without putting them on a product.
+- **Unreadable**: photos ThreadCloud could not use. <strong>Discard</strong> them.
+
+Click <strong>Look</strong> on any card to walk through those photos one by one and place them yourself. Every group action has an <strong>Undo</strong>. A photo you set aside goes under **Set aside** and comes back with <strong>Restore</strong>. When nothing is left the sheet reads "All placed".
+
+### The products
+
+Each product shows its article, title, colour, sizes and quantities, cost, MSRP and margin. Switch between **Tiles** (one tile per product) and **Grid** (one spreadsheet-style table per size scale) in <strong>Order settings</strong>. Click a product to open it and fix anything:
 
 | Field | When to fix |
 |---|---|
-| **Style name** | If parsing pulled in something cluttered ("M / Navy / [LRD] 2024") — clean it up |
-| **Colour name + group** | If colour mapping is off (e.g. "Sulfur Oak" → group "Yellow" should be "Brown") |
-| **Sizes & qty** | Always double-check — this is the most common parse error |
-| **Retail price** | If parse pulled the wholesale instead of retail, or the wrong column |
-| **Cost** | Usually right but verify against the linesheet |
-| **Fabric / COO** | Only if AI flagged low confidence |
+| **Title** | The parse pulled in clutter. Clean it up. |
+| **Colour** | The colour name or colour group is off. |
+| **Sizes and quantities** | Always check against the paper. This is the most common parse error. |
+| **Cost** and **MSRP** | The wrong column was read, or a price is missing. |
+| **Stock type** | Tap the badge to change it. |
 
-<div class="callout callout-tip">
-<div class="callout-title">Speed tip</div>
-Use <strong>Next Issue</strong> (top right of the order page) to jump between only the <span class="badge badge-warn">NEEDS REVIEW</span> tiles. Saves scrolling.
+To add a product the supplier added later, click <strong>+ Add Product</strong>. To move a whole group of products to a different size scale, use that group's size scale control. <strong>Reassign and reset</strong> clears the group's quantities, because the old size columns don't carry over.
+
+<div class="callout callout-warn">
+<div class="callout-title">Check the currency</div>
+If the order is in EUR but set to CAD, every cost is wrong. The currency sits in the header and in <strong>Order settings</strong>. Check it before you send the PO.
 </div>
 
-### Editing in bulk
+## Stage 5: Send the PO and enrich
 
-If many tiles share the same fix (e.g. fabric is "100% Cashmere" on the whole order):
+Once the order is woven, a footer sticks to the bottom of the page with the style count, units, cost and IMU, and two buttons:
 
-1. Use the checkboxes to multi-select tiles
-2. Click <strong>Edit Selected</strong>
-3. Set the value once — applies to every selected tile
-4. Click <strong>Apply</strong>
+- <strong>Enrich for web</strong>: takes you to the Enrich tab to get the products ready for Shopify. See <a href="/workflows/enrich/">Enrich</a>.
+- <strong>Send PO</strong>: opens the purchase order. It stays greyed out until at least one product has an article, a name and a size with a quantity (made-to-order products also need a cost). If some products still have no quantities, a **N without quantities** link sits beside it.
 
-### Adding a style manually
+Before either one opens, ThreadCloud may ask you to confirm the size runs.
 
-If the supplier added a style after sending the linesheet:
+On the purchase order page you can use:
 
-1. Click <strong>Add Style</strong> (top of the order)
-2. Fill in the form
-3. Click <strong>Save</strong> — it appears at the bottom of the grid
+- <strong>Email brand contact</strong>: copies a ready-made email with the supplier's confirmation link and opens Gmail. Paste it with Ctrl+V.
+- <strong>Copy PO</strong>: copies the PO as text.
+- <strong>Supplier ack link</strong>: copies the link the supplier uses to confirm the order.
+- <strong>Print / PDF</strong>: prints the PO or saves it as a PDF.
+- <strong>Mark PO as Sent</strong>: records that the PO went out. The footer button then reads <strong>PO sent</strong>.
 
-## Stage 4 — Submit for supplier review
+What happens when the supplier answers is on <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>. Every PO, sent or not, is also listed on <a href="/workflows/logistics/">Logistics</a>.
 
-This sends the supplier a link to confirm the parsed order before you commit to it.
+## After the PO is sent
 
-1. Open the <strong>PO</strong> tab and send the order to the supplier for confirmation
-2. ThreadCloud generates a unique supplier ack link and emails it to the supplier
-3. Order status flips to <span class="badge badge-info">SENT TO SUPPLIER</span>
-4. The supplier opens the link, reviews each line, and either confirms or marks changes
-5. When they confirm, your order flips to <span class="badge badge-ok">CONFIRMED</span>
+Once the PO is sent, the order is the supplier's size contract and Parse & Build locks. A band reads **PO sent · Build locked**, with:
 
-<div class="callout callout-info">
-<div class="callout-title">Why this step exists</div>
-Supplier confirmation is your paper trail. If a price or quantity later turns out wrong, the supplier's confirmation is your evidence. <strong>Don't skip it</strong> unless you really know the supplier well and have authorization.
-</div>
+- <strong>VIEW PO &amp; ACK LINK</strong> to get back to the PO and the supplier link.
+- <strong>UNLOCK TO AMEND</strong> to change it. Type a reason (for example "supplier corrected size 48 to 52") and click <strong>UNLOCK</strong>. The band then reads **PO amendment open**. Make your changes and click <strong>PUBLISH REVISION</strong>. Re-issue the PO from the PO page so the supplier gets the new version.
 
-### Supplier didn't respond?
-
-If a supplier is slow, you can:
-
-- **Resend** — Open the order → PO tab → click <strong>Send to supplier</strong> again
-- **Approve as-is** — Click the Approve-as-is button in the PO tab. Skips supplier confirmation entirely. **Use sparingly.**
-
-### Supplier sent back changes
-
-If the supplier marked changes on the ack form:
-
-1. Open the order → **Supplier Review** tab
-2. See a diff view: their values vs your parsed values, line by line
-3. Click <strong>Accept</strong> next to each row you agree with, or override manually
-4. Click <strong>Apply changes</strong> to commit
-
-## Stage 5 — Push to Shopify
-
-Once status is <span class="badge badge-ok">CONFIRMED</span>, you're ready to push. See the [Push to Shopify SOP](/workflows/push-to-shopify/).
+Once receiving has started, the band reads **Received order · Build locked** and ordered sizes are read-only. Fix shipment mistakes from the receipt instead. See <a href="/workflows/receiving/">Receiving</a>.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
+<div class="callout-title">A context file marked as Order</div>
+A fit guide or price list marked Order turns into products of its own. Check each card shows the right role before you press Parse.
+</div>
+
+<div class="callout callout-warn">
 <div class="callout-title">Wrong size scale</div>
-If the supplier ships EU sizes and you push without checking, customers will see EU numbers on the storefront. Always verify the size scale matches what your shopper expects. <strong>Settings → AI & Models</strong> sets the default scale per category.
+If the supplier ships EU sizes and the product is set to a US scale, the storefront and the hang tags show the wrong sizes. Fix the size scale here, before the first push.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Currency mismatch</div>
-If the order is in EUR but you set it to CAD, every price gets multiplied by ~0.7 silently. Check the order currency in the header before pushing.
+<div class="callout-title">Sending a PO with products still to check</div>
+The PO only carries products with quantities. Clear the <strong>to check</strong> notes first so nothing is left off.
 </div>
 
-<div class="callout callout-warn">
-<div class="callout-title">Approving a row with empty fields</div>
-A <span class="badge badge-warn">NEEDS REVIEW</span> row that you mark as ready WITHOUT filling in the empty fields will push to Shopify with blank metafields. Smart filters won't catch those products. Always fill every yellow cell before approving.
-</div>
+## What the system does for you
 
-## What the system does automatically
-
-You don't need to think about these — they happen on push:
-
-- ✅ Generates SKUs (format: `STYLE-COLOR-SIZE`, max 40 chars)
-- ✅ Writes SKU into Shopify variant `barcode` field (for label-printer fallback)
-- ✅ Adds tags: `tc-imported`, `tc-order-{id}`, `{seasonCode}`, `brand-{name}`, plus category/colour/pattern tags
-- ✅ Builds the full Shopify product description (multi-image gallery, fit notes, fabric, country)
-- ✅ Sets up all 60+ Shopify metafields (`tc_core`, `tc_measure`, `tc_trade`)
-- ✅ Locks the FX rate to the buying-season currency
+- Names the PO from the brand and the season.
+- Gives each product its SKU before its first push.
+- Tags every product with `tc-order-` and the order number, so you can find a whole order in Shopify admin.
+- Keeps the exchange rate for the order. It locks the first time you receive.
 
 ## Next steps
 
-- [Enrich](/workflows/enrich/) — what happens between parse and push
-- [Push to Shopify](/workflows/push-to-shopify/) — the actual writing of products
-- [Receiving](/workflows/receiving/) — when the shipment arrives
+- [Enrich](/workflows/enrich/): get the products ready for the web
+- [Supplier confirmations](/workflows/supplier-confirmations/): when the supplier answers the PO
+- [Receiving](/workflows/receiving/): when the shipment arrives

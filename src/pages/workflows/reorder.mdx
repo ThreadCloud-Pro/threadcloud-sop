@@ -9,14 +9,14 @@ description: Restock what's selling. Search a product you already carry (or run 
 Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-09-14</div>
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
 If a button name here doesn't match what you see on screen, the app changed and this page is stale. Tell the team.
 </div>
 
 ## Quick path
 
 <ol class="steps">
-  <li><strong>Open Reorder</strong> from the sidebar.</li>
+  <li><strong>Open Reorder</strong> from the <strong>Reorder</strong> tile on the home screen's Sales floor desk.</li>
   <li><strong>Find the product</strong>: search for one you carry, or click <strong>Run</strong> on a saved list. ThreadCloud reads the cost from Shopify as you pick.</li>
   <li><strong>Set how many, by size</strong>: type the quantities. They save on their own.</li>
   <li><strong>Issue the PO</strong>: click <strong>Review PO</strong>, then <strong>Issue PO</strong> on the PO tab. Or click <strong>Receive without sending</strong> to skip the supplier step.</li>
@@ -30,7 +30,9 @@ The reorder screen is for placing the restock. To decide <em>what</em> to restoc
 
 ## Two ways to start
 
-Open <strong>Reorder</strong> from the sidebar. The page is a search, split into two panels:
+On the home screen, switch to the **Sales floor** desk and click the <strong>Reorder</strong> tile ("restock from the catalog"). You can also type "reorder" in the home search. The **Reorders** list under the tiles shows your open reorders, each with its next step (for example <strong>Receive</strong>).
+
+The Reorder page is a search, split into two panels:
 
 - <strong>Products</strong> (left): search your Shopify catalog. Type at least 2 letters. Each result shows a thumbnail, brand, colour, stock count, and dots for how complete the product data is. Click a product to start a reorder.
 - <strong>Saved lists</strong> (right): your saved restock plans. <strong>Recent</strong> shows the last few; <strong>Browse by brand</strong> groups the rest. Click <strong>Run</strong> on any list to start a reorder pre-filled with those products and sizes.
@@ -89,6 +91,12 @@ Each product shows a row of size cells. Type how many you want in each size.
 - If you started from a saved list, the cell also shows the plan snapshot next to the live count, e.g. <em>plan 20 · have 15</em>. <em>plan</em> is what you had in mind when you saved the list; <em>have</em> is what's on hand right now.
 - Trousers and other two-axis sizes (waist × inseam) lay out as a grid, not a single row.
 
+### A size the product doesn't carry yet
+
+Click <strong>+ Size</strong> on the product to add a size Shopify has never had, for example a 44R on a jacket that runs 46 and up. Type it the way the product's other sizes are spelled (on a two-axis product, fill both boxes) and click <strong>Add</strong>. ThreadCloud creates the size in Shopify, copying the price and cost from the nearest size, and the new cell appears at 0 for you to fill in. If someone already added that size in Shopify admin, it links the existing one instead of making a duplicate.
+
+Add sizes before the PO goes out. A size added after the PO is issued needs the PO re-issued for the supplier to see it.
+
 ### The product line
 
 Under each product name is one line of references, in this order where each exists: brand, category, <strong>ARTICLE</strong>, <strong>REF</strong> (the supplier's style reference), <strong>MODEL</strong> (model name and code), colour, and <strong>COLOUR CODE</strong>. Hover the line for a reminder: "Supplier style ref. Verify this is the same product". Where no supplier reference is on file, the line falls back to the store SKU.
@@ -97,7 +105,7 @@ These references are carried through creation and receiving. They come from the 
 
 <div class="callout callout-tip">
 <div class="callout-title">Fixing an old product's references</div>
-If the line shows the wrong article, model, or colour code (common on products enriched before ThreadCloud), click <strong>Edit product details</strong> on that product. It opens the product in Catalog Repair with its <strong>Vendor Ref</strong>, <strong>Article</strong>, <strong>Model code</strong>, <strong>Model name</strong>, and <strong>Colour code</strong> fields. Edit, click <strong>Save product details</strong>, then <strong>Back to reorder</strong>. The saved values are written to the Shopify product, so they hold on every later reorder. Viewers do not see this button. If it reads "Product details could not be opened" or "could not be saved", try once more; if it persists, the runbook has the next step.
+If the line shows the wrong article, model, or colour code (common on products enriched before ThreadCloud), click <strong>Edit product details</strong> on that product. It opens the product in Clean Catalog with its <strong>Vendor Ref</strong>, <strong>Article</strong>, <strong>Model code</strong>, <strong>Model name</strong>, and <strong>Colour code</strong> fields. Edit, click <strong>Save product details</strong>, then <strong>Back to reorder</strong>. The saved values are written to the Shopify product, so they hold on every later reorder. Viewers do not see this button. If it reads "Product details could not be opened" or "could not be saved", try once more; if it persists, the runbook has the next step.
 </div>
 
 ### Cost per line
@@ -106,15 +114,16 @@ Each product line has a cost box. It is the base cost per unit for this reorder,
 
 <div class="callout callout-tip">
 <div class="callout-title">Earmark for a waiting customer</div>
-If a customer is waiting on a size, click <strong>add earmark</strong> on that cell, type their name (or pick a Shopify customer). The earmark guarantees that size is on the order; the quantity bumps up to cover it. Earmarks show on the Receive tab so you know who to call when it lands.
+If a customer is waiting on a size, click <strong>+ customer</strong> on that cell (<strong>+ another</strong> once one is there), then type their name or pick a Shopify customer. The earmark guarantees that size is on the order; the quantity bumps up to cover it. Earmarks show under <strong>Customers to notify</strong> on the Receive tab so you know who to call when it lands.
 </div>
 
 Other things on the Pick tab:
 
 - <strong>Cancel after</strong>: an optional date the supplier shouldn't ship past.
-- <strong>Order discount</strong>: a percent off the whole order. (Per-line discounts grey out when this is set; they never stack.)
-- <strong>Add another product</strong>: search at the bottom to add more products from the same brand. The same Shopify cost check runs on each add. "Already in this reorder." means it is a duplicate. A product bought in another currency is refused with both currencies named: one reorder holds one currency, so start a separate reorder for it.
-- <strong>Save as plan</strong>: save these products and sizes as a reusable restock list. Next season, click <strong>Run</strong> and it's all there.
+- <strong>Order discount</strong>: a percent off the whole order. Each line also has its own **% off**; per-line discounts grey out when an order discount is set, and the two never stack.
+- **Add more products**: the search at the bottom ("Search [brand] for more products…") adds more products from the same brand. The same Shopify cost check runs on each add. "Already in this reorder." means it is a duplicate. A product bought in another currency is refused with both currencies named: one reorder holds one currency, so start a separate reorder for it.
+- <strong>Save as plan</strong>: save these products and sizes as a reusable restock list. Next season, click <strong>Run</strong> and it's all there. On a reorder that came from a plan, <strong>Edit plan</strong> changes the plan itself.
+- <strong>Delete this reorder</strong>: removes the reorder and any earmarks on it. If its PO was already sent, ThreadCloud asks you to confirm.
 
 When you're done, use the footer. Both buttons stay greyed out until at least one size has a quantity ("Set at least one size quantity to continue").
 
@@ -160,7 +169,11 @@ When the box arrives, open the Receive tab. It uses the same size grid as Pick, 
 - 0 if they marked that size unavailable;
 - the full remaining amount if there was no supplier response.
 
-Adjust any cell for a partial shipment, then click <strong>Receive shipment</strong> (or <strong>Receive partial shipment</strong> when the counts are short). Sizes turn green when fully received. You can come back and receive again for later boxes.
+Adjust any cell for a partial shipment, then click <strong>Receive shipment</strong> (or <strong>Receive partial shipment</strong> when the counts are short). Sizes turn green when fully received. You can come back and receive again for later boxes; earlier receipts are listed under **Past shipments**.
+
+If a customer earmarked a size, they're listed under **Customers to notify** with a contact link. Call them when their size lands.
+
+A product that was never pushed to Shopify can't be received here, and its row says so. Push it from Enrich first.
 
 ## If it goes wrong
 

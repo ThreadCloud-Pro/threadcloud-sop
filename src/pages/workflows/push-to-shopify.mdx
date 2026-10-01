@@ -1,140 +1,132 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Push to Shopify
-description: Write products, variants, images, metafields, tags, and barcodes to Shopify in one batch.
+description: Send approved products from Enrich to Shopify as drafts, send later edits, and read what each push tells you.
 ---
 
 # Push to Shopify
 
-Take approved styles and create them as products in your Shopify store. Push creates each product as a **draft** — your full product data is in Shopify, ready to go live, but not visible to shoppers yet.
+Pushing is how a product gets into your Shopify store. You push from the **Enrich** tab. The first push creates the product in Shopify as a **draft**, with its sizes, SKUs, cost, price, photos and product details. Later pushes send your edits to the product that is already there.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-After Enrich is complete and all styles in the order are <span class="badge badge-ok">READY</span>. You can push partial orders if you want (e.g. push 80% now, push the remaining 20% once you fix the flagged rows).
+Once products on an order are approved in <a href="/workflows/enrich/">Enrich</a>. You don't have to push the whole order at once: push what's ready and come back for the rest.
 </div>
 
 ## Before you push
 
-A pre-flight checklist:
+- Every product you want to push is **Approved** in Enrich.
+- Cost and MSRP look right.
+- The sizes match the order.
+- The order currency in the header matches the supplier's invoice.
+- Photos are on the product, hero first (a push works without them, but the storefront will look bare).
 
-- ✅ Every style you want to push shows <span class="badge badge-ok">READY</span> (not <span class="badge badge-warn">NEEDS REVIEW</span>)
-- ✅ Cost and retail prices look right on each style
-- ✅ Sizes match the linesheet
-- ✅ Currency in the order header matches the linesheet
-- ✅ FX rate is set if buying in a non-store currency (locks on first push)
-- ✅ At least one image per style (push works without images, but the storefront will look bare)
-- ✅ The buying season + delivery window are correct
+A product with no ordered sizes is not pushed. Add its sizes in Parse & Build first.
 
-If anything's off — fix before pushing. Pulling products back from Shopify is messy.
+## Three ways to push
 
-## The push itself
+| Where | Button | What it does |
+|---|---|---|
+| The **Product details** heading on Enrich | <strong>Send to Shopify (N)</strong> | Opens the push confirmation for every product that has something Shopify hasn't received yet. |
+| The bulk action bar, after ticking products | <strong>Push selected</strong> | Pushes only the ticked products. |
+| A single approved product's footer | <strong>Push to Shopify</strong> or <strong>Push update</strong> | Creates just this product as a draft, or sends your edits to the product that already exists. |
 
-Open the order → click <strong>Push to Shopify</strong> (top right of the Enrich tab).
+<ol class="steps">
+  <li>Open the order and click the <strong>Enrich</strong> tab.</li>
+  <li>Click <strong>Send to Shopify (N)</strong>.</li>
+  <li>Read the confirmation, titled "Sync N products to Shopify?". It lists what gets pushed and the products in this sync.</li>
+  <li>Click <strong>Sync N to Shopify</strong>.</li>
+  <li>Wait for the result line. You can leave the page; the push keeps going.</li>
+</ol>
 
-You'll see a confirmation modal:
+## What gets pushed
 
-| Detail | Notes |
+The confirmation spells it out:
+
+- Title, description, SKU, cost and MSRP
+- The size and colour variants, with stock set to **0**. Stock fills in when you receive.
+- The product's photos, hero first
+- Product details Shopify filters and the product page read: category, subcategory, fabric, fit, country of origin, care, pattern, occasion, colour group, weight, HS code, and the fields that depend on the product (lapel, collar, and so on)
+- Measurements, and the size chart on the product page when the product has a brand model
+
+Every product is also tagged with `tc-imported` and `tc-order-` plus the order number, so you can pull up a whole order in Shopify admin. When a size has no barcode, its SKU is written into the barcode field, so the hang tag and Shopify's own barcode labels scan to the same product.
+
+## Drafts, and when a product goes live
+
+A first push creates the product as a **draft**. Shoppers can't see it yet. A later push keeps whatever status the product has: a draft stays a draft, a live product stays live, and its web address doesn't change.
+
+A product goes onto your **Point of Sale** when you <a href="/workflows/receiving/">receive</a> it. You decide when it goes live on the online store.
+
+Missing product details don't stop a draft being created. A product that is already **active** in Shopify still needs approved copy before its changes go out.
+
+## Reading the result
+
+Each product's footer shows one line for what happened:
+
+- **Pushed to Shopify**: the push created the product.
+- **Updated on Shopify**: the push updated a product that already existed.
+- **Not everything landed:** followed by what didn't go through (a cost, a product detail). Fix it and push again.
+- **Fields changed during that push, so push again.** Something was edited while the push was running.
+- A failure names its reason. A failure doesn't always mean nothing landed: the product may already exist in Shopify with the write unfinished. Push again. Never create the product a second time by hand.
+
+The line clears as soon as you edit the product again.
+
+A whole push reports in one sentence, for example "14 of 14 pushed to Shopify" or "12 of 14 pushed, 2 need attention". When you push a selection, each product that didn't land is named with its reason. A product missing its cost or MSRP is never attempted; the confirmation names it before the push runs.
+
+## Is it really in Shopify?
+
+Under each product's footer, Enrich shows what Shopify actually has:
+
+| Line | Meaning |
 |---|---|
-| Total styles | Count of <span class="badge badge-ok">READY</span> styles to push |
-| Skipped | Count of <span class="badge badge-warn">NEEDS REVIEW</span> styles (will NOT push) |
-| Existing | Count being re-pushed (already on Shopify) |
-| New | Count being created fresh |
+| **Pushed and verified** | Shopify confirmed every ordered size. This is the only state that counts as done. |
+| **Pushed but unverified** | Shopify has the product but at least one size isn't linked. Push the product again to link it. |
+| **Not pushed** | The product has not been created in Shopify yet. |
 
-Click <strong>Push N styles</strong> to confirm.
+If a product reads "Not pushed" with "A previous push did not record a product identity, so pushing again is fenced.", click <strong>Verify with Shopify</strong>. It asks Shopify what it has for this product and links it. It never creates a product. See <a href="/workflows/enrich/#verify-with-shopify">Enrich</a>.
 
-What happens:
+Receiving can only book sizes that are linked. Clear "Pushed but unverified" before the boxes arrive.
 
-1. Each style becomes a Shopify product (with all variants as separate Shopify variants)
-2. Tags get stamped: `tc-imported`, `tc-order-{id}`, `{seasonCode}`, `brand-{name}`, plus category/colour/pattern
-3. The SKU is generated and written; the same value is also written into Shopify's `barcode` field (for label-printer fallback)
-4. All 60+ Shopify metafields get written (`tc_core`, `tc_measure`, `tc_trade`)
-5. Images upload to Shopify's CDN
-6. The product is created as a **draft** (not visible to shoppers yet)
+## Sending later edits
 
-A progress bar shows how far along the push is. Typical speed is a few seconds per style, so a 50-style order takes a couple of minutes.
+Edit a product in Enrich after it's been pushed and the heading button reads <strong>Send to Shopify (N)</strong> again, and the product's footer offers <strong>Push update</strong>. Nothing changes on the storefront until you push.
 
 <div class="callout callout-info">
-<div class="callout-title">When does it actually go live?</div>
-Push does <strong>not</strong> put products on the storefront. Each product lands as a <strong>draft</strong>. Products are activated on your point-of-sale channel when you <a href="/workflows/receiving/">receive</a> the shipment. You control when a product goes live on the online store — so a wrong price on a freshly-pushed draft is not visible to customers yet. Still, fix it before you go live.
+<div class="callout-title">What a push overwrites</div>
+ThreadCloud owns the product's description, its ThreadCloud product details, its ThreadCloud tags, and a price ThreadCloud has set. A push never changes stock (receiving does that), and it leaves fields that aren't ThreadCloud's alone. A price you set in Enrich is written on every push, even if someone changed it in Shopify admin since.
 </div>
-
-## During the push
-
-Watch the Enrich page. Each style moves into the <strong>Pushed</strong> group as it lands in Shopify. If any fail, they show an inline error you can read and retry.
-
-You can navigate away during the push — it'll keep running in the background. The ambient bar tells you when it's done.
-
-### If some styles fail
-
-After push, the order page shows:
-
-- N approved
-- N failed (with reasons)
-
-Click each failed row to see the exact error. Most common reasons:
-
-| Error | Fix |
-|---|---|
-| `Shopify rate limit exceeded` | Wait 60s, re-push only the failed rows |
-| `Image upload failed: file too large` | Resize the image (under 4MB), re-upload, re-push |
-| `Invalid metafield value` | A field has bad data — fix it on the Enrich tab, re-push |
-| `Duplicate SKU` | Another product already has this SKU. Most likely a re-push collision. Don't force-push — check the SKU. |
-| `Missing access token` | The Shopify session expired. Refresh the page; it'll re-auth on next request. |
-
-To retry only the failed rows: select them in the order grid → click <strong>Push Selected</strong>.
-
-## Re-pushing existing products
-
-If a product is already on Shopify and you change something in ThreadCloud (description, fabric, occasion, etc.), you re-push for the change to show. The bulk <strong>Push to Shopify</strong> button only creates <em>new</em> products — to update ones already in Shopify, use re-push:
-
-1. Edit the style in Enrich.
-2. Click <strong>Re-push all</strong> at the top to update every changed live product, or <strong>Re-push</strong> on a single tile to update just that one.
-3. The product's status and handle stay the same — a draft stays a draft, a live product stays live, and the storefront URL doesn't break.
-
-<div class="callout callout-info">
-<div class="callout-title">What gets overwritten on re-push</div>
-ThreadCloud-owned fields: description, all <code>tc_*</code> metafields, tags (the TC-managed ones), variant barcode (if it was empty). It does <strong>NOT</strong> touch: inventory quantity, image order, Shopify-internal fields, anything in non-TC metafield namespaces.
-</div>
-
-## After the push
-
-Verify on the storefront:
-
-1. Open one product on your storefront
-2. Check the description reads well
-3. Check the image gallery
-4. Check the smart filters work (Shop By → click a filter → does the product appear?)
-5. Check the size scale shows correctly
-
-If something's off, fix in ThreadCloud and re-push.
 
 ## Pulling products back
 
-If you pushed by mistake or with wrong data:
+If you pushed with wrong data:
 
-- **Quick fix** — edit in ThreadCloud, re-push. Don't delete; just overwrite.
-- **Full rollback** — Shopify Admin → filter by `tag:tc-order-{id}` → select all → Bulk delete.
-- **Metafield rollback** — Use the [Legacy Enrichment](/settings/legacy-enrichment/) rollback feature (works within 90 days of the last apply).
+- **Fix it**: edit in Enrich and push again. Don't delete; just overwrite.
+- **Remove a whole order**: in Shopify admin, search for `tag:tc-order-` followed by the order number, select the products and delete them. Only do this for products that were never received.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Pushing a half-finished order</div>
-Pushed products are drafts, so they won't hit the storefront before you're ready. But pushing an order that isn't final makes for messy cleanup. Finish the order first, and if you use the supplier ack flow, wait for the supplier's confirmation.
-</div>
-
-<div class="callout callout-warn">
-<div class="callout-title">Pushing 200+ styles in one go</div>
-A single 200+ push can hit Shopify's rate limits. ThreadCloud throttles automatically but if you see persistent rate-limit errors, split into two pushes 10 minutes apart.
+<div class="callout-title">Treating "Pushed but unverified" as done</div>
+The product exists in Shopify but a size isn't linked, and receiving can't book that size. Push again, or use Verify with Shopify when it's offered, until it reads "Pushed and verified".
 </div>
 
 <div class="callout callout-danger">
-<div class="callout-title">Don't manually edit products in Shopify Admin after pushing</div>
-If you edit a product directly in Shopify Admin (description, tags, metafields, etc.), the next ThreadCloud re-push will overwrite your changes. Always edit in ThreadCloud, never in Shopify Admin.
+<div class="callout-title">Editing ThreadCloud fields in Shopify admin</div>
+If you change a product's description, tags or price directly in Shopify admin, the next push from ThreadCloud overwrites it. Make those changes in Enrich.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Creating the product by hand after a failed push</div>
+A failed push may already have created the product. Push again from Enrich. Creating it by hand gives you two products with the same SKU.
 </div>
 
 ## Next steps
 
-- [Receiving](/workflows/receiving/) — when the shipment arrives
-- [Reorder](/workflows/reorder/) — re-buy what's selling
-- [Merchandising](/planning/trading/) — track sell-through
+- [Receiving](/workflows/receiving/): when the shipment arrives
+- [Photography](/workflows/photography/): shoot what's now on Shopify
+- [Reorder](/workflows/reorder/): re-buy what's selling

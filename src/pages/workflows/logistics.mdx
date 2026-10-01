@@ -1,0 +1,71 @@
+---
+layout: ../../layouts/Doc.astro
+title: Logistics
+description: The back-office desk for shipments in motion. Reprint a product label, find a receiving document, check supplier responses and custom orders, and get any purchase order or supplier link back.
+---
+
+# Logistics
+
+**Logistics** ("shipments in motion") is the desk for everything that's already been bought: what's on its way, what's landed, and the paperwork that goes with it. Open it from the menu.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
+</div>
+
+## What's on the page
+
+| Part | What it's for |
+|---|---|
+| <strong>Reprint a product label</strong> | Print a hang tag for any product in the store. |
+| <strong>Reprint Tags</strong> | Find a received shipment by brand and reprint its tags or its receiving document. |
+| <strong>Receiving Log</strong> | Every expected delivery and every receiving document. |
+| <strong>Supplier Responses</strong> | Every supplier answer to a PO, pending and reviewed. |
+| <strong>MTM Orders</strong> | The custom orders list. |
+| <strong>Purchase orders</strong> | Every PO, sent and unsent, with its supplier link. |
+
+## Reprint a product label
+
+For a tag that fell off, got damaged, or was never printed. It works for any product in the store, including ones ThreadCloud didn't buy.
+
+<ol class="steps">
+  <li>Scan the product's barcode, or type a name, SKU, brand or supplier reference.</li>
+  <li>Pick the right size from the results (arrow keys, or click). A scanner's Enter only searches; it never prints by itself.</li>
+  <li>Set <strong>Qty</strong> (1 to 100) and click <strong>PRINT</strong>.</li>
+</ol>
+
+If the browser blocks the print window, click <strong>OPEN LABEL</strong>. More on printing: <a href="/workflows/labels/">Print Labels</a>.
+
+## Receiving Log
+
+<strong>Receiving Log</strong> has two tabs.
+
+**Expected** lists every order with a delivery window: brand, order, **Delivery Window**, **Cancel Date**, **Units Ordered**, **Receipt %** and a status such as **Upcoming**, **In Window**, **Past Window** or **Past Cancel**. Click a row to open that order's Receive tab.
+
+**Shipments** lists every receiving document: when it was received, brand, order, **Doc Ref**, units received and a status (**Pending**, **Partial** or **Complete**). Search by brand, season or doc ref, or filter with the chips. On each row:
+
+- <strong>Doc</strong> reprints the receiving document.
+- <strong>Tags</strong> reprints the shipment's hang tags.
+- Click the row to open the receipt, where you can also correct or reverse it (see <a href="/workflows/receiving/">Receiving</a>).
+
+<strong>Reprint Tags</strong> opens the same list on the Shipments tab.
+
+## Supplier Responses
+
+Every time a supplier answers a PO, it lands here. Filter by **All**, **Pending** or **Reviewed**, search by brand, order or PO number, and click a row to review it. See <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>.
+
+## Purchase orders
+
+At the bottom of the page, **Purchase orders** lists every PO, split into **Unsent** and **Sent** (each with a count). Each row shows the PO number, brand and season, delivery, styles and units, when it was created or sent, and "Supplier acknowledged" once the supplier has confirmed.
+
+- <strong>COPY ACK LINK</strong> copies the supplier's confirmation link, to paste into an email. It reads **ACK LINK COPIED**.
+- <strong>VIEW PO</strong> opens the purchase order.
+
+Use this when a supplier asks for the PO again, or says the link they have doesn't work. The copied link is always the current one.
+
+## Next steps
+
+- [Receiving](/workflows/receiving/)
+- [Print Labels](/workflows/labels/)
+- [Supplier confirmations](/workflows/supplier-confirmations/)
+- [Custom orders](/workflows/mtm/)

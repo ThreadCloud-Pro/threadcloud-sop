@@ -1,0 +1,88 @@
+---
+layout: ../../layouts/Doc.astro
+title: Brand fit
+description: The Models room on a brand record. Models, bodies, size runs and measurements, read from supplier spec sheets and from what you measure at receiving.
+---
+
+# Brand fit
+
+The **Models** room on a brand record holds how the brand's garments fit: the models you keep buying, the bodies they are cut on, their size runs, and the measurements for each size. ThreadCloud uses it on Enrich, at receiving, and for the size chart shoppers see on the product page.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a label here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+## The words
+
+| Word | Meaning |
+|---|---|
+| **Model** | A garment the brand makes and you keep buying, under its name and code, for example a travel blazer |
+| **Body** | The fit block a model is cut on. Several models can share one body. When a sheet names no body, each model is its own fit. |
+| **Size run** | The sizes the model is made in, for example `46, 48, 50, 52, 54` |
+| **Base size** | The size the supplier states its measurements at |
+| **Spec sheet** | The supplier's measurement document for a body or model |
+
+## Opening it
+
+**Brand Registry** → the brand → **Models**. The tab shows how many models the brand has.
+
+A brand with no models yet shows **The garments you keep buying** and **Add a model**. **Read spec sheet** sits beside the models.
+
+## Add a model by hand
+
+<ol class="steps">
+  <li>Click <strong>Add a model</strong>.</li>
+  <li>Enter the <strong>Name</strong>, the <strong>Code</strong>, and any other names under <strong>Also known as</strong>.</li>
+  <li>Pick the <strong>Body</strong> if it shares one, or the garment type.</li>
+  <li>Enter the <strong>Size run</strong> and the <strong>Base size</strong>.</li>
+  <li>Save. <strong>Measurements arrive from spec sheets and receiving.</strong></li>
+</ol>
+
+**Edit details** changes a model later. **Delete model**, then **Delete for good**, removes it. Sizes you take out of the run take their measurements with them.
+
+## Read a supplier spec sheet
+
+<ol class="steps">
+  <li>Click <strong>Read spec sheet</strong> and choose the supplier's PDF or image. Files over 15 MB are refused; export a smaller copy.</li>
+  <li>The sheet appears under <strong>Spec sheets</strong> as <strong>Reading</strong>. You can leave the page.</li>
+  <li>When it reads <strong>Ready to review</strong>, click its name. The review opens on its own full-width page.</li>
+  <li>Check each body and model ThreadCloud found: the garment, the size label, the size run, the lengths, and each measurement with its reading.</li>
+  <li>Where ThreadCloud isn't sure, it asks: <strong>Choose garment</strong>, <strong>Choose size label</strong>, <strong>Choose reading</strong>, or <strong>Confirm reading</strong>. Answer each.</li>
+  <li>Click <strong>Accept</strong> on each body. When everything is accepted it reads <strong>All accepted</strong>, and the sheet shows <strong>Reviewed</strong>.</li>
+</ol>
+
+Things the review may flag on a row: **Out of range**, **Not in the run**, **Differs from headline**, **Not as last time**, **Note doesn't fit**. Read them before accepting. Where a sheet prints a trouser row inside a jacket table, **Move to trouser** puts it on the trouser.
+
+<div class="callout callout-info">
+<div class="callout-title">Your sheet stays as printed</div>
+What you measure at receiving never overwrites a measurement from the supplier's sheet. Accepting a sheet confirms the models it names. A newer sheet for the same body shows the older one as <strong>Replaced</strong>.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">"Couldn't read"</div>
+The sheet couldn't be read. Try a cleaner PDF or a sharper photo, then <strong>Read spec sheet</strong> again. If it still fails, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the file.
+</div>
+
+## Models from receiving
+
+When you record garment measurements at [Receiving](/workflows/receiving/), ThreadCloud gathers them per model and per size. Under **Suggested from your buying** it offers measurements for sizes the spec doesn't already hold:
+
+<ol class="steps">
+  <li>Read each suggested size. <strong>Keep or drop</strong> each size.</li>
+  <li>Click <strong>Accept</strong> to add them to the model.</li>
+</ol>
+
+A size only enough garments agree on is offered. Where your measurements and the spec disagree, it says **Measurements disagree**. A model ThreadCloud created from your buying shows **From receiving** and **Unconfirmed** until you click **Confirm**.
+
+## Where brand fit shows up
+
+- **Enrich**: pick a style's model, and see the model's spec beside the measurements.
+- **Receiving**: the model's spec and the difference from it sit beside what you measure.
+- **The storefront**: products with a model get a size chart. Add the **Size chart** block to your product template in the theme editor. See [Storefront](/settings/theme/).
+
+## Next steps
+
+- [Brand Registry](/settings/brands-suppliers/)
+- [Receiving](/workflows/receiving/)
+- [Enrich](/workflows/enrich/)

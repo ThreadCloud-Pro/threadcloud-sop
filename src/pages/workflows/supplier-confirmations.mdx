@@ -14,20 +14,31 @@ Every time a confirmation comes back on a sent PO. Do it before the goods ship, 
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-09-14</div>
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
 ## Two ways a confirmation arrives
 
-1. **The acknowledgement link.** The PO tab's <strong>Email brand contact</strong> button emails the supplier a link. They confirm each product on it. Their answer lands on the order on its own.
-2. **A document or email.** The supplier sends a PDF, an image, or an email. You attach it on the PO tab and ThreadCloud reads it.
+1. **The acknowledgement link.** The purchase order's <strong>Email brand contact</strong> button emails the supplier a link (or copy it with <strong>Supplier ack link</strong>). They confirm each product on it. Their answer lands on the order on its own.
+2. **A document or email.** The supplier sends a PDF, an image, or an email. You attach it on the purchase order and ThreadCloud reads it.
 
 Both end up on the same review screen.
 
+## Where to find the purchase order
+
+- **A buying order:** in Parse & Build, the footer button <strong>PO sent</strong> (or <strong>VIEW PO &amp; ACK LINK</strong> on the locked band) opens it.
+- **A reorder:** the reorder's **PO** tab.
+- **Any order:** **Logistics** lists every purchase order under **Purchase orders**, with <strong>VIEW PO</strong> and <strong>COPY ACK LINK</strong>. See <a href="/workflows/logistics/">Logistics</a>.
+
+## Knowing an answer came back
+
+- On the home screen's **Merchandising** desk, **Needs you** lists "Supplier response" with a <strong>Review</strong> button for every answer waiting on you, and "no supplier confirmation logged" with <strong>Log confirmation</strong> for a sent PO that hasn't been answered yet.
+- **Logistics**, <strong>Supplier Responses</strong> lists every answer, with **All**, **Pending** and **Reviewed** filters. Search by brand, order or PO number and click a row to open it.
+
 ## Uploading a confirmation
 
-Open the order, click the <strong>PO</strong> tab. Once the PO has been sent, a card titled <strong>Supplier confirmation</strong> sits below the tabs ("Attach the confirmation when it comes back from the supplier."). Click it to open.
+Open the order's purchase order (see above). Once the PO has been sent, a card titled <strong>Supplier confirmation</strong> sits below the tabs ("Attach the confirmation when it comes back from the supplier."). Click it to open.
 
 <ol class="steps">
   <li>Attach the PDF, JPG, or PNG. Or paste the email body into the box ("…or paste the confirmation email body here"). You need one or the other; with neither, the card says "Attach the confirmation PDF or image, or paste the email body."</li>
@@ -35,7 +46,7 @@ Open the order, click the <strong>PO</strong> tab. Once the PO has been sent, a 
   <li>When it finishes, you land on the review screen. If it could not read the file, the card says "Could not read the confirmation. Try a PDF or paste the text."</li>
 </ol>
 
-After that, the PO tab shows a <strong>Supplier response</strong> card: the document name (or "Answered on the supplier acknowledgement link", or "Pasted from the confirmation email"), a "Received" date, a match line ("N of N lines matched", "N lines need a decision", or "Not yet reviewed line by line"), confirmed delivery and payment terms if stated, and two buttons: <strong>Open document</strong> and <strong>Review the response</strong>.
+After that, the purchase order shows a <strong>Supplier response</strong> card: the document name (or "Answered on the supplier acknowledgement link", or "Pasted from the confirmation email"), a "Received" date, a match line ("N of N lines matched", "N lines need a decision", or "Not yet reviewed line by line"), confirmed delivery and payment terms if stated, and two buttons: <strong>Open document</strong> and <strong>Review the response</strong>.
 
 ## The review screen
 
@@ -86,7 +97,7 @@ When a matched line's confirmed cost differs from the order's live cost, the lin
 
 Then click <strong>Apply confirmed costs</strong> (the button reads <strong>Apply product details</strong> when product details are ticked too; it saves both). Each line reports what happened underneath it, in green or red:
 
-- "Order cost 519.00 EUR to 549.00 EUR. MSRP 1095.00 CAD to 1150.00 CAD." The cost is on the Build grid now, and the retail price was re-derived from it through the order's margin or multiplier.
+- "Order cost 519.00 EUR to 549.00 EUR. MSRP 1095.00 CAD to 1150.00 CAD." The cost is on the order in Parse & Build now, and the retail price was re-derived from it through the order's margin or multiplier.
 - "MSRP unchanged at ..." or a named reason the MSRP was left alone: a price you set by hand, a locked price, or a supplier-printed retail is never moved.
 - "The confirmation stated no currency, so it was read in the order's EUR." when the document did not label the figure.
 - "Order cost updated; received units keep their receipt cost, and the change is recorded as a correction." when the line has already been received. A locked FX rate is never touched.
@@ -104,7 +115,7 @@ On your side these arrive under <strong>Product Details from Supplier</strong>: 
 
 When the supplier confirmed fewer units on some sizes, a <strong>Quantity changes</strong> notice appears and an <strong>Availability Changes</strong> card lists each product with a <strong>Partial</strong> badge and the confirmed grid.
 
-- On a **buying order**: review the size adjustments, then update quantities on the Build page. Nothing here changes the order.
+- On a **buying order**: review the size adjustments, then update quantities in Parse & Build (unlock the order to amend it if the PO was sent). Nothing here changes the order.
 - On a **reorder**: two outcomes, spelled out on the screen. <strong>Keep my quantities</strong> means do nothing; receiving defaults to the confirmed numbers and the shortfall stays on backorder. <strong>Drop to confirmed (clear backorder)</strong> reduces the order to the confirmed numbers. Only do this if you won't chase the rest.
 
 Products the supplier marked unavailable appear under <strong>Unavailable</strong> with their note.
@@ -117,7 +128,7 @@ A supplier can answer more than once: a PDF, then a corrected PDF; or the link, 
 
 When the one you are viewing is not the newest, the notice at the top reads "Showing the supplier's answer on [the newest source], received [date]. It supersedes [the older source] of [date], below." with a <strong>Read the superseded confirmation</strong> link. The older card carries a <strong>Superseded</strong> badge, and its apply buttons (<strong>Use confirmed dates</strong>, <strong>Update supplier terms</strong>) are hidden. Only the newest answer can be applied.
 
-Re-issuing a PO also supersedes the supplier's link. If they open the old one they see: "This purchase order was revised after this link was sent. Please ask the buyer for the current link." Send them the new one from the PO tab.
+Re-issuing a PO also supersedes the supplier's link. If they open the old one they see: "This purchase order was revised after this link was sent. Please ask the buyer for the current link." Send them the new one from the purchase order.
 
 ## Errors the supplier can hit on the link
 
@@ -128,10 +139,10 @@ These show on the supplier's screen, so they will come back to you by email:
 | "This order needs a corrected PO number. Please ask the buyer to issue a corrected purchase order and acknowledgement link." | The order has no real PO number, so nothing can be acknowledged against it. | Assign a PO number, re-issue the PO, and send the new link. |
 | "This purchase order was revised after this link was sent. Please ask the buyer for the current link." | You re-issued the PO after emailing the link. | Send the current link. |
 | "This order was revised while you were reviewing it. Refresh the page to continue with the current sizes and quantities." | The order changed while they had the page open. | Nothing on your side. They refresh and answer again. |
-| "Invalid or expired link. Please request a new one from the buyer." | The link was revoked or is no longer valid. | Send a fresh link from the PO tab. |
+| "Invalid or expired link. Please request a new one from the buyer." | The link was revoked or is no longer valid. | Send a fresh link from the purchase order. |
 
 ## Next steps
 
-- <a href="/workflows/build-order/">Build Order</a>: update quantities after a partial confirmation on a buying order.
+- <a href="/workflows/build-order/">Parse & Build</a>: update quantities after a partial confirmation on a buying order.
 - <a href="/workflows/reorder/">Reorder</a>: the reorder-specific quantity choice.
 - <a href="/workflows/receiving/">Receiving</a>: receiving reads the confirmed quantities as its defaults.

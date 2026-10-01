@@ -1,111 +1,139 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Custom orders
-description: One-off made-to-measure and special orders. Drop in the supplier confirmation, review the details, take a deposit, and receive on arrival.
+description: One-off made-to-measure and special orders. Drop in the supplier confirmation, review the customer, garments and price, send the products to Shopify, receive and tag them, and ring them up at the register.
 ---
 
 # Custom orders
 
-Custom orders are one-off special orders: a made-to-measure suit, a special-order jacket, anything you buy for a single customer. You start from the supplier's confirmation, review the details, send the customer a deposit, and receive the item when it lands.
+Custom orders are one-off special orders: a made-to-measure suit, a special-order jacket, a monogrammed tie, anything you buy for one customer (or a few customers on one maker's order). You start from the maker's confirmation, review the details, send the products to Shopify so they can be scanned at the register, and receive and tag them when they land.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-07-10</div>
-This screen is labelled <strong>Custom orders</strong> in the app (it used to be called MTM). If a button name here doesn't match, the app changed and this page is stale — tell the team.
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+This screen is labelled <strong>Custom orders</strong> in the app (it used to be called MTM). If a button name here doesn't match, the app changed and this page is stale. Tell the team.
 </div>
 
 ## Quick path
 
 <ol class="steps">
-  <li><strong>New custom order</strong> — drop in the supplier confirmation, or enter it by hand.</li>
-  <li><strong>Review</strong> — check the customer, the item details, and the price.</li>
-  <li><strong>Create draft</strong> — sends the customer a Shopify draft order for the deposit.</li>
-  <li><strong>Mark received</strong> when it arrives, and enter the final cost.</li>
-  <li><strong>Fit the customer</strong> when they come in.</li>
+  <li><strong>New custom order</strong>: drop in the maker's confirmation, or enter it by hand.</li>
+  <li><strong>Review</strong>: the customer, the garments, the measurements, the price and the delivery date.</li>
+  <li><strong>SEND TO SHOPIFY</strong>: creates the products, ready to scan at the register.</li>
+  <li><strong>MARK RECEIVED</strong> when the garments arrive, and enter the final cost.</li>
+  <li><strong>Print the labels</strong>, tag the garments, and ring them up on POS when the customer collects.</li>
 </ol>
+
+The top of every custom order shows where it is: **1 Review**, **2 Send to Shopify**, **3 Receive & tag**.
 
 ## Start a custom order
 
-From the sidebar, open <strong>Custom orders</strong> and click <strong>New custom order</strong>. Two ways in:
+On the home screen, switch to the **Sales floor** desk and click the <strong>Custom order</strong> tile ("bespoke · one customer"). The **Custom orders** list under the tiles shows open orders, the ones that need you first. You can also reach the list from **Logistics**, <strong>MTM Orders</strong>.
 
-- <strong>Drop in the supplier confirmation</strong> — a PDF, image, or text file (up to 25 MB). The AI reads it and pulls out the customer, the supplier and reference, the items and options, the price, and any measurements it can see. This is the fast path when the brand sent you a confirmation.
-- <strong>Enter manually</strong> — click this for a phoned-in order. It skips the upload and gives you a blank order to fill in.
+Click <strong>New custom order</strong>. Two ways in:
 
-Either way you land on the <strong>Review</strong> screen with whatever was found pre-filled.
+- **Drop the supplier confirmation**: a PDF, an image or a text file. ThreadCloud reads it and pulls out the customer, the maker and reference, the garments and options, the price, and any measurements it can see. This is the fast path when the maker sent you a confirmation.
+- <strong>Enter the order manually</strong> ("No confirmation to upload?"): for a phoned-in order. It skips the upload and opens a blank order.
 
-<div class="callout callout-tip">
-<div class="callout-title">One customer, several garments, several confirmations</div>
-If a customer's order came as more than one supplier confirmation (say, a jacket from one maker and trousers from another), drop all the files in at once — the upload zone takes multiple files. ThreadCloud reads each one and merges them into a single order: the customer and pricing details come from whichever file has them, and every garment from every file lands on the one order. One unreadable file in the batch doesn't block the rest — you'll just need to fill that garment in by hand on Review.
-</div>
-
-## The Review / Sent / Fit tabs
-
-Three tabs track where the order is:
-
-- <strong>02 Review</strong> — check and complete the details
-- <strong>03 Sent</strong> — sent to the supplier, waiting for the item
-- <strong>04 Fit</strong> — fit notes after the customer picks up
-
-(Upload is step 01 and happens before the tabs.)
-
-## 02 Review — check the details
-
-Everything on this screen <strong>saves on its own</strong> as you go (no Save button). Work top to bottom:
-
-- <strong>Customer</strong> — type a name, or search your Shopify customers and link the right one. If they're new, create them here. If they've ordered before, you'll see their past custom-order count.
-- <strong>Supplier</strong> — pick the brand and enter the supplier's reference number. Add an estimated delivery date.
-- <strong>Measurements</strong> — toggle <strong>IN</strong> or <strong>CM</strong> at the top. Only the measurements that matter for the item type show. If the customer is linked and has been measured before, their <strong>fit profile</strong> appears on the right so you can compare.
-- <strong>Items</strong> — one card per garment or product. Pick the type, fabric, and options (lapel, vents, lining, and so on), enter the unit cost and the retail price, and note any adjustments. Click <strong>Add garment</strong> for more. Custom orders aren't limited to tailoring — accessories, ties, and scarves work too.
-- <strong>Pricing</strong> — set the currency, and an optional <strong>deposit</strong> in your store currency.
+Either way you land on the review screen with whatever was found filled in.
 
 <div class="callout callout-tip">
-<div class="callout-title">The fit profile saves you re-measuring</div>
-When a customer is linked, ThreadCloud snapshots their measurements onto the order. Next time, their profile pre-fills, and over time it learns their adjustments (e.g. always shorten the sleeve a touch).
+<div class="callout-title">One order, several confirmations</div>
+If an order came as more than one confirmation (say a jacket from one maker and trousers from another), drop all the files in at once. ThreadCloud reads each one and builds a single order from them. If one file can't be read, the rest still go through; fill that garment in by hand.
 </div>
 
-### Combine garments into one priced Suit or Set
+## Review
 
-An order with more than one garment doesn't have to price each one separately. Tick the checkbox on two or more garment cards and a <strong>"Combine N — bill as one"</strong> pill appears; tap it to group them under a single cost and retail price (or tap <strong>All one item</strong> to group everything on the order in one go). ThreadCloud names the group for you: a jacket-family top plus trousers becomes a <strong>Suit</strong>; any other combination (a shirt and tie, or two shirts) becomes a <strong>Set</strong>.
+Everything on the review screen **saves on its own** as you go. Watch for **Saving…** then **Saved**. Work top to bottom:
 
-A grouped block shows one cost/retail pair and an <strong>Ungroup</strong> button — ungrouping restores each garment's own price, nothing is lost. An order can hold several groups at once (Suit 1, Suit 2, a standalone Set) alongside ungrouped garments; each group pushes to Shopify as its own product. Every group and every standalone item needs a price before <strong>Create draft</strong> unlocks.
+### A · Customer
 
-## Create the draft (take the deposit)
+Type a name, or search your Shopify customers and tap the right one ("Is this them? Tap to confirm."). If they're new, use <strong>+ CREATE</strong> to make them in Shopify. A customer isn't required to send the order: an unnamed order can be attached to the customer at the register.
 
-When the details are right, click <strong>Create draft</strong>. ThreadCloud creates a <strong>Shopify draft order</strong> for the customer with the deposit amount, and moves the order to <strong>Sent</strong>. Send the draft-order link to the customer for payment.
+For a trunk show or a split order, click <strong>DIFFERENT CLIENTS PER ITEM</strong> to give each garment its own client. <strong>BACK TO ONE CLIENT</strong> undoes it.
+
+### B · Garments
+
+One card per garment or product. For each one:
+
+- **Choose product type**. Every garment needs one before you can send.
+- **Size ordered**. It prints on the tag ("Add the size · prints on the tag"). **Size scale** sets the scale the size is read on and printed under; change it if the size reads wrong.
+- **Fabric**, with an optional fabric photo, and details such as lapel, lining and buttons. <strong>+ ADD FIELD</strong> adds another detail.
+- **Adjustments**, **Qty**, notes for the item, detail photos and a spec sheet.
+- **COST** (what you pay the maker) and **RETAIL** (what the customer pays).
+
+Click <strong>ADD GARMENT</strong> for more. Custom orders aren't limited to tailoring: ties, scarves and accessories work too.
+
+#### Bill several pieces as one
+
+Pieces sold together don't have to be priced one by one. Tick two or more garment cards and click <strong>Combine N · bill as one</strong>, or click <strong>All one item</strong> to group the whole order. A jacket with trousers becomes a **Suit**; any other mix (a shirt and tie, two shirts) becomes a **Set**. A group has one cost and one retail price, and goes to Shopify as one product. <strong>Ungroup</strong> gives each piece its own price back. An order can hold several groups alongside single pieces.
+
+### C · Fit profile
+
+The customer's measurements. Toggle **IN** or **CM**. Only the measurements that matter for the garment type show. When the customer is linked in Shopify, their measurements are saved to their profile; only the fields you fill in update it, blanks leave what's there alone.
+
+### D · Pricing & delivery
+
+- **Customer total**: the sum of the garment prices. It fills in once every garment has a price.
+- **Maker currency**: what you pay the maker in.
+- **Deposit** (optional): what the customer paid up front, in your store currency.
+- **Estimated delivery**: required.
+
+The meter beside the heading counts down what's left ("2 of 4 to send") and reads **Ready to send** when the product type, the garment prices, the currency and the delivery date are all in.
+
+### E · Supplier confirmation
+
+The **Brand / maker** and the maker's **Reference number**.
+
+## Send to Shopify
+
+When the meter reads **Ready to send**, click <strong>SEND TO SHOPIFY</strong>. It reads **CREATING PRODUCTS…** while it works. ThreadCloud creates a product in Shopify for each garment (or each group), with a barcode, ready to scan at the register. The order moves to **Send to Shopify** on the progress line and waits for delivery.
+
+If the button is greyed out, hover over it to see what's missing. If Shopify refuses, the screen says "Couldn't send to Shopify." with the reason.
 
 <div class="callout callout-warn">
-<div class="callout-title">Always take the deposit</div>
-Custom orders are non-returnable. The deposit is the customer's commitment before you commit to the supplier. Walk the customer through the spec before you create the draft — once it's with the supplier, changes are expensive or impossible.
+<div class="callout-title">Walk the customer through the spec first</div>
+Custom orders are non-returnable. Go over the spec with the customer, and take a deposit, before the order goes to the maker. Once it's with the maker, changes are expensive or impossible.
 </div>
 
-## Receive on arrival
+## Receive and tag
 
-When the item lands, open the order (it's on the <strong>Sent</strong> tab) and click <strong>Mark received</strong>. Enter the final cost per item and any receiving notes, then save. You can print the receiving document (units and cost per item) for your records. Use <strong>Edit receipt</strong> if you need to correct the cost later.
+When the garments land, open the order. The screen reads "Before you receive, check every product against this list." For each garment, find its row by the **tag code**, then check the **size** and the **price** match the tag. If anything is off, fix it on the review step first.
+
+Then enter the final **Cost** for each garment, the **Customer total** if it changed, and any **Notes** (for example "fabric upgrade billed extra"), and click <strong>MARK RECEIVED</strong>. ThreadCloud books the stock into Shopify and tells you if it couldn't.
+
+Once received, the order shows the final cost, the retail and the margin, and three print buttons:
+
+- <strong>RECEIVING DOC</strong>: the receiving document, with garments, units and cost.
+- <strong>PRINT LABELS</strong>: one label per tag on the Dymo.
+- <strong>PRINT ON SHEET</strong>: a sheet of labels for a regular office printer.
+
+<strong>EDIT RECEIPT</strong> lets you correct the cost, total or notes later (<strong>SAVE CHANGES</strong>). <strong>REVERSE RECEIPT</strong> sends the order back to waiting for delivery and clears the confirmed costs, total and notes, so you can receive it again.
 
 ## On the sales floor (POS)
 
-The <strong>Custom Orders</strong> tile in POS lists every order that's sent, received, or fitted, has a linked Shopify customer, and hasn't been paid on POS yet. Each row shows the customer, the garments, the status, the deposit already on file, the ETA, and the total price (once every garment on the order has a price set). Tap a row to load its items — and the linked customer — straight into the cart for checkout.
+The <strong>Custom Orders</strong> tile in Shopify POS ("Load a made-to-measure order") lists every custom order that's been sent to Shopify and not yet paid at the register. Each row shows the customer, the garments, the deposit on file, the ETA and the total. Tap a row to load its items, and the customer if one is linked, into the cart. You'll see "Added to the cart." when it's done.
 
 <div class="callout callout-tip">
-<div class="callout-title">If loading a row fails</div>
-You'll get a clear error toast and stay on the list — it won't silently drop you back out. Nothing is added to the cart until you see the "Loaded" confirmation.
+<div class="callout-title">No customer on the order?</div>
+The tile says "Customer not attached" and loads the items anyway. Add the customer in the cart before you take payment.
 </div>
 
 ## Fit notes
 
-The <strong>Fit</strong> tab is where post-pickup fit notes will live — observed alterations that feed back into the customer's fit profile.
+Fit notes after pickup are not built yet. For now, keep alteration notes in the receipt's notes or on the customer's record.
 
-<div class="callout callout-info">
-<div class="callout-title">Not live yet</div>
-Fit notes are still being built. For now, keep alteration notes on the order's receiving notes or the customer's record, and we'll migrate them when the Fit tab ships.
-</div>
+## Owner tools on the Custom orders list
+
+- <strong>Make all POS-ready</strong>: puts every custom order product back on Point of Sale and sets its scannable barcode. Use it if a custom order is missing from the register.
+- <strong>Barcode check</strong>: lists custom-order products that share a barcode or have no order behind them. It changes nothing until you choose to archive the stray copies.
 
 ## If it goes wrong
 
-- <strong>The upload didn't read the confirmation well</strong> — that's fine. Fix the fields on Review, or start over with <strong>Enter manually</strong>.
-- <strong>Create draft is greyed out</strong> — every item needs a type set. Fill in any blank item type.
-- <strong>Anything else</strong> — see <a href="/runbook/">If something breaks</a>.
+- **The upload didn't read the confirmation well**: fix the fields on review, or start over with <strong>Enter the order manually</strong>.
+- **SEND TO SHOPIFY is greyed out**: every garment needs a product type and a price, and the order needs a currency and a delivery date. Hover over the button to see which is missing.
+- **Anything else**: see <a href="/runbook/">If something breaks</a>.
 
 ## Next steps
 
-- <a href="/settings/brands-suppliers/">Brands &amp; Suppliers</a> — set up the brand you're ordering from.
-- <a href="/workflows/receiving/">Receiving</a> — the regular (non-custom) receiving flow.
+- <a href="/settings/brands-suppliers/">Brands &amp; Suppliers</a>: set up the maker you're ordering from.
+- <a href="/workflows/receiving/">Receiving</a>: the regular receiving flow for buying orders.

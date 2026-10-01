@@ -1,95 +1,100 @@
 ---
 layout: ../../layouts/Doc.astro
-title: Theme & Storefront
-description: Connect ThreadCloud to the Shopify theme, configure smart filters, manage sizing chart tabs.
+title: Storefront
+description: Connect ThreadCloud to your Shopify theme. Smart filters, the fit callout and size chart blocks, Search and Discovery filters, filter labels and the size guide.
 ---
 
-# Theme & Storefront
+# Storefront
 
-The storefront integration surface. Smart filters, sizing chart tabs, and theme-side configuration all live here.
+**Settings → Storefront** is where ThreadCloud meets your shop window: the theme embed and blocks, your Search &amp; Discovery filters, brand stories and the size guide.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a card or row here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-Once at install — ThreadCloud Support configures this during onboarding. Re-visit only when changing theme or adding new filter facets.
+Once at setup, then when you change theme, add a filter, or after a big catalog change. Theme changes are for the store owner.
 </div>
 
-## Smart filters
+## Storefront activation
 
-Smart filters are the "Shop By" facets on the storefront — Color, Size, Brand, Fit, Occasion, etc. They read from the `tc_core` metafields ThreadCloud writes on push.
+| Row | What to do |
+|---|---|
+| **Connection** | Connected automatically when you installed. It reads **Done for you**. If it doesn't, click **Reconnect on the integration page**. |
+| **1 Smart Filters embed** | Click **Open theme editor**, switch on the ThreadCloud app embed under App embeds, then save your theme. |
+| **2 Fit Callout block** | Click **Open theme editor**, add the block to your product template, then save. |
 
-### Configuration
+Each row reads **Saved** once confirmed.
 
-Settings → Theme → Smart Filters tab. You'll see a list of enabled filters:
+<div class="callout callout-tip">
+<div class="callout-title">Size chart and size note blocks</div>
+ThreadCloud's theme app also has a <strong>Size chart</strong> block, which shows the measurements from <a href="/settings/brand-fit/">Brand fit</a> on products that have a model, and a <strong>Size note</strong> block. Add them to your product template in the theme editor the same way.
+</div>
 
-| Filter | Reads from | Notes |
-|---|---|---|
-| Color | `tc_core.color_group` | Canonical 12-bucket palette |
-| Size | Variant size tag | Driven by category's size scale |
-| Brand | `vendor` (native Shopify) | Multi-select |
-| Fit | `tc_core.fit_type` | Slim / Regular / Classic / Relaxed |
-| Occasion | `tc_core.occasion` | Multi-value support |
-| Fabric | `tc_core.fiber_primary` | Cashmere / Wool / Cotton / etc. |
-| Country of Origin | `tc_core.coo` | Only prestige origins shown |
-| Pattern | `tc_core.pattern_type` | Solid / Stripe / Check / etc. |
-| Price | Shopify price | Native |
+## Search &amp; Discovery filters
 
-Each row has an enable toggle and a "configure" button (for things like Color, where you can hide specific buckets).
+Your storefront filters run through Shopify's free Search &amp; Discovery app, reading the product facts ThreadCloud publishes.
 
-### Re-evaluating filters
+<ol class="steps">
+  <li>Click <strong>Check now</strong>. ThreadCloud checks Shopify directly.</li>
+  <li>Read <strong>Core sources live</strong> (for example 9/9) and <strong>To fix</strong>.</li>
+  <li>For each source to fix, follow the instruction on its row and click <strong>Open Search &amp; Discovery</strong>.</li>
+  <li>Click <strong>Check now</strong> again. When every core source is live, the row reads <strong>All core sources · Live on your storefront</strong> and <strong>Complete</strong>.</li>
+</ol>
 
-When you change a filter's config (enable/disable, hide a bucket), the storefront updates within ~30 seconds. No theme deploy needed.
+The core filters, as shoppers see them:
 
-### Adding a new filter facet
+| Filter label | Product fact it reads |
+|---|---|
+| Size | Customer sizes (per size) |
+| Color | Colour group |
+| Brand | Brand |
+| Category | Category |
+| Type | Subcategory |
+| Fit | Fit type |
+| Pattern | Pattern type |
+| Material | Main fibre |
+| Made In | Country of origin |
 
-This is a code change. Out of scope for the team — email [hello@threadcloud.io](mailto:hello@threadcloud.io) to request a new filter.
+More are available when your assortment needs them, such as Chest, Waist, Collar, Length, Sleeve, Shoe Size, Formality and Knit Weight. The setup walk lists them under **Add when relevant to your assortment**.
 
-## Sizing chart tabs
+Before a first check it reads **Not checked yet · Run the first check once your catalog is labelled.** After a check it shows when it was last checked; it rechecks after catalog changes.
 
-Some categories have storefront sizing chart tabs (the `_tab1_xxx-sizing-chart` tags ThreadCloud stamps on products). These auto-show a sizing chart tab on the product page.
+## Brand stories
 
-| Category | Tag stamped | Tab shows |
-|---|---|---|
-| Suits, Suit Jackets | `_tab1_suits-jackets-sizing-chart` | EU/US chest size chart |
-| Dress Shirts | `_tab1_dress-shirts-sizing-chart` | Collar circumference chart |
-| Pants | `_tab1_pants-sizing-chart` | Waist + inseam chart |
-| Footwear | `_tab1_shoes-sizing-chart` | EU/US/UK shoe chart |
+Approved brands publish to Shopify, linked to their collections. Switch on **Publish on approval** to publish each brand's story when you approve its Foundation in [Brand Registry](/settings/brands-suppliers/). If Shopify needs new permissions, the card says **Approve ThreadCloud's updated permissions in Shopify.**
 
-The tabs themselves are theme metaobjects — managed by the Owner in Shopify Admin → Online Store → Themes → Customize. Out of scope for the team.
+## Display choices
 
-## Storefront preview
+- **Filter labels &amp; order**: click **Edit** to open **Filter style**. Here **Category Groups** bundle raw categories into one shopper-facing group (for example Sport Jacket, Blazer and Suit Jacket under Jackets &amp; Blazers). **Seed defaults** fills the standard groups.
+- **Size guide**: click **Open**. See below.
 
-The Theme settings page has a <strong>Preview Storefront</strong> button. Opens the live store in a new tab. Use it to sanity-check after:
+## Size guide
 
-- A big legacy enrichment apply
-- A new buying season's first push
-- Adding/removing a filter facet
+**Storefront size guide** shows how ThreadCloud groups native sizes for shoppers, for jackets and tailoring, trousers and dress shirts. Native sizes describe the garment; the storefront group helps shoppers browse across brands. ThreadCloud keeps the native size and also writes an alpha size group plus exact chest, waist or collar values.
 
-## Image variants for smart filter swatches
+- **Copy staff link** to share it with the floor.
+- **Print or save PDF** for a paper copy.
 
-Color filter shows swatches. The swatch is sourced from:
+## Restock plans
 
-1. The Shopify product's variant image for that color (preferred), OR
-2. A hex code mapped to the color group (fallback)
-
-To set up a custom swatch image:
-
-1. Shopify Admin → Products → open one variant
-2. Set the variant image to a clean swatch (200×200px square works best)
-3. Storefront picks it up automatically
+The **Restock plans** card shows **Active plans**, **Brands covered** and the **Last run**. **+ New plan** starts one and **Manage plans** lists them. See [Reorder](/workflows/reorder/).
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Enabling a filter without metafield data</div>
-If you enable, say, "Pattern" but most of your products don't have <code>tc_core.pattern_type</code> set, the filter shows but lists almost nothing. Run [Legacy Enrichment](/settings/legacy-enrichment/) first.
+<div class="callout-title">A filter that shows almost nothing</div>
+A filter only lists values products actually carry. If most products have no pattern yet, the Pattern filter is nearly empty. Publish your catalog first in <a href="/settings/legacy-enrichment/">Catalog setup</a>.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Manually editing tags in Shopify Admin</div>
-Smart filters that read from tags (rather than metafields) are sensitive to tag edits. If you delete a TC-stamped tag like <code>category-SUIT</code>, the product drops out of the "Suits" filter. Always edit in ThreadCloud, never in Shopify Admin.
+<div class="callout-title">Editing ThreadCloud's tags or facts in Shopify Admin</div>
+Filters read what ThreadCloud wrote. Change a product's category or colour in ThreadCloud, not in Shopify Admin, so the two don't disagree.
 </div>
 
 ## Next steps
 
-- [Legacy Enrichment](/settings/legacy-enrichment/) — populate metafields for the filters to read
-- [Settings → AI & Models](/settings/ai-models/) — control which colour buckets / pattern values get extracted
+- [Catalog setup](/settings/legacy-enrichment/): publish facts for the filters to read
+- [Settings and store health](/settings/store-health/): the Storefront filters tile

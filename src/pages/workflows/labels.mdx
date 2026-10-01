@@ -1,98 +1,93 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Print Labels
-description: Print hang tags for received items — the Dymo hang tag, an Avery sheet, or the Shopify Admin fallback.
+description: Print hang tags when you receive, reprint them later for a shipment or a single product, and what to do when the Dymo isn't available.
 ---
 
 # Print Labels
 
-ThreadCloud prints a **hang tag** for every item you receive: stock-type badge, season code, barcode, SKU and supplier ref, size, colour, brand, and price. You print from the receiving screen. There are three ways to print, ranked best to fallback.
+ThreadCloud prints a **hang tag** for every unit you receive. You print from the receiving screen right after you confirm a shipment, and you can reprint any time: for a whole shipment, for one product on an order, or for any product in the store from **Logistics**.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-06-29</div>
-The hang tag's layout is set by the label designer in <strong>Settings</strong>, so the exact fields on your tag may differ from the example below.
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+Which fields print is set by the Owner under <strong>Settings</strong>, so your tag may differ from the description below.
 </div>
 
-## Option 1 — Dymo hang tag (preferred)
+## The printer
 
-The default. A <strong>Dymo 30336</strong> label printer, <strong>54×25mm</strong> hang tags.
+The default is a **Dymo** label printer with **30336** labels, **54 × 25 mm**. Every print opens in a new browser tab and sends itself to the print dialog.
 
 <ol class="steps">
-  <li>Finish receiving (see <a href="/workflows/receiving/">Receiving</a>). On the success screen, click <strong>Print labels</strong>.</li>
-  <li>A new tab opens with the hang tags — one per received unit (receive 5 of size L, you get 5 tags for that size).</li>
-  <li>Press <kbd>Ctrl</kbd>+<kbd>P</kbd>.</li>
-  <li>Select the Dymo printer; confirm the size is the Dymo 30336 (54×25mm).</li>
+  <li>Start a print from ThreadCloud (see below). A new tab opens with the tags, one per unit.</li>
+  <li>In the print dialog, pick the Dymo and check the label size is 30336 (54 × 25 mm).</li>
+  <li>Set the scale to <strong>100%</strong> or <strong>Actual size</strong>, never "Fit to page".</li>
   <li>Print.</li>
 </ol>
 
-### What's on the hang tag
+## What's on the hang tag
 
-A typical tag shows:
-
-- A **stock-type badge** (NOS, STOCK, MTO, or CUSTOM) and the season code
-- **Brand**, style name, and **price**
-- **Size** (with the scale it's in, e.g. IT/US) and **colour**
-- The **barcode**, with the **SKU** and the **supplier reference** printed underneath it, side by side (SKU on the left, supplier ref on the right, no prefix on the ref) — useful for cross-checking against a paper linesheet without scanning
-- Optional badges (e.g. "Dry Clean", "Made in Italy") if your tag design includes them
+- A **stock-type badge** (**NOS**, **STOCK**, **MTO** or **CUSTOM**) and the **season code**
+- **Brand**, **style name** and **price**
+- **Size**, with the scale it's in, and **colour**
+- The **barcode**, with the **SKU** and the supplier's reference printed under it, side by side. Handy for checking a garment against the paper order without scanning.
 
 <div class="callout callout-tip">
 <div class="callout-title">Change what's on the tag</div>
-The hang tag is configurable. Open <strong>Settings</strong> and find the label designer to choose which fields print, adjust the layout, and set the printer. The Owner usually sets this up once.
+The Owner chooses which fields print in <strong>Settings</strong>, under <strong>Receiving label design</strong>: brand name, style name, colour, SKU, price (MSRP) and the barcode. A preview shows the tag as you change it. Click <strong>Save Label Config</strong>.
 </div>
 
-## Option 2 — Avery 5160 sheet labels (printer-agnostic fallback)
+## Print when you receive
 
-If the Dymo dies, runs out, jams, or isn't available.
+When you confirm a shipment, **Ready to print** opens. Choose <strong>Print both</strong> (tags, then the receiving document), <strong>Tags only</strong>, <strong>Doc only</strong>, or <strong>Skip for now</strong>. Receive 5 of size L and you get 5 tags for size L. See <a href="/workflows/receiving/">Receiving</a>.
 
-<ol class="steps">
-  <li>Buy Avery 5160 sheet labels (30-up, 1×2⅝ inches) from any office supply store.</li>
-  <li>Load them into any regular laser/inkjet printer.</li>
-  <li>Click <strong>Print labels</strong> in ThreadCloud as usual.</li>
-  <li>In the print dialog: select your normal printer, set paper to Letter, scale to 100%.</li>
-  <li>Print.</li>
-</ol>
+## Reprint later
 
-<div class="callout callout-warn">
-<div class="callout-title">Heads up</div>
-The tag is sized for the Dymo. On Avery sheets you'll get the same tag but the layout shifts (one tag per slot, with whitespace). It's a working fallback, not a perfect match. Test one sheet before printing a stack.
-</div>
+| You need | Where |
+|---|---|
+| All the tags from one shipment | **Logistics**, <strong>Reprint Tags</strong>. Find the shipment by brand, season or reference and click <strong>Tags</strong> (or <strong>Doc</strong> for the receiving document). Or open the receipt and click <strong>Reprint Labels</strong>. |
+| The tags for one product on an order | The order's **Receive** tab: click the tag button on that product's row. |
+| One tag for any product in the store | **Logistics**, <strong>Reprint a product label</strong>. See below. |
 
-## Option 3 — Shopify Admin barcode print (last resort)
+### Reprint a product label
 
-When neither the Dymo nor a backup is available. This works because ThreadCloud writes the SKU into the Shopify variant `barcode` field on every push.
+Use this when a tag falls off, gets damaged, or a product was never tagged, including products ThreadCloud didn't buy.
 
 <ol class="steps">
-  <li>Open Shopify Admin → Products.</li>
-  <li>In the search bar, type <code>tag:tc-order-<strong>247</strong></code> — replace 247 with your order's ID (find it in the ThreadCloud order URL).</li>
-  <li>Select the rows that need labels.</li>
-  <li>Click <strong>More actions</strong> → <strong>Print barcode labels</strong>.</li>
-  <li>Choose a label size (Avery 5160 is safest), choose products and variants, print.</li>
+  <li>Open <strong>Logistics</strong> from the menu.</li>
+  <li>In <strong>Reprint a product label</strong>, scan the barcode or type a name, SKU, brand or supplier reference ("Scan the barcode or search products").</li>
+  <li>Use the arrow keys to pick the right result, or click it. A scanner's Enter searches without printing.</li>
+  <li>Set <strong>Qty</strong> (1 to 100) and click <strong>PRINT</strong>.</li>
 </ol>
 
-You lose brand and colour, but keep size, SKU, barcode, and price — enough to identify and ring up each item.
+A product ThreadCloud bought prints exactly like its original tag, with season, stock badge and supplier reference. A product from before ThreadCloud prints what Shopify knows about it. If the browser blocks the print window, click <strong>OPEN LABEL</strong>.
 
-## Reprinting tags later
+## If the Dymo isn't available
 
-You don't have to print at receive time. To reprint:
+1. **Another printer.** The tag prints on any printer from the same print tab. It's sized for the Dymo, so on sheet labels the layout shifts. Test one before printing a stack.
+2. **Shopify's barcode labels.** ThreadCloud writes each size's SKU into its Shopify barcode, so Shopify's own barcode labels scan to the same product. In Shopify admin, search Products for `tag:tc-order-` followed by the order number, select the products and print barcode labels from there. You lose brand and colour but keep the size, SKU, barcode and price.
+3. **Hand-write the SKU** on a tag. Last resort.
 
-- Open <strong>Logistics</strong> and use the <strong>Reprint Tags</strong> tile — it lands on the shipment so you can print its tags again.
-- Or open the order's receiving log, find the shipment, and print from there.
-
-This reprints the tags for that shipment. To reprint just a few, print the sheet and discard the rest, or use the Shopify Admin fallback to cherry-pick by variant.
+Custom orders have their own label buttons, including <strong>PRINT ON SHEET</strong> for a regular office printer. See <a href="/workflows/mtm/">Custom orders</a>.
 
 ## If it goes wrong
 
 <div class="callout callout-warn">
-<div class="callout-title">Print scale set to "Fit to page"</div>
-This shrinks the barcode below scannable size. Set scale to 100% / Actual Size in the print dialog.
+<div class="callout-title">Barcode won't scan</div>
+The print scale was set to "Fit to page", which shrinks the barcode. Print again at 100% or Actual size.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Tags won't print after a while</div>
-The print link is time-limited. If it stops working, go back to the shipment and open <strong>Print labels</strong> again to get a fresh link.
+<div class="callout-title">The print tab says the link is invalid or expired</div>
+Print links last 24 hours. Go back to the shipment or Logistics and start the print again to get a fresh link.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">The tag shows the wrong size</div>
+Fix the size on the receipt first (see <a href="/workflows/receiving/#fix-a-wrong-size">Fix a wrong size</a>), then reprint. The new tag prints the corrected size.
 </div>
 
 ## Next steps
 
-- <a href="/workflows/receiving/">Receiving</a> — the workflow this prints from.
-- <a href="/runbook/#printer-fallback">Runbook → Printer fallback</a>.
+- <a href="/workflows/receiving/">Receiving</a>: where tags are printed
+- <a href="/workflows/logistics/">Logistics</a>: reprints and the receiving log
+- <a href="/runbook/">If something breaks</a>

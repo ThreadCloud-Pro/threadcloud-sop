@@ -1,0 +1,91 @@
+---
+layout: ../../layouts/Doc.astro
+title: Money
+description: The store's financial figures for a period. Gross revenue to gross margin and GMROI, with a CSV behind every figure for your accountant.
+---
+
+# Money
+
+**Money** is the store's cash view: what came in, what went back, what it cost and what you kept, for any period. It is always the whole store. It replaces the old Financials pages.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a figure name here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+Monthly close, quarterly review, and any time someone asks "what did we make last month?" It is also where Home sends you before your first buying season exists.
+</div>
+
+## Opening it
+
+**Money** in the ThreadCloud menu, or the **Money** tab in Merchandising. It needs Merchandising access.
+
+The period opens on your **Opening period** from the Merchandising gear: **Last 30 days** or **Current season**. Change it with the period picker in the header:
+
+| Group | Choices |
+|---|---|
+| **Seasons** | One buying season's selling window |
+| **Quick ranges** | **This month**, **Last month**, **Last 30 days**, **Last 90 days**, **Year to date** |
+| **Custom** | Two dates (both days count) and **Apply** |
+
+Where the filters would be on other tabs, Money says **Store-wide**.
+
+## The figures
+
+| Figure | Meaning |
+|---|---|
+| **Gross revenue** | Merchandise value before discounts and refunds |
+| **Discounts** | Shopify line discounts, in store currency |
+| **Refunds** | Merchandise value given back on returns, before tax |
+| **Net revenue** | Gross revenue less discounts and refunds |
+| **Average transaction** | Net merchandise value per order |
+| **Cost of goods sold** | Units sold, net of returns, at the cost frozen when they were received |
+| **Gross margin value** | Net revenue (where the cost is known) less cost of goods sold |
+| **Gross margin** | Gross margin value as a share of that net revenue |
+| **GMROI, trailing 13 weeks** | Gross margin earned for each dollar of average STOCK and NOS inventory at cost |
+
+Each figure has a fold that explains it. Open it for the **Source**, the **Window** it was counted over, and how the currencies were reconciled.
+
+<div class="callout callout-info">
+<div class="callout-title">These are merchandise figures, not your books</div>
+Tax, duty, shipping and order-level charges are not in these figures. Use Money for buying and margin decisions, and your accounting system for the books.
+</div>
+
+## Exports
+
+<ol class="steps">
+  <li>Set the period first. The export carries the period on the screen.</li>
+  <li>Click <strong>CSV</strong> beside <strong>Store-wide</strong> for every figure with its basis and coverage.</li>
+  <li>Or click <strong>CSV evidence</strong> on one figure for the Shopify order lines behind it. The contribution column adds up to the figure on screen.</li>
+</ol>
+
+<div class="callout callout-tip">
+<div class="callout-title">For the accountant</div>
+Send the CSV, not a screenshot. It keeps raw numbers rather than rounded ones, and it marks a blank figure as blank rather than zero.
+</div>
+
+## Blank and withheld figures
+
+- A figure that can't be counted from the evidence shows a mark, with the reason. **A blank is not zero.**
+- **GMROI** needs 92 days of daily stock counts in a row. On a new store it waits, and says when it will publish.
+- If the figures changed while an evidence CSV was being prepared, ThreadCloud refuses the file rather than mixing two readings. Refresh the page and ask again.
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Comparing with a report that counts differently</div>
+Money counts merchandise value, nets refunds, and uses ThreadCloud's own period dates. A Shopify sales report with different rules will not match to the dollar. Use the CSV to see exactly what was counted.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Comparing a finished period with a running one</div>
+A season that is six weeks in and a finished one will look very different. Compare like with like, for example the same months a year apart.
+</div>
+
+## Next steps
+
+- [Merchandising](/planning/trading/)
+- [Stock](/planning/stock/)
+- [Budget &amp; OTB](/planning/budget-otb/)

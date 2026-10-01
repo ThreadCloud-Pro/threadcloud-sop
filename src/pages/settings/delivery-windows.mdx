@@ -1,87 +1,102 @@
 ---
 layout: ../../layouts/Doc.astro
-title: Delivery Windows
-description: Set up shipping windows for buying seasons. Used at order creation and for tracking.
+title: Delivery calendar
+description: The delivery windows every order is placed in, and the season groups that turn them into buying seasons.
 ---
 
-# Delivery Windows
+# Delivery calendar
 
-A delivery window is a date range you expect shipments to arrive (e.g. "Aug 15 – Sep 1, 2025" for early Pre-Fall deliveries). Buying orders get assigned to a delivery window so you can track flow into the store.
+A delivery window is the stretch of months an order is due to land, for example **Fall &amp; Winter Delivery 1**, July to August. Every order is placed in one. Each window belongs to a season group, and the group decides which buying season the order counts toward.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a field or button here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-Set up at the start of a buying season — typically 4–8 windows per season covering the expected shipping calendar.
+Once at setup, then only when the way you buy changes. The store owner edits it.
 </div>
 
-## What a window contains
+## Where it is
 
-| Field | Example | Notes |
-|---|---|---|
-| **Name** | "Pre-Fall Early" | Friendly label |
-| **Start date** | 2025-08-15 | Earliest expected arrival |
-| **End date** | 2025-09-01 | Latest expected arrival |
-| **Buying Season** | PF2025 | Which season this window belongs to |
+**Settings → Buying &amp; planning → Delivery calendar**. It is also one of the **Quick settings** tiles on the Settings page. The page is titled **Delivery windows**.
 
-Windows can overlap — that's fine.
+## The default calendar
 
-## Setting up windows for a season
+A new store starts with six windows:
 
-1. Settings → Delivery Windows
-2. Click <strong>New Window</strong>
-3. Fill in name, dates, buying season
-4. Save
+| Window | Code | Months | Season group |
+|---|---|---|---|
+| Spring &amp; Summer Delivery 1 | `SS-1` | January to February | Spring &amp; Summer |
+| Spring &amp; Summer Delivery 2 | `SS-2` | March to April | Spring &amp; Summer |
+| Pre-Fall | `PRE_FALL` | May to June | Pre-Fall |
+| Fall &amp; Winter Delivery 1 | `FW-1` | July to August | Fall &amp; Winter |
+| Fall &amp; Winter Delivery 2 | `FW-2` | September to October | Fall &amp; Winter |
+| Resort | `RESORT` | November to December | Resort |
 
-A typical Pre-Fall might have:
+Resort has a year shift of -1: Resort 2026 ships in November and December 2025.
 
-- Pre-Fall Early (Aug 15 – Sep 1)
-- Pre-Fall Mid (Sep 1 – Sep 20)
-- Pre-Fall Late (Sep 20 – Oct 15)
-- Pre-Fall Reorders (Oct 15 – Nov 15)
+Pre-Fall orders count toward the Fall &amp; Winter buying season, and Resort orders toward Spring &amp; Summer.
 
-You pick this granularity. Some buyers prefer weekly windows, some monthly. Match it to how you actually think about the calendar.
+## Confirm the calendar
 
-## Visual calendar
+During setup, Home shows a **Confirm delivery calendar** tile. Open it, use the defaults or adjust them, then click **This calendar is right**. It says **Delivery calendar confirmed. You can still change it anytime.**
 
-The Delivery Windows page shows a calendar view:
+## What a window holds
 
-- Each window is a colored band on the date axis
-- Orders assigned to each window appear as items inside the band
-- Total dollars per window roll up
+| Field | Notes |
+|---|---|
+| **Name** | What staff see when picking the window |
+| **Code** | Short code used in the season identifier and SKU |
+| **Start Month** | When the window opens |
+| **End Month** | When the window closes |
+| **Season group** | Groups deliveries into a buying season, for example `FW-1` + `FW-2` = Fall &amp; Winter |
+| **Year shift** | Years between the delivery year and the buying-season year. Most windows are 0. |
+| **Position** | The order windows are listed in |
 
-Helpful for spotting:
+## Changing the calendar
 
-- Weeks with too much inflow (warehouse capacity)
-- Weeks with no inflow (storefront looks stale)
+<ol class="steps">
+  <li>Click <strong>Add delivery window</strong> for a new window, or edit a row in place. Click <strong>Save</strong>.</li>
+  <li>In the calendar view, drag a window to move it, or drag an edge to resize it.</li>
+  <li>To remove a window, click <strong>Delete window</strong> and confirm.</li>
+</ol>
 
-## Assigning orders to windows
+<div class="callout callout-warn">
+<div class="callout-title">Changing a code that orders use</div>
+If orders already use a window's code, ThreadCloud asks before changing it and offers <strong>Change code and update</strong> those orders, so they stay linked. Products already in Shopify keep the season tag they were pushed with.
+</div>
 
-Done at order creation — Build Order asks for the delivery window. See [Build Order Stage 1](/workflows/build-order/#stage-1-create-the-order).
+<div class="callout callout-danger">
+<div class="callout-title">Reset windows</div>
+<strong>Reset windows</strong> puts every window back to the defaults above. Your own changes to those windows are lost.
+</div>
 
-To reassign after the fact:
+## Tools at the foot of the page
 
-1. Open the order
-2. Click the delivery window badge in the header
-3. Pick from dropdown
-4. Saves immediately
+| Tool | What it does |
+|---|---|
+| **Buying Order Backfill** | Links existing orders to buying seasons from their season code and window group. Orders already linked are skipped. Custom orders without a window group are left out. |
+| **Consolidate season groups** | Folds a standalone Pre-Fall or Resort buying season into Fall &amp; Winter or Spring &amp; Summer. Preview first; nothing changes until you apply. |
+
+## Moving one order to another window
+
+Use **Change delivery window** in the order's header, on any of its tabs. The order moves to the matching buying season.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Too few windows</div>
-If the entire season is one window, you lose all granularity. Use 4–8 windows per season minimum.
-</div>
-
-<div class="callout callout-warn">
 <div class="callout-title">Too many windows</div>
-20+ windows per season is overkill — you'll spend more time picking the right one than the data is worth. 4–8 is the sweet spot.
+Every window is a choice staff make on each new order. Keep to the windows you really buy in.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Letting windows lapse</div>
-If the window closed and you haven't received the shipment, the order will show as "overdue". Either receive (if it actually arrived) or move it to a later window.
+<div class="callout-title">A window in the wrong season group</div>
+The season group decides which buying season the order counts toward in <a href="/planning/buying-seasons/">Buying Plan</a>. Check it when you add a window.
 </div>
 
 ## Next steps
 
-- [Buying Seasons](/planning/buying-seasons/) — windows are scoped to a season
-- [Build Order](/workflows/build-order/) — assign new orders to a window
+- [Buying Plan](/planning/buying-seasons/): seasons are built from these windows
+- [Parse & Build](/workflows/build-order/): pick a window on a new order

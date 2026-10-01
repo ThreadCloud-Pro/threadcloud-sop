@@ -1,235 +1,141 @@
 ---
 layout: ../../layouts/Doc.astro
-title: Legacy Enrichment
-description: Bulk-classify and enrich existing Shopify products that were created before ThreadCloud.
+title: Catalog setup
+description: Make your existing Shopify products filterable. Scan, review the uncertain ones, publish, and roll back if needed. Also called Clean Catalog.
 ---
 
-# Legacy Enrichment
+# Catalog setup
 
-The retroactive upgrade flow. Takes your existing Shopify catalog (products created before ThreadCloud, or by another tool) and stamps them with ThreadCloud's metafields so they show up in smart filters, financials, and Merchandising views.
+Catalog setup brings the products already in your Shopify store up to ThreadCloud's standard: category, colour, size, pattern, season and stock type. Once published, they show up in your storefront filters and in Merchandising. The page is titled **Set up your catalog**. Settings and Home call the same page **Clean Catalog**.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-01</div>
+If a tab or button here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-Once at install — ThreadCloud Support runs this during onboarding to bring an existing Shopify catalog into the ThreadCloud schema. Re-run after big bulk imports of legacy products from another tool.
+ThreadCloud labels your catalog during <a href="/setup/onboarding/">first-time setup</a>, so most stores only come here to review what it left for a person, to scan products added since, or when Home shows a <strong>Catalog enrichment</strong> banner.
 </div>
 
-## Clean Catalog MVP
+## Where it is
 
-Use **Clean Catalog** when the goal is to restore core merchandising facts without running vision
-over the entire legacy catalog. It runs in the background, so you can leave the page and return to
-the status card. It refreshes reviewed rows only: category, subcategory, brand, colour group,
-colour name, pattern, season, stock type, source/schema timestamps, and canonical size scale.
+- **Settings** → the **Clean Catalog** card → **Open Clean Catalog**.
+- **Settings → Automations** → the **Catalog** row → **Refine catalog**.
+- Home's **Catalog enrichment** banner or Needs you row.
 
-It does **not** infer or overwrite advanced fabric, construction, care, fit, occasion, or pack
-attributes. Ambiguous or incomplete rows remain in **Needs review** and are not written to Shopify.
-This is the safe one-click path for making the core merchandising views useful again.
+## What it never changes
 
-### Clean Catalog smoke check
+Publishing adds ThreadCloud's category, colour, pattern and size facts to your Shopify products. **Titles, prices, photos, inventory, and existing variants stay unchanged.** Anything ThreadCloud isn't sure of is held for you to review, not written.
 
-1. Open **Settings → Legacy Enrichment** and start **Clean Catalog**.
-2. Confirm the run is in progress, navigate away, then return and verify the counts changed.
-3. Open one refreshed product and verify category, subcategory, brand, colour, season, stock type,
-   and size scale. Do not expect advanced attributes from this MVP.
-4. Run **Merchandising → Inventory Snapshot** and confirm the refreshed timestamp and tracked
-   physical on-hand disclosure.
+## The page at a glance
 
-If the action reports zero safe fixes, review the source facts first. Do not force an overwrite of
-ambiguous rows.
+The top card names where your catalog stands:
 
-## The five-step workflow
+| Heading | Meaning |
+|---|---|
+| **Make your existing products filterable** | Nothing scanned yet |
+| **Checking your catalog** | ThreadCloud is working through your products |
+| **Checking is stopped** | Some products are still unchecked and nothing is running |
+| **Your catalog needs a few decisions** | Some products are waiting for you |
+| **Your catalog is ready to publish** | Review is done; publish when ready |
+| **Your catalog is filter-ready** | Published |
+| **Your catalog needs attention** | Some products could not be checked |
 
-The page is shaped as a numbered checklist. Walk it top to bottom.
+Under it, **Your catalog status** counts **Ready to publish**, **Needs your review**, **Published** and **Problems**.
+
+## First run
 
 <ol class="steps">
-  <li><strong>Seed Products</strong> — Scan Shopify catalog, create one enrichment job per product</li>
-  <li><strong>AI Classification</strong> — AI fills in category, colour, fabric, etc. per job</li>
-  <li><strong>Review & Fix</strong> — Walk the table, fix low-confidence rows</li>
-  <li><strong>Apply to Shopify</strong> — Write metafields back to Shopify products</li>
-  <li><strong>Import to Database</strong> — Optional. Backfills the ThreadCloud database with the enriched products (only needed for dashboard/Merchandising)</li>
+  <li>Click <strong>Scan my catalog</strong>. ThreadCloud checks your active Shopify products for category, colour and size. You can leave the page; it carries on.</li>
+  <li>When the check finishes, it says how many are ready to publish and how many need your review.</li>
+  <li>Review the products in <strong>Needs your review</strong> (below).</li>
+  <li>Publish the ready ones (below).</li>
 </ol>
 
-## Step 1 — Seed Products
+## Review product decisions
 
-Click <strong>Seed Products</strong>.
+The table has five tabs: **All**, **Needs your review**, **Ready to publish**, **Published**, **Problems**.
 
-ThreadCloud paginates through every active Shopify product (filters out archived + draft) and creates one row in the enrichment queue per product. Each row starts in <span class="badge">PENDING</span> status.
-
-Products already tied to ThreadCloud styles (active pipeline products) are <strong>skipped</strong> — they don't need legacy enrichment.
-
-Typical seed time: 30 seconds for 5,000 products.
-
-After seeding:
-
-- Total seeded shown in the success banner
-- Number skipped shown (these are TC-managed products or thin-data SKUs like gift cards)
-
-### Re-seeding
-
-If you add new products in Shopify Admin and want them enriched too, click <strong>Re-seed</strong>. Adds new rows, doesn't duplicate existing ones.
-
-## Step 2 — AI Classification
-
-After seeding, click <strong>Run Classification</strong>.
-
-The background worker starts processing pending rows. For each:
-
-1. Fetches the Shopify product + variants
-2. Calls Claude with the product title, vendor, type, tags, and description
-3. AI returns: category, subcategory, colour group, colour name, pattern, fabric, COO, fit, occasion, size scale
-4. Deterministic engines run too: size scale (from variant data), brand code, supplier ref (from description regex)
-
-Worker speeds:
-
-- ~1 product per second under normal conditions
-- Slower when Anthropic is under load (retries kick in automatically)
-- Faster than seeing-individual: workers process 5 jobs in parallel per batch
-
-Progress shows:
-
-- Total classified count
-- ETA based on rolling rate
-- The ambient bar fires <span class="badge badge-info">COMBING THE RACK</span>
-
-You can navigate away — the worker keeps running. Status endpoint polls and self-heals if the worker dies.
-
-### Stopping mid-run
-
-Click <strong>Stop</strong>. Worker halts after the current batch (5 jobs).
-
-### Failure recovery
-
-If individual products fail with Anthropic errors, they go to <span class="badge badge-danger">ERROR</span> status with the error message. Dismiss them in bulk (View errors → Dismiss All) or click each to retry.
-
-## Step 3 — Review & Fix
-
-After classification, the table shows every job. Each row has:
-
-- Shopify product title + vendor
-- Vendor Ref (extracted from description, if found)
-- Category + Subcategory (with confidence indicator)
-- Colour group + Colour name
-- Pattern
-- Status: <span class="badge badge-ok">READY</span> or <span class="badge badge-warn">NEEDS REVIEW</span>
-
-Filter pills at the top: All / Needs review / Ready. Next to them, a <strong>Brand</strong> dropdown ("All brands (N)", then each vendor with its review count) narrows the table to one brand. The brand filter stacks on top of the tab filter, and everything downstream (sort, pagination, checkboxes, Select All Ready) acts on exactly the filtered set. Changing brand or tab resets the page and clears any selection, so a bulk action can never silently include rows you can't see.
+<ol class="steps">
+  <li>Open <strong>Needs your review</strong>.</li>
+  <li>Narrow it with <strong>Brand</strong>, or with <strong>Fix together</strong>, which groups products missing the same thing.</li>
+  <li>Click a row to open it. Check <strong>Category</strong>, <strong>Subcategory</strong>, <strong>Colour Group</strong>, <strong>Colour Name</strong>, <strong>Pattern</strong>, <strong>Size Scale</strong>, <strong>Season</strong>, <strong>Stock Type</strong> and <strong>Vendor Ref</strong>.</li>
+  <li>If ThreadCloud's suggestions are right, click <strong>Keep these suggestions</strong>. If not, correct the fields and click <strong>Save product details</strong>.</li>
+</ol>
 
 <div class="callout callout-tip">
-<div class="callout-title">Tip: select a range fast</div>
-<strong>Shift-click</strong> a row's checkbox to select every row between it and the last one you clicked (the whole range takes the clicked row's state). The anchor is per-page, so a range can't span pages.
+<div class="callout-title">"Needs your review" doesn't mean wrong</div>
+It means a fact is missing or ThreadCloud isn't sure. Often the suggestion is right and one click keeps it.
 </div>
 
-### Walking the Needs Review queue
+### Many products at once
 
-Click <strong>Needs review</strong> filter to focus on rows that need attention. Click any row to open the edit drawer on the right.
+- Tick rows (shift-click selects a range on the page), then **Edit selected products**. Pick each field to change, or **Don't change**, then **Apply changes to N products**.
+- **Dismiss** in the same dialog drops low-quality rows from the review queue without writing anything to Shopify.
+- **Choose catalog family** then **Group selected** sets Menswear or Womenswear for the selected products.
+- Changing the brand or the tab clears your selection, so a bulk action never includes rows you can't see.
 
-In the drawer:
+### Decide once per brand
 
-- Fix the wrong field(s)
-- Or click <strong>Confirm as-is</strong> in the footer if the AI got it right (this just promotes the row from Needs Review to Ready without changing values)
-- Click <strong>Next →</strong> to move to the next needs-review row without closing
+Most brands are bought one way. The **Decide once per brand** card lists each brand with how its reviewed products split. Pick a **Set stock type** for the brand (**Leave for review**, **MTO**, **Stock**, **NOS**, **Special**) and click **Apply to N products**. Where a brand's history is lopsided, the likely type is already selected. It never overwrites a stock type you set by hand.
 
-<div class="callout callout-tip">
-<div class="callout-title">Tip — Confirm as-is</div>
-The Confirm as-is button is the time-saver. If AI inferred "Navy" with 65% confidence and you agree it's Navy, one click promotes to Ready. No need to pick a different colour and pick back to trigger an edit event.
-</div>
+### Seasons for old products
 
-### Bulk edit
+Click **Suggest seasons from product age** (it reads **Dating the rack** while it runs). It fills only empty Season cells from each product's Shopify creation date. Every suggestion still goes through your review.
 
-To set the same value across many rows:
+For genuinely old product with no meaningful season, type **LEGACY** in the Season field.
 
-1. Filter (e.g. only Lardini ties)
-2. Use the checkboxes to select rows — works for both Ready AND Needs Review now
-3. Click <strong>Edit Selected</strong>
-4. Pick the field + value once
-5. Click <strong>Apply</strong> — updates every selected row
+## Publish to Shopify
 
-### Suggest seasons from product age
+<ol class="steps">
+  <li>Open <strong>Run a step yourself</strong> → <strong>Publish filters to Shopify</strong>.</li>
+  <li>Click <strong>Select All Ready (N)</strong>. It selects the ready rows you can see.</li>
+  <li>Click <strong>Publish selected (N)</strong> and confirm.</li>
+</ol>
 
-Legacy products often have no clean season tag. Click <strong>Suggest seasons from product age</strong> (it reads "Dating the rack…" while it runs) to fill the Season on rows where it's empty, inferred from each product's Shopify creation date (a Feb-to-Jul date reads as SS, Aug-to-Dec as FW, and a January product as the prior year's FW, for example SS-23 or FW-23). It only fills <strong>blank</strong> Season cells, never overwrites one you set, and never changes a row's status: every suggestion still flows through the normal review and confirm. Products Shopify can't date keep an empty Season.
+Published products move to the **Published** tab and show up in your storefront filters.
 
-<div class="callout callout-tip">
-<div class="callout-title">Tip: unknown vintage</div>
-For genuinely pre-ThreadCloud product with no meaningful season, type <strong>LEGACY</strong> in the Season field. It is accepted as a valid unknown-vintage season, so the row can go Ready instead of sticking on "Missing: Season".
-</div>
+## Run a step yourself
 
-### Decide stock types once per brand
+The card under the status runs each stage on its own:
 
-When a brand's products are almost all the same stock type, don't edit them row by row. The <strong>Decide once per brand</strong> card (it appears once there's enough reviewed history) lists each brand with its awaiting-decision and reviewed-history counts and a <strong>Set stock type</strong> dropdown (Leave for review / MTO / Stock / NOS / Special). Pick one and click <strong>Apply to N products</strong>. When a brand's reviewed history is lopsided (at least 80% one type across at least 5 samples) that type is pre-selected for you. It never overwrites a stock type you set by hand, and each write re-checks the row, so a concurrent edit always wins.
+| Step | Button |
+|---|---|
+| **Scan products** | **Scan products**, or **Scan new products** to add products created since the last scan |
+| **Check products** | **Check products**. **Stop** halts it. |
+| **Review uncertain products** | **Suggest seasons from product age**, and **Reset All** |
+| **Publish filters to Shopify** | **Select All Ready (N)**, **Publish selected (N)** |
+| **Link products to ThreadCloud** | **Import N Products**. Brings published products into ThreadCloud's own records, so they count in Merchandising and catalog repair. Available after publishing. |
 
-## Step 4 — Apply to Shopify
+**Check footwear sizing** is for after publishing, when footwear sizes need a check.
 
-Once your rows are mostly Ready:
+## Rolling back
 
-1. Click <strong>Select All Ready (N)</strong> (top of the table). It selects the Ready rows in the <strong>current filtered view</strong>, so the button's count and what actually gets staged always agree. If you've filtered to one brand, only that brand's Ready rows are selected.
-2. Click <strong>Apply Selected</strong>
-3. Confirms how many will be written. If you selected mixed Ready + Needs Review, it warns about how many will be skipped
-4. Click <strong>Write metafields to N products</strong>
+<ol class="steps">
+  <li>Open the <strong>Published</strong> tab.</li>
+  <li>Tick the products to undo, then <strong>Rollback Selected (N)</strong>.</li>
+  <li>Confirm <strong>Rollback N products</strong>. ThreadCloud restores the values the products had before it published.</li>
+</ol>
 
-What gets written per product:
+## Problems
 
-- All `tc_core` metafields (category, colour, fabric, etc.)
-- All `tc_measure` metafields (size scale)
-- All `tc_trade` metafields (supplier_ref)
-- Variant `barcode` filled from SKU (enables Shopify Admin batch label fallback)
-
-What ThreadCloud does NOT touch:
-
-- Product title, description, images
-- Variant SKU, price, inventory
-- Tags (unless you explicitly check the overwrite box)
-- Any metafield in a non-`tc_*` namespace
-
-The Apply runs in batches of 50. Progress shows. Failures get logged with reasons.
-
-### Overwrite vs. fill-blanks
-
-Default behavior: only fill metafields that are currently blank. If a product already has `tc_core.category = "Suit"`, ThreadCloud won't overwrite.
-
-If you want to overwrite existing values (e.g. re-classifying everything after improving the AI), check <strong>Overwrite existing</strong> in the confirm dialog.
-
-## Step 5 — Import to Database (optional)
-
-Only relevant if you want the legacy products to appear in:
-- ThreadCloud's dashboard order list
-- Merchandising sell-through
-- Financials roll-up
-
-If you only care about smart filters working on the storefront, skip Step 5.
-
-To run:
-
-1. Click <strong>Run Import</strong>
-2. ThreadCloud creates Order + Style + Variant rows in its own database for each enriched product
-3. Idempotent — re-running picks up new products, doesn't duplicate
-
-## Rollback
-
-If an Apply went wrong:
-
-1. Scroll past the workflow to the <strong>Applied</strong> table
-2. Select rows you want to undo
-3. Click <strong>Rollback</strong>
-
-Restores the previous metafield values from the snapshot ThreadCloud took before writing. Works within 90 days.
+The **Problems** tab lists products that could not be checked, with the reason. Fix the product in Shopify if the reason points there, then scan or check again. If a repair from Reorder failed, it shows here with **Retry repair**.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Skipping the Review step</div>
-Don't go straight from Classification → Apply. AI gets things wrong on legacy data more often than on parse (less context). Walk the Needs Review filter at minimum.
+<div class="callout-title">Publishing without reviewing</div>
+Publish only what's in Ready to publish. Walk Needs your review at least once; old catalog data is thinner than a supplier linesheet.
 </div>
 
-<div class="callout callout-warn">
-<div class="callout-title">Overwriting good metafields</div>
-If some products were already enriched by ThreadCloud, the default fill-blanks behavior protects them. Don't check Overwrite unless you really mean it.
-</div>
-
-<div class="callout callout-warn">
-<div class="callout-title">Resetting mid-run</div>
-The <strong>Reset All</strong> button wipes all preview/needs_review/error jobs and starts fresh. Useful if you completely changed the AI prompts, but destroys any manual fixes you've done. Reset Errors only (less destructive option) clears just the failed rows.
+<div class="callout callout-danger">
+<div class="callout-title">Reset All</div>
+<strong>Reset All</strong> clears the review queue and starts fresh. It throws away every decision you made. Don't use it to fix a few rows.
 </div>
 
 ## Next steps
 
-- [Settings → AI & Models](/settings/ai-models/) — tune the classification AI
-- Verify on the storefront — smart filters should now work for the enriched products
+- [AI &amp; Pipeline](/settings/ai-models/): occasions, category mappings and always-in-stock tags
+- [Storefront](/settings/theme/): check that filters are live
+- [Settings and store health](/settings/store-health/): the Catalog tile
