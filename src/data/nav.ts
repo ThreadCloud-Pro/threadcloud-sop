@@ -16,6 +16,7 @@ export const navigation: NavSection[] = [
       { href: "/home/", title: "Home" },
       { href: "/setup/onboarding/", title: "First-time setup" },
       { href: "/glossary/", title: "Glossary" },
+      { href: "/help/", title: "Help and Winston" },
       { href: "/runbook/", title: "If something breaks" },
     ],
   },
