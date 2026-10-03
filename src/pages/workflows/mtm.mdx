@@ -19,15 +19,17 @@ This screen is labelled <strong>Custom orders</strong> in the app (it used to be
   <li><strong>New custom order</strong>: drop in the maker's confirmation, or enter it by hand.</li>
   <li><strong>Review</strong>: the customer, the garments, the measurements, the price and the delivery date.</li>
   <li><strong>SEND TO SHOPIFY</strong>: creates the products, ready to scan at the register.</li>
-  <li><strong>MARK RECEIVED</strong> when the garments arrive, and enter the final cost.</li>
+  <li><strong>Mark received</strong> when the garments arrive, and enter the final cost.</li>
   <li><strong>Print the labels</strong>, tag the garments, and ring them up on POS when the customer collects.</li>
 </ol>
 
-The top of every custom order shows where it is: **1 Review**, **2 Send to Shopify**, **3 Receive & tag**.
+Every custom order page, and the list, shows one step bar: **Review**, **Ordered**, **Received**, **Fitted**. Ordered means it has gone to Shopify and the maker, and is waiting to arrive.
 
 ## Start a custom order
 
-On the home screen, switch to the **Sales floor** desk and click the <strong>Custom order</strong> tile ("bespoke · one customer"). The **Custom orders** list under the tiles shows open orders, the ones that need you first. You can also reach the list from **Logistics**, <strong>MTM Orders</strong>.
+On the home screen, switch to the **Sales floor** desk and click the <strong>Custom order</strong> card ("Made to measure, special order"). It opens the **Custom orders** list. You can also reach it from Home's <strong>Receive custom orders</strong>, or from **Logistics**, <strong>MTM Orders</strong>.
+
+The list has a search box ("Customer, maker or garment") and tabs: **All open**, **Draft**, **Ordered**, **Received**, **Fitted** and **Cancelled**. Each row shows the **Customer**, **Maker**, **Garment**, when it was **Ordered**, when it is **Expected** (late ones say so) and a status chip. Click a row to open the order.
 
 Click <strong>New custom order</strong>. Two ways in:
 
@@ -86,7 +88,7 @@ The **Brand / maker** and the maker's **Reference number**.
 
 ## Send to Shopify
 
-When the meter reads **Ready to send**, click <strong>SEND TO SHOPIFY</strong>. It reads **CREATING PRODUCTS…** while it works. ThreadCloud creates a product in Shopify for each garment (or each group), with a barcode, ready to scan at the register. The order moves to **Send to Shopify** on the progress line and waits for delivery.
+When the meter reads **Ready to send**, click <strong>SEND TO SHOPIFY</strong>. It reads **CREATING PRODUCTS…** while it works. ThreadCloud creates a product in Shopify for each garment (or each group), with a barcode, ready to scan at the register. The order moves to **Ordered** on the step bar and waits for delivery.
 
 If the button is greyed out, hover over it to see what's missing. If Shopify refuses, the screen says "Couldn't send to Shopify." with the reason.
 
@@ -97,17 +99,20 @@ Custom orders are non-returnable. Go over the spec with the customer, and take a
 
 ## Receive and tag
 
-When the garments land, open the order. The screen reads "Before you receive, check every product against this list." For each garment, find its row by the **tag code**, then check the **size** and the **price** match the tag. If anything is off, fix it on the review step first.
+An Ordered order opens on its summary: a headline such as "Arriving tomorrow.", or "Expected Oct 2." with "3 days late" beside it, the customer, garment, measurements, maker, supplier reference, expected date, price and notes.
 
-Then enter the final **Cost** for each garment, the **Customer total** if it changed, and any **Notes** (for example "fabric upgrade billed extra"), and click <strong>MARK RECEIVED</strong>. ThreadCloud books the stock into Shopify and tells you if it couldn't.
+When the garments land, work through **Check each tag** ("Match each tag's code, size and price to its row. Anything off, fix it in Review first."). For each garment, find its row by the **Tag** code, then check the **Size** and the **Price** match the tag.
 
-Once received, the order shows the final cost, the retail and the margin, and three print buttons:
+Then enter the final **Cost** for each garment, the **Customer total** if it changed, and any **Notes** (for example "fabric upgrade billed extra"), and click <strong>Mark received</strong> in the dark bar at the bottom. ThreadCloud books the stock into Shopify and tells you if it couldn't.
 
-- <strong>RECEIVING DOC</strong>: the receiving document, with garments, units and cost.
-- <strong>PRINT LABELS</strong>: one label per tag on the Dymo.
-- <strong>PRINT ON SHEET</strong>: a sheet of labels for a regular office printer.
+Once received, **What came in** shows the final cost, what the customer paid and the margin. The dark bar offers <strong>Print labels</strong>: one label per tag on the Dymo. The **…** menu in the header has:
 
-<strong>EDIT RECEIPT</strong> lets you correct the cost, total or notes later (<strong>SAVE CHANGES</strong>). <strong>REVERSE RECEIPT</strong> sends the order back to waiting for delivery and clears the confirmed costs, total and notes, so you can receive it again.
+- <strong>Print labels on a sheet</strong>: a sheet of labels for a regular office printer.
+- <strong>Receiving document</strong>: garments, units and cost.
+- <strong>Undo receipt</strong>: sends the order back to Ordered. A confirm asks first ("Undo this receipt?") and says that costs, customer total and receipt notes are cleared. Click <strong>Undo receipt</strong> to go ahead, or <strong>Keep it</strong>. It's offered only until the order has sold.
+- <strong>Delete order</strong>.
+
+<strong>Edit receipt</strong>, under What came in, lets you correct the cost, total or notes later (<strong>Save changes</strong>).
 
 ## On the sales floor (POS)
 
@@ -123,6 +128,8 @@ The tile says "Customer not attached" and loads the items anyway. Add the custom
 Fit notes after pickup are not built yet. For now, keep alteration notes in the receipt's notes or on the customer's record.
 
 ## Owner tools on the Custom orders list
+
+The account owner has a <strong>More</strong> menu in the list's header:
 
 - <strong>Make all POS-ready</strong>: puts every custom order product back on Point of Sale and sets its scannable barcode. Use it if a custom order is missing from the register.
 - <strong>Barcode check</strong>: lists custom-order products that share a barcode or have no order behind them. It changes nothing until you choose to archive the stray copies.

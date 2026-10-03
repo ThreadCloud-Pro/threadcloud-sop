@@ -33,7 +33,7 @@ A product with no ordered sizes is not pushed. Add its sizes in Parse & Build fi
 | Where | Button | What it does |
 |---|---|---|
 | The **Product details** heading on Enrich | <strong>Send to Shopify (N)</strong> | Opens the push confirmation for every product that has something Shopify hasn't received yet. |
-| The bulk action bar, after ticking products | <strong>Push selected</strong> | Pushes only the ticked products. |
+| The bulk action bar, after ticking products | <strong>Push selected</strong> | Pushes only the ticked products: creates the new ones and re-syncs the ones already in Shopify. |
 | A single approved product's footer | <strong>Push to Shopify</strong> or <strong>Push update</strong> | Creates just this product as a draft, or sends your edits to the product that already exists. |
 
 <ol class="steps">
@@ -43,6 +43,15 @@ A product with no ordered sizes is not pushed. Add its sizes in Parse & Build fi
   <li>Click <strong>Sync N to Shopify</strong>.</li>
   <li>Wait for the result line. You can leave the page; the push keeps going.</li>
 </ol>
+
+### Push selected
+
+Tick the products you want and click <strong>Push selected</strong>. The confirmation asks "Push N selected styles to Shopify?" and names the mix, for example "3 new, 2 updates". New products are created as drafts. Products already in Shopify are re-synced with your latest edits, the same as <strong>Push update</strong> on one product. Click <strong>Push N now</strong>.
+
+- A new product needs a price and a cost first; one without is left out as "missing price or cost".
+- A product in Shopify that isn't approved yet is re-synced only while it is still a draft in Shopify; otherwise it reports "Approve it first."
+- Skipped and rejected products are never sent, and show as "left out".
+- If nothing selected can go, the confirmation reads **Nothing to push** with the reason.
 
 ## What gets pushed
 
@@ -61,6 +70,8 @@ Every product is also tagged with `tc-imported` and `tc-order-` plus the order n
 A first push creates the product as a **draft**. Shoppers can't see it yet. A later push keeps whatever status the product has: a draft stays a draft, a live product stays live, and its web address doesn't change.
 
 A product goes onto your **Point of Sale** when you <a href="/workflows/receiving/">receive</a> it. You decide when it goes live on the online store.
+
+If a product was received before its first push, that first push makes it active and puts it on Point of Sale, because the stock is already in the store. This happens only when Shopify confirmed every size. If it couldn't, the product stays a draft and the result says "Received before push but kept as a draft: Shopify could not confirm every size. Once a push confirms it, use Make POS-ready on the Receiving tab." Later pushes never change a product's status, and a store with no Point of Sale channel is left as it is.
 
 Missing product details don't stop a draft being created. A product that is already **active** in Shopify still needs approved copy before its changes go out.
 

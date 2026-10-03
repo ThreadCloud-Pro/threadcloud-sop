@@ -20,7 +20,7 @@ If a button name here doesn't match the app, it changed and this page is stale. 
 
 ## Two ways a confirmation arrives
 
-1. **The acknowledgement link.** The purchase order's <strong>Email brand contact</strong> button emails the supplier a link (or copy it with <strong>Supplier ack link</strong>). They confirm each product on it. Their answer lands on the order on its own.
+1. **The acknowledgement link.** The purchase order's <strong>Email brand contact</strong> button emails the supplier a link (or copy it with <strong>Supplier ack link</strong>). On a reorder the same two actions sit in the PO tab's <strong>Share</strong> menu as <strong>Email [brand]</strong> and <strong>Copy supplier answer link</strong>. They confirm each product on it. Their answer lands on the order on its own.
 2. **A document or email.** The supplier sends a PDF, an image, or an email. You attach it on the purchase order and ThreadCloud reads it.
 
 Both end up on the same review screen.
@@ -28,12 +28,14 @@ Both end up on the same review screen.
 ## Where to find the purchase order
 
 - **A buying order:** in Parse & Build, the footer button <strong>PO sent</strong> (or <strong>VIEW PO &amp; ACK LINK</strong> on the locked band) opens it.
-- **A reorder:** the reorder's **PO** tab.
+- **A reorder:** the reorder's **PO** tab. What the supplier answered shows on its **Supplier answer** tab (see <a href="/workflows/reorder/">Reorder</a>).
 - **Any order:** **Logistics** lists every purchase order under **Purchase orders**, with <strong>VIEW PO</strong> and <strong>COPY ACK LINK</strong>. See <a href="/workflows/logistics/">Logistics</a>.
 
 ## Knowing an answer came back
 
-- On the home screen's **Merchandising** desk, **Needs you** lists "Supplier response" with a <strong>Review</strong> button for every answer waiting on you, and "no supplier confirmation logged" with <strong>Log confirmation</strong> for a sent PO that hasn't been answered yet.
+- On the home screen's **Merchandising** desk, **Needs you** shows a **Supplier responses** card with a count and a <strong>Review</strong> button.
+- On the **Sales floor** desk, **From your suppliers** lists what suppliers have said that the floor should know: shortages, unavailable products and boxes that arrived short first, then dates, substitutes, shipping news and notes. Each row has <strong>Open</strong> and <strong>Seen</strong>. See <a href="/home/#from-your-suppliers">Home</a>.
+- On the **Reorders** list, a reorder the supplier answered short sits on the **Short** tab.
 - **Logistics**, <strong>Supplier Responses</strong> lists every answer, with **All**, **Pending** and **Reviewed** filters. Search by brand, order or PO number and click a row to open it.
 
 ## Uploading a confirmation
@@ -116,11 +118,15 @@ On your side these arrive under <strong>Product Details from Supplier</strong>: 
 When the supplier confirmed fewer units on some sizes, a <strong>Quantity changes</strong> notice appears and an <strong>Availability Changes</strong> card lists each product with a <strong>Partial</strong> badge and the confirmed grid.
 
 - On a **buying order**: review the size adjustments, then update quantities in Parse & Build (unlock the order to amend it if the PO was sent). Nothing here changes the order.
-- On a **reorder**: two outcomes, spelled out on the screen. <strong>Keep my quantities</strong> means do nothing; receiving defaults to the confirmed numbers and the shortfall stays on backorder. <strong>Drop to confirmed (clear backorder)</strong> reduces the order to the confirmed numbers. Only do this if you won't chase the rest.
+- On a **reorder**: the simplest place to decide is the reorder's **Supplier answer** tab. Once the supplier has answered every line, <strong>Accept N, drop M</strong> takes what they can send and drops the rest, without resending anything; <strong>Undo the drop</strong> puts it back while nothing is received. See <a href="/workflows/reorder/#accept-what-they-can-send">Reorder</a>. This review screen still spells out the older choice: <strong>Keep my quantities</strong> means do nothing; receiving defaults to the confirmed numbers and the shortfall stays on backorder. <strong>Drop to confirmed (clear backorder)</strong> reduces the order to the confirmed numbers. Only do this if you won't chase the rest.
 
 Products the supplier marked unavailable appear under <strong>Unavailable</strong> with their note.
 
 If the supplier confirmed everything with no changes, the screen says "Supplier confirmed all styles with no changes or additional details." with a <strong>Dismiss</strong> button.
+
+## The supplier's history on an order
+
+Every answer a supplier gives is kept on the order: on the link, from a document, or from a pasted email, and each box received short. The latest answer drives the review screen; the history feeds **From your suppliers** on the Sales floor and the reorder's **Supplier answer** tab, including any other order number the supplier quoted.
 
 ## Superseded confirmations
 
@@ -144,5 +150,5 @@ These show on the supplier's screen, so they will come back to you by email:
 ## Next steps
 
 - <a href="/workflows/build-order/">Parse & Build</a>: update quantities after a partial confirmation on a buying order.
-- <a href="/workflows/reorder/">Reorder</a>: the reorder-specific quantity choice.
+- <a href="/workflows/reorder/">Reorder</a>: the reorder's Supplier answer tab, and Accept N, drop M.
 - <a href="/workflows/receiving/">Receiving</a>: receiving reads the confirmed quantities as its defaults.

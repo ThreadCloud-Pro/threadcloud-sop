@@ -66,25 +66,56 @@ The second tab. ThreadCloud drafts descriptions, fit notes, fabric, country of o
 Writes approved products to Shopify, with their sizes, photos and product facts.
 
 ### Receive
-When the shipment arrives, you count each size received, record measurements and print labels.
+When a box arrives, you count what's in it on the order's Receive page, press Receive, record measurements and print labels. Buying orders and reorders both receive there.
 
 ### Budget
 The fourth tab of an order: the order's planned cost against its brand allocation and the season plan.
 
 ### Reorder
-A re-buy of products that are selling. It starts from your Shopify catalog and its costs.
+A re-buy of products that are selling. It starts from your Shopify catalog and its costs. Its PO number carries the brand's code, for example `ABC-RO-26-014`. Every reorder is on the **Reorders** list.
 
 ## What an order row says
 
-On [Home](/home/), each order shows its stage:
+On [Home](/home/), each open order shows one line on where it stands and one button for the next step:
 
-| Stage | Meaning |
+| Button | Meaning |
 |---|---|
-| **Building** | Still in Parse &amp; Build |
-| **Enriching** | Product facts being reviewed and approved |
-| **Push ready** | Approved styles waiting to go to Shopify |
-| **Receiving** | In Shopify, with units still to arrive |
-| **Live** | Everything ordered has been received |
+| **Build** | Still in Parse &amp; Build |
+| **Enrich** | Product facts being reviewed and approved |
+| **Push N** | Approved styles waiting to go to Shopify |
+| **Receive** | In Shopify, with units still to arrive |
+| **View** | Everything ordered has been received |
+
+## Reorders and supplier answers
+
+| Word | Meaning |
+|---|---|
+| **Supplier answer** | What the supplier says they can send on a PO. A reorder shows it on its own tab. |
+| **Short** | The supplier confirmed fewer than you ordered, or a box arrived with less than they said, and nobody has decided yet. |
+| **Dropped** | Units you accepted the supplier can't send. Receiving stops expecting them. **Undo the drop** puts them back while nothing is received. |
+| **Substitute** | Something the supplier sent or offered instead of what you ordered. It never counts as the ordered piece arriving. |
+| **Earmark** | A size held on a reorder for a waiting customer. **Tell** opens a message to them. |
+| **From your suppliers** | The Sales floor list of what suppliers have said. **Seen** clears a row. |
+
+## Receiving words
+
+| Word | Meaning |
+|---|---|
+| **Due now** | Orders you can receive today: in their window, past it, already arriving early, or with no window |
+| **Coming up** | Orders whose delivery window hasn't opened yet, with nothing received |
+| **Checks** | Things in this box worth a second look before you press Receive |
+| **Woven complete** | Every unit on the order is in |
+| **Overs** | Units received past what was ordered. The close-out offers to return them. |
+| **POS-ready** | Active in Shopify and on the Point of Sale channel, so the register finds it |
+
+## Catalog words
+
+| Word | Meaning |
+|---|---|
+| **Basic pass** | ThreadCloud's rules-only read of each catalog product. It marks each one **ready** or **needs a look**, and writes nothing to Shopify. |
+| **Store codes** | What your own class codes, knit codes and delivery window codes mean, said once in Settings. |
+| **Catalog profile** | A count of what your Shopify catalog holds. |
+| **Essentials** | The storefront page of pieces the store carries in depth. See [Storefront](/settings/theme/#essentials-page). |
 
 ## Push states on Enrich
 

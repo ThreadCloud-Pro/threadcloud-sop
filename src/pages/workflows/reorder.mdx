@@ -1,38 +1,87 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Reorder
-description: Restock what's selling. Search a product you already carry (or run a saved list), set how many by size, issue the PO, and check it in.
+description: Restock what's selling. Find a reorder on the Reorders list, or start one from a product or a saved list, set how many by size, issue the PO, settle the supplier's answer, and receive it.
 ---
 
 # Reorder
 
-Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
+Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, settle what the supplier says they can send, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-10-03</div>
 If a button name here doesn't match what you see on screen, the app changed and this page is stale. Tell the team.
 </div>
 
 ## Quick path
 
 <ol class="steps">
-  <li><strong>Open Reorder</strong> from the <strong>Reorder</strong> tile on the home screen's Sales floor desk.</li>
+  <li><strong>Open Reorders</strong> from the <strong>Reorder</strong> card on the home screen's Sales floor desk, and click <strong>New reorder</strong>.</li>
   <li><strong>Find the product</strong>: search for one you carry, or click <strong>Run</strong> on a saved list. ThreadCloud reads the cost from Shopify as you pick.</li>
-  <li><strong>Set how many, by size</strong>: type the quantities. They save on their own.</li>
-  <li><strong>Issue the PO</strong>: click <strong>Review PO</strong>, then <strong>Issue PO</strong> on the PO tab. Or click <strong>Receive without sending</strong> to skip the supplier step.</li>
-  <li><strong>Check it in</strong> on the Receive tab when the box arrives.</li>
+  <li><strong>Set how many, by size</strong> on the <strong>Pick</strong> tab. Quantities save on their own.</li>
+  <li><strong>Issue the PO</strong>: click <strong>Review PO</strong>, then <strong>Issue PO</strong>. Or click <strong>Receive without sending</strong> to skip the supplier step.</li>
+  <li><strong>Settle the supplier's answer</strong> on the <strong>Supplier answer</strong> tab.</li>
+  <li><strong>Receive</strong> the box on the <strong>Receive</strong> tab when it arrives.</li>
 </ol>
 
 <div class="callout callout-tip">
 <div class="callout-title">Where "what should I reorder?" lives</div>
-The reorder screen is for placing the restock. To decide <em>what</em> to restock (what's selling, what's running low) use <a href="/planning/trading/">Merchandising</a>. It surfaces reorder candidates from sell-through and weeks-of-supply, and links straight into a reorder.
+The reorder screens are for placing the restock. To decide <em>what</em> to restock (what's selling, what's running low) use <a href="/planning/trading/">Merchandising</a>. It surfaces reorder candidates from sell-through and weeks-of-supply, and links straight into a reorder.
 </div>
 
-## Two ways to start
+## The Reorders list
 
-On the home screen, switch to the **Sales floor** desk and click the <strong>Reorder</strong> tile ("restock from the catalog"). You can also type "reorder" in the home search. The **Reorders** list under the tiles shows your open reorders, each with its next step (for example <strong>Receive</strong>).
+On the home screen, switch to the **Sales floor** desk and click the <strong>Reorder</strong> card ("One style or a full store restock"). You can also type "reorder" in the home search. Both open **Reorders**, the list of every reorder the store has.
 
-The Reorder page is a search, split into two panels:
+Across the top: <strong>New reorder</strong> to start one, <strong>Restock lists</strong> for your saved lists, and a search box.
+
+The tabs sort the list by where each reorder stands. Each tab except Received shows a count.
+
+| Tab | What's on it |
+|---|---|
+| **Open** | Everything not fully received |
+| **Waiting on supplier** | Sent, and the supplier hasn't answered |
+| **Short** | The supplier confirmed fewer than you ordered, or a box arrived short, and nobody has decided what to do yet |
+| **Shipped** | The supplier says it shipped, or part of it has arrived |
+| **Received** | Every unit you expect has arrived |
+
+Each row shows the **PO number**, **Brand**, **Styles**, **Units**, **For customer** (anyone a piece is earmarked for), **Sent**, **Status** and **Supplier no.** (the supplier's own order number, or **Add** when there isn't one yet). Click a row to open it. A draft opens on **Pick**; a sent reorder opens on its **Supplier answer**.
+
+Reorder PO numbers carry the brand's code, the year and a running number, for example `ABC-RO-26-014`.
+
+### Status
+
+Every reorder carries one status chip, the most useful fact first:
+
+| Chip | Means |
+|---|---|
+| **Draft** | Not sent yet |
+| **Waiting on supplier** | Sent, no answer yet |
+| **Confirmed** | The supplier answered and nothing is short |
+| **Short** | Fewer confirmed than ordered, or a box arrived short. It needs your decision. |
+| **Substitute offered** | The supplier offered something else for a style |
+| **Backordered** | The supplier gave a later date for a style |
+| **Shipped** | The supplier says it shipped |
+| **Part received** | Some of it has arrived |
+| **Received** | Everything you expect has arrived |
+
+### Search
+
+Type in the search box ("PO number, supplier order number, brand, style or customer"). It finds a reorder by our PO number, the supplier's order number (including any other number they quoted on an answer), the brand, a style code or name, or the customer a piece is earmarked for. Dashes and spaces don't matter: `ABC-RO-26-014` and `abcro26014` find the same reorder. The line above the results says how many matched and by what, for example "2 reorders match by PO number and style". **Clear** empties the box.
+
+### Can't find it
+
+When a box or an email arrives with no number you recognise, click <strong>Find by what's in the box</strong> under the list (it also opens below any search). Fill in what you can read off the box:
+
+- **Brand** (or **Any brand**)
+- **Style code**, from the label
+- **Quantity**: how many pieces are in the box
+
+Click <strong>Find</strong>. ThreadCloud ranks the reorders that are sent and not fully received, marking each **Most likely**, **Possible** or **Unlikely** with a reason, for example "Has JK11 Navy jacket. 4 still to come." Click <strong>This is it</strong> on the right one. "No open reorder fits." means nothing open matches.
+
+## Start a new reorder
+
+Click <strong>New reorder</strong>. The page is a search, split into two panels:
 
 - <strong>Products</strong> (left): search your Shopify catalog. Type at least 2 letters. Each result shows a thumbnail, brand, colour, stock count, and dots for how complete the product data is. Click a product to start a reorder.
 - <strong>Saved lists</strong> (right): your saved restock plans. <strong>Recent</strong> shows the last few; <strong>Browse by brand</strong> groups the rest. Click <strong>Run</strong> on any list to start a reorder pre-filled with those products and sizes.
@@ -72,15 +121,16 @@ If the whole list is excluded, nothing is created and the card says so.
 
 Where a product has a cost in ThreadCloud but none in Shopify, ThreadCloud tries to write that cost back to Shopify when the reorder opens. If it could not, the workspace shows: "ThreadCloud could not fill every missing Shopify cost. The reorder was still created." The reorder is fine. Set the cost on the product in Shopify when you get a chance so the next reorder reads cleanly.
 
-## The Pick / PO / Receive tabs
+## The reorder's header and tabs
 
-Once you start, you're in the reorder workspace. Three tabs across the top track where you are:
+Every reorder page shares one header. It shows the brand and the PO number, a status chip, and a short line such as "Sent Sep 24 · 2 of 8 received" (or "PO not sent"). Under it, four tabs walk the reorder from start to finish. A tick marks a finished step.
 
-- <strong>Pick</strong>: choose products and quantities
-- <strong>PO</strong>: review and issue the purchase order
-- <strong>Receive</strong>: check in what arrives
-
-The page header shows the brand and "Reorder · PO number". Once a PO number exists, a <strong>Copy PO</strong> button in the header copies that number. It reads <strong>PO copied</strong> when done; if the clipboard is blocked it reads <strong>Copy failed</strong> and prints the number next to the button so you can select it.
+| Tab | What it's for | Beside the name |
+|---|---|---|
+| <strong>Pick</strong> | Choose products and quantities | How many styles |
+| <strong>PO</strong> | Review and issue the purchase order | **Sent** or **Not sent** |
+| <strong>Supplier answer</strong> | What the supplier can send, and what to do about it | **Waiting**, or the status |
+| <strong>Receive</strong> | Count the box in | Units received of units expected, for example "2 of 8" |
 
 ## Pick: set quantities
 
@@ -114,32 +164,38 @@ Each product line has a cost box. It is the base cost per unit for this reorder,
 
 <div class="callout callout-tip">
 <div class="callout-title">Earmark for a waiting customer</div>
-If a customer is waiting on a size, click <strong>+ customer</strong> on that cell (<strong>+ another</strong> once one is there), then type their name or pick a Shopify customer. The earmark guarantees that size is on the order; the quantity bumps up to cover it. Earmarks show under <strong>Customers to notify</strong> on the Receive tab so you know who to call when it lands.
+If a customer is waiting on a size, click <strong>+ customer</strong> on that cell (<strong>+ another</strong> once one is there), then type their name or pick a Shopify customer. The earmark guarantees that size is on the order; the quantity bumps up to cover it. When the box arrives, the Receive page shows "For [name] · [size]" under that product with a <strong>Tell</strong> link, so you know who to call.
 </div>
 
 Other things on the Pick tab:
 
-- <strong>Cancel after</strong>: an optional date the supplier shouldn't ship past.
-- <strong>Order discount</strong>: a percent off the whole order. Each line also has its own **% off**; per-line discounts grey out when an order discount is set, and the two never stack.
-- **Add more products**: the search at the bottom ("Search [brand] for more products…") adds more products from the same brand. The same Shopify cost check runs on each add. "Already in this reorder." means it is a duplicate. A product bought in another currency is refused with both currencies named: one reorder holds one currency, so start a separate reorder for it.
-- <strong>Save as plan</strong>: save these products and sizes as a reusable restock list. Next season, click <strong>Run</strong> and it's all there. On a reorder that came from a plan, <strong>Edit plan</strong> changes the plan itself.
-- <strong>Delete this reorder</strong>: removes the reorder and any earmarks on it. If its PO was already sent, ThreadCloud asks you to confirm.
+- **The settings row** above the products: **Discount** (a percent off the whole order), **Cancel after** (an optional date the supplier shouldn't ship past) and **Supplier order no.** (the supplier's own number, once they give you one). Each line also has its own **% off**; per-line discounts grey out when an order discount is set, and the two never stack.
+- **Add more products**: the search at the bottom ("Add another [brand] product") adds more products from the same brand. The same Shopify cost check runs on each add. "Already in this reorder." means it is a duplicate. A product bought in another currency is refused with both currencies named: one reorder holds one currency, so start a separate reorder for it.
+- **The More menu** (the **…** button in the header):
+  - <strong>Copy PO number</strong>, once the reorder has one. A note reads "PO number copied"; if the clipboard is blocked it reads "Copy unavailable" with the number beside it to select.
+  - <strong>Save as plan</strong>: save these products and sizes as a reusable restock list. Next season, click <strong>Run</strong> and it's all there. <strong>View plans</strong> opens your lists.
+  - <strong>Edit plan</strong>, on a reorder that came from a plan: changes the plan itself.
+  - <strong>Delete reorder</strong>: removes the reorder and any earmarks on it. ThreadCloud asks you to confirm.
 
-When you're done, use the footer. Both buttons stay greyed out until at least one size has a quantity ("Set at least one size quantity to continue").
+The dark bar at the bottom shows the units and the total. Before the PO is issued it has two buttons, both greyed out until at least one size has a quantity ("Set at least one size quantity"):
 
 - <strong>Review PO</strong>: the normal path. Opens the PO tab.
-- <strong>Receive without sending</strong>: "Creates the PO without contacting the supplier." Use this when you already placed the order by phone. It issues the PO locally and takes you straight to Receive. Only available before a PO has been issued.
+- <strong>Receive without sending</strong>: issues the PO without contacting the supplier and takes you straight to Receive. Use this when you already placed the order by phone.
 
-Once issued, the footer reads <strong>PO Issued</strong>.
+Once the PO is issued, the bar offers <strong>Purchase order</strong> and <strong>Receive</strong> instead.
 
 ## PO: issue the purchase order
 
 The PO tab shows the purchase order for the supplier: styles, sizes, quantities, and the supplier's contact. Issuing freezes the document. After that, edits on Pick do not rewrite what the supplier was sent.
 
-- <strong>Email brand contact</strong>: copies a branded email and opens Gmail; paste it with Ctrl+V. If no brand contact is on file, it opens Gmail with the acknowledgement link and you add the address.
-- <strong>Supplier ack link</strong>: copies the link the supplier uses to confirm the order.
-- <strong>Copy PO</strong>: copies the purchase order document itself.
-- <strong>Issue PO</strong>: the big button in the sticky bar. It reads <strong>Issuing…</strong> while it works, then the bar shows <strong>PO issued</strong> with the date.
+- <strong>Issue PO</strong>: the button in the dark bar at the bottom. It reads <strong>Issuing</strong> while it works, then takes you to the Receive tab.
+- <strong>Share</strong> (in the header) holds the document's actions:
+  - <strong>Email [brand]</strong>: copies a ready-made email and opens Gmail; paste it with Ctrl+V. If no brand contact is on file, it opens Gmail with the link and you add the address.
+  - <strong>Copy PO</strong>: copies the purchase order document itself.
+  - <strong>Copy supplier answer link</strong>: copies the link the supplier uses to say what they can send. It reads <strong>Link copied</strong>.
+  - <strong>Print or PDF</strong>.
+
+Once issued, the bar offers <strong>Send to supplier</strong> (the same email as <strong>Email [brand]</strong>) and <strong>Receive</strong>.
 
 If the PO cannot be issued, a box titled <strong>Purchase order not issued</strong> names the reason. The ones you will meet:
 
@@ -150,30 +206,61 @@ If the PO cannot be issued, a box titled <strong>Purchase order not issued</stro
 
 If the PO shows "N ordered lines cannot be committed", those products are missing a fact the supplier needs. Click <strong>Edit reorder</strong> to fill it in.
 
-### Revising after issue
+If you open an amendment on an issued reorder, the bar offers <strong>Re-issue PO</strong>. Re-issuing supersedes the link already in the supplier's inbox; the old link tells them to ask you for the current one.
 
-If you open an amendment on an issued reorder, the sticky bar offers <strong>Re-issue PO</strong>. Re-issuing supersedes the links already in the supplier's inbox; the old link tells them to ask you for the current one.
+## Supplier answer: what they can send
 
-### If the supplier confirms changes
+When the supplier answers on their link, or you log their confirmation (see <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>), the **Supplier answer** tab shows it line by line.
 
-When the supplier answers on the acknowledgement link, open the supplier response (see <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>). For a reorder, quantity changes are one decision with two outcomes:
+The headline says where it stands, for example:
 
-- <strong>Keep my quantities</strong>: do nothing. Your order stays at the original numbers, receiving defaults to what the supplier confirmed, and the shortfall stays on backorder to chase.
-- <strong>Drop to confirmed (clear backorder)</strong>: reduce the order to the supplier's confirmed numbers and clear the backorder. Only do this if you won't chase the rest.
+- "Waiting on [brand]." Nothing back yet.
+- "[brand] confirmed 6 of 8. 2 short." Fewer than you ordered, and it needs your decision.
+- "Accepted 6 of 8. 2 dropped." You accepted what they can send.
+- "[brand] confirmed all 8."
+
+Under it, a bar and a key count what is **confirmed**, **short**, **dropped** and **received**, and a ship date shows when the supplier gave one.
+
+The table lists each style with **Ordered**, **Confirmed** ("Not yet" until they answer), **Received**, and what the supplier said about it ("No note" when nothing). A style shows "For [name]" when a customer is earmarked on it.
+
+**Supplier order number**: type the supplier's own number for this order and click <strong>Save</strong>. It shows on the Reorders list and search finds it. If the supplier quoted a different number on an answer, the line under the box says so.
+
+### Accept what they can send
+
+When the supplier has answered every line and some sizes are short, the dark bar at the bottom reads, for example, "6 of 8 confirmed. The 2 short come off this PO." Click <strong>Accept 6, drop 2</strong> (the numbers are yours).
+
+- The drop is recorded on the reorder. Nothing is resent to the supplier, and the PO they hold doesn't change.
+- Receiving then expects the accepted quantity, not the original one.
+- A substitute the supplier offered is never accepted this way. That stays your call.
+- If the supplier hasn't answered every line yet, you can't accept. The bar offers <strong>Ask [brand] again</strong>, which opens a Gmail message with their link.
+
+If a dropped size had a customer earmarked on it, that earmark is released and a list titled **Tell them it isn't coming** appears, one customer per row with a <strong>Tell [name]</strong> link. The style also reads "Not coming for [name]".
+
+The row of links under the table holds the rest:
+
+- <strong>Email [brand]</strong>: opens a Gmail message to the supplier with the PO number.
+- <strong>Tell [name]</strong> for each customer still waiting on a piece.
+- <strong>Undo the drop</strong>: puts the dropped units back on the reorder and restores the earmarks. Only while nothing has been received.
+- <strong>Send revised PO</strong>: optional. Sends the supplier a new PO with the accepted quantities. ThreadCloud asks you to confirm, because the link they already hold stops working. Only before anything is received.
+
+<div class="callout callout-info">
+<div class="callout-title">How Tell and Email open</div>
+Tell, Email and Ask again open a new Gmail tab with the message started. ThreadCloud sends nothing itself. A customer with only a phone number opens your phone app instead. A linked Shopify customer opens their card with their current phone and email.
+</div>
+
+The header's <strong>Purchase order</strong> button opens the PO. The **…** menu has <strong>Edit quantities</strong> (back to Pick) and <strong>Review supplier answer</strong> (the full review screen, see <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>).
 
 ## Receive: check it in
 
-When the box arrives, open the Receive tab. It uses the same size grid as Pick, and the same product line with ARTICLE, REF, MODEL, and COLOUR CODE so you can check the carton against the screen. Each cell shows what's still outstanding and a quantity box pre-filled for you:
+A reorder receives on the same Receive page as a buying order, with the reorder's own header and tabs on top. Reversing a shipment, correcting a receipt, the receipt history and printing tags all work there exactly as described on <a href="/workflows/receiving/">Receiving</a>. Open it from the **Receive** tab, the <strong>Receive</strong> button in the dark bar, or Home's **Receive reorders**.
 
-- the supplier's confirmed quantity, if they responded;
-- 0 if they marked that size unavailable;
-- the full remaining amount if there was no supplier response.
+Each product shows the same references you saw on Pick, so you can check the carton against the screen. Under a product with an earmark, a row reads "For [name] · [size]" with a <strong>Tell [name]</strong> link. Call them when their size lands.
 
-Adjust any cell for a partial shipment, then click <strong>Receive shipment</strong> (or <strong>Receive partial shipment</strong> when the counts are short). Sizes turn green when fully received. You can come back and receive again for later boxes; earlier receipts are listed under **Past shipments**.
+A reorder in another currency needs its source currency before it can be received. If the page asks "Source currency EUR?", click <strong>Confirm EUR</strong> when that is right.
 
-If a customer earmarked a size, they're listed under **Customers to notify** with a contact link. Call them when their size lands.
+### When a reorder reads Received
 
-A product that was never pushed to Shopify can't be received here, and its row says so. Push it from Enrich first.
+A reorder reads **Received** once every unit you expect has arrived against it. Expected means what you ordered, less anything you accepted as dropped. A substitute the supplier sent instead does not count toward it: the ordered piece is still owed.
 
 ## If it goes wrong
 
@@ -181,10 +268,12 @@ A product that was never pushed to Shopify can't be received here, and its row s
 - <strong>"Could not verify Shopify cost. Try again."</strong>: Shopify did not answer cleanly. Pick again in a moment. Nothing was created.
 - <strong>"Variant costs differ in Shopify."</strong>: make the variant costs agree in Shopify, then pick again.
 - <strong>Quantities didn't save</strong>: they save a second after you stop typing. If you see <em>Save failed</em>, check your connection and re-type the cell.
+- <strong>"Nothing to accept until the supplier has answered every line."</strong>: wait for the rest of the answer, or ask them again.
+- <strong>"Receiving has started. Accept and drop instead."</strong>: a revised PO can't go out once a box is in. Use <strong>Accept</strong> to drop what isn't coming.
 - <strong>Stuck status, or anything else</strong>: see <a href="/runbook/">If something breaks</a>.
 
 ## Next steps
 
-- <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>: what to do when the supplier answers.
+- <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>: logging the supplier's answer.
 - <a href="/planning/trading/">Merchandising</a>: decide what to reorder (sell-through, weeks of supply).
-- <a href="/workflows/receiving/">Receiving</a>: full receiving and label printing.
+- <a href="/workflows/receiving/">Receiving</a>: the Receive page, receipts and label printing.
