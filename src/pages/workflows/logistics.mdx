@@ -19,7 +19,7 @@ If a button name here doesn't match what you see, the app changed and this page 
 |---|---|
 | <strong>Reprint a product label</strong> | Print a hang tag for any product in the store. |
 | <strong>Reprint Tags</strong> | Find a received shipment by brand and reprint its tags or its receiving document. |
-| <strong>Receiving Log</strong> | Every expected delivery and every receiving document. |
+| <strong>Receiving Log</strong> | What's due now, what's coming up, and every receiving document. |
 | <strong>Transfer Out</strong> | Send stock back to a supplier. See [Transfer Out](/workflows/transfer-out/). |
 | <strong>Supplier Responses</strong> | Every supplier answer to a PO, pending and reviewed. |
 | <strong>MTM Orders</strong> | The custom orders list. |
@@ -37,19 +37,21 @@ For a tag that fell off, got damaged, or was never printed. It works for any pro
 
 If the browser blocks the print window, click <strong>OPEN LABEL</strong>. More on printing: <a href="/workflows/labels/">Print Labels</a>.
 
-## Receiving Log
+## Receiving log
 
-<strong>Receiving Log</strong> has two tabs.
+<strong>Receiving Log</strong> opens the **Receiving log** ("what's landed"). It has three tabs, and each has its own search box. On a phone, each row stacks as a card.
 
-**Expected** lists every order with a delivery window: brand, order, **Delivery Window**, **Cancel Date**, **Units Ordered**, **Receipt %** and a status such as **Upcoming**, **In Window**, **Past Window** or **Past Cancel**. Click a row to open that order's Receive tab.
+**Due now** lists every order you can receive today, with its **Order**, **Delivery window** and **Received** (for example "25% received, 8 days left" or "60% received, 2 days late"). Orders in their window come first, then orders past their window, then orders already arriving before their window opens (both marked, for example "Past window, Sep 15 to Oct 10"), then orders with no window. Reorders are here too. Search by brand or order. Click a row to open its Receive page.
 
-**Shipments** lists every receiving document: when it was received, brand, order, **Doc Ref**, units received and a status (**Pending**, **Partial** or **Complete**). Search by brand, season or doc ref, or filter with the chips. On each row:
+**Coming up** lists orders whose window hasn't opened yet and that have nothing received, with the window and when it **Opens** (for example "Opens Oct 15"). Search by brand or order.
+
+**Received** lists every receiving document from the last 90 days, newest first, by the receipt date picked on the Receive page (so a box booked late sits under the day it arrived). Each row shows when it was received, **Brand**, **Order**, **Doc Ref**, **Units Received** and a status (**Pending**, **Partial** or **Complete**). Search by brand, order or doc ref. <strong>Show older</strong> loads earlier receipts. On each row:
 
 - <strong>Doc</strong> reprints the receiving document.
 - <strong>Tags</strong> reprints the shipment's hang tags.
 - Click the row to open the receipt, where you can also correct or reverse it (see <a href="/workflows/receiving/">Receiving</a>).
 
-<strong>Reprint Tags</strong> opens the same list on the Shipments tab.
+<strong>Reprint Tags</strong> opens the same log on the Received tab.
 
 ## Supplier Responses
 

@@ -1,15 +1,15 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Team access
-description: Who can use ThreadCloud, how the account owner grants Merchandising access, and which actions are for the account owner only.
+description: Who can use ThreadCloud, how the account owner grants Merchandising access and the right to mark supplier updates seen, and which actions are for the account owner only.
 ---
 
 # Team access
 
-ThreadCloud uses your Shopify staff accounts. Anyone on your Shopify staff who can open the ThreadCloud app can use it. On top of that, two things are decided per person: whether they see **Merchandising**, and whether they are the store's **account owner**.
+ThreadCloud uses your Shopify staff accounts. Anyone on your Shopify staff who can open the ThreadCloud app can use it. On top of that, three things are decided per person: whether they see **Merchandising**, whether they can mark **supplier updates** seen, and whether they are the store's **account owner**.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-10-03</div>
 If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -18,7 +18,7 @@ If a screen or label here doesn't match the app, it changed and this page is sta
 | Person | What they get |
 |---|---|
 | **Account owner** | The person who owns the Shopify store. Everything, always, including Merchandising and the owner-only actions below. |
-| **Staff** | Every other Shopify staff member who opens ThreadCloud. All the daily workflows. Merchandising only if the owner turns it on. |
+| **Staff** | Every other Shopify staff member who opens ThreadCloud. All the daily workflows. Merchandising only if the owner turns it on. Marking supplier updates seen unless the owner turns it off. |
 
 There are no separate invitations in ThreadCloud. To give someone access, add them as staff in Shopify and give them access to the ThreadCloud app there. They appear in ThreadCloud's list after they first open it.
 
@@ -28,7 +28,7 @@ Merchandising access covers **Buying Plan**, **Merchandising** and **Money**: bu
 
 <ol class="steps">
   <li>The account owner opens <strong>Settings → Store &amp; team → Team access</strong> (also a <strong>Quick settings</strong> tile). The page is titled <strong>Users &amp; access</strong>.</li>
-  <li>Under <strong>Merchandising access</strong>, find the person. The table shows <strong>Name</strong>, <strong>Email</strong>, <strong>Account</strong> (Owner or Staff), <strong>Merchandising</strong> and <strong>Last seen</strong>.</li>
+  <li>Under <strong>Merchandising access</strong>, find the person. The table shows <strong>Name</strong>, <strong>Email</strong>, <strong>Account</strong> (Owner or Staff), <strong>Merchandising</strong>, <strong>Supplier updates</strong> and <strong>Last seen</strong>.</li>
   <li>Tick the box in the <strong>Merchandising</strong> column. It reads <strong>Enabled</strong>. Untick it to turn it off.</li>
 </ol>
 
@@ -39,13 +39,23 @@ The account owner's row reads **Always on**. Only the account owner can open thi
 Buying Plan, Merchandising and Money disappear from the menu. If they follow a link to one of those pages, it says: Merchandising access is not enabled for your account. Ask the store owner to grant it in Settings > Users.
 </div>
 
+## Supplier updates: who can mark them seen
+
+The Sales floor's **From your suppliers** list (see [Home](/home/#from-your-suppliers)) has a <strong>Seen</strong> button on each row and <strong>Mark all seen</strong>. Marking an update seen clears it for everyone, so it is a per-person permission.
+
+- It is **on by default** for every staff member. The account owner's row reads **Always on**.
+- To turn it off for someone, untick their box in the <strong>Supplier updates</strong> column ("Can mark updates seen") on the same page. It reads **Off**. Tick it again to turn it back on.
+- Without it, the person still sees every update and can open it; they just don't get the Seen buttons.
+
 ## Actions for the account owner only
 
 Some actions change the whole store or reach into Shopify, so ThreadCloud keeps them for the account owner. Where a staff member would see one, the screen says who can do it, for example **Store account owner only** or **Only the account owner can answer this.** They include:
 
 - Answering the setup walk's questions and finishing setup. See [First-time setup](/setup/onboarding/).
 - Testing, replacing or clearing the AI key. See [AI &amp; Pipeline](/settings/ai-models/).
-- Granting Merchandising access, on this page.
+- Granting Merchandising access and the supplier updates permission, on this page.
+- Saving **Store codes** (see [Catalog setup](/settings/legacy-enrichment/#store-codes)).
+- **Order qty to qualify as Essential** in Storefront (see [Storefront](/settings/theme/#essentials-page)).
 - Changing the store's season calendar in the Merchandising gear.
 - **Run the filter check** on the Storefront filters tile, and **Receiving readiness** in Settings.
 - The sales history recovery buttons and **Resume the reset** in **Settings → Automations**. See [Settings and store health](/settings/store-health/).

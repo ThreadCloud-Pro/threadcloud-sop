@@ -114,6 +114,25 @@ The <strong>Tiles</strong> / <strong>List</strong> switch is remembered per user
 
 If two products on the order read identically (same codes), both are marked as twins so you can tell them apart before approving.
 
+### Reading the colours
+
+Each product shows the details it needs as pills, in reading order: what it is, colour, material, origin, fit, construction, care, when to wear it, then the operational ones last. A detail its category doesn't need isn't shown. The colours mean the same thing on the tile, in the editor and in the count:
+
+| Colour | Means |
+|---|---|
+| **Red** | A required detail that is empty, or filled with a value that isn't on its list |
+| **Amber** | An optional detail filled with a value that isn't on its list |
+| **Green** | A value that's accepted, whoever filled it in |
+| **No colour** | An optional detail left blank |
+
+The tile's count reads, for example, **3 details missing** (click it for the list) or **Details complete**. The count is advice only. It never stops a push: you decide.
+
+Once a product is in Shopify and nothing is waiting to go, its Shopify line shows a check mark before **In Shopify · Up to date**.
+
+### Adding photos
+
+In a product's Photos, you can pick up to 5 photos at a time. They upload one after another, and the line then reads, for example, "Added 5." If you picked more, it adds the first 5 and says "Pick the rest in another batch." A photo that couldn't be added is named.
+
 ## Reviewing a product
 
 Click a product to open its editor in place. Walk down the fields top to bottom:
@@ -165,7 +184,7 @@ Tick the checkbox on any products (or <strong>Select all</strong>). The bar show
 
 - <strong>Apply edit</strong>: set one field across the selection.
 - <strong>Approve N</strong>
-- <strong>Push selected</strong>
+- <strong>Push selected</strong>: creates the selected products that aren't in Shopify yet and re-syncs the ones that are. See <a href="/workflows/push-to-shopify/#push-selected">Push to Shopify</a>.
 - <strong>More</strong> menu: <strong>Approve all ready (N)</strong> (only when some pending products pass the Approve check), <strong>Generate showroom flatlays</strong>, <strong>Skip</strong>, <strong>Clear selection</strong>.
 
 Every bulk action is greyed out while another bulk action is running, and while a product editor is mid-save or holding a failed save. Finish or retry the save first.

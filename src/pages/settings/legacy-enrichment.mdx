@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Catalog setup
-description: Make your existing Shopify products filterable. Scan, review the uncertain ones, publish, and roll back if needed. Also called Clean Catalog.
+description: Make your existing Shopify products filterable. Scan, review the uncertain ones, publish, and roll back if needed. Also called Clean Catalog. Plus Store codes and the Catalog profile.
 ---
 
 # Catalog setup
@@ -121,6 +121,35 @@ The card under the status runs each stage on its own:
 ## Problems
 
 The **Problems** tab lists products that could not be checked, with the reason. Fix the product in Shopify if the reason points there, then scan or check again. If a repair from Reorder failed, it shows here with **Retry repair**.
+
+## Catalog profile
+
+**Settings → Catalog &amp; content**, the **Vocabulary** card, <strong>Catalog profile</strong> ("What the store's Shopify catalog holds today"). It counts what ThreadCloud has read from your catalog. It only counts; nothing on it changes Shopify.
+
+| Section | What it counts |
+|---|---|
+| **Products** | Products read from Shopify, split into **Merchandise**, **Made to order** (MTM, bespoke, special order) and **Not merchandise** (gift cards, alterations, deposits), plus products **Made in ThreadCloud** |
+| **Descriptions** | How many products have a description, and about how many words |
+| **Brands** | How many vendors |
+| **Basic pass** | **Ready for the storefront** and **Need a look**, with what is missing on the ones that need a look (for example category, garment type, size scale, colour, or store codes) |
+| **Product types** and **Most used tags** | The store's own types and tags, most used first |
+
+The basic pass runs on its own after each catalog scan. It works out the facts it can prove from what Shopify already holds and marks each product **ready** or **needs a look**. It never guesses, and it writes nothing to Shopify. If the page says ThreadCloud hasn't read the catalog yet, scan products from Clean Catalog first.
+
+## Store codes
+
+**Settings → Catalog &amp; content**, the **Vocabulary** card, <strong>Store codes</strong> ("What the store's class codes and delivery windows mean"). Many stores tag products with their own codes. Say once what they mean, and the basic pass reads them on every product that carries them.
+
+The page lists any **Code families in this catalog** it found in your tags, with examples. Map each one below, or list it to ignore. Four boxes, one entry per line:
+
+| Box | What to type, for example |
+|---|---|
+| **Class codes** | A code and the category it means, with the garment type if you know it: `501 = Knitwear / Crewneck`. A code ending in `*` covers a series: `7* = Neckwear`. |
+| **Knit weight codes** | Tags that mean a knit is light or heavy: `501 = Lightweight` |
+| **Delivery windows** | Each delivery window and the season it ships in (FW, SS, PF or CR): `D1 = SS` |
+| **Tag families to ignore** | Code families that mean nothing to the catalog, such as a supplier's style codes |
+
+Click <strong>Save codes</strong>. It reads "Saved. The basic pass is running again." Only the products a change affects are looked at again. A class code pointing at a category the catalog doesn't have is refused and named. Only the account owner can save; others can read the page.
 
 ## Common mistakes
 

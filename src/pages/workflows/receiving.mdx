@@ -1,149 +1,205 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Receiving
-description: Count the boxes against the order, confirm the shipment, print hang tags, and fix a receipt when something was booked wrong.
+description: Count the box against the order, press Receive, print hang tags, close out a finished order, and fix a receipt when something was booked wrong.
 ---
 
 # Receiving
 
-When the boxes arrive, you open the order's **Receive** tab, count what's in them against the order, and confirm the shipment. ThreadCloud books the stock into Shopify, locks the exchange rate, puts the products on your Point of Sale, and prints the hang tags. It's usually done at the receiving table with a tablet beside the open boxes.
+When a box arrives, you open the order's **Receive** page, count what's in this box, and press **Receive**. ThreadCloud books the stock into Shopify, locks the exchange rate, puts the products on your Point of Sale, and prints the hang tags. It's usually done at the receiving table with a tablet beside the open box.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-10-03</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-The day a buying order's shipment arrives. For a reorder, use the Receive tab inside the reorder (see <a href="/workflows/reorder/">Reorder</a>). For a custom order, see <a href="/workflows/mtm/">Custom orders</a>.
+The day a box arrives for a buying order or a reorder. Both receive on this same page; a reorder shows its own header and tabs on top (see <a href="/workflows/reorder/">Reorder</a>). For a custom order, see <a href="/workflows/mtm/">Custom orders</a>.
 </div>
 
 ## What you'll need
 
-- The boxes and the packing list
+- The box and the packing list
 - The Dymo label printer loaded with 30336 labels (see <a href="/workflows/labels/">Print Labels</a>)
 - A tape measure, if you're capturing measurements
 
 ## Quick path
 
 <ol class="steps">
-  <li><strong>Open the order's Receive tab.</strong></li>
-  <li><strong>Check the shipment details</strong>: date, reference, location and exchange rate.</li>
-  <li><strong>Enter what's in the box</strong>, size by size, in <strong>Receiving Now</strong>.</li>
-  <li><strong>Receive shipment</strong> (or <strong>Receive partial shipment</strong>).</li>
-  <li><strong>Print</strong> the hang tags and the receiving document from <strong>Ready to print</strong>.</li>
+  <li><strong>Open the order's Receive page.</strong></li>
+  <li><strong>Check the box details</strong> in the dark bar at the bottom: date, location, delivery note and exchange rate.</li>
+  <li><strong>Count what's in this box</strong>: click <strong>All N arrived</strong> on a product that matches, or type each size.</li>
+  <li><strong>Open Checks</strong> if the bar shows any, and clear them.</li>
+  <li>Click <strong>Receive N units</strong>.</li>
+  <li><strong>Print</strong> the hang tags.</li>
   <li><strong>Tag and shelve</strong> the goods.</li>
 </ol>
 
-## Stage 1: Find the order
+## Find the order
 
-Any of these gets you to the Receive tab:
+Any of these gets you to the Receive page:
 
-- **Home, Sales floor desk.** Orders whose receiving is due show under **Needs you** with a <strong>Receive</strong> button. **Coming to the floor** shows incoming orders, soonest first, each with <strong>Open the haul</strong> and <strong>Receive</strong>.
-- **Logistics, Receiving Log.** The **Expected** tab lists every order with a delivery window, its **Receipt %** and a status (for example **In Window** or **Past Window**). Click a row.
-- **The order itself.** Click the <strong>Receive</strong> tab in the order header.
+- **Home.** The **Receive** card ("Pick the order, count what came in") is on both desks, with a count of orders in their delivery window. It opens the Receiving log. On the Sales floor desk, **Delivery windows open now** and **Past their window** list orders with units still to come; click one. **Customer orders** has <strong>Receive reorders</strong> and <strong>Receive custom orders</strong>.
+- **Logistics, Receiving log.** The **Due now** tab lists every order you can receive today. Click a row. See <a href="/workflows/logistics/#receiving-log">Logistics</a>.
+- **The order itself.** Click the <strong>Receive</strong> tab in the order header, or a reorder's <strong>Receive</strong> tab.
 
-## Stage 2: Check the shipment details
+## The page at a glance
 
-The top of the page shows **Receiving into**, the shipment reference, and a running count, for example "112 of 186" with a percentage.
+The top reads **Receive** with one line, for example "112 of 186 received so far. Count what came in this box." While you count, a large number on the right shows how many units are **counted in this box**, and the bar under it fills: what was already in, then this box.
 
-The **Tag the box** card ("Date, reference, where it lands.") holds:
+Below that is **In this box**: one card per product still owed. Products that are already in full sit further down under **Already received**, folded to one line each.
+
+## Check the box details
+
+The dark bar at the bottom carries one sentence about the box, for example "Arriving today into Main Store · Add delivery note · Rate 1.4823". Click any part of it to open **Box details**:
 
 | Field | What to check |
 |---|---|
-| **Date** | Today, unless you're booking a delivery late. |
-| **Reference** | Filled in for you. Used on the receiving document and the tags. |
-| **Location** | The Shopify location the stock goes into. |
-| **Exchange rate** | Only on an order in another currency. Check it is a normal rate for the currency (for example around 1.5 for EUR to CAD), not 1.0. It reads "Locks on confirm" the first time and "Locked at ..." after that. |
-| **Notes** | Anything worth remembering: a partial box, a damaged unit, a late ship date. |
+| **Date** | Today, unless you're booking a delivery late. The Receiving log files the receipt under this date. |
+| **Receive into** | The Shopify location the stock goes into. |
+| **Delivery note number** | The number on the supplier's delivery note. Leave it blank and ThreadCloud makes one. Used on the receiving document and the tags. |
+| **Note** | Anything worth remembering: a partial box, a damaged unit, a late ship date. |
+| **Exchange rate** | Only on an order in another currency, for example "1 EUR in CAD". Check it is a normal rate for the currency (around 1.5 for EUR to CAD), not 1.0. Once the first box is received it reads "locked on the first receipt". |
+
+Click <strong>Done</strong>. A part the receive can't go without (a date, a location, a rate) shows in amber until it's filled.
 
 <div class="callout callout-info">
 <div class="callout-title">Why the exchange rate locks</div>
-The rate on the day the stock lands is your cost truth. Later shipments on the same order reuse it, so your margins stay anchored to it however rates move afterwards.
+The rate on the day the stock lands is your cost truth. Later boxes on the same order reuse it, so your margins stay anchored to it however rates move afterwards.
 </div>
 
-If some products aren't in Shopify yet, a note says so. You can still book the stock now: ThreadCloud keeps the count and sends it to Shopify when each product is pushed from Enrich (<strong>OPEN PUSH QUEUE</strong> takes you there).
+## Count what's in this box
 
-## Stage 3: Enter what's in the box
+Each product card has a switch on the left, the photo and name, the supplier code and colour, and its sizes in a row. Under each size is what it still owes, for example "of 3".
 
-Each product shows its sizes in rows: **Size**, **Ordered**, **Prev. Rcvd** (received in earlier shipments), **Receiving Now** and **Outstanding**. Type the count from the box into **Receiving Now**.
+- Every size starts at **0**. Type the count from the box.
+- A size can't go past what it still owes: the box stops at that number.
+- A size already received in full shows a tick and no box. Nothing more can be booked on it.
+- **All N arrived**, on the right of a card, fills every size of that product to what it still owes. Use it when the product matches the order, then spot-check.
+- Once you've typed something, the card shows your count against what's owed, for example "5 of 6", and <strong>Fill the rest</strong> tops up every size that is still short.
+
+Under each size you'll see where it stands: "1 short", "+1 over", or "not ordered" for a size the order never asked for.
 
 Tools above the list:
 
-- **Search** ("Search style, color, size") to find a product fast.
-- <strong>Fill outstanding</strong> fills every outstanding quantity for the products showing. Use it when the box matches the order, then spot-check.
-- <strong>Clear quantities</strong> empties what you typed.
-- <strong>Include visible</strong> and <strong>Exclude visible</strong> tick or untick the products showing. Untick a product (its checkbox) to leave it out of this shipment.
+- **Find a style**: search by name, code or colour.
+- <strong>All arrived</strong> fills every product in the box at once. Use it when the whole box matches the order.
+- <strong>Clear counts</strong> empties what you typed. It shows once something is typed.
 
-The line under the tools tells you how many products are showing, receivable and included.
+On a long order there's also <strong>All in this box</strong> (switch every product on or off, with a count such as "12 of 14") and three filters: **All**, **Needs you** (a delivery started and not finished) and **Left out**.
+
+Switch a product off to leave it out of this box. It moves under **Left out** ("Switch on to receive") with what it still owes.
 
 <div class="callout callout-warn">
 <div class="callout-title">Two products that look the same</div>
-If two products on the order share a name and colour, ThreadCloud warns you on the row. Match the supplier code on the garment before you tick it.
+If two products on the order share a name and colour, both carry a <strong>twin, check code</strong> marker. Match the supplier code on the garment before you switch one on.
 </div>
 
 ### When the count doesn't match the order
 
-- **Fewer than ordered:** enter what arrived. The rest stays outstanding and the order stays open.
+- **Fewer than ordered:** enter what arrived. The rest stays owed and the order stays open.
 - **More than the current order, but within the PO the supplier was sent:** ThreadCloud asks you to confirm ("Some quantities exceed the current draft but fit the issued PO."). Check the carton and the PO first.
-- **More than the PO:** refused. You can't receive more than was ordered.
-- **A size you didn't order:** if the product already has that size in Shopify, it shows as its own row marked **not ordered**. Enter the count. It's kept separate, so it doesn't count against what the supplier still owes.
+- **A size you didn't order:** if the product already has that size in Shopify, it shows in the size run marked **not ordered**. Enter the count. It's kept separate, so it doesn't count against what the supplier still owes.
+
+### Checks
+
+When something in the box needs a second look, the dark bar shows <strong>Checks · N</strong>. Click it for the list, each with a button that jumps to the row:
+
+- a size counted over what it owes;
+- units on a size the order never asked for;
+- a product not on Shopify, so its tags print without barcodes;
+- two rows that read the same ("check the code");
+- products left out that still owe units;
+- the exchange rate this receipt will lock.
+
+### Products not on Shopify yet
+
+A line under the list says how many styles "aren't on Shopify yet". You can still book their stock: click <strong>Show them</strong> and switch a product on. Its card reads "Not on Shopify, tags print without barcodes". ThreadCloud keeps the count and sends it to Shopify when the product is pushed from Enrich (<strong>Open Enrich</strong>). A product marked **Needs Shopify** can't be received until it is pushed.
+
+When nothing can be counted at all, a card says why ("Nothing can be received yet") with the one button that fixes it, for example <strong>Open Enrich</strong> or <strong>Open purchase order</strong>.
 
 ### Measurements and fit
 
-Each product has a <strong>Measurements</strong> panel. Measure the garment at the **Measured Size** shown (your store's sample size for that scale) and fill in what you can. When the product has a brand model, the brand's spec shows beside each field so you can spot a garment that's off. Measurements you save here appear on the product page's size chart as measured on the garment.
+Each card has a <strong>Fit</strong> button. It opens the product's fit and measurements; a tick beside it means measurements are on file, and **Unsaved** means you typed some and haven't saved. Measure the garment at the **Measured Size** shown (your store's sample size for that scale) and fill in what you can. When the product has a brand model, the brand's spec shows beside each field so you can spot a garment that's off. Measurements you save here appear on the product page's size chart as measured on the garment.
 
-The **Fit** selector records how the product runs: **-2 Very large**, **-1 Runs large**, **True to size**, **+1 Runs small**, **+2 Very small**.
+The fit selector records how the product runs: **-2 Very large**, **-1 Runs large**, **True to size**, **+1 Runs small**, **+2 Very small**. The card then shows it, for example "Fit: Runs small".
 
-## Stage 4: Confirm
+## Receive
 
-Click <strong>Receive shipment</strong>. If not everything on the order has arrived, the button reads <strong>Receive partial shipment</strong>. <strong>Export CSV</strong> beside it downloads a Shopify-format file of what you're about to receive, if you need it.
+Click <strong>Receive N units</strong> in the dark bar. The number is what you counted. While it works the bar reads "Threading shipment in". <strong>More</strong> beside it has <strong>Export CSV</strong> (a Shopify-format file of what you're about to receive) and <strong>Cancel</strong>.
 
-When it lands, a **Receiving confirmed** banner shows the units and lines received, and:
-
-- **FX locked at ...** the first time, with "Shopify costs updated".
-- **N products now live on POS**. Your cashiers can sell them.
-- Lines booked in ThreadCloud and queued for Shopify, if some products weren't pushed yet.
+When it lands, a panel reads "N units received" with one line under it, for example "6 lines · now in Main Store · 4 products live on POS · rate locked at 1.4823, costs updated in Shopify". Its buttons: <strong>Print N tags</strong>, <strong>Print receipt</strong> and <strong>Undo</strong>.
 
 <div class="callout callout-warn">
-<div class="callout-title">If the banner warns you</div>
-<strong>Shopify stock not confirmed on N units</strong>: the receipt is recorded, but Shopify didn't confirm the stock for the sizes named. Check those sizes in Shopify before selling them (see <a href="/workflows/shopify-stock-sync/">Shopify stock sync</a>).<br />
-<strong>Shopify kept the old cost</strong>: push the order again from Enrich to write the cost.<br />
-<strong>N products did not reach Point of Sale</strong>: use <strong>Make POS-ready</strong> (below).
+<div class="callout-title">If the panel warns you</div>
+<strong>Shopify stock not confirmed on N units</strong>: the receipt is recorded, but Shopify may still show those sizes as sold out. Check them in Shopify before selling them (see <a href="/workflows/shopify-stock-sync/">Shopify stock sync</a>).<br />
+<strong>Shopify kept the old cost on N items</strong>: use <strong>Re-push in Enrich to write cost again</strong>.<br />
+<strong>N products not live on POS</strong>: use <strong>Make POS-ready</strong> (below).<br />
+<strong>N units skipped on N lines</strong>: those sizes couldn't be linked safely. Push them in Enrich, reload, then receive only those.
 </div>
 
-Don't confirm twice. If a confirm matches one that is already running or already recorded, ThreadCloud says so and records nothing a second time. Wait a few seconds and reload.
+Don't receive twice. If a receive matches one that is still running, the panel reads **Still going through**: wait a few seconds and reload, and don't count the box again. If it matches one already recorded, it reads **Already recorded** and nothing is booked a second time.
 
-## Stage 5: Print tags and the receiving document
+<strong>Undo</strong> pulls this box straight back out ("Pull this shipment back?"). Stock comes back out of Shopify and the receipt is removed for good. Click <strong>Pull it back</strong>, or <strong>Keep it</strong>.
 
-Right after you confirm, **Ready to print** opens: "N hang tags for this shipment, plus the receiving doc for your records." Tags print at 54 × 25 mm on the Dymo 30336, one per unit, in a new tab.
+## Print tags
+
+Right after you receive, a window titled "N units received" opens. Tags print at 54 × 25 mm on the Dymo 30336, one per unit, in a new tab.
 
 - <strong>Print both</strong>: tags, then the receiving document.
 - <strong>Tags only</strong>
 - <strong>Doc only</strong>
-- <strong>Skip for now</strong>: you can print later from the receipt or from Logistics.
+- <strong>Skip for now</strong>: you can print later from the receipt, from the order's close-out, or from the Receiving log.
 
-To reprint the tags for one product, use the tag button on that product's row. Everything about printing, and what to do if the printer fails, is on <a href="/workflows/labels/">Print Labels</a>.
+To reprint the tags for one product, use <strong>Reprint tags</strong> on its card. Everything about printing, and what to do if the printer fails, is on <a href="/workflows/labels/">Print Labels</a>.
 
-## Stage 6: Tag and shelve
+## Tag and shelve
 
-Put each tag on its garment and move the stock to the floor or the stockroom. The Receive tab in the header then reads, for example, "186 of 186".
+Put each tag on its garment and move the stock to the floor or the stockroom.
 
 ## A shipment in more than one box
 
-Receive what arrived, then come back to the same Receive tab when the rest lands. Enter only what's in the new boxes; ThreadCloud adds it to what was already received. Each confirm makes its own receipt.
+Receive what arrived, then come back to the same page when the rest lands. Count only what's in the new box; ThreadCloud adds it to what was already received. Each receive makes its own receipt.
 
-Past receipts are listed under **Shipment records** ("Received to date"), each with its reference, unit count, date and exchange rate. Click <strong>Open receipt</strong> to see one.
+## Paperwork
+
+Under the list, **Paperwork** is one row of links: <strong>Purchase order</strong>, one <strong>Receipt 01</strong>, <strong>Receipt 02</strong> and so on for each box received, <strong>Return to vendor</strong> once anything is in, and <strong>Make POS-ready</strong> (owners and buyers).
+
+## When the order is complete
+
+Once every unit on the order is in, the top reads **Woven complete** with the units received, how much came in the first box, and whether it **Arrived** on time or how many days late. Under it, the dates of each box link to their receipts.
+
+The close-out below shows only what is left to do:
+
+| Tile | What it's for |
+|---|---|
+| **Tags** | "16 tags from today's box". <strong>Print 16 tags</strong> prints them. |
+| **Point of sale** | "N styles not POS-ready". <strong>Make POS-ready</strong> fixes them. |
+| **Overs** | Units you received past what was ordered, by product and size. <strong>Start a return</strong> sends them back. |
+
+A **record** panel for the brand shows how its recent orders arrived: how much came in the first box, and on time or days late. <strong>Show products</strong> opens the list again if you need to correct something.
+
+## Make POS-ready
+
+A received product should be sellable at the register. If a cashier can't find one, click <strong>Make POS-ready</strong> in **Paperwork** or on the close-out's **Point of sale** tile. It makes every received product on the order active and puts it on the Point of Sale channel again, then says how many are on POS, for example "6 of 6 products on POS".
+
+It only touches products with received stock ("Receive a shipment first; products reach POS on receiving"). It can't be used to skip receiving.
+
+<div class="callout callout-info">
+<div class="callout-title">Stock received before the first push</div>
+When a product was received before it was pushed, its first push from Enrich makes it active and puts it on Point of Sale, but only if Shopify confirmed every size. If Shopify couldn't, the product stays a draft and Enrich says so: "Received before push but kept as a draft: Shopify could not confirm every size. Once a push confirms it, use Make POS-ready on the Receiving tab." Push again, then click <strong>Make POS-ready</strong> here. A store with no Point of Sale channel is left as it is.
+</div>
 
 ## The receipt (receiving document)
 
-A receipt is the permanent record of what was booked in that day. Open it from **Shipment records**, or from **Logistics, Receiving Log, Shipments**. The top shows the supplier, order, PO number and **FX Rate (locked)**, and each product lists **Ordered**, **Prev. Received**, **This Shipment** and **Total Received**, with a note when it is short or still outstanding.
+A receipt is the permanent record of what was booked in that day. Open it from **Paperwork** (<strong>Receipt 01</strong> and so on), or from the **Received** tab of the Receiving log. The top shows the supplier, order, PO number and **FX Rate (locked)**, and each product lists **Ordered**, **Prev. Received**, **This Shipment** and **Total Received**, with a note when it is short or still outstanding.
 
 Buttons: <strong>Export CSV</strong>, <strong>Print</strong> (the document), <strong>Reprint Labels</strong>, <strong>Reverse</strong> and <strong>Back</strong>.
 
 <div class="callout callout-info">
 <div class="callout-title">The receipt doesn't rewrite itself</div>
-After you correct something, the receipt still shows what was booked that day. That's deliberate. To see where stock stands now, look at the order's <strong>Receive</strong> tab, not the receipt.
+After you correct something, the receipt still shows what was booked that day. That's deliberate. To see where stock stands now, look at the order's <strong>Receive</strong> page, not the receipt.
 </div>
 
 ## Fix a wrong size
@@ -180,21 +236,15 @@ The order's locked exchange rate and its POS publishing stay as they are. Revers
 If some of that stock has already sold, talk to the Owner before reversing. To fix one size, use <strong>Correct</strong> instead of reversing everything.
 </div>
 
-## Make POS-ready
-
-A received product should be sellable at the register. If a cashier can't find one, click <strong>Make POS-ready</strong> at the top of the Receive tab. It makes every received product on the order active and puts it on the Point of Sale channel again.
-
-It only touches products with received stock. It can't be used to skip receiving.
-
 ## Sending stock back
 
-If you need to return part of a delivery to the supplier, the **Returned to vendor** card on the Receive tab shows what has gone back so far. Click <strong>Transfer out / RTV</strong> to return stock from this order. See <a href="/workflows/transfer-out/">Transfer Out</a>.
+To return part of a delivery to the supplier, click <strong>Return to vendor</strong> in **Paperwork**, or <strong>Start a return</strong> on the close-out's **Overs** tile. See <a href="/workflows/transfer-out/">Transfer Out</a>.
 
 ## Common mistakes
 
 <div class="callout callout-warn">
 <div class="callout-title">Exchange rate at 1.0 on a foreign order</div>
-If the order is in EUR and the rate reads 1.0, every cost is wrong. Fix the rate before you confirm the first shipment. It locks after that.
+If the order is in EUR and the rate reads 1.0, every cost is wrong. Fix the rate in Box details before you receive the first box. It locks after that.
 </div>
 
 <div class="callout callout-warn">

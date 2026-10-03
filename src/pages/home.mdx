@@ -1,16 +1,16 @@
 ---
 layout: ../layouts/Doc.astro
 title: Home
-description: The two desks you land on when you open ThreadCloud. Merchandising for buying work, Sales floor for reorders, custom orders and deliveries.
+description: The two desks you land on when you open ThreadCloud. Merchandising for buying work, Sales floor for receiving, reorders, custom orders and what suppliers have said.
 ---
 
 # Home
 
-Home is the first screen when you open ThreadCloud from your Shopify admin. It has two desks. Switch between them with the **Merchandising | Sales floor** toggle at the top right, next to **Settings**.
+Home is the first screen when you open ThreadCloud from your Shopify admin. It greets you by name and has two desks, each with clear paths for its work. Switch between them with the **Merchandising | Sales floor** toggle at the top right, next to **Settings**.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
-If a tile or label here doesn't match the app, it changed and this page is stale. Tell the team.
+<div class="callout-title">Last verified against the app: 2026-10-03</div>
+If a card or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
 <div class="callout callout-tip">
@@ -28,65 +28,93 @@ The search bar under the title reads **Search orders, POs, styles, customers, br
 
 ## The Merchandising desk
 
-For buyers. The line under the greeting counts your orders **in progress**, the **styles open**, and what is **committed** at cost.
+For buyers.
 
-### Tiles
+### Start here
 
-| Tile | What it opens |
+| Card | What it opens |
 |---|---|
-| **New buying order** | Start an order from a supplier linesheet. See [Parse & Build](/workflows/build-order/). Shown only to people who can create orders. |
+| **New buying order** | "Drop a linesheet, build the order." See [Parse & Build](/workflows/build-order/). Shown only to people who can create orders. |
+| **Receive** | "Pick the order, count what came in." The Receiving log, with a count of orders in their delivery window. See [Receiving](/workflows/receiving/). |
 | **Merchandising board** or **Money** | Merchandising. It reads **Money** until your first buying season exists. Shown only with Merchandising access. |
-| **Staff playbook** | ThreadCloud basics, with a link you can share with staff. |
+| **Logistics** | "POs, labels, transfers", with a count of POs not sent. See [Logistics](/workflows/logistics/). |
 
-While a new store is still finishing setup, the account owner may also see **Confirm delivery calendar**, **Finish storefront**, **Refine catalog** and **Finish setting up**. See [First-time setup](/setup/onboarding/).
+While a new store is still finishing setup, the account owner also sees setup tiles here, such as **Confirm delivery calendar**, **Finish storefront** and **Refine catalog**. See [First-time setup](/setup/onboarding/). They go once the store is ready; after that, setup lives in Settings.
 
 ### Needs you
 
-The list of things waiting on a person, most urgent first. Each row has one button:
+What's waiting on a person, grouped into cards. Each card counts its items, names the first few, and has one button. A card with a single item opens that item; otherwise it opens the list.
 
-| Row says | Button | Where it goes |
+| Card | Button | Where it goes |
 |---|---|---|
-| **Supplier response** · Review the changes your supplier sent back | **Review** | The order's supplier review |
-| purchase order ready to send | **Send PO** | The order's PO tab |
-| N styles approved, not yet pushed | **Push N** | The order's Enrich tab, nearest delivery window first |
-| PO sent · no supplier confirmation logged | **Log confirmation** | The order's PO tab, oldest first |
-| **Catalog enrichment** · N need review | **Review** | [Catalog setup](/settings/legacy-enrichment/) |
+| **Supplier responses** | **Review** | The supplier's answer, or the list of them. See [Supplier confirmations](/workflows/supplier-confirmations/). |
+| **POs not sent** | **Send** | The purchase order, or Logistics' unsent POs. The card names the oldest and how many days it has waited. |
+| **Ready to push** | **Push** | The order's Enrich tab, nearest delivery window first |
+| **Catalog enrichment** | **Review** | [Catalog setup](/settings/legacy-enrichment/) |
 
-The first five show. Click **Show N more** to see the rest. When nothing is waiting it reads **Desk clear.**
+When nothing is waiting it reads **Nothing waiting on you.**
 
 ### Open orders
 
-Below Needs you, your orders are grouped by buying season. Click a season heading to open or close it. Each order row shows the brand, the season code, and its stage:
+Your orders, grouped by buying season. Each season shows how many orders and their cost, and a bar: **Received**, **In delivery window** and **Still out**. Click a season to open or close it.
 
-| Stage | Meaning |
+Each order row shows the brand, the season code and PO number, one line on where it stands, and one button:
+
+| Line, for example | Button |
 |---|---|
-| **Building** | The order is still in Parse &amp; Build |
-| **Enriching** | Product facts are being reviewed and approved |
-| **Push ready** | Approved styles are waiting to go to Shopify |
-| **Receiving** | Products are in Shopify and units are still to arrive |
-| **Live** | Everything ordered has been received |
-
-**+ Add order to** a season starts a new order in that season.
+| 12 styles · no quantities yet | **Build** |
+| 4 of 12 approved | **Enrich** |
+| 12 approved · 8 pushed | **Push 12** |
+| 40 of 120 units received | **Receive** |
+| 12 pushed · 120 units received in full | **View** |
 
 ## The Sales floor desk
 
-For the floor team. The line under the greeting counts orders **on the way**, any that are **overdue**, your **reorders**, and **custom orders open**.
+For the floor team.
 
-### Tiles
+### From your suppliers
 
-| Tile | What it opens |
+When a supplier has told you something new, it shows at the top of the Sales floor. Shortages, unavailable items and boxes that arrived short come first. Each row has a chip, one plain sentence, the order's PO number and when it came in, for example "**Short** The brand can send 4 of 6 units of the navy jacket."
+
+| Chip | Means |
 |---|---|
-| **Reorder** | Restock from the catalog. See [Reorder](/workflows/reorder/). |
-| **Custom order** | A made-to-measure or special order for one customer. See [Custom orders](/workflows/mtm/). |
-| **Staff playbook** | ThreadCloud basics. |
+| **Short** | The supplier can send fewer than you ordered |
+| **Unavailable** | The supplier can't send a product |
+| **Arrived short** | A box arrived with less than the supplier said |
+| **Backordered** or **New date** | A later date for a product or the order |
+| **Substitute offered** | The supplier offered something else |
+| **Shipped**, **Confirmed** | Good news |
+| **Box in** | A box was received and units are still to come |
+| **Note** | Anything else the supplier wrote, such as their order number |
 
-### Reorders and Custom orders
+- <strong>Open</strong> takes you to the order: a reorder's page, the receiving page for a box, or the purchase order.
+- <strong>Seen</strong> clears the row once you've dealt with it. <strong>Mark all seen</strong> clears every row. If it fails, the list says "Couldn't mark that seen. Try again." and the rows come back.
 
-Two lists sit under the tiles. Each is closed until you open it, and shows three rows until you ask for more. An empty list says **No reorders yet.** or **No custom orders yet.**
+Marking updates seen is a per-person permission. It is on for every staff member unless the account owner turns it off in [Team access](/settings/users-roles/); the account owner always can. Without it, you see the updates but no Seen buttons.
 
-### Coming to the floor
+The section is hidden when there is nothing new.
 
-A row of covers, one per incoming order, soonest delivery first. Swipe or use the arrows to move through them. An order that can be received shows **Receive**. If nothing has a delivery window yet it reads **Delivery windows appear here once orders carry them.**
+### On the floor
+
+| Card | What it opens |
+|---|---|
+| **Receive** | "Pick the order, count what came in." The Receiving log, with a count of orders in their delivery window. See [Receiving](/workflows/receiving/). |
+| **Reorder** | "One style or a full store restock." The Reorders list. See [Reorder](/workflows/reorder/). |
+| **Custom order** | "Made to measure, special order", with a count of custom orders received or in review. See [Custom orders](/workflows/mtm/). |
+| **Staff playbook** | ThreadCloud basics for the team. |
+
+### Customer orders
+
+"Not yet received in store." Two cards, each with a count and how long the oldest has waited, for example "Oldest ordered 41 days ago":
+
+- **Custom orders**: <strong>Receive custom orders</strong> opens the custom orders list on its **Ordered** tab.
+- **Reorders**: <strong>Receive reorders</strong> opens a list of reorders waiting to be received, each with a **Receive** button. "No reorders waiting to be received." when there are none.
+
+### Delivery windows open now
+
+Orders in their delivery window with units still to come, each with its window dates, a bar for how much is received, and a line such as "25% received, 8 days left". Click one to open its Receive page. A long list ends with **All N orders in their window**, which opens the Receiving log. When there are none it reads **No delivery windows open.**
+
+**Past their window** lists orders whose window has closed with units still out, so late shipments stay in view.
 
 ## Catalog enrichment banner
 
@@ -96,7 +124,7 @@ If your existing catalog has products waiting for a decision, a **Catalog enrich
 
 <div class="callout callout-warn">
 <div class="callout-title">I can't see New buying order</div>
-Creating buying orders needs the store's buying access. If the tile is missing and you should have it, ask the store's account owner, then ThreadCloud.
+Creating buying orders needs the store's buying access. If the card is missing and you should have it, ask the store's account owner, then ThreadCloud.
 </div>
 
 <div class="callout callout-warn">
