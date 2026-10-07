@@ -185,7 +185,8 @@ Tick the checkbox on any products (or <strong>Select all</strong>). The bar show
 - <strong>Apply edit</strong>: set one field across the selection.
 - <strong>Approve N</strong>
 - <strong>Push selected</strong>: creates the selected products that aren't in Shopify yet and re-syncs the ones that are. See <a href="/workflows/push-to-shopify/#push-selected">Push to Shopify</a>.
-- <strong>More</strong> menu: <strong>Approve all ready (N)</strong> (only when some pending products pass the Approve check), <strong>Generate showroom flatlays</strong>, <strong>Skip</strong>, <strong>Clear selection</strong>.
+- <strong>Generate showroom images</strong>: make showroom images for the selection. See [Showroom images](#showroom-images).
+- <strong>More</strong> menu: <strong>Approve all ready (N)</strong> (only when some pending products pass the Approve check), <strong>Skip</strong>, <strong>Clear selection</strong>.
 
 Every bulk action is greyed out while another bulk action is running, and while a product editor is mid-save or holding a failed save. Finish or retry the save first.
 
@@ -196,7 +197,7 @@ ThreadCloud can turn a buying photo (folded, on a hanger, on a table at the appo
 ### Make showroom images
 
 1. Tick the products you want.
-2. Open <strong>More</strong> and click <strong>Generate showroom flatlays</strong>. The window title reads "Generate N showroom images".
+2. Click <strong>Generate showroom images</strong> in the bulk bar.
 3. Choose the <strong>Look</strong>:
    - <strong>By category (saved defaults)</strong>: each product uses the look saved for its category, else the store default. The window lists what that means, for example "5 Outerwear: Dress form".
    - A saved look by name: its settings open below so you can adjust them for this run.
@@ -205,7 +206,9 @@ ThreadCloud can turn a buying photo (folded, on a hanger, on a table at the appo
 5. Under <strong>Source photo</strong>, check the photo for each product. Click the photo that shows the true colour. ThreadCloud preselects the photo it used last time. Up to 12 products are listed; the rest use their usual photo.
 6. Click <strong>Generate N showroom images</strong>.
 
-Each product shows "Building flatlay" while it works, then "Flatlay ready".
+Each product shows "Building image" while it works, then "Image ready". Once you keep an image it reads "In merchandising".
+
+For a single product you don't need the window: click <strong>Make showroom image</strong> on the product card. It uses the look saved for that category and the usual photo. The button only appears when the product has a photo to work from.
 
 ### The look settings
 
@@ -221,7 +224,7 @@ Each product shows "Building flatlay" while it works, then "Flatlay ready".
 
 ### Review each image
 
-Open the product. Under the photos, click <strong>Use in merchandising</strong> to keep the image, or <strong>Discard</strong> to throw it away. To try again, click <strong>Redo flatlay</strong> on the product. Redo keeps the look and source photo used last time.
+Open the product. Under the photos, click <strong>Use in merchandising</strong> to keep the image, or <strong>Discard</strong> to throw it away. To try again, click <strong>Redo showroom image</strong> on the product. Redo keeps the look and source photo used last time.
 
 ### Save as default (store owner only)
 
@@ -232,13 +235,17 @@ The owner sees a <strong>Save as default</strong> box in the window.
 
 Everyone else can still choose a look and a photo for their own run; it just is not saved.
 
+### On a phone
+
+The window fills the screen. Scroll the middle; <strong>Cancel</strong> and <strong>Generate</strong> stay at the bottom. Swipe sideways through each product's photos to pick the source.
+
 ### Getting good results
 
 - **Shoot the product on its own.** ThreadCloud ignores garments hanging behind or beside it, but a clean photo of one product always gives the best result.
 - **Pick the photo with the truest colour** as the source. Colour comes from that photo first.
 - **Folded is fine.** A folded shirt can become a laydown or a dress form image. Length and hem are drawn from the product details, so keep those filled in.
 - **Suits keep every piece.** A two-piece or three-piece suit is shown with its jacket, trousers and waistcoat.
-- **Check every image before you keep it.** It is an AI image. If a detail is wrong (an added lining, a wrong button count), click <strong>Discard</strong> and <strong>Redo flatlay</strong>, or choose a better source photo.
+- **Check every image before you keep it.** It is an AI image. If a detail is wrong (an added lining, a wrong button count), click <strong>Discard</strong> and <strong>Redo showroom image</strong>, or choose a better source photo.
 - **Cost.** Each image costs a few cents against the store's monthly image cap, set in Settings, AI &amp; Pipeline.
 
 ## Shopify state per product
