@@ -109,7 +109,13 @@ Drag-to-reorder is off while any filter or search is active.
 
 The <strong>Tiles</strong> / <strong>List</strong> switch is remembered per user. Both views open the same editor when you click a product; only the collapsed presentation changes.
 
-- **Tiles**: a grid. Each tile carries a status chip: <strong>Ready to review</strong>, <strong>Incomplete</strong>, <strong>Approved</strong>, or <strong>Skipped</strong>. "Ready to review" means the product would pass the Approve check (title, cost, MSRP, at least one ordered size). "Incomplete" means Approve would refuse it.
+- **Tiles**: a grid. Each tile shows the photo, the title, one line with the colour and style number (for example "Hazel · #3297"), and one status line with a coloured dot:
+  - <strong>Ready to review · 12/12</strong>: the product would pass the Approve check (title, cost, MSRP, at least one ordered size). The numbers are the details filled.
+  - <strong>To review · 9/12</strong>: Approve would refuse it, or it still needs details.
+  - <strong>Approved · In Shopify</strong>, <strong>Approved · Not in Shopify</strong>, <strong>Approved · Changes to send</strong>, or <strong>Approved · 1 detail missing</strong>.
+  - <strong>Shopify needs attention</strong> or <strong>Sending to Shopify…</strong> replaces the rest while a push is running or has failed, approved or not.
+  - <strong>Skipped</strong>.
+  - A product with no quantities ends its line with <strong>· 0 units</strong>.
 - **List**: a compact row per product with a drag grip, the supplier reference, and a field completeness bar.
 
 If two products on the order read identically (same codes), both are marked as twins so you can tell them apart before approving.
@@ -125,9 +131,7 @@ Each product shows the details it needs as pills, in reading order: what it is, 
 | **Green** | A value that's accepted, whoever filled it in |
 | **No colour** | An optional detail left blank |
 
-The tile's count reads, for example, **3 details missing** (click it for the list) or **Details complete**. The count is advice only. It never stops a push: you decide.
-
-Once a product is in Shopify and nothing is waiting to go, its Shopify line shows a check mark before **In Shopify · Up to date**.
+The tile's status line counts what is missing, for example **Approved · 1 detail missing**. Open the product to see which. The count is advice only. It never stops a push: you decide.
 
 ### Adding photos
 
@@ -135,7 +139,11 @@ In a product's Photos, you can pick up to 5 photos at a time. They upload one af
 
 ## Reviewing a product
 
-Click a product to open its editor in place. Walk down the fields top to bottom:
+Click a product to open its editor in place. The top of the editor reads, for example, **4 of 30**, with ‹ and › arrows to move to the previous or next product without closing this one first. The arrows follow the order on screen: products to review, then approved, then skipped (only while the Skipped section is open).
+
+The product page copy, the page details, **What AI saw in the photos** and **Your notes** are folded to one line each, so the editor stays short on a phone. The line shows what is inside (for example the opening of the copy and "98 words · Edit copy"). Tap it to open the field. A product with no copy yet opens straight to the copy field. Text boxes grow to fit what you type.
+
+Walk down the fields top to bottom:
 
 | Field | What to check |
 |---|---|
@@ -150,20 +158,27 @@ Fields save as you edit them. If a save fails, the editor shows "Your change cou
 
 <div class="callout callout-tip">
 <div class="callout-title">Speed tip</div>
-Products with no flags and a "Ready to review" chip can usually be approved in one click. Spend your attention on the ones in <strong>To review</strong>.
+Products with no flags and a "Ready to review" status can usually be approved in one tap with <strong>Approve and next</strong>. Spend your attention on the ones in <strong>To review</strong>.
 </div>
 
 ## Approve
 
-Each product's footer has the actions for its state:
+An open product has an action bar pinned to the bottom of the screen, so its buttons stay in reach while you scroll. On a phone it sits above Shopify's bar, with room on the left for Winston.
 
-| State | Buttons |
+| State | Bar |
 |---|---|
-| Pending | <strong>Skip</strong>, <strong>Approve</strong> |
-| Approved | <strong>Accept review</strong> (only when flagged), <strong>Unapprove</strong>, then <strong>Push to Shopify</strong> (not created yet: creates just this product, as a draft) or <strong>Push update</strong> (already in Shopify: sends your edits and keeps its status) |
-| Skipped | <strong>Restore</strong> |
+| Pending | <strong>⋯</strong> (Flag, Skip), then <strong>Approve and next</strong>. On the last product it reads <strong>Approve</strong>. |
+| Approved | <strong>⋯</strong> (Flag, Unapprove), <strong>Push</strong> (not created yet: creates just this product, as a draft) or <strong>Push update</strong> (already in Shopify: sends your edits and keeps its status), then <strong>Accept review</strong> when flagged, otherwise <strong>Next</strong>. |
+| Skipped | <strong>⋯</strong> (Flag), <strong>Restore</strong>, <strong>Next</strong>. |
 
-Every state also has <strong>Flag</strong>, which marks the product for attention. It then reads <strong>Flagged</strong>.
+<strong>Approve and next</strong> approves the product, then opens the next one. If Approve refuses (a missing title, cost, price or size), you stay on the product and the reason shows.
+
+<strong>Flag</strong> marks the product for attention. It then reads <strong>Flagged</strong>.
+
+<div class="callout callout-tip">
+<div class="callout-title">Triage a delivery</div>
+When a box arrives, open the first product and walk the order with the arrows. <strong>Push</strong> in the bar sends a product you just corrected without leaving it.
+</div>
 
 ### What Approve checks
 
