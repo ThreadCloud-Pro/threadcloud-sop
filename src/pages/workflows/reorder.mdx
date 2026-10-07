@@ -9,7 +9,7 @@ description: Restock what's selling. Find a reorder on the Reorders list, or sta
 Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, settle what the supplier says they can send, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-03</div>
+<div class="callout-title">Last verified against the app: 2026-10-07</div>
 If a button name here doesn't match what you see on screen, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -257,6 +257,22 @@ A reorder receives on the same Receive page as a buying order, with the reorder'
 Each product shows the same references you saw on Pick, so you can check the carton against the screen. Under a product with an earmark, a row reads "For [name] · [size]" with a <strong>Tell [name]</strong> link. Call them when their size lands.
 
 A reorder in another currency needs its source currency before it can be received. If the page asks "Source currency EUR?", click <strong>Confirm EUR</strong> when that is right.
+
+### When the invoice price went up
+
+Suppliers raise prices between buys, so check the invoice cost against each line before you count the box in. If a cost went up:
+
+<ol class="steps">
+  <li><strong>Before the first box</strong>: on the <strong>Pick</strong> tab, type the invoice cost into the line's cost box, in the order's currency. It saves when you click out of the box.</li>
+  <li><strong>Receive as normal.</strong> The first receipt freezes each line's cost and locks the rate, and writes the new cost to the product in Shopify. The panel line ends "costs updated in Shopify". If it warns "Shopify kept the old cost", use <strong>Re-push in Enrich to write cost again</strong>.</li>
+  <li><strong>Already received at the old cost?</strong> Change the cost box anyway. Because the line is received, it asks for a reason and a document reference. Write the reason, for example "Supplier price increase", and put the invoice number in the reference. The change is kept as a correction with your name and the date. The locked rate does not move.</li>
+  <li><strong>Decide the selling price.</strong> A new cost does not change the price on the floor. A reorder keeps the price the product already has in Shopify. If the increase should reach the shelf, change the price in Shopify for every size, then print new tags for the stock already on hand as well as the new box.</li>
+</ol>
+
+<div class="callout callout-tip">
+<div class="callout-title">Who does what</div>
+If you are not the buyer, show the buyer the invoice before you receive. If the box has to go in now, receive it at the cost on the PO, and the buyer records the correction afterwards. The buyer enters the new cost and decides the selling price.
+</div>
 
 ### When a reorder reads Received
 
