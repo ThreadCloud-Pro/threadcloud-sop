@@ -266,13 +266,37 @@ Suppliers raise prices between buys, so check the invoice cost against each line
   <li><strong>Before the first box</strong>: on the <strong>Pick</strong> tab, type the invoice cost into the line's cost box, in the order's currency. It saves when you click out of the box.</li>
   <li><strong>Receive as normal.</strong> The first receipt freezes each line's cost and locks the rate, and writes the new cost to the product in Shopify. The panel line ends "costs updated in Shopify". If it warns "Shopify kept the old cost", use <strong>Re-push in Enrich to write cost again</strong>.</li>
   <li><strong>Already received at the old cost?</strong> Change the cost box anyway. Because the line is received, it asks for a reason and a document reference. Write the reason, for example "Supplier price increase", and put the invoice number in the reference. The change is kept as a correction with your name and the date. The locked rate does not move.</li>
-  <li><strong>Decide the selling price.</strong> A new cost does not change the price on the floor. A reorder keeps the price the product already has in Shopify. If the increase should reach the shelf, change the price in Shopify for every size, then print new tags for the stock already on hand as well as the new box.</li>
+  <li><strong>Decide the selling price.</strong> A new cost does not change the price on the floor by itself. If the increase should reach the shelf, click <strong>Price went up</strong> on the product (below). Do it before you print the box's tags, so they print the new price.</li>
 </ol>
 
 <div class="callout callout-tip">
 <div class="callout-title">Who does what</div>
 If you are not the buyer, show the buyer the invoice before you receive. If the box has to go in now, receive it at the cost on the PO, and the buyer records the correction afterwards. The buyer enters the new cost and decides the selling price.
 </div>
+
+### Price went up: new price and new tags
+
+<strong>Price went up</strong> sits on each product line of a reorder's Receive page, next to <strong>Reprint tags</strong>, and on a product that is already fully received. It sets one new price on every size of the product in Shopify, then prints new tags for the stock you already have. Viewers do not see it.
+
+<ol class="steps">
+  <li><strong>Check the suggestion.</strong> The dialog names the cost move, for example "Cost up 5.8%, €519.00 (last bought on FW26) to €549.00. The suggestion keeps the same markup." The <strong>New price</strong> box is filled with the current price raised by the same percentage, rounded the way your store rounds prices. Change it to whatever you want to charge.</li>
+  <li><strong>Click Set price in Shopify.</strong> The price goes on every size of the product, in every colour. A line confirms it, for example "CA$1,175.00 is now the price in Shopify on every size."</li>
+  <li><strong>Print the tags.</strong> The dialog lists each size you have in stock across all your locations, with a tag count filled in from Shopify. Change any count (0 to 100), then click <strong>Print tags</strong>. The tags print the new price. Click <strong>Done</strong> when finished.</li>
+</ol>
+
+<div class="callout callout-info">
+<div class="callout-title">Sizes on sale</div>
+A size marked down in Shopify keeps its sale price. The new price becomes its "compare at" price instead, so the markdown still shows. Sale sizes get no new tags, because their selling price did not change. If a sale price is already at or above the new price, that size is left alone and named in the dialog.
+</div>
+
+Where the old cost comes from, in this order: the last ThreadCloud order for this product in the same currency, then the cost saved on the product, then Shopify's cost (only before anything on this reorder is received, because receiving writes the new cost there). If none is found, the dialog reads "No earlier cost on file to compare, so there is no suggestion. Type the new price." The box holds the current price for you to change.
+
+If something goes wrong:
+
+- <strong>"Shopify refused the new price: ..."</strong> or <strong>"Shopify did not take the new price. Try again."</strong>: nothing changed, in Shopify or in ThreadCloud. Try again; if it repeats, change the price in Shopify.
+- <strong>"Your browser blocked the print window. Open the tags below."</strong>: click <strong>Open tags</strong>.
+- <strong>"Nothing on hand to retag."</strong>: there is no stock of the regular-price sizes yet. The box's own tags print the new price when you receive it.
+- <strong>"This product has more than 250 sizes."</strong>: change its price in Shopify.
 
 ### When a reorder reads Received
 
