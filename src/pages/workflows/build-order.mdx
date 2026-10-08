@@ -9,7 +9,7 @@ description: Start a buying order, drop the order and the appointment photos on 
 Parse & Build is the first tab of every buying order. You drop the supplier's order and everything from the appointment onto one table, press **Parse**, and ThreadCloud reads it into products with sizes, quantities, costs and prices. You check what it built, then send the purchase order and move on to Enrich.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-10-08</div>
 This screen used to be called Build Order. If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -134,6 +134,11 @@ Each product shows its article, title, colour, sizes and quantities, cost, MSRP 
 | **Sizes and quantities** | Always check against the paper. This is the most common parse error. |
 | **Cost** and **MSRP** | The wrong column was read, or a price is missing. |
 | **Stock type** | Tap the badge to change it. |
+
+<div class="callout callout-info">
+<div class="callout-title">A blank MSRP is filled from the cost</div>
+Leave a product's MSRP empty and ThreadCloud sets it from the cost, the same way it prices every other product on the order: the order's margin if it has one, otherwise the store's <strong>Markup</strong>, then <strong>Round to</strong> and <strong>Price ending</strong> (Settings, Buying, Pricing). That price carries to Enrich and to Shopify. Nothing asks you to confirm it; type a different MSRP to change it. A product with no cost has no MSRP to fill, so enter the cost or the MSRP. A reorder keeps the price already on the product in Shopify.
+</div>
 
 To add a product the supplier added later, click <strong>+ Add Product</strong>. To move a whole group of products to a different size scale, use that group's size scale control. <strong>Reassign and reset</strong> clears the group's quantities, because the old size columns don't carry over.
 
