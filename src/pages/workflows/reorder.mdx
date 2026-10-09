@@ -9,7 +9,7 @@ description: Restock what's selling. Find a reorder on the Reorders list, or sta
 Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, settle what the supplier says they can send, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-07</div>
+<div class="callout-title">Last verified against the app: 2026-10-09</div>
 If a button name here doesn't match what you see on screen, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -40,6 +40,7 @@ The tabs sort the list by where each reorder stands. Each tab except Received sh
 | Tab | What's on it |
 |---|---|
 | **Open** | Everything not fully received |
+| **Answer waiting** | The supplier answered and it still needs you |
 | **Waiting on supplier** | Sent, and the supplier hasn't answered |
 | **Short** | The supplier confirmed fewer than you ordered, or a box arrived short, and nobody has decided what to do yet |
 | **Shipped** | The supplier says it shipped, or part of it has arrived |
@@ -221,13 +222,15 @@ The headline says where it stands, for example:
 
 Under it, a bar and a key count what is **confirmed**, **short**, **dropped** and **received**, and a ship date shows when the supplier gave one.
 
+Below the table, the supplier's confirmation, their note, the sizes they can send and any product details to apply sit on the same tab. See <a href="/workflows/supplier-confirmations/">Supplier confirmations</a> for how to work through them.
+
 The table lists each style with **Ordered**, **Confirmed** ("Not yet" until they answer), **Received**, and what the supplier said about it ("No note" when nothing). A style shows "For [name]" when a customer is earmarked on it.
 
 **Supplier order number**: type the supplier's own number for this order and click <strong>Save</strong>. It shows on the Reorders list and search finds it. If the supplier quoted a different number on an answer, the line under the box says so.
 
 ### Accept what they can send
 
-When the supplier has answered every line and some sizes are short, the dark bar at the bottom reads, for example, "6 of 8 confirmed. The 2 short come off this PO." Click <strong>Accept 6, drop 2</strong> (the numbers are yours).
+When the supplier has answered every line and some sizes are short, the dark bar at the bottom reads, for example, "6 of 8 confirmed. The 2 short come off this PO." Click <strong>Accept 6, drop 2</strong> (the numbers are yours), or <strong>Keep chasing</strong> to leave your quantities as they are.
 
 - The drop is recorded on the reorder. Nothing is resent to the supplier, and the PO they hold doesn't change.
 - Receiving then expects the accepted quantity, not the original one.
@@ -248,7 +251,7 @@ The row of links under the table holds the rest:
 Tell, Email and Ask again open a new Gmail tab with the message started. ThreadCloud sends nothing itself. A customer with only a phone number opens your phone app instead. A linked Shopify customer opens their card with their current phone and email.
 </div>
 
-The header's <strong>Purchase order</strong> button opens the PO. The **…** menu has <strong>Edit quantities</strong> (back to Pick) and <strong>Review supplier answer</strong> (the full review screen, see <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>).
+The header's <strong>Purchase order</strong> button opens the PO. The **…** menu has <strong>Edit quantities</strong> (back to Pick). The full supplier answer, with the confirmation lines, costs and product details, is on the Supplier answer tab itself (see <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>).
 
 ## Receive: check it in
 

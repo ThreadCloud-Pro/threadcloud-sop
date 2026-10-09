@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Logistics
-description: The back-office desk for shipments in motion. Reprint a product label, find a receiving document, check supplier responses and custom orders, and get any purchase order or supplier link back.
+description: The back-office desk for shipments in motion. Reprint a product label, find a receiving document, find supplier answers waiting on you, check custom orders, and get any purchase order or supplier link back.
 ---
 
 # Logistics
@@ -9,7 +9,7 @@ description: The back-office desk for shipments in motion. Reprint a product lab
 **Logistics** ("shipments in motion") is the desk for everything that's already been bought: what's on its way, what's landed, and the paperwork that goes with it. Open it from the menu.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-02</div>
+<div class="callout-title">Last verified against the app: 2026-10-09</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -21,7 +21,6 @@ If a button name here doesn't match what you see, the app changed and this page 
 | <strong>Reprint Tags</strong> | Find a received shipment by brand and reprint its tags or its receiving document. |
 | <strong>Receiving Log</strong> | What's due now, what's coming up, and every receiving document. |
 | <strong>Transfer Out</strong> | Send stock back to a supplier. See [Transfer Out](/workflows/transfer-out/). |
-| <strong>Supplier Responses</strong> | Every supplier answer to a PO, pending and reviewed. |
 | <strong>MTM Orders</strong> | The custom orders list. |
 | <strong>Purchase orders</strong> | Every PO, sent and unsent, with its supplier link. |
 
@@ -55,13 +54,9 @@ The log covers buying orders only. Reorders are not on it: open the reorder from
 
 <strong>Reprint Tags</strong> opens the same log on the Received tab.
 
-## Supplier Responses
-
-Every time a supplier answers a PO, it lands here. Filter by **All**, **Pending** or **Reviewed**, search by brand, order or PO number, and click a row to review it. See <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>.
-
 ## Purchase orders
 
-At the bottom of the page, **Purchase orders** lists every PO, split into **Unsent** and **Sent** (each with a count). Each row shows the PO number, brand and season, delivery, styles and units, when it was created or sent, and "Supplier acknowledged" once the supplier has confirmed.
+At the bottom of the page, **Purchase orders** lists every PO, split into **Unsent**, **Sent** and **Answer waiting** (each with a count). **Answer waiting** lists the buying orders and reorders whose supplier answer needs you; it reads "No supplier answers waiting on you." when there are none. A row whose answer is waiting has a <strong>SUPPLIER ANSWER</strong> button in place of <strong>VIEW PO</strong>; it opens the order's Supplier answer. See <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>. Each row shows the PO number, brand and season, delivery, styles and units, when it was created or sent, and "Supplier acknowledged" once the supplier has confirmed.
 
 - <strong>COPY ACK LINK</strong> copies the supplier's confirmation link, to paste into an email. It reads **ACK LINK COPIED**.
 - <strong>VIEW PO</strong> opens the purchase order.
