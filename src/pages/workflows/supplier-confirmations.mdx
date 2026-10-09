@@ -6,7 +6,7 @@ description: What to do when the supplier answers a purchase order. Compare thei
 
 # Supplier confirmations
 
-After you send a purchase order, the supplier answers. Sometimes on the acknowledgement link you emailed them, sometimes as a confirmation PDF or an email. ThreadCloud compares that answer to the order and shows you every difference, line by line. You decide what to accept.
+After you send a purchase order, the supplier answers. Sometimes on the acknowledgement link you emailed them, sometimes as a confirmation PDF or an email. ThreadCloud compares that answer to the order and shows you every difference, line by line, on the order's own **Supplier answer** tab. You decide what to accept.
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
@@ -14,7 +14,7 @@ Every time a confirmation comes back on a sent PO. Do it before the goods ship, 
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-10-09</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -23,20 +23,31 @@ If a button name here doesn't match the app, it changed and this page is stale. 
 1. **The acknowledgement link.** The purchase order's <strong>Email brand contact</strong> button emails the supplier a link (or copy it with <strong>Supplier ack link</strong>). On a reorder the same two actions sit in the PO tab's <strong>Share</strong> menu as <strong>Email [brand]</strong> and <strong>Copy supplier answer link</strong>. They confirm each product on it. Their answer lands on the order on its own.
 2. **A document or email.** The supplier sends a PDF, an image, or an email. You attach it on the purchase order and ThreadCloud reads it.
 
-Both end up on the same review screen.
+Both end up in the same place: the order's **Supplier answer** page.
 
 ## Where to find the purchase order
 
 - **A buying order:** in Parse & Build, the footer button <strong>PO sent</strong> (or <strong>VIEW PO &amp; ACK LINK</strong> on the locked band) opens it.
-- **A reorder:** the reorder's **PO** tab. What the supplier answered shows on its **Supplier answer** tab (see <a href="/workflows/reorder/">Reorder</a>).
+- **A reorder:** the reorder's **PO** tab.
 - **Any order:** **Logistics** lists every purchase order under **Purchase orders**, with <strong>VIEW PO</strong> and <strong>COPY ACK LINK</strong>. See <a href="/workflows/logistics/">Logistics</a>.
+
+## Where the answer lives
+
+The answer lives inside the order. There is no separate review page and no separate list of supplier responses.
+
+- **A buying order:** the **Supplier answer** tab, between **Parse & Build** and **Enrich**. Beside the name it reads **Waiting** once the PO is sent and the supplier hasn't answered, **To review** once they have, and **Handled** once you have dealt with it. Before the PO is sent it shows nothing.
+- **A reorder:** its **Supplier answer** tab. See <a href="/workflows/reorder/">Reorder</a>.
+
+The page opens with a headline: "PO not sent yet", "Waiting on [brand]", or "[brand] answered", with a line of "Sent" and "Answered" dates (and "Handled" once it is). While you are waiting, it says "Their answer shows here when they reply through the link, or when you attach their confirmation to the purchase order." Once they answer, everything below appears on the same page.
+
+Beside the headline sits **Supplier order number**. Type the supplier's own number for this order and click <strong>Save</strong>. If the supplier quoted a different number on an answer, the line under the box says so.
 
 ## Knowing an answer came back
 
-- On the home screen's **Merchandising** desk, **Needs you** shows a **Supplier responses** card with a count and a <strong>Review</strong> button.
+- On the home screen's **Merchandising** desk, **Needs you** shows a **Supplier answers** card with a count and a <strong>Review</strong> button. One answer opens that order's Supplier answer. More than one opens the list of answers waiting.
 - On the **Sales floor** desk, **From your suppliers** lists what suppliers have said that the floor should know: shortages, unavailable products and boxes that arrived short first, then dates, substitutes, shipping news and notes. Each row has <strong>Open</strong> and <strong>Seen</strong>. See <a href="/home/#from-your-suppliers">Home</a>.
-- On the **Reorders** list, a reorder the supplier answered short sits on the **Short** tab.
-- **Logistics**, <strong>Supplier Responses</strong> lists every answer, with **All**, **Pending** and **Reviewed** filters. Search by brand, order or PO number and click a row to open it.
+- On the **Reorders** list, the **Answer waiting** tab holds reorders whose answer needs you. A reorder the supplier answered short sits on the **Short** tab.
+- In **Logistics**, the **Purchase orders** list at the bottom has an **Answer waiting** filter beside **Unsent** and **Sent**. It lists buying orders and reorders together. When none need you it reads "No supplier answers waiting on you."
 
 ## Uploading a confirmation
 
@@ -45,31 +56,37 @@ Open the order's purchase order (see above). Once the PO has been sent, a card t
 <ol class="steps">
   <li>Attach the PDF, JPG, or PNG. Or paste the email body into the box ("…or paste the confirmation email body here"). You need one or the other; with neither, the card says "Attach the confirmation PDF or image, or paste the email body."</li>
   <li>Click <strong>Compare to order</strong>. The button reads <strong>Reading…</strong> while it works.</li>
-  <li>When it finishes, you land on the review screen. If it could not read the file, the card says "Could not read the confirmation. Try a PDF or paste the text."</li>
+  <li>When it finishes, you land on the order's Supplier answer. If it could not read the file, the card says "Could not read the confirmation. Try a PDF or paste the text."</li>
 </ol>
 
-After that, the purchase order shows a <strong>Supplier response</strong> card: the document name (or "Answered on the supplier acknowledgement link", or "Pasted from the confirmation email"), a "Received" date, a match line ("N of N lines matched", "N lines need a decision", or "Not yet reviewed line by line"), confirmed delivery and payment terms if stated, and two buttons: <strong>Open document</strong> and <strong>Review the response</strong>.
+After that, the purchase order shows a <strong>Supplier answer</strong> card: a "Received" date, the document name (or "Answered on the supplier answer link", or "Pasted from the confirmation email"), a match line ("N of N lines matched", "N lines need a decision", or "Not yet reviewed line by line"), confirmed delivery and payment terms if stated, and two buttons: <strong>Open document</strong> and <strong>Open the answer</strong>. Before anything has come back, the card reads "No supplier answer yet" with an <strong>Attach the confirmation</strong> button.
 
-## The review screen
+## What's on the Supplier answer page
 
-The header reads the brand and "Supplier response", with a <strong>DISMISS</strong> button. A line at the top says which answer you are looking at: "Showing the supplier's answer on the confirmation document, received [date]." The card below is titled <strong>Order confirmation</strong> with the file name, an <strong>Open document</strong> button, and the supplier's own reference if the document carried one.
-
-### What gets compared
+At the top, a line says which answer you are looking at: "Showing the supplier's answer on the confirmation document, received [date]." Below it, in order:
 
 | Section | What it holds |
 |---|---|
-| <strong>Confirmed date</strong> or <strong>Delivery window</strong> | Your ordered dates with the supplier's beside them. A single confirmed ship date shows as "Confirmed date"; a range shows as "Delivery window". "Not stated on the confirmation" when the document has none. |
-| <strong>Cancel date</strong> | The cancellation date the supplier stated, when there is one. Shown for your information; it is not applied to the order from this screen. |
+| <strong>Their confirmation</strong> | The file name, an <strong>Open document</strong> button, and the supplier's own reference if the document carried one. Then the dates, terms and contact below, and the confirmation lines. |
+| <strong>Their note</strong> | Any note the supplier left. |
+| <strong>Sizes they can send</strong> | Sizes the supplier confirmed short. |
+| <strong>Product details</strong> | Facts the supplier stated that disagree with your product record. |
+| <strong>They can't send</strong> | Products the supplier cannot supply at all. |
+
+Inside **Their confirmation**:
+
+| Row | What it shows |
+|---|---|
+| <strong>Confirmed date</strong> or <strong>Delivery window</strong> | Your ordered dates with the supplier's beside them. A single confirmed ship date shows as "Confirmed date"; a range shows as "Delivery window". "Not on their confirmation" when the document has none. |
+| <strong>Cancel date</strong> | The cancellation date the supplier stated, when there is one. Shown for your information; it is not applied to the order from this page. |
 | <strong>Payment terms</strong> | The brand's terms on file beside the confirmed terms. |
-| <strong>Confirmation contact</strong> | The supplier's office contact from the document. Display only. |
-| <strong>Confirmation lines</strong> | Every line on the document, sorted into the groups below. |
-| <strong>Product Details from Supplier</strong> | Facts the supplier stated per product: Country of Origin, Fabric Composition, Colour Group, Item Weight, Supplier Reference, Model Code, Colour Code. |
-| <strong>Availability Changes</strong> | Sizes the supplier confirmed short. |
-| <strong>Unavailable</strong> | Products the supplier cannot supply at all. |
+| <strong>Their contact</strong> | The supplier's office contact from the document. Display only. |
+
+At the foot of the page, once they have answered, you can click <strong>Mark as handled</strong>. It then reads "Handled [date]", and the tab reads **Handled**. If they confirmed every style with no changes, the foot says "They confirmed every style with no changes."
 
 ### Dates
 
-If the supplier's dates differ from the order, the old dates are struck through and the new ones shown in green. Click <strong>Use confirmed dates</strong> to put them on the order. Once done, the section shows a <strong>Reviewed</strong> badge. If it fails, the screen says "Could not apply the confirmed dates. Reload the review and try again."
+If the supplier's dates differ from the order, the old dates are struck through and the new ones shown. Click <strong>Use confirmed dates</strong> to put them on the order. Once done, the row shows an <strong>Applied</strong> badge. If it fails, the page says "Could not apply the confirmed dates. Reload and try again."
 
 ### Payment terms
 
@@ -77,33 +94,33 @@ If the confirmed terms differ from what is on file, click <strong>Update supplie
 
 ## Accepting or rejecting lines
 
-The <strong>Confirmation lines</strong> block sorts every line on the supplier's document:
+The confirmation lines sort every line on the supplier's document:
 
 - <strong>Needs your choice (N)</strong>: lines ThreadCloud could not place on one product with confidence. Each shows the line's title and codes. If there is an AI suggestion, it shows "AI · high/medium/low" with the product it thinks it is, and an <strong>Accept [code]</strong> button. Otherwise use the dropdown ("Choose a product…") to pick the product yourself. Choosing is the save.
 - To reject a line, pick <strong>Not on this order</strong> from the same dropdown (or click <strong>Accept</strong> when the suggestion is "Looks like it is not on this order"). It moves to <strong>Not on this order (N)</strong>. <strong>Undo</strong> puts it back.
 - <strong>Matched lines (N)</strong>: lines placed on a product. Each shows the ordered and confirmed quantity. A line you placed yourself has an <strong>Undo</strong> button ("Release this product from the confirmation line and put the line back for review").
 - <strong>Ordered, not confirmed (N)</strong>: products on your order the supplier did not list. They get a <strong>Not confirmed</strong> badge. "The supplier didn't list these. Confirm with them before assuming they're unavailable." If lines still need a choice, place those first; what is left is what the supplier did not list.
 
-Two shortcuts at the top of the block:
+Two shortcuts at the top of the lines:
 
 - <strong>Accept N suggestions</strong>: binds every high and medium confidence suggestion in one go. Low confidence and "not on this order" proposals still need a click each.
 - <strong>Suggest matches</strong> (later <strong>Suggest again</strong>): asks for a recommendation per unplaced line. Nothing binds until you accept.
 
 On an older document that was read before line-by-line review existed, there is a <strong>Re-check matches</strong> button to re-run the match.
 
-If a choice does not save: "Could not save that choice. Try again." If someone else changed the review meanwhile: "This review moved on. Reloading."
+If a choice does not save: "Could not save that choice. Try again." If someone else changed the page meanwhile: "This review moved on. Reloading."
 
 ## Accepting a confirmed cost
 
-When a matched line's confirmed cost differs from the order's live cost, the line shows both, and a small <strong>accept cost</strong> tick beside it ("Tick to write the supplier's confirmed cost onto this order line. The MSRP follows unless it is yours."). <strong>Tick all costs (N)</strong> beside the Matched lines heading ticks every changed cost at once. Untick any line to keep its cost.
+When a matched line's confirmed cost differs from the order's live cost, the line shows both, and a small <strong>Use their cost</strong> tick beside it ("Tick to write the supplier's confirmed cost onto this order line. The MSRP follows unless it is yours."). <strong>Tick all costs (N)</strong> beside the Matched lines heading ticks every changed cost at once. Untick any line to keep its cost.
 
-Then click <strong>Apply confirmed costs</strong> (the button reads <strong>Apply product details</strong> when product details are ticked too; it saves both). Each line reports what happened underneath it, in green or red:
+Then click <strong>Apply confirmed costs</strong> (the button reads <strong>Apply</strong> when product details are ticked too; it saves both). Each line reports what happened underneath it, in green or red:
 
 - "Order cost 519.00 EUR to 549.00 EUR. MSRP 1095.00 CAD to 1150.00 CAD." The cost is on the order in Parse & Build now, and the retail price was re-derived from it through the order's margin or multiplier.
 - "MSRP unchanged at ..." or a named reason the MSRP was left alone: a price you set by hand, a locked price, or a supplier-printed retail is never moved.
 - "The confirmation stated no currency, so it was read in the order's EUR." when the document did not label the figure.
 - "Order cost updated; received units keep their receipt cost, and the change is recorded as a correction." when the line has already been received. A locked FX rate is never touched.
-- A red line means it was not applied, and says why. A cost stated in a different currency from the order ("currency differs" on the line) is refused, not converted. A cost accepted against an order cost that changed since you opened the review is refused; reload and tick again.
+- A red line means it was not applied, and says why. A cost stated in a different currency from the order ("currency differs" on the line) is refused, not converted. A cost accepted against an order cost that changed since you opened the page is refused; reload and tick again.
 
 Reorders show the confirmed costs but do not offer the tick.
 
@@ -111,28 +128,32 @@ Reorders show the confirmed costs but do not offer the tick.
 
 On the acknowledgement link, the supplier is asked to verify specific facts per product: fabric, country of origin, colour group, and item weight. Facts the buyer had not settled are marked "Please verify". The supplier clicks <strong>Confirm</strong> or <strong>Unknown</strong> on each, or corrects the value.
 
-On your side these arrive under <strong>Product Details from Supplier</strong>: a row per fact with "Current → Supplier" and an <strong>Apply</strong> tick. Every change is ticked by default; untick a row to keep your value. <strong>Tick all</strong> re-ticks everything. A fact the supplier marked <strong>Unknown</strong> shows for your information only; its tick is disabled. Click <strong>Apply product details</strong> to save the ticked values onto the styles. If it fails: "Could not apply the supplier's product details. Try again." If a supplier reference would make two products identical, the apply refuses: "This supplier identity would duplicate another product. Review the model and colour codes before applying."
+When the answer arrives, any fact that is blank on the product record fills in on its own. You don't tick anything for those.
+
+Only a value that disagrees with what the record already holds needs you. Those show under <strong>Product details</strong> ("Where they disagree with your record. Ticked rows apply."): a row per fact with "Yours → Theirs" and an <strong>Apply</strong> tick. Every row is ticked to start; untick a row to keep your value. <strong>Tick all</strong> re-ticks everything. A fact the supplier marked <strong>Unknown</strong> shows as "Unknown" for your information only; its tick is disabled. Click <strong>Apply</strong> to save the ticked values. The page confirms with "Applied N changes to the product record."
+
+Applying updates the actual product record. Shopify picks the change up on the next Enrich push; nothing is sent to Shopify from this page.
+
+If it fails: "Could not apply the supplier's product details. Try again." If a supplier reference would make two products identical, the apply refuses: "This supplier identity would duplicate another product. Review the model and colour codes before applying."
 
 ## Quantity changes
 
-When the supplier confirmed fewer units on some sizes, a <strong>Quantity changes</strong> notice appears and an <strong>Availability Changes</strong> card lists each product with a <strong>Partial</strong> badge and the confirmed grid.
+When the supplier confirmed fewer units on some sizes, **Sizes they can send** lists each product with a **Partial** badge, the supplier's note and expected date if they gave one, and the ordered and confirmed sizes side by side.
 
-- On a **buying order**: review the size adjustments, then update quantities in Parse & Build (unlock the order to amend it if the PO was sent). Nothing here changes the order.
-- On a **reorder**: the simplest place to decide is the reorder's **Supplier answer** tab. Once the supplier has answered every line, <strong>Accept N, drop M</strong> takes what they can send and drops the rest, without resending anything; <strong>Undo the drop</strong> puts it back while nothing is received. See <a href="/workflows/reorder/#accept-what-they-can-send">Reorder</a>. This review screen still spells out the older choice: <strong>Keep my quantities</strong> means do nothing; receiving defaults to the confirmed numbers and the shortfall stays on backorder. <strong>Drop to confirmed (clear backorder)</strong> reduces the order to the confirmed numbers. Only do this if you won't chase the rest.
+- On a **buying order**: the quantities here are read-only. The page says "Some styles came back with fewer units. Change the quantities on the Build page if you accept them." with an <strong>Open Build</strong> button. Update quantities in Parse & Build (unlock the order to amend it if the PO was sent). Nothing on this page changes the order.
+- On a **reorder**: decide on the reorder's **Supplier answer** tab. It says "They confirmed fewer units on some sizes. Keep chasing the shortfall, or accept what they can send, at the foot of the page." Once the supplier has answered every line, <strong>Accept N, drop M</strong> takes what they can send and drops the rest, without resending anything; <strong>Keep chasing</strong> leaves your quantities alone, and receiving still expects them; <strong>Undo the drop</strong> puts it back while nothing is received. See <a href="/workflows/reorder/#accept-what-they-can-send">Reorder</a>.
 
-Products the supplier marked unavailable appear under <strong>Unavailable</strong> with their note.
-
-If the supplier confirmed everything with no changes, the screen says "Supplier confirmed all styles with no changes or additional details." with a <strong>Dismiss</strong> button.
+Products the supplier marked unavailable appear under **They can't send** with their note and an **Unavailable** badge.
 
 ## The supplier's history on an order
 
-Every answer a supplier gives is kept on the order: on the link, from a document, or from a pasted email, and each box received short. The latest answer drives the review screen; the history feeds **From your suppliers** on the Sales floor and the reorder's **Supplier answer** tab, including any other order number the supplier quoted.
+Every answer a supplier gives is kept on the order: on the link, from a document, or from a pasted email, and each box received short. The latest answer drives the Supplier answer page; the history feeds **From your suppliers** on the Sales floor and the reorder's **Supplier answer** tab, including any other order number the supplier quoted.
 
 ## Superseded confirmations
 
 A supplier can answer more than once: a PDF, then a corrected PDF; or the link, then an email. ThreadCloud keeps all of them and shows the newest.
 
-When the one you are viewing is not the newest, the notice at the top reads "Showing the supplier's answer on [the newest source], received [date]. It supersedes [the older source] of [date], below." with a <strong>Read the superseded confirmation</strong> link. The older card carries a <strong>Superseded</strong> badge, and its apply buttons (<strong>Use confirmed dates</strong>, <strong>Update supplier terms</strong>) are hidden. Only the newest answer can be applied.
+When the confirmation you are viewing is not the newest, the notice at the top reads "Showing the supplier's answer on [the newest source], received [date]. It supersedes [the older source] of [date], below." with a <strong>Read the superseded confirmation</strong> link. The older card carries a **Superseded** badge, and its apply buttons (<strong>Use confirmed dates</strong>, <strong>Update supplier terms</strong>) are hidden. Only the newest answer can be applied.
 
 Re-issuing a PO also supersedes the supplier's link. If they open the old one they see: "This purchase order was revised after this link was sent. Please ask the buyer for the current link." Send them the new one from the purchase order.
 
