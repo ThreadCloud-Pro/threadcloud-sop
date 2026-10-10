@@ -9,7 +9,7 @@ description: Start a buying order, drop the order and the appointment photos on 
 Parse & Build is the first tab of every buying order. You drop the supplier's order and everything from the appointment onto one table, press **Parse**, and ThreadCloud reads it into products with sizes, quantities, costs and prices. You check what it built, then send the purchase order and move on to Enrich.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-09</div>
+<div class="callout-title">Last verified against the app: 2026-10-10</div>
 This screen used to be called Build Order. If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -48,7 +48,7 @@ If you see "Set up delivery windows in Settings before creating an order", the s
 
 ## The order header
 
-Every tab of an order (**Parse & Build**, **Supplier answer**, **Enrich**, **Receive**, **Budget**) shares one slim header:
+Every tab of an order (**Parse & Build**, **Enrich**, **Receive**, **Budget**; once the PO is sent, the first tab reads **Purchase order**) shares one slim header:
 
 - The **brand** and **delivery window** as the title.
 - The **Delivery** dates, which you can click and edit in place. Click **+ Add dates** if there are none.
@@ -90,7 +90,7 @@ While it reads, each sheet shows as a card that fills as it goes (**Waiting**, *
 
 To abandon a parse, press <strong>Stop</strong> on the live line. That discards this parse and keeps whatever was already on the order.
 
-When it finishes, the table shrinks to one band, for example "24 styles woven." with the time, sheets, units, cost and IMU under it, and your products show underneath. Use **+ Add files** on the band to add more later, and **Context** to see the files and notes again.
+Once Parse runs, the notes you typed show as plain text labelled **Sent with this order**. When it finishes, the table shrinks to one band, for example "24 styles woven." with the time, sheets, units, cost and IMU under it, and your products show underneath. Use **+ Add files** on the band to add more later, and **Context** to see the files and notes again.
 
 If a sheet shows **Could not read**, try it once more, then ask the supplier for an Excel or a cleaner PDF. See <a href="/runbook/">If something breaks</a>.
 
@@ -137,6 +137,8 @@ Each product shows its article, title, colour, sizes and quantities, cost, MSRP 
 
 To add a product the supplier added later, click <strong>+ Add Product</strong>. To move a whole group of products to a different size scale, use that group's size scale control. <strong>Reassign and reset</strong> clears the group's quantities, because the old size columns don't carry over.
 
+On a phone, an empty size box shows a grey 0, and the dark bar at the bottom hides while you type so the keyboard has room. It comes back when you finish.
+
 To add a size the product's run doesn't show, click the <strong>+</strong> on its row and type the size.
 
 **Gloves** run 7 to 12 in half sizes (7, 7.5, 8 and so on up to 12), then S, M, L, XL and XXL. Letter sizes always sort after the numbers and in order, S to XXL. A size typed with <strong>+</strong> on a glove product (for example 12 or XXL) saves as a real glove size, so filters and the storefront read it.
@@ -157,22 +159,29 @@ Once the order is woven, a footer sticks to the bottom of the page with the styl
 
 Before either one opens, ThreadCloud may ask you to confirm the size runs.
 
-On the purchase order page you can use:
+The purchase order opens on the **Purchase order** tab. Before you issue it, the dark bar at the bottom has one button, <strong>Issue PO</strong>. Click it and pick how the PO goes out:
 
-- <strong>Email brand contact</strong>: copies a ready-made email with the supplier's confirmation link and opens Gmail. Paste it with Ctrl+V.
-- <strong>Copy PO</strong>: copies the PO as text.
-- <strong>Supplier ack link</strong>: copies the link the supplier uses to confirm the order.
-- <strong>Print / PDF</strong>: prints the PO or saves it as a PDF.
-- <strong>Mark PO as Sent</strong>: records that the PO went out. The footer button then reads <strong>PO sent</strong>.
+- <strong>Issue PO &amp; email [brand]</strong>: issues the PO and opens an email to the brand contact with the supplier's answer link. On a computer it opens Gmail; paste the email with Ctrl+V. On a phone it opens the phone's mail app with the draft ready. If the phone asks, tap <strong>Open email draft</strong>.
+- <strong>Issue PO &amp; copy answer link</strong>: issues the PO and copies the link the supplier uses to say what they can send. Send it yourself.
+- <strong>Issue PO only</strong>: issues the PO and sends nothing. Use this when you will send it yourself later.
 
-What happens when the supplier answers, on the order's **Supplier answer** tab, is on <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>. Every PO, sent or not, is also listed on <a href="/workflows/logistics/">Logistics</a>.
+The <strong>Share</strong> menu in the header has the same two "Issue PO &amp; ..." items before the PO is issued. There is no way to hand out the answer link without issuing the PO first. That is on purpose, so a supplier never gets a link to a draft.
+
+Also on the page:
+
+- <strong>Copy PO</strong> (in Share): copies the PO as text.
+- <strong>Print or PDF</strong> (in Share): prints the PO or saves it as a PDF.
+
+Once the PO is issued, the bar offers <strong>Send to supplier</strong> (the same email as <strong>Email [brand]</strong> in Share) and <strong>Enrich styles</strong>. <strong>Copy supplier answer link</strong> in Share copies the link again. If the PO won't issue, the bar says why.
+
+What happens when the supplier answers, on the same **Purchase order** tab, is on <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>. Every PO, sent or not, is also listed on <a href="/workflows/logistics/">Logistics</a>.
 
 ## After the PO is sent
 
 Once the PO is sent, the order is the supplier's size contract and Parse & Build locks. A band reads **PO sent · Build locked**, with:
 
 - <strong>VIEW PO &amp; ACK LINK</strong> to get back to the PO and the supplier link.
-- <strong>UNLOCK TO AMEND</strong> to change it. Type a reason (for example "supplier corrected size 48 to 52") and click <strong>UNLOCK</strong>. The band then reads **PO amendment open**. Make your changes and click <strong>PUBLISH REVISION</strong>. Re-issue the PO from the PO page so the supplier gets the new version.
+- <strong>UNLOCK TO AMEND</strong> to change it. Type a reason (for example "supplier corrected size 48 to 52") and click <strong>UNLOCK</strong>. The band then reads **PO amendment open**. Make your changes and click <strong>PUBLISH REVISION</strong>. Re-issue the PO from the PO page (<strong>Re-issue PO</strong>, with the same three choices as Issue PO) so the supplier gets the new version.
 
 Once receiving has started, the band reads **Received order · Build locked** and ordered sizes are read-only. Fix shipment mistakes from the receipt instead. See <a href="/workflows/receiving/">Receiving</a>.
 
