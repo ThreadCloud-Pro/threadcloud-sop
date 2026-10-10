@@ -74,6 +74,7 @@ const path = rawPath;
           />
           <kbd>/</kbd>
         </form>
+        <a href="/gate/out" class="sign-out" data-pagefind-ignore>Sign out</a>
       </div>
     </header>
 
@@ -331,6 +332,14 @@ const path = rawPath;
         border-radius: 2px;
       }
 
+      .sign-out {
+        margin-left: auto;
+        color: var(--text-muted);
+        border-bottom: 0;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+      .sign-out:hover { color: var(--text); }
       .search {
         position: relative;
         flex: 1;

@@ -133,6 +133,10 @@ export async function gate(request: Request, env: GateEnv, now = Date.now()): Pr
   if (!env.teamPassword || !env.secret) {
     return new Response("The manual is locked until its passwords are set.", { status: 503, headers: { "cache-control": "no-store" } });
   }
+  // The same password for both would let every rep in as the team, so the lock stays shut instead.
+  if (env.repPassword && (await same(env.secret, env.teamPassword, env.repPassword))) {
+    return new Response("The manual is locked: the team and rep passwords must differ.", { status: 503, headers: { "cache-control": "no-store" } });
+  }
 
   if (path === "/gate/out") return redirect("/gate", `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);
 

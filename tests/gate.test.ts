@@ -104,3 +104,17 @@ test("pages and the search index are never kept in the browser cache; shared sty
   assert.equal(cacheFor("/reps/"), "private, no-store");
   assert.equal(cacheFor("/_astro/site.css"), null);
 });
+
+test("the same password for team and reps keeps the manual locked", async () => {
+  const same = { teamPassword: "one-pass", repPassword: "one-pass", secret: "s3cret" };
+  assert.equal((await gate(get("/reps/"), same, NOW))?.status, 503);
+  const body = new URLSearchParams({ password: "one-pass", next: "/" });
+  assert.equal((await gate(new Request(`${site}/gate`, { method: "POST", body }), same, NOW))?.status, 503);
+});
+
+test("signing out ends the session", async () => {
+  const res = await gate(get("/gate/out"), env, NOW);
+  assert.equal(res?.status, 303);
+  assert.equal(res?.headers.get("location"), "/gate");
+  assert.match(res?.headers.get("set-cookie") ?? "", new RegExp(`^${COOKIE}=; .*Max-Age=0`));
+});
