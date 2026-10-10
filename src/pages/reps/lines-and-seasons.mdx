@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Lines and seasons
-description: Add the brands you represent, open a season, read the linesheet into the season's book, set the order deadline and delivery windows, and check the styles the reader was unsure of.
+description: Add the brands you represent, open a season, read the linesheet into the season's book, add the brand's photos, set the order deadline and delivery windows, and check the styles the reader was unsure of.
 ---
 
 # Lines and seasons
@@ -19,6 +19,7 @@ If a button name here doesn't match what you see, the app changed and this page 
   <li><strong>Lines</strong> tab: add the brand under <strong>Add a line</strong>.</li>
   <li>On the line, open a season under <strong>Open a season</strong>.</li>
   <li>On the season, add the linesheet under <strong>Add a linesheet</strong>: pick its currency, then <strong>Read linesheet</strong>.</li>
+  <li>Add the brand's photos under <strong>Add photos</strong>, if the linesheet didn't bring them.</li>
   <li>Set the <strong>order deadline</strong> and <strong>delivery windows</strong>.</li>
   <li>Open <strong>To check</strong> and clear each style the reader was unsure of.</li>
 </ol>
@@ -70,7 +71,7 @@ On the season, under **Add a linesheet**:
   <li>Press <strong>Read linesheet</strong>. A PDF or photo can take up to a minute; the button reads <strong>Reading the linesheet…</strong></li>
 </ol>
 
-The result shows above the form, for example **Book updated: 24 added. Unmarked prices read as USD.** Read any notes listed under it.
+The result shows above the form, for example **Book updated: 24 added. Unmarked prices read as USD. 18 photos from the sheet added to 24 styles.** Read any notes listed under it.
 
 ### How the currency is decided
 
@@ -98,6 +99,41 @@ Your work survives a re-read:
 - A field you corrected by hand keeps your value. The result says **Kept your corrections on 3 styles.**
 
 To fix a sheet read in the wrong currency, pick the right one and read the sheet again.
+
+## Photos
+
+A style with a photo shows it on its row in the book, large on the style's page, and beside it on an order, so you see what you're picking in the store. Photos come in three ways.
+
+### From a PDF linesheet
+
+Reading a PDF linesheet also takes the photos it prints. Each photo goes on the style whose code is printed directly beneath it, and on the colour printed there. When the text beneath names no colour, the photo goes on every colour of that style. The result line says how many, like **18 photos from the sheet added to 24 styles.**
+
+A photo with no style code beneath it is skipped, for example when the sheet prints the code beside the photo or above it. Add those from a folder. If the photos can't be taken from the sheet at all, the book is still read, and the note says **The sheet's photos couldn't be taken from it. Add them from a folder instead.**
+
+### From the brand's photo folder
+
+Brands often send a folder of photos named with the style code, like **LD1234_010_front.jpg**. Once the book has styles, the season shows **Add photos**:
+
+<ol class="steps">
+  <li>Under <strong>Add photos</strong>, choose the photos: a whole folder on a computer, or several from your phone's library.</li>
+  <li>They go up one at a time, with a bar reading <strong>Adding 3 of 12…</strong></li>
+  <li>The result says how many landed, like <strong>12 photos added to 10 styles.</strong></li>
+</ol>
+
+How a name is matched:
+
+- The style code must be in the name as a whole: **LD1234_010_front.jpg** or **ld-1234 front.jpg** both name LD1234.
+- A colour code or colour name right beside the code picks that colour: **LD1234_010** or **LD1234_navy**.
+- A name with the style code but no colour beside it goes on every colour of that style.
+- A name with no style code, like **IMG_0042.jpg**, is not kept. The result lists it under **matched no style**: rename it with the style code, or add it on the style's page.
+
+JPEG, PNG and WebP photos up to 25 MB each. iPhone HEIC photos are refused with **iPhone HEIC photos can't be shown yet. Export as JPEG and add again.**
+
+### On a style's page
+
+Open the style, tap **Add a photo**, choose the photo and press **Add photo**. It goes on that style whatever its name, and the page reads **Photo added.**
+
+A style's first photo is the one shown on its row and on orders. A photo can't be removed from the app yet; if one is wrong, tell ThreadCloud.
 
 ## The book and the kit
 
