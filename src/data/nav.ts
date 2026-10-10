@@ -56,6 +56,7 @@ export const navigation: NavSection[] = [
       { href: "/reps/doors-and-visits/", title: "Doors and visits" },
       { href: "/reps/orders/", title: "Writing an order" },
       { href: "/reps/earnings/", title: "Earnings" },
+      { href: "/reps/help/", title: "Help" },
     ],
   },
   {
