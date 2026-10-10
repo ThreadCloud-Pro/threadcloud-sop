@@ -115,6 +115,15 @@ function redirect(location: string, cookie?: string): Response {
 }
 
 /**
+ * The caching a page the lock let through goes out with. Content and the search index are never
+ * kept by the browser, so signing out or switching to the rep password cannot read them back from
+ * its cache. The shared, content-free style and script files keep their normal caching.
+ */
+export function cacheFor(path: string): string | null {
+  return path.startsWith("/_astro/") ? null : "private, no-store";
+}
+
+/**
  * Decide one request. A Response means answer with it; null means let the page through.
  */
 export async function gate(request: Request, env: GateEnv, now = Date.now()): Promise<Response | null> {

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { COOKIE, gate, repMayOpen, safeNext } from "../netlify/gate-core.ts";
+import { cacheFor, COOKIE, gate, repMayOpen, safeNext } from "../netlify/gate-core.ts";
 
 const env = { teamPassword: "team-pass", repPassword: "rep-pass", secret: "s3cret" };
 const NOW = 1_800_000_000_000;
@@ -96,4 +96,11 @@ test("after signing in you only ever land on this site", () => {
   assert.equal(safeNext("/reps/orders/?a=1"), "/reps/orders/?a=1");
   assert.equal(repMayOpen("/representatives"), false);
   assert.equal(repMayOpen("/reps"), true);
+});
+
+test("pages and the search index are never kept in the browser cache; shared style files are", () => {
+  assert.equal(cacheFor("/workflows/build-order/"), "private, no-store");
+  assert.equal(cacheFor("/pagefind/pagefind.js"), "private, no-store");
+  assert.equal(cacheFor("/reps/"), "private, no-store");
+  assert.equal(cacheFor("/_astro/site.css"), null);
 });
