@@ -6,7 +6,7 @@ description: What to do when the supplier answers a purchase order. Compare thei
 
 # Supplier confirmations
 
-After you send a purchase order, the supplier answers. Sometimes on the acknowledgement link you emailed them, sometimes as a confirmation PDF or an email. ThreadCloud compares that answer to the order and shows you every difference, line by line, on the order's own **Supplier answer** tab. You decide what to accept.
+After you send a purchase order, the supplier answers. Sometimes on the acknowledgement link you emailed them, sometimes as a confirmation PDF or an email. ThreadCloud compares that answer to the order and shows you every difference, line by line, on the order's **Purchase order** tab. You decide what to accept, or take it all with one button.
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
@@ -14,20 +14,24 @@ Every time a confirmation comes back on a sent PO. Do it before the goods ship, 
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-09</div>
+<div class="callout-title">Last verified against the app: 2026-10-10</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
 ## Two ways a confirmation arrives
 
-1. **The acknowledgement link.** The purchase order's <strong>Email brand contact</strong> button emails the supplier a link (or copy it with <strong>Supplier ack link</strong>). On a reorder the same two actions sit in the PO tab's <strong>Share</strong> menu as <strong>Email [brand]</strong> and <strong>Copy supplier answer link</strong>. They confirm each product on it. Their answer lands on the order on its own.
+1. **The answer link.** Issuing the PO gives you the supplier's link: pick <strong>Issue PO &amp; email [brand]</strong> or <strong>Issue PO &amp; copy answer link</strong> from the bar's **Issue PO** button (the **Share** menu has the same two items before issue). After issue, **Send to supplier** and **Copy supplier answer link** in Share send it again. You can't copy the link before the PO is issued, on purpose. Once the PO is issued, **Issue PO** is gone from the bar and **Send to supplier** takes its place, whether or not the supplier has answered yet. On a phone, **Send to supplier** and **Issue PO &amp; email** open the phone's mail app with the draft; tap <strong>Open email draft</strong> if it asks. A computer opens Gmail. The supplier's answer lands on the order on its own.
 2. **A document or email.** The supplier sends a PDF, an image, or an email. You attach it on the purchase order and ThreadCloud reads it.
 
-Both end up in the same place: the order's **Supplier answer** page.
+Both end up in the same place: the order's **Purchase order** tab.
+
+### What the supplier sees on the link
+
+The supplier's page has one <strong>Confirm all as ordered</strong> button for the case where nothing changes. For anything else they use the pills: <strong>Delivery dates</strong>, <strong>Product details</strong>, <strong>Order number &amp; shipping</strong>, <strong>Contacts</strong>, and <strong>PDF</strong> (the order as a PDF). Each style is marked <strong>Confirmed</strong>, <strong>Partial</strong> or <strong>Unavailable</strong>. They click <strong>Submit</strong> in the bar at the bottom when done.
 
 ## Where to find the purchase order
 
-- **A buying order:** in Parse & Build, the footer button <strong>PO sent</strong> (or <strong>VIEW PO &amp; ACK LINK</strong> on the locked band) opens it.
+- **A buying order:** the order's **Purchase order** tab. It is the first tab once the PO is sent. Before that, **Send PO** in the Parse & Build footer opens it.
 - **A reorder:** the reorder's **PO** tab.
 - **Any order:** **Logistics** lists every purchase order under **Purchase orders**, with <strong>VIEW PO</strong> and <strong>COPY ACK LINK</strong>. See <a href="/workflows/logistics/">Logistics</a>.
 
@@ -35,33 +39,53 @@ Both end up in the same place: the order's **Supplier answer** page.
 
 The answer lives inside the order. There is no separate review page and no separate list of supplier responses.
 
-- **A buying order:** the **Supplier answer** tab, between **Parse & Build** and **Enrich**. Beside the name it reads **Waiting** once the PO is sent and the supplier hasn't answered, **To review** once they have, and **Handled** once you have dealt with it. Before the PO is sent it shows nothing.
+- **A buying order:** the top of the **Purchase order** tab. Beside the tab name it reads **Waiting** once the PO is sent and the supplier hasn't answered, **Answered** once they have, and **Handled** once you have dealt with it.
 - **A reorder:** its **Supplier answer** tab. See <a href="/workflows/reorder/">Reorder</a>.
 
-The page opens with a headline: "PO not sent yet", "Waiting on [brand]", or "[brand] answered", with a line of "Sent" and "Answered" dates (and "Handled" once it is). While you are waiting, it says "Their answer shows here when they reply through the link, or when you attach their confirmation to the purchase order." Once they answer, everything below appears on the same page.
+The top of the answer says "Waiting on [brand]" or "[brand] answered", with the dates. While you are waiting, their answer shows when they reply through the link, or when you attach their confirmation to the purchase order.
 
 Beside the headline sits **Supplier order number**. Type the supplier's own number for this order and click <strong>Save</strong>. If the supplier quoted a different number on an answer, the line under the box says so.
 
+## When the answer has changes: Apply changes
+
+If the supplier changed anything, the top of the Purchase order tab reads "[Brand] answered with changes" and lists them in short lines, for example:
+
+- "1 line short (52R: 1 of 2)"
+- "Delivery moves to ..."
+- "Payment terms change to ..."
+- "3 product details"
+- "2 confirmed costs"
+
+There is one button, <strong>Apply changes</strong> (it is also in the dark bar at the bottom). It takes everything in the answer into the order: quantities, dates, terms, product details and confirmed costs. When the supplier changed quantities, it also re-issues the revised PO; send it with <strong>Send to supplier</strong>. When only dates, terms, product details or costs changed, the PO stays as issued and there is nothing new to send. The line under the button says which will happen.
+
+- **Mark as handled** is not offered until the changes are applied. It is offered when the supplier confirmed everything as ordered, after an apply was refused, and when only <strong>Amend PO</strong> work remains.
+- If a confirmation you uploaded has lines ThreadCloud could not place, the button waits and says "Match N line(s) below first." Place those lines (see Accepting or rejecting lines), then apply.
+- Once receiving has started, **Apply changes** updates everything except quantities. The PO is not re-issued.
+- If an uploaded confirmation shows fewer units on a line, that line says "their confirmation shows X of Y. Amend PO to change it." and the PO is not re-issued. Use <strong>Amend PO</strong> to change the quantity, or <strong>Mark as handled</strong> to leave the order as it is.
+
+You can still work line by line below the summary if you want to take only some changes. The sections after this describe that.
+
 ## Knowing an answer came back
 
-- On the home screen's **Merchandising** desk, **Needs you** shows a **Supplier answers** card with a count and a <strong>Review</strong> button. One answer opens that order's Supplier answer. More than one opens the list of answers waiting.
+- On the home screen's **Merchandising** desk, **Needs you** shows a **Supplier answers** card with a count and a <strong>Review</strong> button. One answer opens that order's Purchase order tab. More than one opens the list of answers waiting.
 - On the **Sales floor** desk, **From your suppliers** lists what suppliers have said that the floor should know: shortages, unavailable products and boxes that arrived short first, then dates, substitutes, shipping news and notes. Each row has <strong>Open</strong> and <strong>Seen</strong>. See <a href="/home/#from-your-suppliers">Home</a>.
+- On the list of supplier answers, a short size reads as what they can send, for example "52R: 0 of 1 confirmed", not "52R short".
 - On the **Reorders** list, the **Answer waiting** tab holds reorders whose answer needs you. A reorder the supplier answered short sits on the **Short** tab.
 - In **Logistics**, the **Purchase orders** list at the bottom has an **Answer waiting** filter beside **Unsent** and **Sent**. It lists buying orders and reorders together. When none need you it reads "No supplier answers waiting on you."
 
 ## Uploading a confirmation
 
-Open the order's purchase order (see above). Once the PO has been sent, a card titled <strong>Supplier confirmation</strong> sits below the tabs ("Attach the confirmation when it comes back from the supplier."). Click it to open.
+Open the order's purchase order (see above). Once the PO has been issued, a card titled <strong>Supplier confirmation</strong> sits below the tabs ("Attach the confirmation when it comes back from the supplier."). Click it to open.
 
 <ol class="steps">
   <li>Attach the PDF, JPG, or PNG. Or paste the email body into the box ("…or paste the confirmation email body here"). You need one or the other; with neither, the card says "Attach the confirmation PDF or image, or paste the email body."</li>
   <li>Click <strong>Compare to order</strong>. The button reads <strong>Reading…</strong> while it works.</li>
-  <li>When it finishes, you land on the order's Supplier answer. If it could not read the file, the card says "Could not read the confirmation. Try a PDF or paste the text."</li>
+  <li>When it finishes, you land on the answer. If it could not read the file, the card says "Could not read the confirmation. Try a PDF or paste the text."</li>
 </ol>
 
 After that, the purchase order shows a <strong>Supplier answer</strong> card: a "Received" date, the document name (or "Answered on the supplier answer link", or "Pasted from the confirmation email"), a match line ("N of N lines matched", "N lines need a decision", or "Not yet reviewed line by line"), confirmed delivery and payment terms if stated, and two buttons: <strong>Open document</strong> and <strong>Open the answer</strong>. Before anything has come back, the card reads "No supplier answer yet" with an <strong>Attach the confirmation</strong> button.
 
-## What's on the Supplier answer page
+## What's on the answer
 
 At the top, a line says which answer you are looking at: "Showing the supplier's answer on the confirmation document, received [date]." Below it, in order:
 
@@ -82,7 +106,7 @@ Inside **Their confirmation**:
 | <strong>Payment terms</strong> | The brand's terms on file beside the confirmed terms. |
 | <strong>Their contact</strong> | The supplier's office contact from the document. Display only. |
 
-At the foot of the page, once they have answered, you can click <strong>Mark as handled</strong>. It then reads "Handled [date]", and the tab reads **Handled**. If they confirmed every style with no changes, the foot says "They confirmed every style with no changes."
+Once they have answered and nothing is waiting to be applied, you can click <strong>Mark as handled</strong>. It then reads "Handled [date]", and the tab reads **Handled**. If they confirmed every style with no changes, the foot says "They confirmed every style with no changes."
 
 ### Dates
 
@@ -140,7 +164,7 @@ If it fails: "Could not apply the supplier's product details. Try again." If a s
 
 When the supplier confirmed fewer units on some sizes, **Sizes they can send** lists each product with a **Partial** badge, the supplier's note and expected date if they gave one, and the ordered and confirmed sizes side by side.
 
-- On a **buying order**: the quantities here are read-only. The page says "Some styles came back with fewer units. Change the quantities on the Build page if you accept them." with an <strong>Open Build</strong> button. Update quantities in Parse & Build (unlock the order to amend it if the PO was sent). Nothing on this page changes the order.
+- On a **buying order**: <strong>Apply changes</strong> takes the shorter quantities into the order and re-issues the PO, unless receiving has started or an uploaded confirmation shows the reduction. In those cases use <strong>Amend PO</strong> to change the quantity. The summary line reads, for example, "1 line short (52R: 1 of 2)".
 - On a **reorder**: decide on the reorder's **Supplier answer** tab. It says "They confirmed fewer units on some sizes. Keep chasing the shortfall, or accept what they can send, at the foot of the page." Once the supplier has answered every line, <strong>Accept N, drop M</strong> takes what they can send and drops the rest, without resending anything; <strong>Keep chasing</strong> leaves your quantities alone, and receiving still expects them; <strong>Undo the drop</strong> puts it back while nothing is received. See <a href="/workflows/reorder/#accept-what-they-can-send">Reorder</a>.
 
 Products the supplier marked unavailable appear under **They can't send** with their note and an **Unavailable** badge.
@@ -170,6 +194,6 @@ These show on the supplier's screen, so they will come back to you by email:
 
 ## Next steps
 
-- <a href="/workflows/build-order/">Parse & Build</a>: update quantities after a partial confirmation on a buying order.
+- <a href="/workflows/build-order/">Parse & Build</a>: the Issue PO choices, and Amend PO after the PO is sent.
 - <a href="/workflows/reorder/">Reorder</a>: the reorder's Supplier answer tab, and Accept N, drop M.
 - <a href="/workflows/receiving/">Receiving</a>: receiving reads the confirmed quantities as its defaults.
