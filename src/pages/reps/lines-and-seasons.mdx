@@ -1,0 +1,153 @@
+---
+layout: ../../layouts/Doc.astro
+title: Lines and seasons
+description: Add the brands you represent, open a season, read the linesheet into the season's book, set the order deadline and delivery windows, and check the styles the reader was unsure of.
+---
+
+# Lines and seasons
+
+A **line** is a brand you represent. Each line has **seasons** (SS27, FW27), and each season has a **book**: every style and colour you can sell, with its sizes and prices. You fill the book by reading the brand's linesheet into it.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-10</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell ThreadCloud.
+</div>
+
+## Quick path
+
+<ol class="steps">
+  <li><strong>Lines</strong> tab: add the brand under <strong>Add a line</strong>.</li>
+  <li>On the line, open a season under <strong>Open a season</strong>.</li>
+  <li>On the season, add the linesheet under <strong>Add a linesheet</strong>: pick its currency, then <strong>Read linesheet</strong>.</li>
+  <li>Set the <strong>order deadline</strong> and <strong>delivery windows</strong>.</li>
+  <li>Open <strong>To check</strong> and clear each style the reader was unsure of.</li>
+</ol>
+
+## Add a line
+
+On the **Lines** tab, fill in **Add a line**:
+
+| Field | What to put |
+|---|---|
+| **Brand** | The brand's name. Required. |
+| **Brand website** | For example brand.com. |
+| **Territory** | Where you sell it, for example Ontario and Quebec. |
+| **Commission %** | Your rate, like 8 or 8.5. Earnings uses it, so set it now. |
+| **Brand pays commission** | On shipment, On invoice, or When the store pays. |
+| **Wholesale currency** | The three-letter code the brand usually prices in, like EUR. It's the default for this line's linesheets. |
+
+Press **Add line**. ThreadCloud checks whether the brand is already on ThreadCloud:
+
+- **This brand is already on ThreadCloud. Is it this one?** Press **Yes** with the brand's name if it's the same brand, or **No, a different brand**.
+- **This brand is not on ThreadCloud yet.** Press **Add it to ThreadCloud**, or **Not now**.
+
+Linking the line to its brand on ThreadCloud is how stores will later recognise your orders. A store sees nothing of yours until it confirms it knows you. If you pressed Not now, the line page offers **Check ThreadCloud** to link it later.
+
+<div class="callout callout-warn">
+<div class="callout-title">Get the commission right the first time</div>
+The app can't change a line's commission rate, payout terms or currency after it's added. Earnings uses the rate on the line at the moment a shipment is recorded. If it's wrong, tell ThreadCloud.
+</div>
+
+## Open a season
+
+On the line, fill in **Open a season**:
+
+- **Season code**: letters and digits, like SS27. Spaces are dropped, so "FW 2027" becomes FW2027.
+- **Name**: optional, like Spring Summer 2027.
+- **Order deadline**: optional here; you can set or change it later.
+
+Press **Open season**. Each code can be used once per line: a second SS27 reads **SS27 is already on this line.**
+
+## Read the linesheet
+
+On the season, under **Add a linesheet**:
+
+<ol class="steps">
+  <li><strong>Choose the file</strong>: a PDF, a photo (JPEG or PNG), or a spreadsheet (XLSX, XLS or CSV), up to 32 MB.</li>
+  <li><strong>Pick the currency</strong> under <strong>Prices on this sheet are in</strong>: CAD, USD, EUR, GBP, or <strong>Other</strong> and type the code (like CHF).</li>
+  <li>If retail is in a different currency, open <strong>Retail in another currency</strong> and pick it. Otherwise leave it on <strong>Same</strong>.</li>
+  <li>Optional: add a <strong>Note for the reader</strong>, for anything the sheet doesn't say.</li>
+  <li>Press <strong>Read linesheet</strong>. A PDF or photo can take up to a minute; the button reads <strong>Reading the linesheet…</strong></li>
+</ol>
+
+The result shows above the form, for example **Book updated: 24 added. Unmarked prices read as USD.** Read any notes listed under it.
+
+### How the currency is decided
+
+The currency you pick covers every price the sheet doesn't mark. A currency the sheet prints always wins.
+
+| The sheet prints | You picked | The price is stored as |
+|---|---|---|
+| 478, no symbol | USD | 478 USD |
+| $478 | USD or CAD | 478 in the dollar you picked |
+| EUR 478 | USD | 478 EUR. The note says the sheet printed EUR. |
+| $478 | EUR | **No currency, flagged to check.** A "$" can't be euros: pick the right dollar and read the sheet again. |
+| A different currency beside the price, or a column mixing currencies | Anything | **No currency, flagged to check.** Check it against the sheet. |
+
+ThreadCloud never guesses: a price it can't be sure of is left blank and the style is flagged, rather than stored in the wrong currency.
+
+The currency chips start on the one you used for this line's last sheet, or on the line's wholesale currency for a first sheet.
+
+### Reading a sheet again
+
+When the brand sends a revised sheet, read it into the same season. Styles already in the book are updated, new ones are added, and anything the new sheet doesn't mention is kept. A price list without sizes doesn't wipe the sizes.
+
+Your work survives a re-read:
+
+- A style you confirmed stays confirmed if the new sheet says the same thing.
+- A field you corrected by hand keeps your value. The result says **Kept your corrections on 3 styles.**
+
+To fix a sheet read in the wrong currency, pick the right one and read the sheet again.
+
+## The book and the kit
+
+The season page shows the order deadline at the top, then the **Kit**: what's still missing before the book is ready to sell from. It reads **complete** or a count like **3 missing**, with a list:
+
+- **No linesheet yet**
+- **No order deadline** (tap it to set one)
+- **4 styles without wholesale**, **without retail**, or **without a size run**
+- **2 styles to check against the linesheet** (tap it to start checking)
+- **Wholesale in CAD and EUR**: the book holds more than one wholesale currency
+
+Below is **The book**: every style with its codes, sizes and prices. Tap a style to open it.
+
+## Season dates
+
+Brands move their dates, so the order deadline and delivery windows can be changed at any time. On the season, tap **Change dates**, or **Set the order deadline and delivery windows** if none are set.
+
+<ol class="steps">
+  <li>Set the <strong>Order deadline</strong>, or clear it.</li>
+  <li>Under <strong>Delivery windows</strong>, give each window a <strong>Name</strong> (like D1), the day it <strong>Starts shipping</strong>, and its <strong>Cancel</strong> date.</li>
+  <li>Press <strong>Save dates</strong>.</li>
+</ol>
+
+- To remove a window, clear its row and save.
+- The page shows two empty rows. For more, save and two more appear, up to 8 windows.
+- Windows are listed in the order they ship.
+
+The season page then shows the deadline with the days left, and each window, like **D1 · Jan 15 to Feb 28**.
+
+## Check the styles the reader was unsure of
+
+When the reader isn't sure about a style, it flags it **check** and says why, for example **The sheet does not clearly show the colour name.** or **The sheet does not show the currency of the wholesale price, so it is left blank.**
+
+A flag never stops you picking or sending the style, and the buyer never sees it. But clear them before you sell from the book.
+
+<ol class="steps">
+  <li>On the season, tap <strong>To check</strong> above the book.</li>
+  <li>Tap a style. The box at the top says why it's flagged.</li>
+  <li>Tap <strong>Open the linesheet ↗</strong> to see the brand's original.</li>
+  <li>If the book matches the sheet, press <strong>Looks right</strong>.</li>
+  <li>If not, open <strong>Edit</strong>, correct it, and press <strong>Save and mark checked</strong>.</li>
+</ol>
+
+You go back to the book, where the style shows a green **checked** for a moment. When nothing is left, the filter reads **Nothing left to check.**
+
+### Editing a style
+
+**Edit** has the name, colour, sizes, and each price with its currency:
+
+- **Sizes, with commas between**: S, M, L. Commas keep a size like **One Size** whole. A European half size keeps its comma: **42,5, 43** is two sizes. Leave the box as it is and the sizes don't change.
+- **Wholesale** and **Retail**: a price like 478.00, with its **Currency** beside it (like USD). A price needs a currency: this is where you fill in a currency the reader left blank.
+
+If someone reads the sheet again while you have a style open, nothing you press is saved, and the page shows the style as read now: **The sheet was read again while this was open, so nothing was saved. Here it is as read now.** Check it again.

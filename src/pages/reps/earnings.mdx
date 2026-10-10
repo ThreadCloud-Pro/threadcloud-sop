@@ -1,0 +1,45 @@
+---
+layout: ../../layouts/Doc.astro
+title: Earnings
+description: The commission you can expect on orders that shipped, how ThreadCloud works it out from the brand's ship notice or invoice, and how to set aside a revised or duplicate document.
+---
+
+# Earnings
+
+**Earnings** shows the commission you can expect on orders that have shipped. It's worked out from the brand's own paper: the ship notice or invoice you add to the order.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-10</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell ThreadCloud.
+</div>
+
+## When commission appears
+
+Commission is recorded when you add a **ship notice** or an **invoice** to an order. A brand confirmation records nothing: you earn on what ships. Until then the page reads **Nothing shipped yet.**
+
+## How it's worked out
+
+- **Rate:** the line's **Commission %** at the moment the paper is added.
+- **Base:** what the brand shipped. ThreadCloud takes the quantities the brand's paper prints, at the paper's price, or at the order's price when the paper prints none. When the paper prints no quantities, the base is the total of the recap you sent.
+- **Commission:** base times rate, to the cent.
+
+Each line on the page shows how it was worked out, for example **8% of 12,450.00 CAD shipped, from the brand's ship notice (ASN-2291.pdf)**.
+
+At the top, **Expected** totals your commission per currency. If your agency set your share, **Your share** shows it too.
+
+<div class="callout callout-warn">
+<div class="callout-title">No rate, no amount</div>
+A line with no Commission % shows <strong>Not worked out</strong> with the note <strong>No commission rate on the line card.</strong> Set the rate when you add the line; the app can't change it afterwards, so tell ThreadCloud if it's missing.
+</div>
+
+## Partial shipments, invoices and revised paper
+
+Each ship notice or invoice is its own row, so partial shipments add up. Invoices take over from ship notices once they cover as many units. A row that doesn't count shows muted, with the reason, like **Covered by the brand's invoices**.
+
+A revised or duplicate document looks like a second shipment. Press **Set aside (revised or duplicate)** on the old one so it isn't counted twice. **Count it again** brings it back.
+
+Adding the very same file twice records it once.
+
+## What Earnings isn't
+
+Earnings is what you can expect from the brand's paper, not a record of what you were paid.

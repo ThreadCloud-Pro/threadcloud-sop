@@ -1,0 +1,109 @@
+---
+layout: ../../layouts/Doc.astro
+title: Writing an order
+description: Pick styles in the store, add sizes and prices, freeze a recap the buyer confirms from a link, send the order to the brand, and add the brand's confirmation, ship notice and invoice.
+---
+
+# Writing an order
+
+An order is one store's picks from one season's book. You pick in the store, send the buyer a recap to confirm, then send the order to the brand. The brand's confirmation, ship notice and invoice go on the order as they arrive.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-10-10</div>
+If a button name here doesn't match what you see, the app changed and this page is stale. Tell ThreadCloud.
+</div>
+
+## Quick path
+
+<ol class="steps">
+  <li>On the store, under <strong>Write an order</strong>, pick the line and press <strong>Open order</strong>.</li>
+  <li><strong>Tick</strong> each style the buyer wants, and add sizes, a price or a note.</li>
+  <li>Press <strong>Freeze and show message</strong>, then <strong>Copy message</strong>, and send it to the buyer yourself.</li>
+  <li>When the buyer confirms, send the order to the brand and press <strong>Mark sent to brand</strong>.</li>
+  <li>Add the brand's <strong>confirmation</strong>, <strong>ship notice</strong> and <strong>invoice</strong> as they come in.</li>
+</ol>
+
+## Pick in the store
+
+The order page lists the whole book. Each style shows its codes and price.
+
+- **Tap the round tick** to pick a style. Tap it again to unpick it.
+- On a picked style, tap **Add sizes, price or a note**. Type the quantity for each size (or one **Qty** when the style has no size run), change **Price each** if the brand agreed a different price, add a **Note**, and press **Save**.
+- Once a style has quantities and a price, it shows the units and their total, like **12 units · 2,868.00 EUR**.
+
+Picking copies the book's wholesale price onto the order, so a later linesheet doesn't reprice an order you're already writing. Quantities are whole numbers up to 999 per size.
+
+The header counts what's picked, like **The book 8 picked**, and adds **2 on this phone** while picks wait offline. With no signal, picks are kept on the phone and sent when you're back online (see [With no signal](/reps/#with-no-signal)).
+
+<div class="callout callout-warn">
+<div class="callout-title">An order's notes go to the buyer</div>
+The <strong>Note</strong> on a picked style is printed in the buyer's recap. Keep private notes on the store page under <strong>Your buyers here</strong>.
+</div>
+
+## Send the recap
+
+Under **Send the recap**, press **Freeze and show message**. This freezes the picks as a numbered version (version 1, then 2...) and the order reads **Waiting on the buyer**.
+
+<div class="callout callout-warn">
+<div class="callout-title">ThreadCloud doesn't send it for you</div>
+The message appears under <strong>Version 1 message</strong>. Press <strong>Copy message</strong> and send it to the buyer yourself, by text, email or WhatsApp. It ends with the link the buyer confirms from.
+</div>
+
+The message lists each style with its colour, codes, price, sizes and quantities, and your note, then the total per currency, your name and your agency, and the link. Units with no price are left out of the total, and the message says so.
+
+**Freeze and show message** waits while picks are still on the phone, so a recap never goes out without them.
+
+## The buyer confirms
+
+The link opens a page with the order as you sent it. The buyer types their name and presses **Confirm this order**, or **Ask for changes** and writes what should change. They can't change a quantity or a price: you own every number.
+
+Their answer shows at the top of your order: **Confirmed by** and their name, or **Changes asked by** their name with their note. The order reads **Confirmed** or **Changes asked**.
+
+## Change an order after it was sent
+
+Edit the picks as usual. Any change, even to a note, puts the order back to **Not sent**, and the buyer's old link reads **Your rep is updating this order**. Freeze and send a new recap: the order moves to the next version, and an old link reads **There is a newer version**.
+
+<div class="callout callout-warn">
+<div class="callout-title">This includes orders already with the brand</div>
+Changing a pick on an order marked Sent to brand or Brand confirmed also puts it back to Not sent, and the brand's paper can't be added again until a new recap is frozen. Change an order the brand already has only when the buyer must confirm the change.
+</div>
+
+## Send it to the brand
+
+Send the order to the brand your usual way, then press **Mark sent to brand**. The order reads **Sent to brand**. The button shows while the order is Waiting on the buyer or Confirmed.
+
+## Add the brand's paper
+
+Under **Brand paper**, pick **What the brand sent** (**Brand confirmation**, **Ship notice** or **Invoice**), choose the file, and press **Add to the order**. ThreadCloud reads it and keeps the file.
+
+| You add | The order reads | And |
+|---|---|---|
+| **Brand confirmation** | **Brand confirmed** | ThreadCloud compares it with the version you sent. |
+| **Ship notice** | **Shipped** | Your expected commission is recorded (see [Earnings](/reps/earnings/)). |
+| **Invoice** | **Invoiced** | Your expected commission is recorded. |
+
+The brand's paper only ever moves an order forward. It can be added once a recap has been sent; before that it reads **Send the buyer a recap before adding the brand's paper.**
+
+### What the brand changed
+
+When the brand's confirmation differs from what you sent, **What the brand changed** lists each difference, for example **size 50: ordered 4, brand has 2** or **250.00 CAD became 260.00 CAD**. Each is marked:
+
+- **Notice**: less than ordered, a dropped style or a lower price. Tell the buyer.
+- **Buyer must confirm**: a style the brand added, more than ordered, or a higher price. The page reads **Some of the brand's changes need the buyer's confirmation.** Update the order to match and send them a new recap.
+
+When nothing differs it reads **The brand confirmed the order as sent.**
+
+## Order statuses
+
+| Status | What it means |
+|---|---|
+| **Not sent** | Being written, or changed since the last recap. |
+| **Waiting on the buyer** | A recap was frozen; waiting for the buyer's answer. |
+| **Confirmed** | The buyer confirmed this version. |
+| **Changes asked** | The buyer asked for changes. |
+| **Sent to brand** | You marked it sent to the brand. |
+| **Brand confirmed** | The brand's confirmation was added. |
+| **Shipped** | A ship notice was added. |
+| **Invoiced** | An invoice was added. |
+
+A shipped or invoiced order can't be changed here.
