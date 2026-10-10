@@ -73,10 +73,22 @@ export async function roleFrom(request: Request, env: GateEnv, now: number): Pro
   return (await same(env.secret ?? "", expected, signature)) ? role : null;
 }
 
-/** Only a path on this site: never another host, and never back to the lock page. */
+/**
+ * Only a path on this site: never another host, and never back to the lock page. Control
+ * characters and backslashes are refused outright (a browser drops a tab, so "/\t/evil.example"
+ * would become "//evil.example"), and what is left is parsed and must stay on this origin.
+ */
 export function safeNext(raw: string | null): string {
-  if (!raw || !raw.startsWith("/") || raw.startsWith("//") || raw.startsWith("/\\") || raw.startsWith("/gate")) return "/";
-  return raw;
+  if (!raw || !raw.startsWith("/") || /[\u0000-\u001f\u007f\\]/.test(raw)) return "/";
+  const base = "https://manual.invalid";
+  let url: URL;
+  try {
+    url = new URL(raw, base);
+  } catch {
+    return "/";
+  }
+  if (url.origin !== base || url.pathname.startsWith("/gate")) return "/";
+  return url.pathname + url.search;
 }
 
 function escapeHtml(value: string): string {

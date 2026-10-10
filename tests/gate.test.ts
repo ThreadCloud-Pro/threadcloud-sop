@@ -93,6 +93,9 @@ test("after signing in you only ever land on this site", () => {
   assert.equal(safeNext("//evil.example/"), "/");
   assert.equal(safeNext("/\\evil.example/"), "/");
   assert.equal(safeNext("/gate?next=/x"), "/");
+  assert.equal(safeNext("/\t/evil.example/phish"), "/");
+  assert.equal(safeNext("/\n/evil.example/"), "/");
+  assert.equal(safeNext("/%09/evil.example/"), "/%09/evil.example/");
   assert.equal(safeNext("/reps/orders/?a=1"), "/reps/orders/?a=1");
   assert.equal(repMayOpen("/representatives"), false);
   assert.equal(repMayOpen("/reps"), true);
