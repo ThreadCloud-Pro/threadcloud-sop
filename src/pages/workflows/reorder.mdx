@@ -9,7 +9,7 @@ description: Restock what's selling. Find a reorder on the Reorders list, or sta
 Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, settle what the supplier says they can send, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-09</div>
+<div class="callout-title">Last verified against the app: 2026-10-10</div>
 If a button name here doesn't match what you see on screen, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -19,7 +19,7 @@ If a button name here doesn't match what you see on screen, the app changed and 
   <li><strong>Open Reorders</strong> from the <strong>Reorder</strong> card on the home screen's Sales floor desk, and click <strong>New reorder</strong>.</li>
   <li><strong>Find the product</strong>: search for one you carry, or click <strong>Run</strong> on a saved list. ThreadCloud reads the cost from Shopify as you pick.</li>
   <li><strong>Set how many, by size</strong> on the <strong>Pick</strong> tab. Quantities save on their own.</li>
-  <li><strong>Issue the PO</strong>: click <strong>Review PO</strong>, then <strong>Issue PO</strong>. Or click <strong>Receive without sending</strong> to skip the supplier step.</li>
+  <li><strong>Issue the PO</strong>: click <strong>Review PO</strong>, then <strong>Issue PO</strong> and pick how it goes out. Or click <strong>Receive without sending</strong> to skip the supplier step.</li>
   <li><strong>Settle the supplier's answer</strong> on the <strong>Supplier answer</strong> tab.</li>
   <li><strong>Receive</strong> the box on the <strong>Receive</strong> tab when it arrives.</li>
 </ol>
@@ -189,11 +189,11 @@ Once the PO is issued, the bar offers <strong>Purchase order</strong> and <stron
 
 The PO tab shows the purchase order for the supplier: styles, sizes, quantities, and the supplier's contact. Issuing freezes the document. After that, edits on Pick do not rewrite what the supplier was sent.
 
-- <strong>Issue PO</strong>: the button in the dark bar at the bottom. It reads <strong>Issuing</strong> while it works, then takes you to the Receive tab.
-- <strong>Share</strong> (in the header) holds the document's actions:
-  - <strong>Email [brand]</strong>: copies a ready-made email and opens Gmail; paste it with Ctrl+V. If no brand contact is on file, it opens Gmail with the link and you add the address.
+- <strong>Issue PO</strong>: the button in the dark bar at the bottom. It opens a menu: <strong>Issue PO &amp; email [brand]</strong>, <strong>Issue PO &amp; copy answer link</strong> and <strong>Issue PO only</strong>. It reads <strong>Issuing</strong> while it works. Once the PO is issued, Issue PO is gone and <strong>Send to supplier</strong> takes its place. After an amendment the same menu reads <strong>Re-issue PO</strong>.
+- <strong>Share</strong> (in the header) holds the document's actions. Before the PO is issued it offers the same two "Issue PO &amp; ..." items; there is no way to hand out the answer link without issuing, on purpose.
+  - <strong>Email [brand]</strong>: after issue, copies a ready-made email and opens Gmail; paste it with Ctrl+V. On a phone it opens the phone's mail app with a draft, and may ask you to tap <strong>Open email draft</strong>. If no brand contact is on file, add the address yourself.
   - <strong>Copy PO</strong>: copies the purchase order document itself.
-  - <strong>Copy supplier answer link</strong>: copies the link the supplier uses to say what they can send. It reads <strong>Link copied</strong>.
+  - <strong>Copy supplier answer link</strong> (after issue): copies the link the supplier uses to say what they can send. It reads <strong>Link copied</strong>.
   - <strong>Print or PDF</strong>.
 
 Once issued, the bar offers <strong>Send to supplier</strong> (the same email as <strong>Email [brand]</strong>) and <strong>Receive</strong>.
