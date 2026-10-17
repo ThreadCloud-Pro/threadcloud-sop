@@ -9,7 +9,7 @@ description: Make your existing Shopify products filterable. Scan, review the un
 Catalog setup brings the products already in your Shopify store up to ThreadCloud's standard: category, colour, size, pattern, season and stock type. Once published, they show up in your storefront filters and in Merchandising. The page is titled **Clean Catalog**.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-14</div>
+<div class="callout-title">Last verified against the app: 2026-10-17</div>
 If a tab or button here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -30,44 +30,50 @@ Publishing adds ThreadCloud's category, colour, pattern and size facts to your S
 
 ## The page at a glance
 
-The top card names where your catalog stands:
+From the top:
 
-| Heading | Meaning |
+- **The status line**, for example "3,868 published · 71 ready · 263 to review · 837 to try again".
+- **One button for the next step**. It changes with where your catalog stands:
+
+| What it shows | When |
 |---|---|
-| **Make your existing products filterable** | Nothing scanned yet |
-| **Checking your catalog** | ThreadCloud is working through your products |
-| **Checking is stopped** | Some products are still unchecked and nothing is running |
-| **Your catalog needs a few decisions** | Some products are waiting for you |
-| **Your catalog is ready to publish** | Review is done; publish when ready |
-| **Your catalog is filter-ready** | Published |
-| **Your catalog needs attention** | Some products could not be checked |
+| **Scan my products** | Nothing scanned yet |
+| **Scanning 1,240 of 5,110** (no button) | ThreadCloud is working through your products. You can leave the page; it carries on. |
+| **Review 263 products** | Some products are waiting for you |
+| **Publish 71 products** | Review is done and products are ready (account owner) |
+| **Try 837 again** | Some products did not finish |
+| **Check products** | Products were read but checking stopped |
+| **Everything is published** (no button) | Nothing is waiting. If you dismissed some products, it says how many. |
 
-Under it, **Your catalog status** counts **Ready to publish**, **Needs your review**, **Published** and **Problems**.
+- **Decide once per brand**, when a brand has products waiting for a stock type.
+- **The review table**, with the tabs **To review**, **Ready** and **Published**.
+- **Problems**, only when some products did not finish.
+- **Danger zone**, closed, at the bottom (account owner).
 
 ## First run
 
 <ol class="steps">
-  <li>Click <strong>Scan my catalog</strong>. ThreadCloud checks your active Shopify products for category, colour and size. You can leave the page; it carries on.</li>
-  <li>When the check finishes, it says how many are ready to publish and how many need your review.</li>
-  <li>Review the products in <strong>Needs your review</strong> (below).</li>
+  <li>Click <strong>Scan my products</strong>. ThreadCloud checks your active Shopify products for category, colour and size. You can leave the page; it carries on.</li>
+  <li>When the check finishes, the status line says how many are ready and how many are waiting for you.</li>
+  <li>Review the products waiting for you (below).</li>
   <li>Publish the ready ones (below).</li>
 </ol>
 
 ## Review product decisions
 
-The table has five tabs: **All**, **Needs your review**, **Ready to publish**, **Published**, **Problems**.
-
 <ol class="steps">
-  <li>Open <strong>Needs your review</strong>.</li>
+  <li>Click <strong>Review N products</strong>, or open the <strong>To review</strong> tab.</li>
   <li>Narrow it with <strong>Brand</strong>, or with <strong>Fix together</strong>, which groups products missing the same thing.</li>
   <li>Click a row to open it. Check <strong>Category</strong>, <strong>Subcategory</strong>, <strong>Colour Group</strong>, <strong>Colour Name</strong>, <strong>Pattern</strong>, <strong>Size Scale</strong>, <strong>Season</strong>, <strong>Stock Type</strong> and <strong>Vendor Ref</strong>.</li>
   <li>If ThreadCloud's suggestions are right, click <strong>Keep these suggestions</strong>. If not, correct the fields and click <strong>Save product details</strong>.</li>
 </ol>
 
 <div class="callout callout-tip">
-<div class="callout-title">"Needs your review" doesn't mean wrong</div>
+<div class="callout-title">"To review" doesn't mean wrong</div>
 It means a fact is missing or ThreadCloud isn't sure. Often the suggestion is right and one click keeps it.
 </div>
+
+For genuinely old product with no meaningful season, type **LEGACY** in the Season field.
 
 ### Many products at once
 
@@ -80,47 +86,38 @@ It means a fact is missing or ThreadCloud isn't sure. Often the suggestion is ri
 
 Most brands are bought one way. The **Decide once per brand** card lists each brand with how its reviewed products split. Pick a **Set stock type** for the brand (**Leave for review**, **MTO**, **Stock**, **NOS**, **Special**) and click **Apply to N products**. Where a brand's history is lopsided, the likely type is already selected. It never overwrites a stock type you set by hand.
 
-### Seasons for old products
-
-Click **Suggest seasons from product age** (it reads **Dating the rack** while it runs). It fills only empty Season cells from each product's Shopify creation date. Every suggestion still goes through your review.
-
-For genuinely old product with no meaningful season, type **LEGACY** in the Season field.
-
 ## Publish to Shopify
 
+Only the store's account owner can publish.
+
 <ol class="steps">
-  <li>Open <strong>Run a step yourself</strong> → <strong>Publish filters to Shopify</strong>.</li>
-  <li>Click <strong>Select All Ready (N)</strong>. It selects the ready rows you can see.</li>
-  <li>Click <strong>Publish selected (N)</strong> and confirm.</li>
+  <li>Click <strong>Publish N products</strong> to publish every ready product. Or open the <strong>Ready</strong> tab, tick the products you want, and click <strong>Publish selected (N)</strong>.</li>
+  <li>Confirm.</li>
 </ol>
 
 Published products move to the **Published** tab and show up in your storefront filters.
 
-## Run a step yourself
-
-The card under the status runs each stage on its own:
-
-| Step | Button |
-|---|---|
-| **Scan products** | **Scan products**, or **Scan new products** to add products created since the last scan |
-| **Check products** | **Check products**. **Stop** halts it. |
-| **Review uncertain products** | **Suggest seasons from product age**, and **Reset All** |
-| **Publish filters to Shopify** | **Select All Ready (N)**, **Publish selected (N)** |
-| **Link products to ThreadCloud** | **Import N Products**. Brings published products into ThreadCloud's own records, so they count in Merchandising and catalog repair. Available after publishing. |
-
-**Check footwear sizing** is for after publishing, when footwear sizes need a check.
-
-## Rolling back
-
-<ol class="steps">
-  <li>Open the <strong>Published</strong> tab.</li>
-  <li>Tick the products to undo, then <strong>Rollback Selected (N)</strong>.</li>
-  <li>Confirm <strong>Rollback N products</strong>. ThreadCloud restores the values the products had before it published.</li>
-</ol>
-
 ## Problems
 
-The **Problems** tab lists products that could not be checked, with the reason. Fix the product in Shopify if the reason points there, then scan or check again. If a repair from Reorder failed, it shows here with **Retry repair**.
+When some products did not finish, a **Problems** section names how many, for example "837 products did not finish". It usually means Shopify was unavailable while they were being checked. If any of them may already be partly written to Shopify, it says so.
+
+- **Try again** checks them again. If a catalog repair is still running, it says so; try again when it finishes.
+- **Dismiss** takes them off the list without writing anything to Shopify. Products that may be partly written are kept, so they can still be fixed or undone.
+- **See the products** opens the **Problems** tab, with the reason on each product. A product repair from Reorder that failed shows **Retry repair** there.
+
+## Undo a publish
+
+Only the store's account owner sees the **Danger zone**. Changes there are written to your Shopify store.
+
+<ol class="steps">
+  <li>Open <strong>Danger zone</strong> at the bottom of the page.</li>
+  <li>Tick the products to undo, then <strong>Undo a publish</strong>.</li>
+  <li>Type the number of products to confirm, then click <strong>Undo N products</strong>. ThreadCloud puts back the product facts your store had before they were published.</li>
+</ol>
+
+## ThreadCloud staff tools
+
+Below the review table, ThreadCloud staff see tools for running each stage by hand, resetting or importing the catalog, and checking footwear sizing. Stores don't see them. If something here needs one, ask the team.
 
 ## Catalog profile
 
@@ -155,12 +152,7 @@ Click <strong>Save codes</strong>. It reads "Saved. The basic pass is running ag
 
 <div class="callout callout-warn">
 <div class="callout-title">Publishing without reviewing</div>
-Publish only what's in Ready to publish. Walk Needs your review at least once; old catalog data is thinner than a supplier linesheet.
-</div>
-
-<div class="callout callout-danger">
-<div class="callout-title">Reset All</div>
-<strong>Reset All</strong> clears the review queue and starts fresh. It throws away every decision you made. Don't use it to fix a few rows.
+Publish only what's on the Ready tab. Walk To review at least once; old catalog data is thinner than a supplier linesheet.
 </div>
 
 ## Next steps
