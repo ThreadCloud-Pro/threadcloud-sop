@@ -49,11 +49,12 @@ export const navigation: NavSection[] = [
     ],
   },
   {
-    title: "ThreadCloud for reps",
+    title: "ThreadCloud Reps",
     items: [
       { href: "/reps/", title: "Start here" },
       { href: "/reps/lines-and-seasons/", title: "Lines and seasons" },
       { href: "/reps/doors-and-visits/", title: "Doors and visits" },
+      { href: "/reps/territory-and-claims/", title: "Territory, claims and store confirmation" },
       { href: "/reps/orders/", title: "Writing an order" },
       { href: "/reps/earnings/", title: "Earnings" },
       { href: "/reps/help/", title: "Help" },
@@ -63,7 +64,7 @@ export const navigation: NavSection[] = [
     title: "Settings",
     items: [
       { href: "/settings/store-health/", title: "Settings and store health" },
-      { href: "/settings/brands-suppliers/", title: "Brand Registry" },
+      { href: "/settings/brands-suppliers/", title: "Network" },
       { href: "/settings/brand-fit/", title: "Brand fit" },
       { href: "/settings/delivery-windows/", title: "Delivery calendar" },
       { href: "/settings/legacy-enrichment/", title: "Catalog setup" },
