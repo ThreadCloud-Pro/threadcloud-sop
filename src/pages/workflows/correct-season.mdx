@@ -1,0 +1,57 @@
+---
+layout: ../../layouts/Doc.astro
+title: Correct an order's season
+description: When an order was filed under the wrong season or year (a tag says F7 when the goods are Fall 2026), fix it with Correct season, then reprint the labels.
+---
+
+# Correct an order's season
+
+Sometimes an order is filed under the wrong season, usually the wrong year: goods arriving in October 2026 filed as Fall & Winter 2027. You notice it on the hang tag, where the season code reads **F7-1** instead of **F6-1**, or on the order itself.
+
+Before the PO is sent and before any product is in Shopify, change the season on the order: **Order settings**, **Delivery window**. After that, the order's season is locked, and you fix it with **Correct season**.
+
+<div class="callout callout-info">
+<div class="callout-title">Who can do this</div>
+The Owner and Buyers. Viewers can't.
+</div>
+
+## Find it
+
+- On the order: open **Order settings**. Under the locked season, click **Correct season…**
+- From anywhere: search Settings for "wrong season", or ask Winston.
+
+## Correct the season
+
+<ol class="steps">
+  <li>Pick the order, if you didn't start from it.</li>
+  <li>Pick the season it should be. The season the goods are arriving in now is marked <strong>arriving now</strong>. For any other year, use <strong>Another season</strong>.</li>
+  <li>Pick the delivery.</li>
+  <li>Read the three blocks: what changes, what doesn't, and what you need to do. Tick <strong>I understand</strong>.</li>
+  <li>Click <strong>Correct season</strong>.</li>
+</ol>
+
+## What changes
+
+- The order's season, name, dates and buying season.
+- The PO number, only if the PO was never sent.
+- On the order's products in Shopify: the season tags (for example `FW-2-27` and `FW-2-27-OUTERWEAR`) and the season field.
+
+## What doesn't change, and why
+
+- **SKUs.** They are the products' identity in Shopify.
+- **Receipts and stock.** The goods really arrived; nothing is received again or taken off.
+- **A sent PO.** The supplier already has it, so its number stays.
+- **The exchange rate.** It is locked at first receiving.
+
+## What you need to do afterwards
+
+<ol class="steps">
+  <li>Reprint the order's labels: open the order, go to <strong>Receiving</strong>, open the shipment and print. See <a href="/workflows/labels/">Print Labels</a>.</li>
+  <li>Swap the new tags onto the boxes.</li>
+  <li>If the PO was already sent, tell the supplier only if they track your season codes.</li>
+</ol>
+
+<div class="callout callout-tip">
+<div class="callout-title">If Shopify didn't finish</div>
+If the confirmation says some Shopify products didn't update, the order itself is already corrected. Click <strong>Try Shopify again</strong>.
+</div>
