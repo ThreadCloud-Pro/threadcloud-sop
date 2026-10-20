@@ -29,6 +29,7 @@ export const navigation: NavSection[] = [
       { href: "/workflows/receiving/", title: "Receiving" },
       { href: "/workflows/photography/", title: "Photography" },
       { href: "/workflows/labels/", title: "Print Labels" },
+      { href: "/workflows/correct-season/", title: "Correct a season" },
       { href: "/workflows/reorder/", title: "Reorder" },
       { href: "/workflows/supplier-confirmations/", title: "Supplier confirmations" },
       { href: "/workflows/mtm/", title: "Custom orders" },
