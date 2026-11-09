@@ -1,0 +1,77 @@
+---
+layout: ../../layouts/Doc.astro
+title: Phone app
+description: Sign a staff phone in from Settings, then shoot appointments, count boxes at receiving, and look up tags and clients on the floor. Which tabs each staff level sees.
+---
+
+# Phone app
+
+The phone app is the store's staff app for the phone: **Shoot** photos into an order, **Receive** a box, and **Sell** from the floor. It opens in the phone's browser and signs in as the person who approves it.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
+The phone app is switched on per ThreadCloud. If <strong>Settings</strong> has no <strong>Phones</strong> tile, or the Phones page says <strong>The phone app is not switched on for this ThreadCloud yet.</strong>, it is not on for your store. If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+## Sign a phone in
+
+There is no password. The phone shows a code, and you type it on the desk.
+
+<ol class="steps">
+  <li>On the desk, open <strong>Settings → Phones</strong>. Under <strong>Add a phone</strong> the page shows the phone app's address as a link, with a QR code and a <strong>Copy link</strong> button.</li>
+  <li>On the phone, open that address (scan the QR code, or send yourself the copied link). The phone shows <strong>Sign in</strong> and a code.</li>
+  <li>On the desk, type the code in the <strong>Code</strong> box and click <strong>Sign it in</strong>. The page notes that it signs the phone in as you.</li>
+  <li>The phone signs itself in and opens your first tab.</li>
+</ol>
+
+The code works once, for 10 minutes. If it runs out, tap **Get a new code** on the phone. **Try again in a minute.** means ThreadCloud is busy.
+
+Under **Signed in**, the Phones page lists the phones already in, each with a **Sign out** button. With none it reads **No phones are signed in.** Every tab's front page also has a Sign out on the phone. Taking a person out of [Team access](/settings/users-roles/) signs their phones out.
+
+## Which tabs you see
+
+The tab bar follows the person's switches in [Team access](/settings/users-roles/):
+
+| Tab | Shown with | What it is for |
+|---|---|---|
+| **Shoot** | Buy | Photos into an order. |
+| **Receive** | Receive | Counting a box in. |
+| **Sell** | Sell | Tags, clients and what has arrived. |
+
+The phone opens on the person's own first tab. A screen the person's switches don't cover turns back to their first tab with a line naming the switch. Someone let in with none of Sell, Receive or Buy sees **Nothing here yet**, and **Ask the store owner to turn on Selling or Receiving for you in Settings › Team access.**
+
+## Shoot
+
+**Shoot** is the buyer's tab. It lists:
+
+- **Shooting now**, with the order this phone shot into within the last two hours and a round shutter button that opens its camera.
+- **New appointment**: pick a **Brand** (or **Assorted brands**, with **Find a brand** to search), check the currency (**Change** to edit it), pick a **Season** (or type one such as FW-26, or choose **No season**), then tap **Start shooting**. It makes a blank order to shoot into. A brand that isn't on the desk can't be found here: add it on the desk first.
+- The store's open buying orders, most recently photographed first, each with a camera button.
+
+Open an order for its **Shoot** button and its photos, filtered with **Needs you**, with **Go through N** to place the photos that need a decision. The order's notes can be added from here too. If a photo can't send, it stays on the phone and the page offers **Retry** or **Discard**.
+
+## Receive
+
+**Receive** lists the orders arriving, each with its season, how much has come in and a progress line, marked **past window** when it is. With nothing due it reads **Nothing is arriving right now.**
+
+Open an order, count the box under **Count the box**, then tap the receive button at the bottom. The sheet shows the location the stock goes into (**Into** the store's location) and asks for a **Delivery note number** (leave it blank and ThreadCloud numbers it). On an order in another currency it also shows the exchange rate (only someone with Buy types it; for anyone else it shows today's rate and locks with the receipt). Tap **Receive** in the sheet to book it. The sheet then reads **Received N units** and **Tags print at the desk.**
+
+- A box with more than the order expects asks **More than the order expects**, with **Receive anyway**.
+- Products that aren't ready to receive here, and extras beyond the order, are received at the desk.
+- The same receipt is never booked twice. After a dropped connection, **Your last Receive needs an answer** checks it.
+
+Tags for phone receipts are printed at the desk: use **Print received tags** on the Receiving log. See [Print Labels](/workflows/labels/#print-received-tags).
+
+## Sell
+
+**Sell** has:
+
+- **Scan a tag** (sizes on hand, coming and when) and a manual **Look up** for a typed code.
+- **Find a client**: type a **Name or phone** and tap **Find**.
+- **Arrived for clients**: what has arrived for client orders, with a **Text** button to tell the client.
+
+## Next steps
+
+- [Team access](/settings/users-roles/)
+- [Receiving](/workflows/receiving/)
+- [Photography](/workflows/photography/)

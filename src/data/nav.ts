@@ -27,6 +27,7 @@ export const navigation: NavSection[] = [
       { href: "/workflows/enrich/", title: "Enrich" },
       { href: "/workflows/push-to-shopify/", title: "Push to Shopify" },
       { href: "/workflows/receiving/", title: "Receiving" },
+      { href: "/workflows/phone-app/", title: "Phone app" },
       { href: "/workflows/photography/", title: "Photography" },
       { href: "/workflows/labels/", title: "Print Labels" },
       { href: "/workflows/correct-season/", title: "Correct a season" },
@@ -72,6 +73,7 @@ export const navigation: NavSection[] = [
       { href: "/settings/ai-models/", title: "AI & Pipeline" },
       { href: "/settings/theme/", title: "Storefront" },
       { href: "/settings/users-roles/", title: "Team access" },
+      { href: "/settings/claude/", title: "Connect Claude" },
     ],
   },
 ];

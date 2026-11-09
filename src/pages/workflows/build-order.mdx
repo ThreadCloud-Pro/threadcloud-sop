@@ -9,7 +9,7 @@ description: Start a buying order, drop the order and the appointment photos on 
 Parse & Build is the first tab of every buying order. You drop the supplier's order and everything from the appointment onto one table, press **Parse**, and ThreadCloud reads it into products with sizes, quantities, costs and prices. You check what it built, then send the purchase order and move on to Enrich.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
 This screen used to be called Build Order. If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -28,7 +28,7 @@ Every time you place a new buying order with a supplier. To restock something yo
 ## Quick path
 
 <ol class="steps">
-  <li><strong>New buying order</strong> on the home screen: pick the brand, then the delivery window.</li>
+  <li><strong>New buying order</strong> on the home screen: answer one question per screen (brand, season, when it arrives), then <strong>Create order</strong>.</li>
   <li><strong>Drop the files</strong> on the table and check each one is marked Order or Context.</li>
   <li><strong>Parse</strong>: ThreadCloud reads the order and the photos into products.</li>
   <li><strong>Check the order</strong>: clear the <strong>to check</strong> notes and place any leftover photos.</li>
@@ -37,14 +37,23 @@ Every time you place a new buying order with a supplier. To restock something yo
 
 ## Stage 1: Create the order
 
-On the home screen, the **Merchandising** desk has a tile called <strong>New buying order</strong> ("drop a linesheet · build an order"). Only people who can create buying orders see it.
+On the home screen, the **Merchandising** desk has a tile called <strong>New buying order</strong> ("drop a linesheet · build an order"). Only people with the **Buy** switch see it (see [Team access](/settings/users-roles/)). It opens **New order**, which asks one question per screen. **← Back** goes up a step, and the top right keeps your answers so far.
 
-1. **Pick the brand.** Type in the search box or pick from **Recent**. If the brand isn't there, add it first in <a href="/settings/brands-suppliers/">Brands & Suppliers</a>.
-2. **Pick the delivery window.** Choose the **Year**, check the currency (click it to change it for this order), then click the window card, for example "Spring & Summer 2026". Click <strong>SHOW ALL SEASONS</strong> if the one you want isn't listed.
+1. **Which brand?** Type in the **Type a brand** box or pick from **Recent**. If the brand isn't there it says **No brand called "..."** with **Add it**, which opens the Network. A store with no brands reads **Add a brand first**.
+2. **Which season?** Pick one of the three that matter now. Each carries a note: **arriving now**, **coming up** or **pre-book**. **No season** (**restocks, MTM**) is for orders that belong to no season. **Another season** (**any year**) opens a year picker with arrows for the previous and next year, then the seasons of that year. A store with no delivery windows reads **Set up delivery windows first**, with **Go to delivery windows**.
+3. **When does it arrive?** (**What kind of order?** for a season with no dates.) Pick the delivery window. Each shows its dates, for example "Sep 1 to Oct 31, 2026". Windows that have ended drop off. A second order for the same brand and window shows **next is order 2**.
+4. **Create this order?** One sentence names the order: brand, season, window and arrival dates. It also shows the tag the order will use (for example **Tag F6-1**) and **Prices in CAD** with **change** to pick another currency for this order.
 
-Clicking a window creates the order straight away and opens Parse & Build. ThreadCloud names the PO for you from the brand code and the season, and adds `-02`, `-03` when you place more than one order for the same brand and window.
+Picking a window never creates the order. Only <strong>Create order</strong> does, and it opens Parse & Build. ThreadCloud numbers the PO itself, and the number ends with the order's own id.
 
-If you see "Set up delivery windows in Settings before creating an order", the store has no delivery windows yet. Use **Go to Settings**.
+If the window is far off, the confirm step says **That is N months away. If these goods are arriving now, choose [the season arriving now].** Go back and pick the right season, because the season code ends up on the hang tags. If the window has already passed it says **That window has passed. Fine for logging an old order.**
+
+A link from a brand's page or a buying season skips the screens it already answers.
+
+<div class="callout callout-tip">
+<div class="callout-title">Filed under the wrong season anyway</div>
+Fix it with <a href="/workflows/correct-season/">Correct an order's season</a>.
+</div>
 
 ## The order header
 
@@ -150,6 +159,21 @@ To add a size the product's run doesn't show, click the <strong>+</strong> on it
 If the order is in EUR but set to CAD, every cost is wrong. The currency sits in the header and in <strong>Order settings</strong>. Check it before you send the PO.
 </div>
 
+### Add existing products to the order
+
+When the supplier's order also covers products you already carry in Shopify, add them to the same order so the supplier gets one PO. Click <strong>+ Add existing product</strong> beside <strong>+ Add Product</strong> (it isn't offered on a reorder order). A search opens, titled with the brand ("Reorder -- [brand] Catalog"). Search the brand's products by title or SKU and click one. It lands as a **reorder line**:
+
+- Its sizes follow the live product's variants, so the quantities you type are against the sizes already in Shopify. Its cost fills in only when the product's cost is in the order's currency. On an order in another currency, type the supplier's price.
+- On the grid the article field reads **Shopify ref** (your own reference). The supplier's code is its own box, **Supplier code**, typed right in the row. A line with none reads **Supplier code needed** under its title.
+- A line that has no photos of its own shows the live product's Shopify photo.
+- Beside the line, a note shows how it is doing in the store, for example **On hand 3 · Sold 5 in 13 wks**. It shows nothing for a figure ThreadCloud doesn't have, never a 0.
+
+A reorder line can't go on the PO until it has the supplier's code (**Add the supplier's product code**) and a unit cost (**Unit cost is required before committing to a supplier**). The order's other lines are held to the same rules as before.
+
+You enrich and send it to Shopify with the rest of the order, but the push is a content push into the live product: it adds your tags and writes the line's title, description and SEO text only when the line has copy, and fills a vendor, product type or SEO title only where the live product has none. It never changes the live product's category, stock type, season, price record or variants and never removes anything from it. Receiving then books against the live product's own sizes and blends the new cost into the product's cost. When the supplier's price went up, <strong>Price went up</strong> appears at receiving on that line only. See <a href="/workflows/receiving/">Receiving</a>.
+
+If a line you picked also appears as an ordinary parsed line, the save asks you to remove the parsed line first.
+
 ## Stage 5: Send the PO and enrich
 
 Once the order is woven, a footer sticks to the bottom of the page with the style count, units, cost and IMU, and two buttons:
@@ -184,6 +208,22 @@ Once the PO is sent, the order is the supplier's size contract and Parse & Build
 - <strong>UNLOCK TO AMEND</strong> to change it. Type a reason (for example "supplier corrected size 48 to 52") and click <strong>UNLOCK</strong>. The band then reads **PO amendment open**. Make your changes and click <strong>PUBLISH REVISION</strong>. Re-issue the PO from the PO page (<strong>Re-issue PO</strong>, with the same three choices as Issue PO) so the supplier gets the new version.
 
 Once receiving has started, the band reads **Received order · Build locked** and ordered sizes are read-only. Fix shipment mistakes from the receipt instead. See <a href="/workflows/receiving/">Receiving</a>.
+
+### Amend on every PO page
+
+Every buying order's **Purchase order** page has an outlined <strong>Amend</strong> button. What it opens depends on where the order stands:
+
+| Where the order is | What you see |
+|---|---|
+| PO not sent, nothing received | <strong>Amend</strong> opens Parse & Build, still open for changes. |
+| PO sent, nothing received | <strong>Amend PO</strong>, the reasoned unlock described above. |
+| Anything received | <strong>Amend</strong> opens <strong>Amend a line</strong>. |
+
+In **Amend a line**, pick the line under **Line**, then change its cost, <strong>Retail</strong>, <strong>Title</strong> or <strong>Supplier code</strong>, and click <strong>Save line</strong>. Received sizes and quantities are not changed here: use **Correct** on the receipt (see <a href="/workflows/receiving/#fix-a-wrong-size">Receiving</a>).
+
+- A cost change on a line that was received needs a reason (**Reason for this cost correction (required)**, for example a credit note), and takes an optional **Document reference**. The cost box is called **Net cost**, **List cost** or **Unit cost** depending on the line's discount, and a line under it says what you pay after the discount. **Retail does not follow a cost change on its own.**
+- After saving, the page says what happened, for example **Shopify's cost per item updated on 3 sizes.** A new retail or title reaches Shopify on the next push from Enrich. On a sent PO it adds **The supplier's copy of this PO stays as sent.**
+- A reorder is corrected in its own reorder workspace, not here.
 
 ## Common mistakes
 

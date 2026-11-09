@@ -14,7 +14,7 @@ On every order after parse, before push. The background pass usually runs on its
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -23,8 +23,8 @@ If a button name here doesn't match the app, it changed and this page is stale. 
 Three triggers:
 
 1. **Automatically** after Parse & Build. A background pass starts once you click <strong>Enrich for web</strong> on the parsed order.
-2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It reads your documents and notes into every product that can take them. The button is greyed out when no AI provider is set up or nothing on the order can be filled.
-3. **One product.** Open the product and click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists). This redoes the photo read, fields, title, and description together for that product.
+2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It fills blank fields and rewrites descriptions for every product that can take them. **Titles already there are kept.** The button is greyed out when no AI provider is set up or nothing on the order can be filled.
+3. **One product.** Open the product and click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists). This re-reads the photo, fills blank fields and rewrites the description for that product. Your title is kept. A blank title is filled.
 
 You shouldn't need to fire it by hand for normal orders.
 
@@ -56,7 +56,7 @@ For every style on the order, AI fills in:
 Open the order and click the <strong>Enrich</strong> tab. Top to bottom:
 
 1. **The order header**, shared with every tab of the order (see <a href="/workflows/build-order/#the-order-header">Parse & Build</a>). On Enrich it also carries the **Enrich settings** control: **Product title guidance**, **Brand voice**, **Description order** and **Never use** (words the copy must never use). These govern every generate and regenerate on the store.
-2. **Product details** heading with three buttons: <strong>Documents &amp; notes</strong> (opens the context panel), a Shopify button, and <strong>Update All</strong>.
+2. **Product details** heading with four buttons: <strong>Context</strong> (opens the context panel), a Shopify button (<strong>Send to Shopify (N)</strong>, or a status such as **Shopify up to date**), <strong>Rewrite titles</strong> and <strong>Update All</strong>.
 3. **A one-line status** that only appears when something needs you. It names the most urgent item and gives one button for it. It reads, in priority order: a product detail error, then "N products need Shopify verification", then a review item, then "Sending changes to Shopify" while a push runs, then "Shopify sync needs attention. Changes saved here have not updated Shopify." if a push did not land.
 4. **The filter bar**: <strong>All products</strong> / <strong>To review</strong> switch on the left, a search box ("Search name, style or colour"), a <strong>Filters</strong> button, and the <strong>Tiles</strong> / <strong>List</strong> view switch.
 5. **Select all** checkbox and the bulk action bar (appears once something is selected).
@@ -287,18 +287,28 @@ Receiving books against the variant links. A product that is "Pushed but unverif
 
 ## Collection context
 
-Click <strong>Documents &amp; notes</strong> to open the context panel. The <strong>Collection context</strong> box is free text that gets woven into every product description on the next generate (put title and copy directions here too). Type your notes, then click <strong>Save context</strong> (or press <strong>Cmd/Ctrl+Enter</strong>). The button stays disabled until you've changed something, the label shows saving / unsaved / saved, and a <strong>Discard</strong> button restores the last saved text. Saving is an explicit click, not a background timer, so you decide when it's committed; anything you type while a save is in flight is never lost.
+Click <strong>Context</strong> to open the context panel. The <strong>Collection context</strong> box is free text that gets woven into every product description on the next generate (put title and copy directions here too). Type your notes, then click <strong>Save context</strong> (or press <strong>Cmd/Ctrl+Enter</strong>). The button stays disabled until you've changed something, the label shows saving / unsaved / saved, and a <strong>Discard</strong> button restores the last saved text. Saving is an explicit click, not a background timer, so you decide when it's committed; anything you type while a save is in flight is never lost.
 
 ### Model context documents
 
 The context panel accepts <strong>PDFs</strong> as well as photos, so you can drop a supplier's per-model fit guide (for example a trouser maker's sheet listing each of its fits) straight in. There is no attach-to-model step; just drop it. When a document names a <strong>model</strong> and a <strong>fit</strong> but carries no article or colour code, the Fit Type auto-fills on <strong>every colourway of that model</strong> (fit is colour-independent). It is gap-fill only, so it won't overwrite a fit you set by hand, and a bare model name with no facts attached is ignored.
+
+## Titles
+
+Generating copy never changes a title that is already there. Titles have their own controls:
+
+- **Suggest title**, on each product's card, shows a generated title under the title box with <strong>Use</strong> and <strong>Keep mine</strong>. Nothing is written until you click **Use**.
+- <strong>Rewrite titles</strong>, next to **Update All**, opens a confirm that counts the titles it will change (**Write a new title for N products.**). Titles you typed, and titles of products already linked to Shopify, stay unless you tick **Include N titles you typed or already on Shopify**. Special orders are never retitled.
+- Clear the title box and the next **Regenerate**, **Update All** or **Suggest title** fills it.
+
+Both controls are greyed out when no AI provider is set up.
 
 ## Editing the description specifically
 
 The AI description follows the brand-voice rules in [Settings → AI & Models](/settings/ai-models/). To change one:
 
 1. Open the product and edit the description text directly.
-2. Or click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists) to redo the photo read, fields, title, and description together.
+2. Or click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists) to re-read the photo, fill blank fields and rewrite the description. Your title is kept.
 
 If a regenerate could not write copy, the product says so in one line: what happened and what to do next, for example "No copy came back for this product, so its description is still empty. Add a line to Notable details or buyer notes and regenerate this product." If the copy saved here but Shopify did not confirm it, the line tells you to push the product again.
 
@@ -309,7 +319,7 @@ If you edit a description manually and then change the fabric or COO later, the 
 
 ## Fields that depend on the product
 
-Some fields only appear when the product's category makes them relevant. Tailored jackets and suits show construction details such as lapel, button stance, vents, construction and lining. Dress shirts show collar and cuff. Trousers show rise. Knitwear and polos show **Knit weight** (Lightweight or Heavyweight: does it fit under a blazer?). Footwear shows **Formality** (Dress, Smart Casual or Casual).
+Some fields only appear when the product's category makes them relevant. Tailored jackets and suits show construction details such as lapel, button stance, vents, construction and lining. Dress shirts show collar and cuff. Trousers show rise. Knitwear and polos show **Knit weight** (Lightweight or Heavyweight: does it fit under a blazer?). **Sweatshirts & Fleece** (Crewneck, Hoodie, Half-Zip, Full-Zip) is its own category, sized on letter sizes. A knitted hoodie or half-zip (a sweater, merino, cashmere or wool) stays under Knitwear, and Knit weight stays on Knitwear and polos only. Footwear shows **Formality** (Dress, Smart Casual or Casual).
 
 If a field doesn't appear, the app decided it isn't relevant for this product's category. You can't force it visible from the screen. If the category itself is wrong, fix the category first and the right fields appear.
 

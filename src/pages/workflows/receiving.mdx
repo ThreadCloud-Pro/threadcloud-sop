@@ -9,7 +9,7 @@ description: Count the box against the order, press Receive, print hang tags, cl
 When a box arrives, you open the order's **Receive** page, count what's in this box, and press **Receive**. ThreadCloud books the stock into Shopify, locks the exchange rate, puts the products on your Point of Sale, and prints the hang tags. It's usually done at the receiving table with a tablet beside the open box.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-03</div>
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -60,13 +60,23 @@ The dark bar at the bottom carries one sentence about the box, for example "Arri
 | **Receive into** | The Shopify location the stock goes into. |
 | **Delivery note number** | The number on the supplier's delivery note. Leave it blank and ThreadCloud makes one. Used on the receiving document and the tags. |
 | **Note** | Anything worth remembering: a partial box, a damaged unit, a late ship date. |
-| **Exchange rate** | Only on an order in another currency, for example "1 EUR in CAD". Check it is a normal rate for the currency (around 1.5 for EUR to CAD), not 1.0. Once the first box is received it reads "locked on the first receipt". |
+| **Exchange rate** | Only on an order in another currency, for example "1 EUR in CAD". Check it is a normal rate for the currency (around 1.5 for EUR to CAD), not 1.0. Once the first box is received it reads "locked on the first receipt". Only someone with the **Buy** switch types the rate. For anyone else the box shows "1 EUR = 1.5705 CAD, today's rate. It locks when you receive." (or says it could not fetch today's rate, and to try again in a minute or ask a buyer). |
 
 Click <strong>Done</strong>. A part the receive can't go without (a date, a location, a rate) shows in amber until it's filled.
 
 <div class="callout callout-info">
 <div class="callout-title">Why the exchange rate locks</div>
 The rate on the day the stock lands is your cost truth. Later boxes on the same order reuse it, so your margins stay anchored to it however rates move afterwards.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">Filed for a delivery months away</div>
+If the order's delivery window is far off, a note above the list reads <strong>This order is filed for delivery [window], N months away. If these goods are arriving now, its season may be wrong.</strong> It links to <strong>Correct season…</strong> (see <a href="/workflows/correct-season/">Correct an order's season</a>), or says to change it from the delivery window above.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">Floor and Receiver don't see costs</div>
+Someone with only the Sell or Receive switch receives without seeing unit costs, margins or supplier prices. See <a href="/settings/users-roles/#what-floor-and-receiver-do-not-see">Team access</a>.
 </div>
 
 ## Count what's in this box
@@ -145,14 +155,14 @@ Don't receive twice. If a receive matches one that is still running, the panel r
 
 ## Print tags
 
-Right after you receive, a window titled "N units received" opens. Tags print at 54 × 25 mm on the Dymo 30336, one per unit, in a new tab.
+Right after you receive, a window titled "N units received" opens. Tags print one per unit, in a new tab, at 54 × 25 mm on the Dymo 30336 unless the store picked the 51 × 25 mm Zebra size (see <a href="/workflows/labels/#tag-size">Print Labels</a>).
 
 - <strong>Print both</strong>: tags, then the receiving document.
 - <strong>Tags only</strong>
 - <strong>Doc only</strong>
 - <strong>Skip for now</strong>: you can print later from the receipt, from the order's close-out, or from the Receiving log.
 
-To reprint the tags for one product, use <strong>Reprint tags</strong> on its card. Everything about printing, and what to do if the printer fails, is on <a href="/workflows/labels/">Print Labels</a>.
+To reprint the tags for one product, use <strong>Reprint tags</strong> on its card. Tags from boxes received on the phone are printed from <strong>Print received tags</strong> on the Receiving log (see <a href="/workflows/labels/#print-received-tags">Print Labels</a>). Everything about printing, and what to do if the printer fails, is on <a href="/workflows/labels/">Print Labels</a>.
 
 ## Tag and shelve
 
@@ -168,7 +178,7 @@ Under the list, **Paperwork** is one row of links: <strong>Purchase order</stron
 
 ## When the order is complete
 
-Once every unit on the order is in, the top reads **Woven complete** with the units received, how much came in the first box, and whether it **Arrived** on time or how many days late. Under it, the dates of each box link to their receipts.
+Once every unit on the order is in, the top reads **Woven complete**, with an <strong>Open shipment</strong> button for the box that came in first (it reads <strong>Open first shipment</strong> when the order came in more than one box), and the units received, how much came in the first box, and whether it **Arrived** on time or how many days late. Under it, the dates of each box link to their receipts.
 
 The close-out below shows only what is left to do:
 
@@ -179,6 +189,10 @@ The close-out below shows only what is left to do:
 | **Overs** | Units you received past what was ordered, by product and size. <strong>Start a return</strong> sends them back. |
 
 A **record** panel for the brand shows how its recent orders arrived: how much came in the first box, and on time or days late. <strong>Show products</strong> opens the list again if you need to correct something.
+
+## Price went up on an order's reorder lines
+
+When a buying order carries reorder lines (existing products added to it, see <a href="/workflows/build-order/#add-existing-products-to-the-order">Parse & Build</a>), <strong>Price went up</strong> appears on a reorder line's card only where the supplier's cost rose. Orders without a rise show nothing. It works as described under <a href="/workflows/reorder/#price-went-up-new-price-and-new-tags">Reorder</a>.
 
 ## Make POS-ready
 
@@ -197,10 +211,16 @@ A receipt is the permanent record of what was booked in that day. Open it from *
 
 Buttons: <strong>Export CSV</strong>, <strong>Print</strong> (the document), <strong>Reprint Labels</strong>, <strong>Reverse</strong> and <strong>Back</strong>.
 
+The printed receiving document opens like the purchase order: the store's logo, name and address on the left, **Receiving Document** and its reference on the right, then the date, supplier, order, PO, carrier and exchange rate. Each product's sizes print in a grid by size scale. Sizes that are not on a scale print as recorded, with a note to fix them on the receiving page (**Correct**, then **Whole size run**). At the foot are **Received by** and **Checked by** lines with dates, a **Prepared with ThreadCloud** mark, and **Page X of Y** on every page. When the person printing doesn't see costs, the cost columns print without headings.
+
 <div class="callout callout-info">
 <div class="callout-title">The receipt doesn't rewrite itself</div>
 After you correct something, the receipt still shows what was booked that day. That's deliberate. To see where stock stands now, look at the order's <strong>Receive</strong> page, not the receipt.
 </div>
+
+## Fix a line's cost or details after receiving
+
+Receipts lock the order's build, so a wrong cost, retail, title or supplier code is fixed with <strong>Amend</strong> on the order's purchase order page, which opens <strong>Amend a line</strong>. See <a href="/workflows/build-order/#amend-on-every-po-page">Parse & Build</a>. Sizes and quantities stay here, with **Correct** below.
 
 ## Fix a wrong size
 
