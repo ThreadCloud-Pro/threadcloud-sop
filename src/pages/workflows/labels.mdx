@@ -9,13 +9,13 @@ description: Print hang tags when you receive, reprint them later for a shipment
 ThreadCloud prints a **hang tag** for every unit you receive. You print from the Receive page right after you receive a box, and you can reprint any time: for a whole shipment, for one product on an order, or for any product in the store from **Logistics**.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
 Which fields print is set by the Owner under <strong>Settings</strong>, so your tag may differ from the description below.
 </div>
 
 ## The printer
 
-The default is a **Dymo** label printer with **30336** labels, **54 × 25 mm**. Every print opens in a new browser tab and sends itself to the print dialog.
+The default is a **Dymo** label printer with **30336** labels, **54 × 25 mm**. A store on Zebra thermal stock can choose the **51 × 25 mm** size instead (see below). Every print opens in a new browser tab and sends itself to the print dialog.
 
 <ol class="steps">
   <li>Start a print from ThreadCloud (see below). A new tab opens with the tags, one per unit.</li>
@@ -33,12 +33,28 @@ The default is a **Dymo** label printer with **30336** labels, **54 × 25 mm**. 
 
 <div class="callout callout-tip">
 <div class="callout-title">Change what's on the tag</div>
-The Owner chooses which fields print in <strong>Settings</strong>, under <strong>Receiving label design</strong>: brand name, style name, colour, SKU, price (MSRP) and the barcode. A preview shows the tag as you change it. Click <strong>Save Label Config</strong>.
+Someone with the <strong>Store settings</strong> switch (and the Owner) chooses which fields print in <strong>Settings → Receiving</strong>, on the <strong>Tag printing</strong> tab, under <strong>Receiving label design</strong>: brand name, style name, colour, SKU, price (MSRP) and the barcode. A preview shows the tag as you change it. Click <strong>Save</strong>. Anyone else sees who can change it.
 </div>
+
+### Tag size
+
+On the same <strong>Tag printing</strong> tab, <strong>Tag size</strong> ("Match the label stock in the printer") offers <strong>54 x 25 mm (Dymo 30336)</strong>, the default, and <strong>51 x 25 mm (Zebra)</strong>. Pick the one that matches the label stock, then <strong>Save</strong>. The preview and every tag you print afterwards use it. In the print dialog, match the paper size to the one you picked.
 
 ## Print when you receive
 
 When you receive a box, a window titled "N units received" opens. Choose <strong>Print both</strong> (tags, then the receiving document), <strong>Tags only</strong>, <strong>Doc only</strong>, or <strong>Skip for now</strong>. Receive 5 of size L and you get 5 tags for size L. The panel on the page also keeps a <strong>Print N tags</strong> button, and a finished order's close-out has a <strong>Tags</strong> tile for the last box. See <a href="/workflows/receiving/">Receiving</a>.
+
+## Print received tags
+
+Boxes received on the phone are counted there, but their tags print at the desk. On <strong>Logistics → Receiving Log</strong>, the <strong>Print received tags</strong> button (top right) shows a count of receipts from the last two weeks whose tags have not printed. Phone receipts are included.
+
+<ol class="steps">
+  <li>Click <strong>Print received tags</strong>. The window lists each receipt with its brand, delivery note and date, and its tag count. Tick the ones to print.</li>
+  <li>Click <strong>Print N tags</strong> (up to 50 receipts per print). The tags open in a new tab.</li>
+  <li>Back on the page, <strong>Did the tags print?</strong> asks. Click <strong>Yes, mark printed</strong> and those receipts leave the list. Click <strong>Not yet</strong> and they stay, so a cancelled print is not lost.</li>
+</ol>
+
+<strong>Mark printed</strong> in the first window clears the ticked receipts without printing, for tags you printed another way. A receipt's own full print of tags (<strong>Tags</strong> on the Received tab, or <strong>Reprint Labels</strong> on the receipt) also takes it off the list. The button is greyed out when nothing is waiting.
 
 ## Reprint later
 

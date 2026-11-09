@@ -1,15 +1,15 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Settings and store health
-description: The Settings page. Store health tiles and what each verb does, quick settings, the six chapters, and the Automations page.
+description: The Settings welcome page. What needs you, the three groups of settings, search, and the Connections & sync page.
 ---
 
 # Settings and store health
 
-**Settings & Help** in the ThreadCloud menu opens on a dashboard, with Winston's **Help** card at the top (see [Help and Winston](/help/)). Below the card, the dashboard tells you, in one word per part of the store, whether ThreadCloud is working. Below it are quick links, the Clean Catalog card, and every setting grouped into six chapters.
+**Settings & Help** in the ThreadCloud menu opens on a welcome page. It greets you, tells you whether ThreadCloud is working, and lists every setting in three groups. Winston's **Help** is on the same page (see [Help and Winston](/help/)).
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-02</div>
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
 If a tile or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -18,85 +18,39 @@ If a tile or label here doesn't match the app, it changed and this page is stale
 Whenever numbers look stale, a background job seems stuck, or something on another page says to check Settings. Start here before emailing ThreadCloud.
 </div>
 
-## Store health
+## Search
 
-Six tiles, one for each part of the store:
+The box under the greeting reads **What can I help you find?**. Type the words you use in the store (try "logo", "price rounding", "filters" or "sync"). It lists the settings that match, each with the group it is in. With nothing matching it says **No settings match that search.** and offers **Ask Winston**.
 
-| Tile | Answers |
-|---|---|
-| **Storefront filters** | Are your shopper filters wired the way this catalog expects? |
-| **AI engines** | Are AI runs (reading linesheets, writing copy) landing? |
-| **Catalog** | Has ThreadCloud written your catalog's product facts? |
-| **Shopify sync** | Are your Shopify orders arriving? |
-| **Sales history** | Is the record of past sales complete? |
-| **Nightly capture** | Is the daily stock count current? |
+## What needs you
 
-### Reading a tile
+The heading says how many things need you, for example **Two things need you**, or **Nothing needs you**. Each problem is one line with a **Fix** at its end:
 
-- **The word** is the answer: for example **Current**, **1 failed**, **532 to review**, **Not checked**, **Running now**.
-- **The coloured bar** along the top and **the small mark** beside the name say the same thing at a glance: a check, an exclamation, a question mark, or an arc while something is running.
-- **The last line** says when that part last reached an outcome, for example **checked 12m ago** or **never checked**.
+- Where the fix is a check, **Fix** runs it in place and reads **Checking** while it works.
+- Otherwise **Fix** opens the row that holds the problem. Some lines carry up to three named buttons instead of one.
 
-<div class="callout callout-tip">
-<div class="callout-title">"Not checked" is not a fault</div>
-A grey tile with a question mark means ThreadCloud hasn't looked yet. Nothing is known to be broken. The button on its panel is the one that gets the evidence.
-</div>
+The last, muted row shows the readings: for example **Shopify orders synced 12 min ago**, **Inventory swept 3 h ago**, **AI connected** and **Storefront filters ready**. It is headed **Everything is current** when every reading is current, and **Where things stand** while something is running or unknown. A line that says **Not checked** is not a fault: ThreadCloud hasn't looked yet.
 
-### Opening a tile
-
-Tap a tile that isn't current to open its panel. A panel has four things:
-
-<ol class="steps">
-  <li>What is wrong, with a count.</li>
-  <li>The items or reasons behind the count. Names are a sample; the count is exact.</li>
-  <li>The last good run, sync or capture.</li>
-  <li>One button, which names where it takes you or what it does.</li>
-</ol>
-
-Only the most urgent tile's button is filled in. Do that one first.
-
-### The buttons you'll meet
-
-| Tile | Button | What it does |
-|---|---|---|
-| Storefront filters | **Run the filter check** | Checks Shopify's filters now. Account owner only; staff see **Open Storefront** instead. |
-| AI engines | **Check the AI connection**, or **Open** an order | A provider or key fault goes to [AI &amp; Pipeline](/settings/ai-models/). A fault with one order's file opens that order to run it again. |
-| Catalog | **Run catalog scan again** | Starts the catalog scan again when the automatic one stopped. |
-| Catalog | **Open Clean Catalog** | Opens [Catalog setup](/settings/legacy-enrichment/) to review what is waiting. |
-| Catalog | **Update the definitions** | Brings ThreadCloud's product fact definitions in Shopify up to date. |
-| Shopify sync | **Open the Orders row** | Opens Automations at the Orders row. |
-| Sales history | **Open the Sales history row** | Opens Automations at the Sales history row. |
-| Nightly capture | **Open the Inventory row** | Opens Automations at the Inventory row. |
-
-<div class="callout callout-info">
-<div class="callout-title">When "Run catalog scan again" refuses</div>
-It replaces the button with the reason. It refuses when catalog scanning isn't switched on for the store (ask ThreadCloud), when a scan is already running, when the scan state can't be read just now, when Clean Catalog is still writing, and when the last scan is less than 24 hours old.
-</div>
+The six parts it watches are Storefront filters, AI engines, the Catalog, Shopify sync, Sales history and the Nightly capture. Only the account owner can run some checks, and the page says so where it applies.
 
 <div class="callout callout-info">
 <div class="callout-title">An AI failure that says it's ours</div>
 If a failed run reads "ThreadCloud hit an internal error on this run. This is ours to fix, not yours.", email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> with the reference code it shows.
 </div>
 
-## Below the tiles
+## The three groups
 
-- **Quick settings**: four shortcuts: **Delivery calendar**, **Restock plans**, **Product writing** and (for the account owner) **Team access**.
-- **Work in progress**: background jobs running now, when there are any.
-- **Clean Catalog**: your catalog's status in a line, and **Open Clean Catalog**.
-- **Settings chapters**: **Find the right setting**. Search with the words you use in the store (try "logo", "price rounding", "filters" or "sync"), or browse the six chapters.
-
-| Chapter | What's in it |
+| Group | Tiles |
 |---|---|
-| **Store &amp; team** | Store profile, [Team access](/settings/users-roles/), Data sharing |
-| **Buying &amp; planning** | [Delivery calendar](/settings/delivery-windows/), Financial mappings, Receiving readiness (account owner) |
-| **Catalog &amp; content** | Product writing ([AI &amp; Pipeline](/settings/ai-models/)), Required product facts, Storefront size guide, [Store codes](/settings/legacy-enrichment/#store-codes) (account owner), [Catalog profile](/settings/legacy-enrichment/#catalog-profile) |
-| **Storefront** | Restock plans, Storefront activation, Search and Discovery filters, the Essentials page setting. See [Storefront](/settings/theme/). |
-| **Automations** | Orders, sales history, inventory, Shopify stock (below) |
-| **My preferences** | Your own appearance (light or dark), density, Home shortcut and opening period |
+| **How you buy** | **Buying** (pricing, ship windows and the [delivery calendar](/settings/delivery-windows/)), **Brands & suppliers** (the [Network](/settings/brands-suppliers/)), **Receiving** (tag printing and measuring) |
+| **How you sell** | **Product pages** (brand voice and writing rules, see [AI &amp; Pipeline](/settings/ai-models/)), **Catalog** (required facts, occasions and size guide, see [Catalog setup](/settings/legacy-enrichment/)), **Storefront** (theme setup and shopper filters, see [Storefront](/settings/theme/)) |
+| **Your store** | **Store &amp; team** (store details, [Team access](/settings/users-roles/) and data sharing), **Connections &amp; sync**, **Claude** (see [Connect Claude](/settings/claude/)), **Phones** (only where the phone app is on, see [Phone app](/workflows/phone-app/)), **My preferences** (start page, opening period and display) |
+
+Each tile shows a few live values, such as the store currency or how many brands you carry. A person sees only the tiles their switches open: Floor and Receiver see Phones and My preferences, not the buying, catalog or store pages (see [Team access](/settings/users-roles/)). Where setup isn't finished, a **Store setup** row (**Your first catalog**) sits under the page.
 
 ## Receiving readiness
 
-**Settings → Buying &amp; planning → Receiving readiness** (account owner) checks every open order against Shopify before the goods arrive. It is read only: nothing is written to ThreadCloud or Shopify.
+**Settings → Receiving → Open orders check** (account owner) has a **Receiving readiness** row with an **Open the check** button. It checks every open order against Shopify before the goods arrive. It is read only: nothing is written to ThreadCloud or Shopify.
 
 <ol class="steps">
   <li>Click <strong>Run the check</strong>. Run it before the first delivery of each season.</li>
@@ -108,7 +62,7 @@ When nothing is wrong it says **Every style with units to come will receive clea
 
 ## Automations
 
-**Settings → Automations** ("what runs itself") has one row per job. Click a row that needs attention to open it.
+**Settings → Connections &amp; sync** has four tabs: **AI connection**, **Shopify** (Orders, Shopify stock, Store reset), **Sales history** and **Inventory**, with one row per job. A tab shows how many rows failed. Open a row that needs attention.
 
 | Row | What it runs | Recovery buttons you may see |
 |---|---|---|
@@ -116,8 +70,8 @@ When nothing is wrong it says **Every style with units to come will receive clea
 | **Sales history** | The record of past sales | **Capture the baseline**, **Rebuild sales history**, **Retry skipped orders**, **Resume historical ledger**, **Resume from saved checkpoint** |
 | **Inventory** | The nightly stock position and the hourly on-hand sweep | **Capture today's position**, **Resume sweeping this store** |
 | **Shopify stock** | Every stock change receiving sends to Shopify | **Read Shopify back** |
+| **Catalog** | Products published, and refinements waiting | **Refine catalog** (opens [Catalog setup](/settings/legacy-enrichment/)) |
 | **Store reset** | Shown only while a store reset is unfinished | **Resume the reset** |
-| **Catalog** | Products published, and refinements waiting | **Refine catalog** |
 
 Recovery buttons say who can press them. The sales history buttons and **Resume the reset** are for the store's account owner (**Store account owner only**); others need owner access (**Owners only**).
 

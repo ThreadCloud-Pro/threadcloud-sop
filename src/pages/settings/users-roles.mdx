@@ -1,15 +1,15 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Team access
-description: Who can use ThreadCloud, how the account owner grants Merchandising access and the right to mark supplier updates seen, and which actions are for the account owner only.
+description: Staff see nothing in ThreadCloud until the account owner lets them in. How to let someone in at a level (Floor, Receiver, Buyer, Manager), change their switches, take them out, and what each level sees.
 ---
 
 # Team access
 
-ThreadCloud uses your Shopify staff accounts. Anyone on your Shopify staff who can open the ThreadCloud app can use it. On top of that, three things are decided per person: whether they see **Merchandising**, whether they can mark **supplier updates** seen, and whether they are the store's **account owner**.
+ThreadCloud uses your Shopify staff accounts, but opening the app is not enough. **A staff member sees nothing in ThreadCloud until the account owner lets them in.** The owner then picks a level for them, and each level opens only the screens it needs.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-03</div>
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
 If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -17,48 +17,91 @@ If a screen or label here doesn't match the app, it changed and this page is sta
 
 | Person | What they get |
 |---|---|
-| **Account owner** | The person who owns the Shopify store. Everything, always, including Merchandising and the owner-only actions below. |
-| **Staff** | Every other Shopify staff member who opens ThreadCloud. All the daily workflows. Merchandising only if the owner turns it on. Marking supplier updates seen unless the owner turns it off. |
+| **Account owner** | The person who owns the Shopify store. Everything, always. Only the account owner can open **Team access**. |
+| **Staff, let in** | Whatever the owner switched on for them (levels and switches below). |
+| **Staff, waiting** | Someone on your Shopify staff who has opened ThreadCloud but has not been let in. They see one line: **Ask [the owner's name] to invite you to ThreadCloud.** Nothing else in ThreadCloud opens for them. |
 
-There are no separate invitations in ThreadCloud. To give someone access, add them as staff in Shopify and give them access to the ThreadCloud app there. They appear in ThreadCloud's list after they first open it.
+Staff who were already using ThreadCloud before this change stayed in, with Sell, Receive and Buy on. Their row may read **Buyer** or **Custom**. Check each one and set the level you want.
 
-## Turn on Merchandising for a staff member
+## Let someone in
 
-Merchandising access covers **Buying Plan**, **Merchandising** and **Money**: buying seasons, brand scorecards, orders, stock and the store's financial figures.
+To give someone access, first add them as staff in Shopify and give them the ThreadCloud app there. They show up in ThreadCloud the first time they open it.
 
 <ol class="steps">
-  <li>The account owner opens <strong>Settings → Store &amp; team → Team access</strong> (also a <strong>Quick settings</strong> tile). The page is titled <strong>Users &amp; access</strong>.</li>
-  <li>Under <strong>Merchandising access</strong>, find the person. The table shows <strong>Name</strong>, <strong>Email</strong>, <strong>Account</strong> (Owner or Staff), <strong>Merchandising</strong>, <strong>Supplier updates</strong> and <strong>Last seen</strong>.</li>
-  <li>Tick the box in the <strong>Merchandising</strong> column. It reads <strong>Enabled</strong>. Untick it to turn it off.</li>
+  <li>The account owner opens <strong>Settings → Store &amp; team</strong>. The first tab is <strong>Team access</strong>.</li>
+  <li>Under <strong>Waiting to be let in</strong>, find the person. It shows their name, email and when they last tried.</li>
+  <li>Pick a level in the list beside their name. It starts on <strong>Floor</strong>, the least.</li>
+  <li>Click <strong>Let in</strong>.</li>
 </ol>
 
-The account owner's row reads **Always on**. Only the account owner can open this page.
+Nobody waiting reads **Nobody is waiting.** Under the list the page says **Staff show up here the first time they open ThreadCloud from the Shopify admin.**
+
+After you click, the page says one of:
+
+- **[Name] is in. Email isn't set up yet, so let them know.** Tell the person yourself that they can open ThreadCloud now. This is the line to expect today.
+- **[Name] is in. The welcome email is on its way.** Shown only where ThreadCloud's staff email is set up for the store.
+
+Their next page load opens ThreadCloud.
+
+## The four levels
+
+A level is a starting point. Choosing one sets the person's switches. You can change any switch afterwards, and a mix that matches no level reads **Custom**.
+
+| Level | What it is for | Switches on |
+|---|---|---|
+| **Floor** | Sells: scans tags, finds clients and holds sizes on the phone, takes special orders. | Sell, Supplier updates |
+| **Receiver** | Receives at the desk and on the phone, fixes receipts, prints tags. | Receive, Supplier updates |
+| **Buyer** | Orders, Enrich, purchase orders, reorders and Merchandising, plus receiving and selling. | Sell, Receive, Buy, Merchandising, Supplier updates |
+| **Manager** | Everything a buyer does, plus store settings. | All six, **Store settings** included |
+
+## Change a switch or a level
+
+On **Settings → Store &amp; team → Team access**, each person you have let in has a level list, a **Remove** button and six switches. Each switch reads **On** or **Off**.
+
+| Switch | What it opens |
+|---|---|
+| **Sell** | Custom orders and clients' fit, and the phone's Sell tab. |
+| **Receive** | The Receiving log, an order's Receive page and receipts, tags, Transfer Out, and the phone's Receive tab. |
+| **Buy** | Buying orders, reorders, Photography, supplier answers, Correct season, the Network, and the phone's Shoot tab. |
+| **Merchandising** | Buying Plan, Merchandising and Money. |
+| **Supplier updates** | The **Seen** buttons on Home's supplier updates. Without it the person still sees every update. |
+| **Store settings** | Change store-wide settings like pricing, labels and catalog rules. |
+
+The Logistics page opens for anyone with Sell, Receive or Buy, and shows each part to the switch it belongs to. Home, Help and the two personal settings pages (My preferences, and Phones where the phone app is on) open for everyone let in. Anyone without Buy or Store settings is sent to one of those two from the Settings front door instead of the Settings hub.
 
 <div class="callout callout-info">
-<div class="callout-title">What staff see without it</div>
-Buying Plan, Merchandising and Money disappear from the menu. If they follow a link to one of those pages, it says: Merchandising access is not enabled for your account. Ask the store owner to grant it in Settings > Users.
+<div class="callout-title">When someone opens a screen their switches don't cover</div>
+They land on Home with a line such as <strong>Receiving is not turned on for your account. Ask the store owner to turn it on in Settings › Team access.</strong> The line names the switch: Selling, Receiving, Buying, Merchandising or Store settings.
 </div>
 
-## Supplier updates: who can mark them seen
+A switch change takes effect on the person's next page load.
 
-The Sales floor's **From your suppliers** list (see [Home](/home/#from-your-suppliers)) has a <strong>Seen</strong> button on each row and <strong>Mark all seen</strong>. Marking an update seen clears it for everyone, so it is a per-person permission.
+## What Floor and Receiver do not see
 
-- It is **on by default** for every staff member. The account owner's row reads **Always on**.
-- To turn it off for someone, untick their box in the <strong>Supplier updates</strong> column ("Can mark updates seen") on the same page. It reads **Off**. Tick it again to turn it back on.
-- Without it, the person still sees every update and can open it; they just don't get the Seen buttons.
+Floor and Receiver do not see what the store pays: unit costs, margins and supplier prices are left out of the Receiving page and receipts, Transfer Out, custom orders and Home's figures. Retail prices stay, because they are on the tag. Buyer, Manager (anyone with Buy or Merchandising) and the owner see costs.
+
+A first receipt on an order in another currency locks the exchange rate. Only someone with **Buy** can type that rate. For anyone else the Receive page shows a line like **1 EUR = 1.5705 CAD, today's rate. It locks when you receive.** If ThreadCloud could not fetch the rate, it says so and asks them to try again in a minute or ask a buyer to enter it.
+
+## Take someone out
+
+Click **Remove** beside the person. ThreadCloud asks **Take [name] out of ThreadCloud? They see nothing until you let them in again, and their phones are signed out.** Confirm, and they go back to waiting. The account owner can never be taken out.
+
+Remove staff who leave in ThreadCloud and in Shopify. Access follows the Shopify staff account too.
 
 ## Actions for the account owner only
 
-Some actions change the whole store or reach into Shopify, so ThreadCloud keeps them for the account owner. Where a staff member would see one, the screen says who can do it, for example **Store account owner only** or **Only the account owner can answer this.** They include:
+Some actions change the whole store or reach into Shopify, so ThreadCloud keeps them for the account owner, whatever level a person has. Where a staff member would see one, the screen says who can do it, for example **Store account owner only** or **Only the account owner can answer this.** They include:
 
+- Everything on **Team access**.
+- **Settings → Claude**: connecting Claude. See [Connect Claude](/settings/claude/).
 - Answering the setup walk's questions and finishing setup. See [First-time setup](/setup/onboarding/).
 - Testing, replacing or clearing the AI key. See [AI &amp; Pipeline](/settings/ai-models/).
-- Granting Merchandising access and the supplier updates permission, on this page.
 - Saving **Store codes** (see [Catalog setup](/settings/legacy-enrichment/#store-codes)).
 - **Order qty to qualify as Essential** in Storefront (see [Storefront](/settings/theme/#essentials-page)).
 - Changing the store's season calendar in the Merchandising gear.
-- **Run the filter check** on the Storefront filters tile, and **Receiving readiness** in Settings.
-- The sales history recovery buttons and **Resume the reset** in **Settings → Automations**. See [Settings and store health](/settings/store-health/).
+- **Run the filter check** on the Storefront filters health line, and **Receiving readiness** in Settings.
+- The sales history recovery buttons and **Resume the reset** in **Settings → Connections &amp; sync**. See [Settings and store health](/settings/store-health/).
+- **Barcode check** and **Brand check** on the Custom orders list. See [Custom orders](/workflows/mtm/).
 
 ## Read-only stores
 
@@ -67,16 +110,17 @@ If a screen says your shop role is read-only, ThreadCloud has set the whole stor
 ## Common mistakes
 
 <div class="callout callout-warn">
-<div class="callout-title">Forgetting to remove access when staff leave</div>
-Access follows the Shopify staff account. Remove or limit the person's staff account in Shopify when they leave. Add it to your offboarding checklist.
+<div class="callout-title">Letting everyone in as Manager</div>
+Start people on the least they need. Money shows the store's sales, costs and margin, and Store settings changes pricing, labels and catalog rules.
 </div>
 
 <div class="callout callout-warn">
-<div class="callout-title">Giving Merchandising to everyone</div>
-Money shows the store's sales, costs and margin. Turn on Merchandising for the people who buy and plan, not for every staff member.
+<div class="callout-title">Forgetting to tell the person they are in</div>
+Where the page says email isn't set up, nobody is told for you. Let them know yourself.
 </div>
 
 ## Next steps
 
 - [Settings and store health](/settings/store-health/)
+- [Phone app](/workflows/phone-app/): which tab each level sees
 - [If something breaks](/runbook/): what staff can do and when to contact ThreadCloud

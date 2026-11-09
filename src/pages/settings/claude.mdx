@@ -1,0 +1,52 @@
+---
+layout: ../../layouts/Doc.astro
+title: Connect Claude
+description: Let your own Claude read your purchase orders, receiving, products, brand scorecards, season performance and stock. How the account owner connects it, approves it and disconnects it.
+---
+
+# Connect Claude
+
+**Settings → Claude** connects your own Claude to your ThreadCloud store. Once connected, you can ask Claude about your orders, receiving and products in an ordinary chat. Claude can look. It never changes anything.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-11-09</div>
+If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Account owner only</div>
+A connection reads the whole store, costs included. Only the store's account owner can connect Claude. Anyone else who opens the page sees <strong>Only the store owner can connect Claude, because a connection reads the whole store, costs included.</strong>
+</div>
+
+## What Claude can read
+
+- Purchase orders: find them by brand, season or PO number, and see where each stands (supplier confirmation, delivery window, how much has arrived, whether it is late).
+- What the store has to receive this week.
+- Products on your orders, with units ordered, cost and retail, and which product details are missing.
+- Brand scorecards, season performance and stock position.
+
+## Connect it
+
+<ol class="steps">
+  <li>Open <strong>Settings</strong> and click the <strong>Claude</strong> tile (in the <strong>Your store</strong> group), then find <strong>How to connect</strong>. It shows the address to paste and has a <strong>Copy address</strong> button.</li>
+  <li>In Claude on the web, the Claude app or Cowork: open <strong>Settings</strong>, then <strong>Customize</strong>, then <strong>Connectors</strong>. Choose <strong>Add</strong>, then <strong>Add custom connector</strong>.</li>
+  <li>Name it ThreadCloud, paste the address and choose <strong>Add</strong>.</li>
+  <li>Choose <strong>Connect</strong>. Claude opens a ThreadCloud page with a code.</li>
+  <li>Back on <strong>Settings → Claude</strong>, under <strong>Approve a connection</strong>, type the code in the <strong>Connection code</strong> box and click <strong>Continue</strong>.</li>
+  <li>The page names what is asking and says it wants to read the store's purchase orders, receiving and products, including costs and retail, and that it cannot change anything. Click <strong>Approve</strong>, or <strong>Decline</strong> if you did not start this.</li>
+</ol>
+
+After <strong>Approve</strong> the page says **Approved. Go back to Claude: it finishes connecting on its own.** Once connected it works in every chat, in Cowork and in Claude Code on the web.
+
+**Claude Code on your computer** has its own command, shown under the same heading with a **Copy** button (it starts `claude mcp add --transport http threadcloud`). Run it, then run `/mcp` in Claude Code, choose threadcloud and sign in. It shows the same code page.
+
+If you see **That code is not waiting for approval. Check it, or start again from Claude.** or **That code expired or was already used. Start again from Claude.**, go back to Claude and choose Connect again for a fresh code.
+
+## See and disconnect connections
+
+Under **Connected**, each connection shows its name, the day it was connected and the day it was last used. Click **Disconnect** to cut it off. The page says **Disconnected.** With none it reads **No Claude is connected.**
+
+## Next steps
+
+- [Team access](/settings/users-roles/)
+- [Settings and store health](/settings/store-health/)
