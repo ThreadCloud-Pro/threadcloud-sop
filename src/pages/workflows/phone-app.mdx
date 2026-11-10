@@ -87,7 +87,7 @@ A sample piece may carry a cost of zero and still be approved; every other piece
 
 ## Receive
 
-**Receive** opens with a search box, **Find an order**, that reads "Brand, season or PO". Type and tap **Find**. It finds orders you can receive and any order that was sent, with the ones due first. It reads **No order matches that.** when nothing fits.
+**Receive** opens with a search box, **Find an order**, that reads "Brand, season or PO". Type and tap **Find**. It finds orders you can receive, any order that was sent, and any order that already has units received on it even if it was never marked sent, with the ones due first. A draft or an imported old season with nothing in stays out. It reads **No order matches that.** when nothing fits.
 
 Without a search, the tab lists every order to receive, in two groups:
 
@@ -99,7 +99,11 @@ Each row shows the brand, the season, the delivery window and where the order st
 Open an order (its title line carries the season, PO, the date it was sent, the window and the status), count the box under **Count the box**, then tap the receive button at the bottom. The sheet shows the location the stock goes into (**Into** the store's location) and asks for a **Delivery note number** (leave it blank and ThreadCloud numbers it). On an order in another currency it also shows the exchange rate (only someone with Buy types it; for anyone else it shows today's rate and locks with the receipt). Tap **Receive** in the sheet to book it. The sheet then reads **Received N units** and **Tags print at the desk.**
 
 - A box with more than the order expects asks **More than the order expects**, with **Receive anyway**.
-- Products that aren't ready to receive here, and extras beyond the order, are received at the desk.
+- Products the phone can't count stay on the order, greyed out under the reason, so nothing drops off it:
+  - **Not on Shopify yet** lists products with no Shopify product. Receiving never runs before the first push. The note reads "Push them in Enrich, then count them here." for a buyer, with <strong>Open Enrich</strong>, or "A buyer pushes them in Enrich, then you can count them here." for anyone else.
+  - **Receive at the desk** lists products that are on Shopify but owed only on sizes the phone can't count; the desk's receive sets those up. <strong>Open in ThreadCloud</strong> opens the order on the desk.
+  The links show only where the person's switches open that desk page.
+- Extras beyond the order are received at the desk.
 - The same receipt is never booked twice. After a dropped connection, **Your last Receive needs an answer** checks it.
 
 **Open in ThreadCloud** at the top of the order opens the same order on the desk, in Shopify admin. It shows only where the person's switches open that desk page.
@@ -107,6 +111,17 @@ Open an order (its title line carries the season, PO, the date it was sent, the 
 **Nothing more is coming.** Once something has arrived on a buying order, a person with the **Buy** switch also sees a **Nothing more is coming** button on the order's page. It opens a sheet that says what it will do. **Mark N units not coming** closes off what the order still owes (it leaves **To receive** and **Coming up**, and what arrived stays received), and **Keep waiting** leaves it. If a customer had a hold on a unit that will not arrive, the phone names them so you can tell them. Everyone sees the standing close ("N units marked not coming on Nov 9."), and a buyer gets **Undo**. It is the same close as on the desk (see [Receiving](/workflows/receiving/#nothing-more-is-coming)). It isn't offered on a reorder.
 
 Tags for phone receipts are printed at the desk: use **Print received tags** on the Receiving log. See [Print Labels](/workflows/labels/#print-received-tags).
+
+## Going back
+
+The phone's back links return to where you started, not to the front page:
+
+- A photo or label shot started from **Receive** goes back to the order on Receive ("Back to the order"). **Retake the tag**, from **Needs you**, goes back to **Needs you**. A shot started on **Shoot** goes back to the product or the order.
+- A lot's photos page goes back to the lot ("Back to the lot") and shoots with the lot camera.
+- **New appointment** and **New lot** have a back arrow to **Shoot** ("Back to Shoot").
+- On the care-label page, the way out reads **Back to the order**.
+- On **Sell**, a client's held piece opens its product, and its back link returns to that client ("Back to the client"). A product opened from a scan goes back to the scan.
+- **Order notes** are a buyer's: only a person with the **Buy** switch is prompted to add notes on an order. Anyone else sees the notes once they are there.
 
 ## Sell
 
