@@ -1,15 +1,15 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Phone app
-description: Sign a staff phone in from Settings, then shoot appointments, count boxes at receiving, and look up tags and clients on the floor. Which tabs each staff level sees.
+description: Sign a staff phone in from Settings, then shoot appointments and pre-owned lots, count boxes at receiving, and look up tags and clients on the floor. Which tabs each staff level sees.
 ---
 
 # Phone app
 
-The phone app is the store's staff app for the phone: **Shoot** photos into an order, **Receive** a box, and **Sell** from the floor. It opens in the phone's browser and signs in as the person who approves it.
+The phone app is the store's staff app for the phone: **Shoot** photos into an order or a pre-owned lot, **Receive** a box, and **Sell** from the floor. It opens in the phone's browser and signs in as the person who approves it. It shows the design the person chose in **Settings → My preferences** (see [Settings and store health](/settings/store-health/#my-preferences)), so the same screen can look different from one person's phone to the next.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-09</div>
+<div class="callout-title">Last verified against the app: 2026-11-10</div>
 The phone app is switched on per ThreadCloud. If <strong>Settings</strong> has no <strong>Phones</strong> tile, or the Phones page says <strong>The phone app is not switched on for this ThreadCloud yet.</strong>, it is not on for your store. If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -48,17 +48,63 @@ The phone opens on the person's own first tab. A screen the person's switches do
 - **New appointment**: pick a **Brand** (or **Assorted brands**, with **Find a brand** to search), check the currency (**Change** to edit it), pick a **Season** (or type one such as FW-26, or choose **No season**), then tap **Start shooting**. It makes a blank order to shoot into. A brand that isn't on the desk can't be found here: add it on the desk first.
 - The store's open buying orders, most recently photographed first, each with a camera button.
 
+In the classic design, **New appointment** and **New lot** are rows at the top of the list. In the new design a **+** button at the top (named **New**) opens a sheet with **Appointment** and **Lot**.
+
 Open an order for its **Shoot** button and its photos, filtered with **Needs you**, with **Go through N** to place the photos that need a decision. The order's notes can be added from here too. If a photo can't send, it stays on the phone and the page offers **Retry** or **Discard**.
+
+### What to shoot next
+
+The camera names the next photo over the viewfinder. On a product (opened from the order), it asks for **Front**, **Back**, **Side** and **Detail**, shown as, for example, "Back · 2 of 4", starting after the photos the product already has. Once the four are done, tap **Add details** to be offered **Inside**, **Lining**, **Label** and **Buttons**. On a whole order, each piece starts with its hangtag, then the same four, and **Next piece** starts the next piece. You can tap any named shot to jump to it. Label mode (reading care labels) has no guide.
+
+## Pre-owned lots
+
+A lot is a batch of pre-owned pieces with no supplier document: something you bought, took in trade, hold on consignment, or keep as a sample. Like a new appointment, only a person with the **Buy** switch can start one; anyone else sees the same message as for an appointment.
+
+<ol class="steps">
+  <li>On **Shoot**, tap <strong>New lot</strong> (in the new design, the <strong>+</strong> button, then <strong>Lot</strong>).</li>
+  <li>Under <strong>From</strong>, pick <strong>Bought</strong>, <strong>Trade-in</strong>, <strong>Consignment</strong> or <strong>Sample</strong>.</li>
+  <li>For a consignment you must pick the client; for a trade-in the client is optional. Type a name or phone and tap <strong>Find</strong>, then pick the person. Only a reference to the Shopify customer is kept.</li>
+  <li>For a consignment, check the <strong>Terms</strong>, which start from the store's defaults: <strong>Client's share in store credit, %</strong>, <strong>Client's share in cash, %</strong>, <strong>Days on the floor</strong>, <strong>Markdown on day</strong> and <strong>At the end</strong>. The markdown day can't come after the last day on the floor.</li>
+  <li>Tap <strong>Start shooting</strong> (new design: <strong>Start lot</strong>). It opens the lot's camera.</li>
+</ol>
+
+The lot appears in the Shoot list as "Lot, consignment" (or bought, trade-in, sample).
+
+**Shoot each piece.** The lot's camera asks, for each piece, for **The item**, **Another angle**, **Label** and **Detail** (as many details as you like). The camera line reads, for example, "Piece 2 · Label". Tap a name to jump to it, **Skip label** if there is none, and **Next piece** once the item is shot. Every photo is tied to its piece and role on ThreadCloud's side, so two phones can shoot the same lot: a second phone carries on after the highest piece any phone has shot, instead of starting again at piece 1.
+
+**Make the products.** Open the lot to see its pieces in the order shot, each with its photos. Photos that don't belong to a piece are listed under **Not in a piece** with the note "Shot on another phone or outside the guide. Shoot the piece again here to make it." Tap <strong>Make N products</strong> (new design: <strong>Make</strong>) and each piece is read in turn and made into a draft product. It shows what was read (brand, size, type, colour and era), or says it could not be read and offers <strong>Try again</strong>.
+
+For each made piece:
+
+- Pick its **Condition**: **New with tags**, **Excellent**, **Very good**, **Good** or **Fair**.
+- Type the **Flaws** (up to 300 characters). It starts as "None seen".
+- Type the **Price**. For a consignment the page shows the client's share of it. For anything else, type the **Cost** ("0 if nothing paid"). Save with **Save condition** and **Save price** (new design: **Save**).
+- **Suggest price** searches comparable listings and shows a range. It is a suggestion, never a price: nothing is set until you type and save one.
+
+A sample piece may carry a cost of zero and still be approved; every other piece needs a cost above zero.
+
+**What reaches Shopify.** A made piece is a draft product that is approved and pushed like any other (see [Push to Shopify](/workflows/push-to-shopify/#pre-owned-lot-pieces)).
 
 ## Receive
 
-**Receive** lists the orders arriving, each with its season, how much has come in and a progress line, marked **past window** when it is. With nothing due it reads **Nothing is arriving right now.**
+**Receive** opens with a search box, **Find an order**, that reads "Brand, season or PO". Type and tap **Find**. It finds orders you can receive and any order that was sent, with the ones due first. It reads **No order matches that.** when nothing fits.
 
-Open an order, count the box under **Count the box**, then tap the receive button at the bottom. The sheet shows the location the stock goes into (**Into** the store's location) and asks for a **Delivery note number** (leave it blank and ThreadCloud numbers it). On an order in another currency it also shows the exchange rate (only someone with Buy types it; for anyone else it shows today's rate and locks with the receipt). Tap **Receive** in the sheet to book it. The sheet then reads **Received N units** and **Tags print at the desk.**
+Without a search, the tab lists every order to receive, in two groups:
+
+- **To receive**: orders due now, including ones partly received and ones past their window, and orders you receive at the desk without ever marking them sent.
+- **Coming up**: orders whose window has not opened.
+
+Each row shows the brand, the season, the delivery window and where the order stands, and the percentage already in; an order past its window is marked. With nothing due it reads **Nothing is arriving right now.**
+
+Open an order (its title line carries the season, PO, the date it was sent, the window and the status), count the box under **Count the box**, then tap the receive button at the bottom. The sheet shows the location the stock goes into (**Into** the store's location) and asks for a **Delivery note number** (leave it blank and ThreadCloud numbers it). On an order in another currency it also shows the exchange rate (only someone with Buy types it; for anyone else it shows today's rate and locks with the receipt). Tap **Receive** in the sheet to book it. The sheet then reads **Received N units** and **Tags print at the desk.**
 
 - A box with more than the order expects asks **More than the order expects**, with **Receive anyway**.
 - Products that aren't ready to receive here, and extras beyond the order, are received at the desk.
 - The same receipt is never booked twice. After a dropped connection, **Your last Receive needs an answer** checks it.
+
+**Open in ThreadCloud** at the top of the order opens the same order on the desk, in Shopify admin. It shows only where the person's switches open that desk page.
+
+**Nothing more is coming.** Once something has arrived on a buying order, a person with the **Buy** switch also sees a **Nothing more is coming** button on the order's page. It opens a sheet that says what it will do. **Mark N units not coming** closes off what the order still owes (it leaves **To receive** and **Coming up**, and what arrived stays received), and **Keep waiting** leaves it. If a customer had a hold on a unit that will not arrive, the phone names them so you can tell them. Everyone sees the standing close ("N units marked not coming on Nov 9."), and a buyer gets **Undo**. It is the same close as on the desk (see [Receiving](/workflows/receiving/#nothing-more-is-coming)). It isn't offered on a reorder.
 
 Tags for phone receipts are printed at the desk: use **Print received tags** on the Receiving log. See [Print Labels](/workflows/labels/#print-received-tags).
 
@@ -69,6 +115,8 @@ Tags for phone receipts are printed at the desk: use **Print received tags** on 
 - **Scan a tag** (sizes on hand, coming and when) and a manual **Look up** for a typed code.
 - **Find a client**: type a **Name or phone** and tap **Find**.
 - **Arrived for clients**: what has arrived for client orders, with a **Text** button to tell the client.
+
+A product you look up lists **On order**: each order bringing it in, with the units coming, when they arrive, the PO and the day it was sent. A client's held pieces and custom orders show their dates too. Each carries an **Open** or **Open in ThreadCloud** link to the order on the desk, only where the person's switches open that desk page.
 
 ## Next steps
 

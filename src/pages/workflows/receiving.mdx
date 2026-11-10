@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Receiving
-description: Count the box against the order, press Receive, print hang tags, close out a finished order, and fix a receipt when something was booked wrong.
+description: Count the box against the order, press Receive, print hang tags, close out a finished order, mark what will never arrive, take a late delivery discount, and fix a receipt when something was booked wrong.
 ---
 
 # Receiving
@@ -9,7 +9,7 @@ description: Count the box against the order, press Receive, print hang tags, cl
 When a box arrives, you open the order's **Receive** page, count what's in this box, and press **Receive**. ThreadCloud books the stock into Shopify, locks the exchange rate, puts the products on your Point of Sale, and prints the hang tags. It's usually done at the receiving table with a tablet beside the open box.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-09</div>
+<div class="callout-title">Last verified against the app: 2026-11-10</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -162,6 +162,8 @@ Right after you receive, a window titled "N units received" opens. Tags print on
 - <strong>Doc only</strong>
 - <strong>Skip for now</strong>: you can print later from the receipt, from the order's close-out, or from the Receiving log.
 
+Tags come off the printer in size order for each product (for example S, M, L, XL, 2XL, or 48, 50, 52), whatever order the sizes were saved in, from the receipt as well as from **Print received tags**.
+
 To reprint the tags for one product, use <strong>Reprint tags</strong> on its card. Tags from boxes received on the phone are printed from <strong>Print received tags</strong> on the Receiving log (see <a href="/workflows/labels/#print-received-tags">Print Labels</a>). Everything about printing, and what to do if the printer fails, is on <a href="/workflows/labels/">Print Labels</a>.
 
 ## Tag and shelve
@@ -171,6 +173,22 @@ Put each tag on its garment and move the stock to the floor or the stockroom.
 ## A shipment in more than one box
 
 Receive what arrived, then come back to the same page when the rest lands. Count only what's in the new box; ThreadCloud adds it to what was already received. Each receive makes its own receipt.
+
+## Nothing more is coming
+
+Some orders are never filled in full: the supplier has told you the rest won't ship, and you don't want the order to keep showing as owed. Once at least one box has been received on a buying order, a buyer (someone with the **Buy** switch) can close off what is still owed.
+
+<ol class="steps">
+  <li>On the order's Receive page, click <strong>Nothing more is coming</strong>.</li>
+  <li>Read the sheet. It says that the units the order still owes are marked not coming, that the order leaves <strong>To receive</strong> and <strong>Coming up</strong>, that what arrived stays received, and that you can undo it.</li>
+  <li>Click <strong>Mark N units not coming</strong>, or <strong>Keep waiting</strong> to leave it open.</li>
+</ol>
+
+The page then reads, for example, "6 units marked not coming." Any customer hold on a unit that will not arrive is released, and the page names who to tell: "Let [name] ([product], [size]) know: their hold will not arrive."
+
+The order shows "N units marked not coming on [date]." to everyone. A buyer sees <strong>Undo</strong> beside it. Undo puts back exactly what the close changed and reads "N units expected again." Only one close stands at a time, so to close again, undo first.
+
+The button is not on a reorder, and it is not there until something has been received on the order. The same button is on the phone (see [Phone app](/workflows/phone-app/#receive)).
 
 ## Paperwork
 
@@ -221,6 +239,28 @@ After you correct something, the receipt still shows what was booked that day. T
 ## Fix a line's cost or details after receiving
 
 Receipts lock the order's build, so a wrong cost, retail, title or supplier code is fixed with <strong>Amend</strong> on the order's purchase order page, which opens <strong>Amend a line</strong>. See <a href="/workflows/build-order/#amend-on-every-po-page">Parse & Build</a>. Sizes and quantities stay here, with **Correct** below.
+
+## Late delivery discount
+
+When a supplier gives you a discount because the goods came late, take it off the cost on the Receive page. A buyer with the **Buy** switch who can see costs gets a <strong>Late delivery discount</strong> button there, once at least one box has been received on a buying order. It is not on a reorder.
+
+<ol class="steps">
+  <li>Click <strong>Late delivery discount</strong>.</li>
+  <li>Type the <strong>Discount (%)</strong>, from 0.01 to 99.99.</li>
+  <li>Under <strong>Products</strong>, tick the products it applies to, or <strong>All</strong>. Each row shows its cost now and what it will become, for example "EUR 120.00 → EUR 108.00". A product with no cost can't be ticked.</li>
+  <li>If you have one, type the <strong>Credit note or email (optional)</strong>, for example the credit note number.</li>
+  <li>Click <strong>Apply to N products</strong>.</li>
+</ol>
+
+Retail price is not touched. The cost drops to the cent, rounded half up. A product that was already received records the change as a cost correction, with the reason ("Late delivery discount 10%") and your reference; a product still to come simply takes the new cost.
+
+When it is applied, the page says "Discount applied to N products." and then what happened to Shopify's cost per item:
+
+- <strong>Shopify's cost per item updated on N sizes.</strong> Shopify's cost follows the discount while it still shows the line's old cost. The units on hand from this order move by the weighted average, and older stock keeps its own cost.
+- <strong>Shopify's cost per item was left as it is on N sizes: newer stock or a later change set it.</strong> A size another order restocked after this one is not changed.
+- <strong>Shopify's cost per item was not updated on N sizes; check it in Shopify.</strong> Look at those sizes in Shopify.
+
+If a cost on the order changed since the dialog opened, Apply is refused with "A cost on this order changed since this was opened. Reload and apply the discount again." That also stops the same discount being taken twice.
 
 ## Fix a wrong size
 
