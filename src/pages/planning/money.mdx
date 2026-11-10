@@ -9,7 +9,7 @@ description: The store's financial figures for a period. Gross revenue to gross 
 **Money** is the store's cash view: what came in, what went back, what it cost and what you kept, for any period. It is always the whole store. It replaces the old Financials pages.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-02</div>
+<div class="callout-title">Last verified against the app: 2026-11-10</div>
 If a figure name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -69,6 +69,7 @@ Send the CSV, not a screenshot. It keeps raw numbers rather than rounded ones, a
 ## Blank and withheld figures
 
 - A figure that can't be counted from the evidence shows a mark, with the reason. **A blank is not zero.**
+- A sale on a line that was later returned, refunded, exchanged or edited is placed by its dated events, so the sale counts in its own period and the return in the period it came back. The rows behind a figure (**CSV evidence**) include those events, dated by when they happened, with the cost of goods reversed on a return, so the rows still add up to the figure on screen. A line with no dated events recorded stays undated and is treated as before.
 - **GMROI** needs 92 days of daily stock counts in a row. On a new store it waits, and says when it will publish.
 - If the figures changed while an evidence CSV was being prepared, ThreadCloud refuses the file rather than mixing two readings. Refresh the page and ask again.
 

@@ -9,7 +9,7 @@ description: Send approved products from Enrich to Shopify as drafts, send later
 Pushing is how a product gets into your Shopify store. You push from the **Enrich** tab. The first push creates the product in Shopify as a **draft**, with its sizes, SKUs, cost, price, photos and product details. Later pushes send your edits to the product that is already there.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-11-10</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -57,13 +57,15 @@ Tick the products you want and click <strong>Push selected</strong>. The confirm
 
 The confirmation spells it out:
 
-- Title, description, SKU, cost and MSRP
+- Title, description, SKU, cost and MSRP. The title is the product title from Enrich, or the supplier's style name when there is none. A push never puts the brand in front of it, because the storefront already shows the brand beside the title. Only a product with no usable name at all is sent with the brand as its title, so Shopify never receives an empty one.
 - The size and colour variants, with stock set to **0**. Stock fills in when you receive.
 - The product's photos, hero first
 - Product details Shopify filters and the product page read: category, subcategory, fabric, fit, country of origin, care, pattern, occasion, colour group, weight, HS code, and the fields that depend on the product (lapel, collar, and so on)
 - Measurements, and the size chart on the product page when the product has a brand model
 
 Every product is also tagged with `tc-imported` and `tc-order-` plus the order number, so you can pull up a whole order in Shopify admin. When a size has no barcode, its SKU is written into the barcode field, so the hang tag and Shopify's own barcode labels scan to the same product.
+
+A create and an update send the same title, so pushing again corrects a product that went live with the brand in front of its title.
 
 ## Drafts, and when a product goes live
 
@@ -74,6 +76,18 @@ A product goes onto your **Point of Sale** when you <a href="/workflows/receivin
 If a product was received before its first push, that first push makes it active and puts it on Point of Sale, because the stock is already in the store. This happens only when Shopify confirmed every size. If it couldn't, the product stays a draft and the result says "Received before push but kept as a draft: Shopify could not confirm every size. Once a push confirms it, use Make POS-ready on the Receiving tab." Later pushes never change a product's status, and a store with no Point of Sale channel is left as it is.
 
 Missing product details don't stop a draft being created. A product that is already **active** in Shopify still needs approved copy before its changes go out.
+
+## Pre-owned lot pieces
+
+A piece made from a pre-owned lot on the phone (see [Phone app](/workflows/phone-app/#pre-owned-lots)) pushes differently from a supplier product, because a lot has no brand or season of its own:
+
+- **Its own brand.** The product shows the brand read from the piece, or no brand when there is none. The lot's placeholder brand ("Assorted brands") and season never reach the storefront. The title has no brand in front of it.
+- **Used condition.** A pre-owned piece goes to Shopify marked as used. A sample stays new.
+- **Tags and facts.** A pre-owned piece is tagged `pre-owned`, and `era-` plus the decade (for example `era-1990s`) when an era was read. Its condition and era are recorded on the product.
+- **One unit of stock.** The first push lists one unit in the store, whatever the size grid says, because a piece is one garment. A later push never restocks it, so a sold piece stays sold.
+- **Its size as printed.** A garment labelled M keeps the size M rather than being filed as one-size.
+- **Photos.** After the product exists, its approved showroom image (when there is one) goes on as the hero, then the real photos in this order: the item, other angles, details, photos with no role, and the label last. At most 8 are attached. A photo that fails to attach is a warning on the push, not a failed push, and a later push adds it.
+- **An honest description.** The description is written with the piece's own brand and no season, and states the condition, the flaws and the era you confirmed on the phone. A sample is described as a sample, never as used.
 
 ## Reading the result
 
