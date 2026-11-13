@@ -9,7 +9,7 @@ description: One-off made-to-measure and special orders. Drop in the supplier co
 Custom orders are one-off special orders: a made-to-measure suit, a special-order jacket, a monogrammed tie, anything you buy for one customer (or a few customers on one maker's order). You start from the maker's confirmation, review the details, send the products to Shopify so they can be scanned at the register, and receive and tag them when they land.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 This screen is labelled <strong>Custom orders</strong> in the app (it used to be called MTM). If a button name here doesn't match, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -21,9 +21,10 @@ This screen is labelled <strong>Custom orders</strong> in the app (it used to be
   <li><strong>SEND TO SHOPIFY</strong>: creates the products, ready to scan at the register.</li>
   <li><strong>Mark received</strong> when the garments arrive, and enter the final cost.</li>
   <li><strong>Print the labels</strong>, tag the garments, and ring them up on POS when the customer collects.</li>
+  <li>The order closes itself when Shopify shows the garments handed over. If a piece never went through a sale, mark it <strong>picked up</strong> by hand.</li>
 </ol>
 
-Every custom order page, and the list, shows one step bar: **Review**, **Ordered**, **Received**, **Fitted**. Ordered means it has gone to Shopify and the maker, and is waiting to arrive.
+Every custom order page shows one step bar: **Review**, **Ordered**, **Received**. **Fitted** joins the bar only once the order has been picked up. Ordered means it has gone to Shopify and the maker, and is waiting to arrive.
 
 ## Start a custom order
 
@@ -122,6 +123,26 @@ The <strong>Custom Orders</strong> tile in Shopify POS ("Load a made-to-measure 
 <div class="callout-title">No customer on the order?</div>
 The tile says "Customer not attached" and loads the items anyway. Add the customer in the cart before you take payment.
 </div>
+
+## Picked up and closed
+
+A custom order stays open until the customer has taken every piece home. Open orders show on the list's **All open**, **Ordered** and **Received** tabs and nag on Home. A closed order moves to the **Fitted** tab, where it stays findable, and leaves Home.
+
+**Shopify closes it for you.** When you ring the garment up at POS and the sale is fulfilled in Shopify, ThreadCloud notices (Shopify tells it) and stamps that piece **Picked up**. A suit or other group billed as one counts as one piece. A piece on a sale is closed by that sale, not by hand. The order page shows **Picked up** with the date, or "2 of 3" while some pieces are still in the store. When every piece is out, ThreadCloud says so in the strip at the bottom and returns you to Home.
+
+**By hand, only when there is no sale.** In the **…** menu on a received order:
+
+- <strong>Mark picked up</strong> closes an order that no Shopify sale carries (the customer collected it and nobody rang it up). On an order of several pieces the menu also offers <strong>Mark [piece] picked up</strong> for each piece, and **Mark all picked up** for the rest.
+- While a piece sits on a sale Shopify doesn't yet show as handed over, the menu offers nothing: the sale's fulfilment will close it. If the fulfilment never closes it, the button comes back once Shopify reads the sale as handed over and the stock has settled.
+
+**Cancel and reopen.**
+
+- <strong>Cancel order</strong> is on an **Ordered** order that has no Shopify draft order or POS sale yet. It asks first ("Cancel this custom order? It is kept for the record, and Reopen brings it back.").
+- <strong>Reopen order</strong> is on a picked-up order (it goes back to **Received**) or a cancelled one (back to **Ordered**, or **Review** if it never went to the maker).
+
+The list's search and Home's search also find a custom order by its code (for example MTM-0113) or just its number (113).
+
+Each garment also links to its Shopify product from the order page, and products pushed for a custom order carry the maker's reference and the confirmation colour. Clean Catalog leaves custom order products alone.
 
 ## Fit notes
 

@@ -9,7 +9,7 @@ description: The directory of brands, suppliers and agents, and the brand record
 **Network** in the ThreadCloud menu is the directory of every brand you carry, the suppliers who bill you, and the agents who introduce brands. Each brand opens to its **brand record**: its facts, its fit, its photography and its people.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-09</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 If a tab or field here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -27,7 +27,7 @@ Before the first order with a new brand. A brand needs a record and a code befor
 
 ## The registry
 
-Three tabs: **Brands**, **Suppliers**, **Agents**. The search box finds brands, codes, suppliers and contacts.
+Three tabs: **Brands**, **Suppliers**, **Agents**. In the new design the search box comes first on the page, with the **Add** button for the tab you are on beside it. One search finds brands, codes, suppliers and people at once (it reads "Search brands, suppliers, people" on **Brands**, and the matching words on the other two tabs). There is no row of counts above the list: the tab names the total, and a count appears over the list only while a search or filter narrows it.
 
 Each brand tile shows its code, its name, **· inactive** if it is no longer active, **biller pending** if it has no supplier, and **Foundation ✓** or **Draft** for the state of its brand facts. Click a tile to open the brand record.
 
@@ -36,7 +36,7 @@ Each brand tile shows its code, its name, **· inactive** if it is no longer act
 <ol class="steps">
   <li>On the <strong>Brands</strong> tab, click <strong>Add Brand</strong>.</li>
   <li>Enter the brand name as shown on the storefront.</li>
-  <li>Enter the code: the 3-character code used in SKUs.</li>
+  <li>Enter the code: the 3-character code used in SKUs. ThreadCloud suggests one as you type the name: the first three letters. When that code is already taken by another brand, it suggests the next unused one instead (for example from the first letter of each word, then the first letter plus the next consonants), so you don't have to invent one. Type your own and it stops suggesting.</li>
   <li><strong>Default supplier</strong>: pick who invoices. For an agent-introduced brand, choose the skip option and set the biller later.</li>
   <li><strong>Agent</strong>: optional, the firm that introduces the brand.</li>
   <li>Click <strong>Add Brand</strong>.</li>
@@ -78,8 +78,8 @@ A brand opens to four rooms. Switch with the tabs under the brand name.
 - **Brand details**: brand name and brand code. Click **Save details**.
 - **The Foundation**: source-cited facts about the brand, such as **Headquarters**, **Founders**, **Heritage**, **Known for**, **Typical materials** and **Typical construction**. Click **Research with Claude** to fill them from the brand's own sources (it needs an Anthropic key under **Settings → Connections & sync → AI connection**; see [AI &amp; Pipeline](/settings/ai-models/)). Edit anything, then **Save draft** or **Approve**. Approved facts feed product descriptions. **Do not claim** lists things the copy must never say.
 - **Description intro**: your own opening line for this brand's product descriptions.
-- **Billed via** and **Agency**: the brand's supplier and agent.
-- **B2B portal**: the brand's wholesale portal link, if it has one (**Add B2B portal**).
+- **Billed via** and **Agency**: the brand's supplier and agent. **Billed via** in the brand's header opens the same **Billed via** sheet as **Change biller**: pick **Biller pending**, **Direct** (the brand bills you itself) or one of your suppliers. When a purchase order has no one to send to, the PO page links straight to this sheet, already open.
+- **Order portal** (shown as **B2B portal** in the classic design): the brand's wholesale ordering website and its login, if it has one. **Add B2B portal** saves the platform, link and login (stored encrypted; any staff can reveal it). Once saved the card reads **Open [portal]** and **Manage portal**. This is your login to the brand's ordering site; it is not something the brand sees.
 - **Publish to store**: publishes the brand story to your Shopify store.
 
 ### Models

@@ -9,7 +9,7 @@ description: The Settings welcome page. What needs you, the three groups of sett
 **Settings & Help** in the ThreadCloud menu opens on a welcome page. It greets you, tells you whether ThreadCloud is working, and lists every setting in three groups. Winston's **Help** is on the same page (see [Help and Winston](/help/)).
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 If a tile or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -60,13 +60,23 @@ Each tile shows a few live values, such as the store currency or how many brands
 | **New** | The redesigned screens, called Clarity. |
 | **Classic** | The screens as they were. |
 
-Your choice applies as soon as you click it, and the phone app follows it too. Without a choice of your own you follow the store default, which is classic. The new design is still being refined, so screens will keep changing while it is.
+Your choice applies as soon as you click it, and the phone app follows it too. Without a choice of your own you follow the store default. At this store the default is now the new design, so everyone sees it unless they pick **Classic** here. Screens are still being refined, so they will keep changing.
+
+The brand letter follows its own store-wide setting, not your choice here (see [Brand page and letter](/planning/brand-page/#the-letters-design)).
 
 If the Design options are switched off, ThreadCloud does not know who you are. Reopen it from Shopify admin to keep a choice.
 
 ## Receiving readiness
 
-**Settings → Receiving → Open orders check** (account owner) has a **Receiving readiness** row with an **Open the check** button. It checks every open order against Shopify before the goods arrive. It is read only: nothing is written to ThreadCloud or Shopify.
+**Settings → Receiving → Open orders check** (account owner) has a **Receiving readiness** row with an **Open the check** button. It checks every open order against Shopify before the goods arrive. The check itself only reads. Nothing is written until you press a repair button.
+
+In the new design every finding ends in a button. Which one depends on the finding:
+
+- **Fix** mends the order's rows in ThreadCloud. Nothing goes to Shopify.
+- **Add the sizes** or **Push again** opens a confirm sheet, then re-sends the product to Shopify, the same update as **Re-sync to Shopify** on Receive.
+- **Open the order**, **Review in Enrich** or **Open in Shopify** takes you to where a person has to make the repair.
+- **Nothing more is coming** closes off an order whose sent PO names sizes that are no longer on it.
+- **Dismiss** files the finding away. It stays dismissed on later runs, and you can bring dismissed findings back. A finding that says a product was never checked can't be dismissed.
 
 <ol class="steps">
   <li>Click <strong>Run the check</strong>. Run it before the first delivery of each season.</li>

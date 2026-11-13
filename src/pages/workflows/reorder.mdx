@@ -9,7 +9,7 @@ description: Restock what's selling. Find a reorder on the Reorders list, or sta
 Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, settle what the supplier says they can send, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 If a button name here doesn't match what you see on screen, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -33,7 +33,7 @@ The reorder screens are for placing the restock. To decide <em>what</em> to rest
 
 On the home screen, switch to the **Sales floor** desk and click the <strong>Reorder</strong> card ("One style or a full store restock"). You can also type "reorder" in the home search. Both open **Reorders**, the list of every reorder the store has.
 
-Across the top: <strong>New reorder</strong> to start one, <strong>Restock lists</strong> for your saved lists, and a search box.
+Across the top: <strong>New reorder</strong> to start one, <strong>Restock plans</strong> for your saved plans (called <strong>Restock lists</strong> in the classic design), and a search box.
 
 The tabs sort the list by where each reorder stands. Each tab except Received shows a count.
 
@@ -85,7 +85,7 @@ Click <strong>Find</strong>. ThreadCloud ranks the reorders that are sent and no
 Click <strong>New reorder</strong>. The page is a search, split into two panels:
 
 - <strong>Products</strong> (left): search your Shopify catalog. Type at least 2 letters. Each result shows a thumbnail, brand, colour, stock count, and dots for how complete the product data is. Click a product to start a reorder.
-- <strong>Saved lists</strong> (right): your saved restock plans. <strong>Recent</strong> shows the last few; <strong>Browse by brand</strong> groups the rest. Click <strong>Run</strong> on any list to start a reorder pre-filled with those products and sizes.
+- <strong>Saved lists</strong> (right): your saved restock plans. The **Restock plans** page (from the button above, under Logistics) lists every plan by name and brand. **New plan** starts one. The icon on a plan's row opens a sheet to rename it (**Save name**) or, for the account owner, **Delete plan** ("Lines will be removed; orders run from this plan stay."). <strong>Recent</strong> shows the last few; <strong>Browse by brand</strong> groups the rest. Click <strong>Run</strong> on any list to start a reorder pre-filled with those products and sizes.
 
 A reorder is locked to one brand and one currency. If you try to add a product from a different brand, the app says so and blocks it. Run a second reorder for the second brand.
 
@@ -124,7 +124,7 @@ Where a product has a cost in ThreadCloud but none in Shopify, ThreadCloud tries
 
 ## The reorder's header and tabs
 
-Every reorder page shares one header. It shows the brand and the PO number, a status chip, and a short line such as "Sent Sep 24 · 2 of 8 received" (or "PO not sent"). Under it, four tabs walk the reorder from start to finish. A tick marks a finished step.
+Every reorder page shares one header. It shows the brand and the PO number, a status chip, and a short line such as "Sent Sep 24 · 2 of 8 received" (or "PO not sent"). In the new design the header reads the same as on every order page, with the sent date and the PO number under the brand and the four tabs as a step bar. Under it, four tabs walk the reorder from start to finish. A tick marks a finished step.
 
 | Tab | What it's for | Beside the name |
 |---|---|---|
@@ -304,7 +304,7 @@ If something goes wrong:
 
 ### When a reorder reads Received
 
-A reorder reads **Received** once every unit you expect has arrived against it. Expected means what you ordered, less anything you accepted as dropped. A substitute the supplier sent instead does not count toward it: the ordered piece is still owed.
+A reorder reads **Received** once every unit you expect has arrived against it. Expected means what you ordered, less anything you accepted as dropped. If the last units will never come even though the supplier confirmed them, close the reorder out with **Nothing more is coming** on its Receive tab (see [Receiving](/workflows/receiving/#nothing-more-is-coming)). A substitute the supplier sent instead does not count toward it: the ordered piece is still owed.
 
 ## If it goes wrong
 

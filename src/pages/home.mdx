@@ -9,7 +9,7 @@ description: The two desks you land on when you open ThreadCloud. Merchandising 
 Home is the first screen when you open ThreadCloud from your Shopify admin. It greets you by name and has two desks, each with clear paths for its work. Switch between them with the **Merchandising | Sales floor** toggle at the top right, next to **Settings**.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 If a card or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -24,7 +24,7 @@ The search bar under the title reads **Search orders, POs, styles, customers, br
 
 - Use the arrow keys to move, <kbd>Enter</kbd> to open, <kbd>Esc</kbd> to close.
 - With nothing typed, it shows what needs you and your recent orders.
-- Try a brand, a PO number, an article code, or a customer name.
+- Try a brand, a PO number, an article code, or a customer name. A purchase order is also found by its order number, and a custom order by its code (MTM-0113) or just its number (113).
 - From any other page in the new design, press <kbd>/</kbd> or <kbd>⌘</kbd>+<kbd>K</kbd> (not while typing in a field), or click the **Search** icon in the page header. It opens this search, and **Cancel** (or <kbd>Esc</kbd>) takes you straight back to the page you were on. Picking a result opens it in place of the search, so Back doesn't return to the search. On a narrow screen the search shows a **Cancel** button.
 
 ## The Merchandising desk
@@ -85,7 +85,7 @@ When a supplier has told you something new, it shows at the top of the Sales flo
 | **Backordered** or **New date** | A later date for a product or the order |
 | **Substitute offered** | The supplier offered something else |
 | **Shipped**, **Confirmed** | Good news |
-| **Box in** | A box was received and units are still to come |
+| **Box in** | A box was received and units are still to come. It goes away on its own once the order has nothing left to receive. |
 | **Note** | Anything else the supplier wrote, such as their order number |
 
 - <strong>Open</strong> takes you to the order: a reorder's page, the receiving page for a box, or the purchase order.
@@ -115,7 +115,15 @@ The section is hidden when there is nothing new.
 
 Orders in their delivery window with units still to come, each with its window dates, a bar for how much is received, and a line such as "25% received, 8 days left". Click one to open its Receive page. A long list ends with **All N orders in their window**, which opens the Receiving log. When there are none it reads **No delivery windows open.**
 
-**Past their window** lists orders whose window has closed with units still out, so late shipments stay in view.
+**Past their window** lists orders whose window has closed with units still out, so late shipments stay in view. In the new design the row opens one close-out list, with each order's percent received and what to do about it:
+
+- An order with units in gets <strong>Nothing more is coming</strong>, the same close as on its Receive page, with the same confirmation.
+- An order marked received with nothing actually in gets <strong>Archive</strong>.
+- A late order with nothing in yet may still come, so it only gets <strong>Look first</strong>, which opens the order.
+
+There is no close-all: each close is the buyer's decision, and only people who can buy see the buttons. After a close the row leaves the list and Home's count drops.
+
+Custom orders that have been picked up leave Home, and each row on the Sales floor shows a date. See [Custom orders](/workflows/mtm/#picked-up-and-closed).
 
 ## Catalog enrichment banner
 
