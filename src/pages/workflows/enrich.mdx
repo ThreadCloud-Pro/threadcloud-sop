@@ -14,7 +14,7 @@ On every order after parse, before push. The background pass usually runs on its
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-09</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -23,7 +23,7 @@ If a button name here doesn't match the app, it changed and this page is stale. 
 Three triggers:
 
 1. **Automatically** after Parse & Build. A background pass starts once you click <strong>Enrich for web</strong> on the parsed order.
-2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It fills blank fields and rewrites descriptions for every product that can take them. **Titles already there are kept.** The button is greyed out when no AI provider is set up or nothing on the order can be filled.
+2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It fills blank fields and rewrites descriptions for every product that can take them. **Titles already there are kept**, except a name that is still Build's first draft (see [Parse & Build](/workflows/build-order/#the-products)), which Enrich may replace. In the new design this is the page's one filled button, and **Send to Shopify** is a strong outline button beside it. The button is greyed out when no AI provider is set up or nothing on the order can be filled.
 3. **One product.** Open the product and click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists). This re-reads the photo, fills blank fields and rewrites the description for that product. Your title is kept. A blank title is filled.
 
 You shouldn't need to fire it by hand for normal orders.

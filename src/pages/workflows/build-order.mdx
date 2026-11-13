@@ -9,7 +9,7 @@ description: Start a buying order, drop the order and the appointment photos on 
 Parse & Build is the first tab of every buying order. You drop the supplier's order and everything from the appointment onto one table, press **Parse**, and ThreadCloud reads it into products with sizes, quantities, costs and prices. You check what it built, then send the purchase order and move on to Enrich.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-09</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 This screen used to be called Build Order. If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -46,7 +46,7 @@ On the home screen, the **Merchandising** desk has a tile called <strong>New buy
 
 Picking a window never creates the order. Only <strong>Create order</strong> does, and it opens Parse & Build. ThreadCloud numbers the PO itself, and the number ends with the order's own id.
 
-If the window is far off, the confirm step says **That is N months away. If these goods are arriving now, choose [the season arriving now].** Go back and pick the right season, because the season code ends up on the hang tags. If the window has already passed it says **That window has passed. Fine for logging an old order.**
+If the window is far off, the confirm step says **Receiving starts in N months.** (a plain fact about when the goods are due). If that isn't what you expect, go back and pick the right season, because the season code ends up on the hang tags. If the window has already passed it says **That window has passed. Fine for logging an old order.**
 
 A link from a brand's page or a buying season skips the screens it already answers.
 
@@ -73,6 +73,7 @@ Every tab of an order (**Parse & Build**, **Enrich**, **Receive**, **Budget**; o
 An empty order shows a table that reads "Nothing woven yet. Drop the order and everything from the appointment." You can:
 
 - drag files onto the table,
+- drop a whole folder (see below),
 - click <strong>Add files</strong>,
 - click <strong>Take photos</strong> on a phone or tablet to use the camera, or
 - click <strong>Start with one product</strong> to type a product in by hand.
@@ -85,6 +86,8 @@ Each file lands on the table as a card, and the table sorts it for you:
 Check every card. If a file is in the wrong place, click **Order** or **Context** on its card to flip it. Click the x to remove a file. A file ThreadCloud can't take shows **Not added** with the reason, for example an unsupported file type or an iPhone HEIC photo ("Export as JPEG and add again").
 
 Photos go on the **Photos** pile on the right. Type anything worth knowing in the **Notes** line under the table, for example "Made in Italy. Blue stickers mark the colours ordered."
+
+**Dropping a folder.** You can drag a folder of order files and photos onto the table. ThreadCloud opens it, up to three folders deep and 500 files, sorts what is inside as above, and skips system files such as `.DS_Store` and `Thumbs.db`. If a browser can't open the folder it says **That is a folder. Open it and drop the files inside.**, and you drop the files instead.
 
 <div class="callout callout-tip">
 <div class="callout-title">Drop everything at once</div>
@@ -123,14 +126,26 @@ Click a product in the panel to jump to it. Put a note away once you've dealt wi
 
 ### Photos to place
 
-If some photos did not land on a product, the band reads **N photos to place**. Click it to open the photo sheet ("No style yet"). Photos are grouped, and a burst of the same garment shows as one card:
+If some photos did not land on a product, the band reads **N photos to place** (on a phone, **Photos to match**). Click it to open **Match photos**, one screen that goes through every photo still without a product. There is no separate sheet of groups any more.
 
-- **Placed for you**: photos ThreadCloud placed by reasoning. Check them. Click <strong>Looks right</strong> to keep them all, or <strong>Take off</strong> on any that are wrong (<strong>Put back</strong> undoes it).
-- **Likely**: ThreadCloud has a good guess. Click <strong>Place</strong> on each, or <strong>Place all</strong>.
-- **Labels**: photos of tags and labels. <strong>Keep as context</strong> keeps them as reference without putting them on a product.
-- **Unreadable**: photos ThreadCloud could not use. <strong>Discard</strong> them.
+Each photo comes with a product already picked and the reason in plain words, for example "Burgundy, matches Vino (904)". Press <strong>Enter</strong> to accept it, or pick another product: every product on the order is one tap away, with a **Filter styles** box. The header counts your place ("3 of 20").
 
-Click <strong>Look</strong> on any card to walk through those photos one by one and place them yourself. Every group action has an <strong>Undo</strong>. A photo you set aside goes under **Set aside** and comes back with <strong>Restore</strong>. When nothing is left the sheet reads "All placed".
+The suggestion comes from, in order of strength:
+
+- a care label's fabric and colour code against the codes on the order (a label with an exact code places itself, and the garment shots taken with it follow only on their own agreeing evidence),
+- a style code or colour code read from the photo,
+- the rest of a burst of the same garment,
+- the colour's family, used only when exactly one product on the order is in that family. ThreadCloud never guesses between two products of one family.
+
+Other buttons on the screen:
+
+- **Not a product photo** sets a photo aside: it shows no product.
+- **Undo last placement** takes back the last one. **Previous photo** and **Next photo** (or the arrow keys) move without placing.
+- **Add to all N**, which appears once you type in **Filter styles**, puts the photo on every product in the filtered list, for a photo that shows the whole range.
+- **Re-read** runs the fine print through again on photos with no product identity.
+- **Zoom in to check the fine print** lets you pan and zoom on a label before accepting.
+
+When nothing is left, the screen reads **Photos matched** and **Every photo home.**
 
 ### The products
 
@@ -145,6 +160,10 @@ Each product shows its article, title, colour, sizes and quantities, cost, MSRP 
 | **Stock type** | Tap the badge to change it. |
 
 To add a product the supplier added later, click <strong>+ Add Product</strong>. To move a whole group of products to a different size scale, use that group's size scale control. <strong>Reassign and reset</strong> clears the group's quantities, because the old size columns don't carry over.
+
+**First-draft name.** When Build makes a product and no name is set yet, it saves the name the parse read from the supplier's document (cleaned of brackets and dashes) as a first draft, so the product has a name straight away. Enrich has the final say: it may replace that draft with the customer-facing title. A name you type yourself, or clear on purpose, is never overwritten.
+
+**Supplier reference.** The reference on the PO's **Supplier Ref** column and under each product in the grid is the supplier's own, for example "34 · CF00128/904": the article, the model when it differs, then the supplier's fabric and colour code, or just the colour code ("34 · 904") when there is no fabric code. It no longer prints the internal join of style, model and colour ("34/34/904"). A PO already sent keeps the reference it was sent with.
 
 On a phone, an empty size box shows a grey 0, and the dark bar at the bottom hides while you type so the keyboard has room. It comes back when you finish.
 

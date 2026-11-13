@@ -9,7 +9,7 @@ description: Sign a staff phone in from Settings, then shoot appointments and pr
 The phone app is the store's staff app for the phone: **Buy** by shooting photos into an order or a pre-owned lot, **Receive** a box, and **Sell** from the floor. It opens in the phone's browser and signs in as the person who approves it. It shows the design the person chose in **Settings → My preferences** (see [Settings and store health](/settings/store-health/#my-preferences)), so the same screen can look different from one person's phone to the next.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-11</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 The phone app is switched on per ThreadCloud. If <strong>Settings</strong> has no <strong>Phones</strong> tile, or the Phones page says <strong>The phone app is not switched on for this ThreadCloud yet.</strong>, it is not on for your store. If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -46,6 +46,7 @@ The phone opens on the person's own first tab. A screen the person's switches do
 
 - **Shooting now**, with the order this phone shot into within the last two hours and a round shutter button that opens its camera.
 - **New appointment**: pick a **Brand** (or **Assorted brands**, with **Find a brand** to search), check the currency (**Change** to edit it), pick a **Season** (or type one such as FW-26, or choose **No season**), then tap **Start shooting**. It makes a blank order to shoot into. A brand that isn't on the desk can't be found here: add it on the desk first.
+- **Find an order**, a search box that reads "Brand, season or PO". Type and tap **Find** to search every open order, past the first few the list shows. It reads **No open order matches that.** when nothing fits.
 - The store's open buying orders, most recently photographed first, each with a camera button.
 
 In the classic design, **New appointment** and **New lot** are rows at the top of the list. In the new design a **+** button at the top (named **New**) opens a sheet with **Appointment** and **Lot**.
@@ -96,7 +97,7 @@ Without a search, the tab lists every order to receive, in two groups:
 
 Each row shows the brand, the season, the delivery window and where the order stands, and the percentage already in; an order past its window is marked. With nothing due it reads **Nothing is arriving right now.**
 
-Open an order (its title line carries the season, PO, the date it was sent, the window and the status), count the box under **Count the box**, then tap the receive button at the bottom. The sheet shows the location the stock goes into (**Into** the store's location) and asks for a **Delivery note number** (leave it blank and ThreadCloud numbers it). On an order in another currency it also shows the exchange rate (only someone with Buy types it; for anyone else it shows today's rate and locks with the receipt). Tap **Receive** in the sheet to book it. The sheet then reads **Received N units** and **Tags print at the desk.**
+Open an order (its title line carries the season, PO, the date it was sent, the window and the status). In the new design the count comes first: a compact header, then the list of products to count, with labels and photos as follow-ups that never block receiving. Each product row shows a thumbnail and what is still owed, and every product has a camera: from it you take a **Photo** or a **Label** shot. An order with nothing to count shows no empty count card, and a product is never listed twice. Count the box under **Count the box**, then tap the receive button at the bottom. The sheet shows the location the stock goes into (**Into** the store's location) and asks for a **Delivery note number** (leave it blank and ThreadCloud numbers it). On an order in another currency it also shows the exchange rate (only someone with Buy types it; for anyone else it shows today's rate and locks with the receipt). Tap **Receive** in the sheet to book it. The sheet then reads **Received N units** and **Tags print at the desk.**
 
 - A box with more than the order expects asks **More than the order expects**, with **Receive anyway**.
 - Products the phone can't count stay on the order, greyed out under the reason, so nothing drops off it:
@@ -104,11 +105,19 @@ Open an order (its title line carries the season, PO, the date it was sent, the 
   - **Receive at the desk** lists products that are on Shopify but owed only on sizes the phone can't count; the desk's receive sets those up. <strong>Open in ThreadCloud</strong> opens the order on the desk.
   The links show only where the person's switches open that desk page.
 - Extras beyond the order are received at the desk.
+
+With the garment in hand, three more jobs can be done on the same order without leaving the phone:
+
+- **Colour group.** A product whose colour group is still waiting for a look is listed with the supplier's colour words as printed on the tag (for example "COFFEE"). Tap it, check the **Colour group** that is preselected (what Enrich would pick) against the garment, and confirm it or choose another. Only the order's own groups are offered. A confirmed row leaves the list.
+- **Measure one size.** Each product in the box that has no measurement yet is listed under **To measure**, with the size to pick out of the box. Tap it, enter the measurements and save. It is the same save as on the desk, and the row stays on screen as **Measured**, saying whether Shopify has it. When all are done it reads **Everything in the box is measured.**
+- **Damaged or wrong item.** Tap **Damaged or wrong item** ("Tell the rep, then book it at the desk"). Pick the product and size, how many, **Damaged** or **Wrong item**, take a photo, and add a note (where the damage is, or what came instead). **Send** hands the photo and one line naming the unit to the phone's share sheet, so you can pick Mail or Messages. A phone that can't share a photo shows **Email** and **Text** buttons for the rep instead, and you add the photo from **Photos**. Nothing is saved in ThreadCloud and nothing goes to Shopify. A return needs the rep's OK first: the unit is counted in and set aside, and the desk books the return when the rep answers.
+
+A care-label shot you took keeps its label mark while it waits to send.
 - The same receipt is never booked twice. After a dropped connection, **Your last Receive needs an answer** checks it.
 
 **Open in ThreadCloud** at the top of the order opens the same order on the desk, in Shopify admin. It shows only where the person's switches open that desk page.
 
-**Nothing more is coming.** Once something has arrived on a buying order, a person with the **Buy** switch also sees a **Nothing more is coming** button on the order's page. It opens a sheet that says what it will do. **Mark N units not coming** closes off what the order still owes (it leaves **To receive** and **Coming up**, and what arrived stays received), and **Keep waiting** leaves it. If a customer had a hold on a unit that will not arrive, the phone names them so you can tell them. Everyone sees the standing close ("N units marked not coming on Nov 9."), and a buyer gets **Undo**. It is the same close as on the desk (see [Receiving](/workflows/receiving/#nothing-more-is-coming)). It isn't offered on a reorder.
+**Nothing more is coming.** Once something has arrived on a buying order, a person with the **Buy** switch also sees a **Nothing more is coming** button on the order's page. It opens a sheet that says what it will do. **Mark N units not coming** closes off what the order still owes (it leaves **To receive** and **Coming up**, and what arrived stays received), and **Keep waiting** leaves it. If a customer had a hold on a unit that will not arrive, the phone names them so you can tell them. Everyone sees the standing close ("N units marked not coming on Nov 9."), and a buyer gets **Undo**. It is the same close as on the desk (see [Receiving](/workflows/receiving/#nothing-more-is-coming)), and it works on a reorder too.
 
 Tags for phone receipts are printed at the desk: use **Print received tags** on the Receiving log. See [Print Labels](/workflows/labels/#print-received-tags).
 
@@ -127,11 +136,11 @@ The phone's back links return to where you started, not to the front page:
 
 **Sell** has:
 
-- **Scan a tag** (sizes on hand, coming and when) and a manual **Look up** for a typed code.
-- **Find a client**: type a **Name or phone** and tap **Find**.
+- **Scan a tag** (sizes on hand, coming and when). Its typed box reads **Or type a name or code**: a product name, style code or barcode, then **Find**. A name that fits several products lists them to pick from.
+- **Find a product or client**: type a name, phone or style code and tap **Find**. Products you find open the product page; clients open the client. It reads **No product or client by that name, number or code.** when nothing fits.
 - **Arrived for clients**: what has arrived for client orders, with a **Text** button to tell the client.
 
-A product you look up lists **On order**: each order bringing it in, with the units coming, when they arrive, the PO and the day it was sent. A client's held pieces and custom orders show their dates too. Each carries an **Open** or **Open in ThreadCloud** link to the order on the desk, only where the person's switches open that desk page.
+A product you look up shows its **Details** and its **Measurements**, with **Add measurements** (or **Update measurements** when it has some) to change them from the phone. It lists **On order**: each order bringing it in, with the units coming, when they arrive, the PO and the day it was sent. A client's held pieces and custom orders show their dates too. Each carries an **Open** or **Open in ThreadCloud** link to the order on the desk, only where the person's switches open that desk page.
 
 ## Next steps
 

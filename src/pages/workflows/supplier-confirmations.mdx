@@ -14,7 +14,7 @@ Every time a confirmation comes back on a sent PO. Do it before the goods ship, 
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-13</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -24,6 +24,10 @@ If a button name here doesn't match the app, it changed and this page is stale. 
 2. **A document or email.** The supplier sends a PDF, an image, or an email. You attach it on the purchase order and ThreadCloud reads it.
 
 Both end up in the same place: the order's **Purchase order** tab.
+
+### The answer link is short
+
+The link you copy or email is short, like `/r/7KQ2M9XA`, so a chat app doesn't break it. It opens the same acknowledgement page as the long link, and a PO you re-issue still supersedes it. A link already sent in the long form keeps working. If a supplier says their link opens **This link was cut short.**, their app broke it: send it again on its own line or by email.
 
 ### What the supplier sees on the link
 
@@ -124,6 +128,14 @@ The confirmation lines sort every line on the supplier's document:
 - To reject a line, pick <strong>Not on this order</strong> from the same dropdown (or click <strong>Accept</strong> when the suggestion is "Looks like it is not on this order"). It moves to <strong>Not on this order (N)</strong>. <strong>Undo</strong> puts it back.
 - <strong>Matched lines (N)</strong>: lines placed on a product. Each shows the ordered and confirmed quantity. A line you placed yourself has an <strong>Undo</strong> button ("Release this product from the confirmation line and put the line back for review").
 - <strong>Ordered, not confirmed (N)</strong>: products on your order the supplier did not list. They get a <strong>Not confirmed</strong> badge. "The supplier didn't list these. Confirm with them before assuming they're unavailable." If lines still need a choice, place those first; what is left is what the supplier did not list.
+
+In the new design the same lines read as one list with one job: match each of the supplier's lines to one product on the order. Each row shows their words, our suggested product with its photo, a confidence in plain words, **Accept** and **Change**. **Change** opens a sheet with a search box for the product. Matched lines fold away, the supplier's size run sits beside ours, and a single progress line says how far the matching has come ("9 matched, 1 not on this order, 2 of 3 left off decided").
+
+The products the confirmation left off sit under **Left off their confirmation (N)**. Each needs a choice before **Apply changes** opens ("Choose what happens to N products [brand] left off."):
+
+- **Keep on order** changes nothing. Keep chasing the supplier.
+- **Cancel it** takes the product off the order, the same way deleting a line on an amendment does, and re-issues the PO. It is not offered when the order can't be re-issued.
+- **Mark short** records that the supplier did not confirm it, so receiving expects none of it.
 
 Two shortcuts at the top of the lines:
 
