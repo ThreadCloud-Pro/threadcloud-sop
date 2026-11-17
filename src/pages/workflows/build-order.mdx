@@ -9,7 +9,7 @@ description: Start a buying order, drop the order and the appointment photos on 
 Parse & Build is the first tab of every buying order. You drop the supplier's order and everything from the appointment onto one table, press **Parse**, and ThreadCloud reads it into products with sizes, quantities, costs and prices. You check what it built, then send the purchase order and move on to Enrich.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 This screen used to be called Build Order. If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -171,6 +171,12 @@ To add a size the product's run doesn't show, click the <strong>+</strong> on it
 
 **Gloves** run 7 to 12 in half sizes (7, 7.5, 8 and so on up to 12), then S, M, L, XL and XXL. Letter sizes always sort after the numbers and in order, S to XXL. A size typed with <strong>+</strong> on a glove product (for example 12 or XXL) saves as a real glove size, so filters and the storefront read it.
 
+**A size you type is kept.** A custom size typed into a product's size box stays when you click away. On a waist (trouser) grid, the heading matches the sizes it holds. A size read as "48EU" folds into the 48 column of the grid, not a column of its own. XXL and XXXL are treated as 2XL and 3XL, and a bare chest number on a jacket ties to the regular jacket tag, so the same size is not counted twice.
+
+**Prices on the sheet.** When the supplier's sheet gives a retail price (MSRP) with no currency label, ThreadCloud reads it in the order's currency, or the store's currency if the order has none, and uses it. A sheet whose prices are all in one currency settles its MSRP without a separate currency column. Check the **MSRP** against the paper anyway.
+
+**Removing a product Shopify holds.** Deleting a row in **Amend PO** is refused, with the reason, for a product that is already in Shopify or mid-push. The row stays on the order.
+
 **Photos on a product**: in the product's Photos, you can pick up to 5 photos at a time. They upload one after another ("adding 2 of 5"), and the line then reads, for example, "Added 5." If you picked more than 5, it adds the first 5 and says "Pick the rest in another batch." A photo that couldn't be added is named. The same works on Enrich.
 
 <div class="callout callout-warn">
@@ -201,6 +207,8 @@ Once the order is woven, a footer sticks to the bottom of the page with the styl
 - <strong>Send PO</strong>: opens the purchase order. It stays greyed out until at least one product has an article, a name and a size with a quantity (made-to-order products also need a cost). If some products still have no quantities, a **N without quantities** link sits beside it.
 
 Before either one opens, ThreadCloud may ask you to confirm the size runs.
+
+A legacy order (imported history from before ThreadCloud) has no **Issue PO** step, and ThreadCloud refuses to issue one: it was never a purchase order you sent from here.
 
 The purchase order opens on the **Purchase order** tab. Before you issue it, the dark bar at the bottom has one button, <strong>Issue PO</strong>. Click it and pick how the PO goes out:
 

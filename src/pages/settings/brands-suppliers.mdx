@@ -6,10 +6,10 @@ description: The directory of brands, suppliers and agents, and the brand record
 
 # Network
 
-**Network** in the ThreadCloud menu is the directory of every brand you carry, the suppliers who bill you, and the agents who introduce brands. Each brand opens to its **brand record**: its facts, its fit, its photography and its people.
+**Network** in the ThreadCloud menu (the page itself is titled **Brand network** in the new design) is the directory of every brand you carry, the suppliers who bill you, and the agents who introduce brands. Each brand opens to its **brand record**: its facts, its fit, its photography and its people.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a tab or field here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -71,7 +71,7 @@ Under **Bulk import** at the foot of the registry:
 
 ## The brand record
 
-A brand opens to four rooms. Switch with the tabs under the brand name.
+A brand opens to rooms: **About**, **Models**, **Kit**, **People** and, in the new design, **Orders**. Switch with the tabs under the brand name.
 
 ### About
 
@@ -82,6 +82,18 @@ A brand opens to four rooms. Switch with the tabs under the brand name.
 - **Order portal** (shown as **B2B portal** in the classic design): the brand's wholesale ordering website and its login, if it has one. **Add B2B portal** saves the platform, link and login (stored encrypted; any staff can reveal it). Once saved the card reads **Open [portal]** and **Manage portal**. This is your login to the brand's ordering site; it is not something the brand sees.
 - **Publish to store**: publishes the brand story to your Shopify store.
 
+#### Set a live product's stock type
+
+Buying staff see a **Stock type** row on the About room (for example "Stock type · 6 products · 1 disagree"). It opens a sheet: pick the products first, grouped by their current stock type with **Select all** or **Select none** for each group, then choose the type under **Set to** (**MTO**, **STOCK**, **NOS** or **SPECIAL**) and confirm with **Set N to [type]**. The confirm step says exactly what changes:
+
+- **ThreadCloud**: every style linked to each picked product takes the new stock type.
+- **Shopify**: the stock type field and the storefront tags (the `nos` and `stock-service` tags are swapped as needed), and the product type where it names a stock type. A product that ThreadCloud has never written to in Shopify changes in ThreadCloud only, and its first push carries the type.
+- **Sales history**: past sales keep the type they sold under until **Rebuild sales history** (Settings, Automations).
+
+Each product row starts with the supplier's reference ("Ref", then the style code and colour, or the first variant SKU for a product only in Shopify), so two products with the same title can be told apart.
+
+Where a product's readings disagree (Shopify, its styles, its tags), the sheet says so on the row, and **Select them** picks every product that disagrees. A product the reorder rules or its ownership forbid is refused, with the reason. Each product is changed on its own: a refusal on one never stops the others, and the sheet lists what was set and what was not. The same control is on a single product's style page as a **Stock type** row, with **Set to** the type you want.
+
 ### Models
 
 The garments you keep buying from the brand, their bodies, size runs and measurements, and the supplier's spec sheets. See [Brand fit](/settings/brand-fit/).
@@ -90,6 +102,10 @@ The garments you keep buying from the brand, their bodies, size runs and measure
 
 - **Resources**: logos, linesheets, lookbooks, campaign and seasonal images, documents and web links, filtered by season (**Add resource**).
 - **Product photography**: drop photos here. Name them by style and colour code (for example `AB1234_010_front.jpg`) and ThreadCloud matches each to the style. Photos it can't match show under **Unmatched**.
+
+### Orders
+
+**Orders** lists the brand's whole buying history, newest first: **Season** (with the delivery), **PO number** (and the supplier's own number under it), **Status**, **Units**, **Cost** (for people who see costs, with "N of M costed" where some units have no cost) and **Received**. Status and received read the receiving contract, so a fully received reorder reads Received whatever it was last saved as. Historical and archived orders are included and marked; pre-owned lots are left out. Click a row to open the order. It loads the first time you open the tab and reads only. It reads **No orders for this brand yet.** when there are none.
 
 ### People
 
@@ -100,6 +116,16 @@ Everyone you deal with for this brand, in three groups: the brand's own team, th
   <li>Tick <strong>CC on order emails</strong> to copy them when you email an order for this brand.</li>
   <li>Filed in the wrong group? Use <strong>Move to another group</strong>. Their details move with them.</li>
 </ol>
+
+**Who are they with?** When you type a supplier contact on an order and that person is new to the brand, ThreadCloud asks one question: **Who is [name] with?** The choices are the brand's biller (marked **Billed via**), its agency (marked **Agency**), **A new agency** (type its name), the brand's own head office, or **Just this order**. Where the company already has reps, you can tick **Replaces [name]** for any of them that this person takes over from. **Save** makes the person a rep on the brand under that company.
+
+**Former.** When you change a brand's biller or agency, ThreadCloud saves the change and then asks: "Is [old company] still repping [brand]?" **Still repping** changes nothing. **No longer** moves that company's people on this brand to a quiet **Former** list on the People room, showing who repped the brand and until when. **Link again** on a row brings someone back. Nobody is deleted.
+
+## Adding a brand from a new order
+
+On a new order, if you type a brand that isn't in your Network, the page reads **No brand called "[name]".** with **Add it**. It opens the Network with that name already in the search so you can see whether the brand exists under a slightly different name before adding it. A brand you rename keeps its link to the shared brand network.
+
+On the Network, each brand card also shows how many orders are open with it. An order counts as open until it is fully received (**Nothing more is coming** counts as received). Imported history, archived and cancelled orders, custom orders and lots don't count.
 
 ## Deleting a brand
 

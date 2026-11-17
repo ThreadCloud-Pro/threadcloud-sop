@@ -14,7 +14,7 @@ On every order after parse, before push. The background pass usually runs on its
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -23,7 +23,7 @@ If a button name here doesn't match the app, it changed and this page is stale. 
 Three triggers:
 
 1. **Automatically** after Parse & Build. A background pass starts once you click <strong>Enrich for web</strong> on the parsed order.
-2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It fills blank fields and rewrites descriptions for every product that can take them. **Titles already there are kept**, except a name that is still Build's first draft (see [Parse & Build](/workflows/build-order/#the-products)), which Enrich may replace. In the new design this is the page's one filled button, and **Send to Shopify** is a strong outline button beside it. The button is greyed out when no AI provider is set up or nothing on the order can be filled.
+2. **Whole order.** Click <strong>Update All</strong> at the top of the Enrich tab. It fills blank fields and rewrites descriptions for every product that can take them. **Titles already there are kept**, except a name that is still Build's first draft (see [Parse & Build](/workflows/build-order/#the-products)), which Enrich may replace. In the new design this button reads **Update all descriptions** (with **Updating…** while it runs) and is the page's one filled button, and **Send to Shopify** is a strong outline button beside it. It runs even when the order's original Build data has aged out and been purged. The button is greyed out when no AI provider is set up or nothing on the order can be filled.
 3. **One product.** Open the product and click <strong>Generate</strong> (no copy yet) or <strong>Regenerate</strong> (copy exists). This re-reads the photo, fills blank fields and rewrites the description for that product. Your title is kept. A blank title is filled.
 
 You shouldn't need to fire it by hand for normal orders.
@@ -152,7 +152,7 @@ Walk down the fields top to bottom:
 | Occasion | At least one selected, more if applicable |
 | Fabric content | Matches the linesheet (this is the most common AI miss) |
 | Country of Origin | Only "prestige" origins get mentioned in description (Italy, Japan, etc.) |
-| Category/Subcategory | Should be correct from parse. Verify. |
+| Category/Subcategory | Should be correct from parse. Verify. The **Category** picker on a style offers the order's own category and subcategory pairs (for example Footwear, then Lace-up). A value already stored that the list doesn't carry still shows, and is left alone unless you change it. Changing only the subcategory resets the style's approval, so it is reviewed again. |
 
 Fields save as you edit them. If a save fails, the editor shows "Your change could not be saved." with a <strong>Retry saves</strong> button. While a product is saving, or has a failed save, the page will not let you open another product or leave the tab: you get <strong>Stay and finish</strong> or <strong>Leave without saving</strong>.
 
@@ -299,7 +299,7 @@ Generating copy never changes a title that is already there. Titles have their o
 
 - **Suggest title**, on each product's card, shows a generated title under the title box with <strong>Use</strong> and <strong>Keep mine</strong>. Nothing is written until you click **Use**.
 - <strong>Rewrite titles</strong>, next to **Update All**, opens a confirm that counts the titles it will change (**Write a new title for N products.**). Titles you typed, and titles of products already linked to Shopify, stay unless you tick **Include N titles you typed or already on Shopify**. Special orders are never retitled.
-- Clear the title box and the next **Regenerate**, **Update All** or **Suggest title** fills it.
+- Clear the title box and the next **Regenerate**, **Update All** (**Update all descriptions** in the new design) or **Suggest title** fills it.
 
 Both controls are greyed out when no AI provider is set up.
 

@@ -1,0 +1,105 @@
+---
+layout: ../../layouts/Doc.astro
+title: Orders from another system
+description: Bring in the purchase orders you placed in your old system, so their goods can be received, photographed and enriched in ThreadCloud. Check first, add only when you say so, or join orders already built here.
+---
+
+# Orders from another system
+
+A store moving onto ThreadCloud usually has orders it already placed in its old system and is still waiting on. **Orders from another system** brings them in, so the goods can be received, photographed and enriched here like any other order, and are not entered twice.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
+This is a setup tool, not a menu item. It is open to the account owner only, and only on a store that is being onboarded, at the address <strong>/app/settings/open-orders-import</strong> inside the app, or from a link ThreadCloud support gives you. Anyone else gets a "not found" page. If a button name here doesn't match the app, the app changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">What it never does</div>
+Nothing here writes to Shopify or contacts a supplier. The check only reads. Nothing is added until you confirm, and running the same report again adds nothing twice.
+</div>
+
+## What you need
+
+The old system's pending purchase orders report, as a CSV file, with three columns (the names are matched without regard to case, other columns are ignored, and the names may sit under a few title rows):
+
+- **PO #**: the order's number.
+- **SKU**: each product's SKU. Every SKU has to exist in Shopify already.
+- **To receive**: the units still to come, as a whole number.
+
+Blank rows and the report's total rows are left out. A row that can't be read is listed by its row number and never guessed at. A very large file is refused with "Split it and add each part."
+
+## The page
+
+The page is titled **Orders from another system**. Under **Pending purchase orders report**, choose the file under **CSV file**, or paste it in the box (**Or paste it (PO #, SKU, To receive)**).
+
+Then choose what to do with the report with the switch **What to do with the report**:
+
+| Choice | What it does |
+|---|---|
+| **Add as orders** | Adds each order to Orders as a regular order that has not been sent, in its own season, linked to the products already in Shopify. This is the choice that carries the goods through receiving, photos and Enrich. |
+| **Add as stock-only reorders** | Adds each order to Reorders as a reorder that has not been sent. Use it for stock you simply restock. |
+| **Join orders already here** | For an order you already built in ThreadCloud. It ties that order to the Shopify products the report's SKUs name, so the goods are never entered twice. |
+
+## Add orders
+
+<ol class="steps">
+  <li>Pick the file or paste the report, and pick <strong>Add as orders</strong> (or <strong>Add as stock-only reorders</strong>).</li>
+  <li>Click <strong>Check the report</strong>. It reads every order and writes nothing. The figures show <strong>Ready to add</strong>, <strong>Units to receive</strong> (with the cost), <strong>Already in ThreadCloud</strong> and <strong>Need a fix</strong>.</li>
+  <li>Read the lists. <strong>Orders</strong> shows each order with its brand, season, products, units and cost. <strong>Not added</strong> names every order that can't go in and why. <strong>Check by hand</strong> lists things ThreadCloud decided that you should glance at. <strong>Already in ThreadCloud</strong> lists orders that are here already; each opens its Receive page.</li>
+  <li>Fix what is listed (in Shopify or the Network), click <strong>Check again</strong>, or click <strong>Download the plan</strong> to keep the plan as a file.</li>
+  <li>Click <strong>Add as orders</strong>. A sheet states how many units are still to receive and their cost, and that nothing goes to Shopify or to a supplier. Confirm it with the same button.</li>
+  <li>When it finishes, <strong>Open Orders</strong> (or <strong>Open Reorders</strong>) takes you to what was added.</li>
+</ol>
+
+A long report is added a few orders at a time, so the page shows a running count ("40 of 120 orders"). If it stops part way, run it again: orders already added are skipped.
+
+### How each order is placed
+
+For **Add as orders**, ThreadCloud works out each order from its products in Shopify:
+
+- **Brand.** One brand per order, read from the products' vendor, and it must match a brand in your Network. If it doesn't, the order says "Add or fix the brand, then run this again."
+- **Season and delivery window.** Read from the products' stock codes and tags. When a stock code has no season, the PO number's year is used. The store's **delivery map** can name the exact Delivery Window an order lands in; ThreadCloud support sets it up with you. A window named that isn't in your [Delivery calendar](/settings/delivery-windows/) is refused by name.
+- **Currency.** Read from the products' costs. One order holds one currency.
+- **Sizes.** Placed on a size scale from the product's own record. A placeholder shirt gets a collar scale, and a product whose only sizes are one-size labels gets one size. An order is held with "N of M units could not be placed on a size. Confirm its size scale in Catalog, then run this again." when any of its units can't be placed.
+- **Stock type.** A product whose recorded stock type and product type disagree is added as MTO and listed under **Check by hand**. Special orders, pre-owned and sample pieces can't be brought in this way.
+
+The reasons shown are the real ones ("no brand", "no delivery window", "a different currency"), not a general "Shopify did not answer". If Shopify itself failed, it says so.
+
+<div class="callout callout-tip">
+<div class="callout-title">Added as not sent</div>
+A brought-in order is added as <strong>not sent</strong>. The supplier already has the order from your old system, so don't send it again from ThreadCloud. It is here so the goods can be received against it.
+</div>
+
+## Join orders already here
+
+Use this when you already built the order in ThreadCloud and the old system's report names the same goods.
+
+<ol class="steps">
+  <li>Pick the report and <strong>Join orders already here</strong>, then click <strong>Find the orders to join</strong>. ThreadCloud reads each outside order from Shopify and suggests which ThreadCloud orders it could belong to. Where nothing fits it says "No order in ThreadCloud looks like this one".</li>
+  <li>Confirm the pairs, or click <strong>Edit pairs</strong> to change them.</li>
+  <li>Click <strong>Check the join</strong>. The figures show <strong>Styles to join</strong> and <strong>Yours to decide</strong>. Each style shows what joining writes, and a style that needs your choice has the checkbox <strong>Use the report's quantities for this style</strong>. <strong>Not joined</strong> says why anything can't be.</li>
+  <li>Click the join button and confirm. The plan is applied in one step, and only while it is still the plan you checked.</li>
+</ol>
+
+## Receiving what you brought in
+
+Open the order from **Orders** (or **Reorders**) and receive as normal. An imported reorder carries the supplier's own PO number, so it is listed on the Receiving log and the phone's Receive tab and found by that number. See [Receiving](/workflows/receiving/#reorders-on-the-receiving-page-and-the-phone). The brought-in products still need Enrich before they have customer-facing copy and photos; the first push goes onto the Shopify product that is already there: it keeps the product's tags and options, leaves its cost alone, and is refused before anything is written if the product's sizes can't be matched one for one to the order's sizes. See [Enrich](/workflows/enrich/).
+
+## Common mistakes
+
+<div class="callout callout-warn">
+<div class="callout-title">Adding before checking</div>
+Always click <strong>Check the report</strong> first and read <strong>Not added</strong> and <strong>Check by hand</strong>. Adding is the step that writes to ThreadCloud.
+</div>
+
+<div class="callout callout-warn">
+<div class="callout-title">Joining an order that was also added</div>
+If an order is already here from an earlier add, it shows under <strong>Already in ThreadCloud</strong>. Don't join it to a second order.
+</div>
+
+## Next steps
+
+- [Receiving](/workflows/receiving/)
+- [Reorder](/workflows/reorder/)
+- [Delivery calendar](/settings/delivery-windows/)
+- [First-time setup](/setup/onboarding/)

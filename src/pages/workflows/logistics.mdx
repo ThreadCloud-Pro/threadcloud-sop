@@ -9,7 +9,7 @@ description: The back-office desk for shipments in motion. Reprint a product lab
 **Logistics** ("shipments in motion") is the desk for everything that's already been bought: what's on its way, what's landed, and the paperwork that goes with it. Open it from the menu.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -42,7 +42,9 @@ If the browser blocks the print window, click <strong>OPEN LABEL</strong>. More 
 
 On the Receiving log, <strong>Print received tags</strong> (top right) prints the tags of recent receipts that have not been printed yet, including boxes received on the phone. See <a href="/workflows/labels/#print-received-tags">Print Labels</a>.
 
-The log covers buying orders only. Reorders are not on it: open the reorder from the **Reorders** list (or Home's **Receive reorders**) and use its **Receive** tab. See <a href="/workflows/reorder/">Reorder</a>.
+The log covers buying orders and reorders. A reorder with the supplier's own PO number (including an open order brought in from another system) is listed and found by that number, and opens the same Receive page it always had. A reorder you are still drafting, with no supplier number, stays off **Due now** and **Coming up**; open it from the **Reorders** list or Home's **Receive reorders**. See <a href="/workflows/receiving/#reorders-on-the-receiving-page-and-the-phone">Receiving</a> and <a href="/workflows/reorder/">Reorder</a>. Imported history never appears here.
+
+When products are on the floor but were never received in ThreadCloud, a card at the top of the log lists them by order with a **Receive** link. See <a href="/workflows/receiving/#arrived-but-never-received">Receiving</a>.
 
 **Due now** lists every order you can receive today, with its **Order**, **Delivery window** and **Received** (for example "25% received, 8 days left" or "60% received, 2 days late"). Orders in their window come first, then orders past their window, then orders already arriving before their window opens (both marked, for example "Past window, Sep 15 to Oct 10"), then orders with no window. Search by brand or order. Click a row to open its Receive page.
 
@@ -60,23 +62,38 @@ The log covers buying orders only. Reorders are not on it: open the reorder from
 
 Someone who can open Enrich also sees a card headed **Shopify** at the top of the log when something needs a look. Receiving never creates or re-pushes a Shopify product by itself; the card asks you to.
 
-- **Not on Shopify yet.** One line per order that has started arriving and still has products with no Shopify product, for example "Gabo · FW-26: 3 products not on Shopify yet". <strong>Review in Enrich</strong> opens that order's Enrich tab, where you review and push them. Reorders, custom orders, imported history and archived POs are not listed.
+- **Not on Shopify yet.** One line per order that has started arriving and still has products with no Shopify product, for example "Gabo · FW-26: 3 products not on Shopify yet". <strong>Review in Enrich</strong> opens that order's Enrich tab, where you review and push them. Reorders, custom orders, imported history and archived POs are not listed, and neither are products that are closed.
 - **Re-sync.** A line such as "4 received products have details Shopify doesn't have yet" appears for received products whose care label was read after their last push. <strong>Re-sync</strong> opens **Re-sync received products**, which lists them and explains that Shopify gets each product's details as ThreadCloud holds them now. Click **Re-sync N products** (or **Not now**). It runs Enrich's own update push, one order at a time, and never creates a product. At most 100 products go in one click; more come up after it. Photos shot at receiving stay in ThreadCloud.
 
 When it finishes the card says, for example, "Re-synced 2 products to Shopify. 1 product needs you before it can re-sync." ("Nothing was re-synced. 3 products need you before they can re-sync." when none went, "Nothing needed re-syncing." when all were current). Each product that did not go is listed with why, what to do, and a button to the place that fixes it, for example <strong>Review in Enrich</strong> when Enrich has a question about it, <strong>Approve in Enrich</strong> when it is not approved, <strong>Add price in Enrich</strong> when it has no price or cost, or <strong>Open the order</strong> when the order changed. The same re-sync on a Receive page reports the same way, and shows in the strip at the bottom while it runs.
 
 ## Purchase orders
 
-At the bottom of the page, **Purchase orders** lists every PO, split into **Unsent**, **Sent** and **Answer waiting** (each with a count). **Answer waiting** lists the buying orders and reorders whose supplier answer needs you; it reads "No supplier answers waiting on you." when there are none. A row whose answer is waiting has a <strong>SUPPLIER ANSWER</strong> button in place of <strong>VIEW PO</strong>; it opens the order's Supplier answer. See <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>. Each row shows the PO number, brand and season, delivery, styles and units, when it was created or sent, and "Supplier acknowledged" once the supplier has confirmed.
+At the bottom of the page, **Purchase orders** lists every PO. In the classic design it is split into **Unsent**, **Sent** and **Answer waiting** (each with a count); the new design's tabs are described below. **Answer waiting** lists the buying orders and reorders whose supplier answer needs you; it reads "No supplier answers waiting on you." when there are none. A row whose answer is waiting has a <strong>SUPPLIER ANSWER</strong> button in place of <strong>VIEW PO</strong>; it opens the order's Supplier answer. See <a href="/workflows/supplier-confirmations/">Supplier confirmations</a>. Each row shows the PO number, brand and season, delivery, styles and units, when it was created or sent, and "Supplier acknowledged" once the supplier has confirmed.
 
 - <strong>COPY ACK LINK</strong> copies the supplier's confirmation link, to paste into an email. It reads **ACK LINK COPIED**.
 - <strong>VIEW PO</strong> opens the purchase order.
 
 Use this when a supplier asks for the PO again, or says the link they have doesn't work. The copied link is always the current one.
 
+### The register in the new design
+
+In the new design the register has four tabs, each with a count and its own list, so a long backlog on one tab never pushes another tab's rows off the page:
+
+| Tab | What it lists |
+|---|---|
+| **To send** | POs not issued yet. This is the same count as Home's POs not sent. |
+| **Incoming** | POs that were issued, or where receiving has started, and are not fully received. |
+| **Received** | POs fully received. "Nothing more is coming" counts as received. |
+| **Archived** | POs set aside (below). |
+
+Imported history is never a PO and is not on the register, so nothing is hidden by a cap on legacy orders. An order that was never issued but has already been received against shows on **Incoming**, marked **Not issued**.
+
+**Answer waiting** is not a tab here. Supplier answers waiting on you are listed once, on **Supplier answers** (Seasonal orders and Reorders tabs), and Logistics has a **Supplier answers** row under **Do**. An old link to the register's Answer waiting filter lands there. See [Supplier confirmations](/workflows/supplier-confirmations/).
+
 ### Archive an unsent PO
 
-In the new design, the register has a status switch: **Unsent**, **Sent**, **Answer waiting** and **Archived**, each with a count. An owner or buyer sees an archive button at the end of an unsent PO's row (its tooltip reads **Archive: hide from Unsent**). Use it for a test PO or a dead draft: it leaves **Unsent** and Home's count of POs not sent. The PO is not deleted. Open **Archived** to find it, marked **Archived** with the date, and click the button on its row (**Unarchive**) to bring it back. A PO that is being amended can't be archived. Archiving does not remove receipts: stock, cost and merchandising figures keep counting what was received on it.
+An owner or buyer sees an archive button at the end of a **To send** row (its tooltip reads **Archive: hide from To send**). Use it for a test PO or a dead draft: it leaves **To send** and Home's count of POs not sent. The PO is not deleted. Open **Archived** to find it, marked **Archived** with the date, and click the button on its row (**Unarchive**) to bring it back. A PO that is being amended can't be archived. Archiving does not remove receipts: stock, cost and merchandising figures keep counting what was received on it.
 
 ## Next steps
 

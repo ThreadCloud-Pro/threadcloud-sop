@@ -70,6 +70,7 @@ export const navigation: NavSection[] = [
       { href: "/settings/brand-fit/", title: "Brand fit" },
       { href: "/settings/delivery-windows/", title: "Delivery calendar" },
       { href: "/settings/legacy-enrichment/", title: "Catalog setup" },
+      { href: "/settings/open-orders-import/", title: "Orders from another system" },
       { href: "/settings/ai-models/", title: "AI & Pipeline" },
       { href: "/settings/theme/", title: "Storefront" },
       { href: "/settings/users-roles/", title: "Team access" },

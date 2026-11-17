@@ -42,11 +42,13 @@ How a product comes back. Every product has one:
 | Stock type | Means |
 |---|---|
 | **MTO** | New seasonal order. The supplier makes it for this store's buy. Every new seasonal order starts as MTO. |
-| **STOCK** | Reordered this season. ThreadCloud changes MTO to STOCK when you reorder. Never set it yourself. |
-| **NOS** | Never out of stock. An evergreen program your supplier backs indefinitely. The only type you set by hand. |
+| **STOCK** | Reordered this season. ThreadCloud changes MTO to STOCK when you reorder. Don't set it by hand unless you're certain the product will be reordered. |
+| **NOS** | Never out of stock. An evergreen program your supplier backs indefinitely. A type you can set by hand. |
 | **Special / Custom** | A one-off made for one customer, kept out of the normal reorder flow. |
 
 The delivery window says when a product lands. The stock type says how it comes back. They are separate.
+
+To change the stock type of a product that is already live, buying staff use the **Stock type** row on its style page or on the brand record's About room (see [Network](/settings/brands-suppliers/#set-a-live-products-stock-type)). A product that has none and has no clue otherwise is read as MTO in Clean Catalog.
 
 ### Account owner
 The person who owns the Shopify store. Some actions in ThreadCloud are for the account owner only, and the screen says so.
@@ -129,7 +131,7 @@ On [Home](/home/), each open order shows one line on where it stands and one but
 
 | Word | Meaning |
 |---|---|
-| **Sell-through** | Units sold as a share of units sold plus units left |
+| **Sell-through** | Units sold as a share of units sold plus units left. On a season it covers every product except STOCK and NOS. |
 | **On hand** | Units physically in the store, from the daily count |
 | **Available** | On hand that can still be sold, after units held for open Shopify orders |
 | **Committed** (Stock) | Units held against open Shopify orders |
@@ -137,7 +139,10 @@ On [Home](/home/), each open order shows one line on where it stands and one but
 | **Uncommitted** (Buying Plan) | Cost on orders still in build, PO not sent yet |
 | **OTB** | Open to buy. The season budget not yet spent |
 | **Recorded IMU** | The initial markup recorded on an order or season, from cost and retail |
-| **Delivery fill** | Units received as a share of units ordered |
+| **Delivery fill** | Units received as a share of units ordered, over every order line except STOCK and NOS |
+| **Fix list** | On the Merchandising Seasons page, the withheld figures grouped by cause, each with the products and orders behind it and the page that fixes it |
+| **Event** | A store event such as a trunk show, recorded from an **event:** tag on a Shopify order and shown in the Merchandising Overview |
+| **Pre-book**, **Chase**, **Outlook** | In the suggested budget: what to buy before the season, what to hold back to buy in season, and the buyer's view of the season against history |
 | **Weeks of cover** | How many weeks the current STOCK and NOS units last at the recent sell rate |
 | **Withheld** | ThreadCloud will not show a number it cannot prove. The figure shows a mark instead, and the reason is in the notes at the foot of the page. |
 

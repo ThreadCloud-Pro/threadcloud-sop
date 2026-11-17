@@ -9,7 +9,7 @@ description: Count the box against the order, press Receive, print hang tags, cl
 When a box arrives, you open the order's **Receive** page, count what's in this box, and press **Receive**. ThreadCloud books the stock into Shopify, locks the exchange rate, puts the products on your Point of Sale, and prints the hang tags. It's usually done at the receiving table with a tablet beside the open box.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -40,9 +40,19 @@ The day a box arrives for a buying order or a reorder. Both receive on this same
 
 Any of these gets you to the Receive page:
 
-- **Home.** The **Receive** card ("Pick the order, count what came in") is on both desks, with a count of orders in their delivery window. It opens the Receiving log. On the Sales floor desk, **Delivery windows open now** and **Past their window** list orders with units still to come; click one. **Customer orders** has <strong>Receive reorders</strong> and <strong>Receive custom orders</strong>.
+- **Home.** The **Receive** card ("Pick the order, count what came in") is on both desks, with a count of orders in their delivery window. It opens the Receiving log. On the Sales floor desk, **Delivery windows open now** and **Past their window** list orders with units still to come; click one. **Customer orders** has <strong>Receive reorders</strong> and <strong>Receive custom orders</strong>. Reorders, including open orders brought in from another system, are also on the Receiving log and the phone's Receive tab (see below).
 - **Logistics, Receiving log.** The **Due now** tab lists every order you can receive today. Click a row. See <a href="/workflows/logistics/#receiving-log">Logistics</a>.
 - **The order itself.** Click the <strong>Receive</strong> tab in the order header, or a reorder's <strong>Receive</strong> tab.
+
+### Reorders on the Receiving page and the phone
+
+The Receiving log (**Due now**, **Coming up** and **Received**) and the phone's **Receive** tab list reorders beside buying orders. A reorder opens the same receive screen it always had: the desk's Receive page, or the count sheet on the phone. Rows show the supplier's own PO number when the order has one, and the log's search ("Search brand, order or PO number") finds orders by it, so you can work from the number on the supplier's paperwork.
+
+Two limits keep the lists honest. A reorder you are still drafting or picking, and that carries no supplier number, is not arriving, so it stays off **Due now** and **Coming up** (search still finds it). Imported history (a legacy order from before ThreadCloud) is no purchase order and never appears on these lists.
+
+### Arrived but never received
+
+A card at the top of the Receiving log can read, for example, "3 products are on the floor but were never received in ThreadCloud". It lists products that are selling or on hand but have no receiving record, one row per order, each with a quiet <strong>Receive</strong> link to that order's Receive page. It is a warning only and writes nothing. It matches the same rule as the **Fix list** on the Merchandising [Seasons page](/planning/trading/#seasons), so receiving those orders clears both. Nothing shows when there is nothing to fix.
 
 ## The page at a glance
 
@@ -122,6 +132,12 @@ When something in the box needs a second look, the dark bar shows <strong>Checks
 - two rows that read the same ("check the code");
 - products left out that still owe units;
 - the exchange rate this receipt will lock.
+
+### A style that needs a size scale
+
+If some of a product's sizes aren't on a size scale, and a scale in the store's list would place every size the product holds, receiving holds that product until you choose the scale. Its card reads **Choose the size scale before receiving**, lists the sizes that are not on a scale, and says: "Pick the scale these sizes belong to. It corrects the sizes here and on the product in Shopify." It offers a **Size scale** picker (**Choose a size scale**) and a **Set size scale** button. Pick the scale and click it; the product is corrected and can then be counted. On the phone the same product sits under **Choose the size scale first**, with the same picker and **Set size scale**. If no scale in the list would place the sizes, the product is not held and receives as before. Reorder lines are not held.
+
+A Shopify product with one variant and no Size option (Shopify's own "Default Title") is received as **One size**, so a scarf or a belt with no size run counts without a fix.
 
 ### Products not on Shopify yet
 
@@ -282,6 +298,8 @@ Sometimes the size that lands doesn't match what's sewn into the garment, usuall
 | **Unreceive entire style** | Take every unit of this product off this receipt. Other products stay received. |
 
 You always pick sizes from a list that matches the product's scale, so there's no format to get wrong. If the correct size is already on the product, ThreadCloud stops before changing anything ("already exists on this style").
+
+A correction uses the row that already holds the product's Shopify variant instead of making a second row for it. Units booked under a size's old label keep counting toward that size afterwards, so what the order still owes stays right after a correction.
 
 A fix on a product that isn't in Shopify yet is saved in ThreadCloud and goes to Shopify with the first push. The line says so ("Corrected here; syncs to Shopify at first push").
 

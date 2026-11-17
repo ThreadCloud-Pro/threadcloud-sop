@@ -9,7 +9,7 @@ description: Restock what's selling. Find a reorder on the Reorders list, or sta
 Reorder is how you restock something you already carry. You find the product, set how many you want in each size, issue the purchase order, settle what the supplier says they can send, and receive it when it lands. It is a separate order from the original buy, so your numbers stay clean.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a button name here doesn't match what you see on screen, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -40,7 +40,7 @@ The tabs sort the list by where each reorder stands. Each tab except Received sh
 | Tab | What's on it |
 |---|---|
 | **Open** | Everything not fully received |
-| **Answer waiting** | The supplier answered and it still needs you |
+| **Answer waiting** | The supplier answered and it still needs you. In the new design this tab is gone: those reorders are on the **Reorders** tab of **Supplier answers**. |
 | **Waiting on supplier** | Sent, and the supplier hasn't answered |
 | **Short** | The supplier confirmed fewer than you ordered, or a box arrived short, and nobody has decided what to do yet |
 | **Shipped** | The supplier says it shipped, or part of it has arrived |
@@ -301,6 +301,12 @@ If something goes wrong:
 - <strong>"Shopify did not return full stock counts..."</strong>: some counts show only what is free to sell and leave out units held for orders. Count those sizes on the rack and fix the boxes before you print.
 - <strong>"Nothing on hand to retag."</strong>: there is no stock of the regular-price sizes yet. The box's own tags print the new price when you receive it.
 - <strong>"This product has more than 250 sizes."</strong>: change its price in Shopify.
+
+### Receive from the Receiving page or the phone
+
+A reorder that has been sent, or that carries the supplier's own PO number (an open order brought in from another system comes in this way), is also listed on the Receiving log and on the phone's **Receive** tab, with that number on its row. Open it there and count the box as for any order. Find it by the supplier's number on the paperwork. A reorder you are still drafting is not listed until it is sent. See [Receiving](/workflows/receiving/#reorders-on-the-receiving-page-and-the-phone) and [Orders from another system](/settings/open-orders-import/).
+
+In Merchandising, a reorder's receipts count under the product's own season (the season tag on the live product), not under the reorder's own code, so a reordered product's season figures stay together.
 
 ### When a reorder reads Received
 

@@ -9,7 +9,7 @@ description: Send approved products from Enrich to Shopify as drafts, send later
 Pushing is how a product gets into your Shopify store. You push from the **Enrich** tab. The first push creates the product in Shopify as a **draft**, with its sizes, SKUs, cost, price, photos and product details. Later pushes send your edits to the product that is already there.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -52,6 +52,10 @@ Tick the products you want and click <strong>Push selected</strong>. The confirm
 - A product in Shopify that isn't approved yet is re-synced only while it is still a draft in Shopify; otherwise it reports "Approve it first."
 - Skipped and rejected products are never sent, and show as "left out".
 - If nothing selected can go, the confirmation reads **Nothing to push** with the reason.
+
+### A product that is already in Shopify from your old system
+
+Some products on an order were created in Shopify by your previous system, and ThreadCloud has never pushed them. The first push onto one of those is gentler than a normal push. It merges ThreadCloud's tags with the tags already on the product (and keeps your own tags on every push after), leaves the product's options alone (no Color is added or renamed), and leaves the variants' cost as it is. It is also refused, before anything is written, when the product's Size option or variant labels can't be matched one for one to the style's sizes, so a push never makes a second size or a wrong one. Such a style that is approved and linked shows **Changes to send** in Enrich until it goes. Later pushes behave as any other.
 
 ## What gets pushed
 

@@ -9,7 +9,7 @@ description: Sign a staff phone in from Settings, then shoot appointments and pr
 The phone app is the store's staff app for the phone: **Buy** by shooting photos into an order or a pre-owned lot, **Receive** a box, and **Sell** from the floor. It opens in the phone's browser and signs in as the person who approves it. It shows the design the person chose in **Settings → My preferences** (see [Settings and store health](/settings/store-health/#my-preferences)), so the same screen can look different from one person's phone to the next.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 The phone app is switched on per ThreadCloud. If <strong>Settings</strong> has no <strong>Phones</strong> tile, or the Phones page says <strong>The phone app is not switched on for this ThreadCloud yet.</strong>, it is not on for your store. If a screen or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -45,9 +45,9 @@ The phone opens on the person's own first tab. A screen the person's switches do
 **Buy** is the buyer's tab. It lists:
 
 - **Shooting now**, with the order this phone shot into within the last two hours and a round shutter button that opens its camera.
-- **New appointment**: pick a **Brand** (or **Assorted brands**, with **Find a brand** to search), check the currency (**Change** to edit it), pick a **Season** (or type one such as FW-26, or choose **No season**), then tap **Start shooting**. It makes a blank order to shoot into. A brand that isn't on the desk can't be found here: add it on the desk first.
+- **New appointment**: pick a **Brand** (or **Assorted brands**, with **Find a brand** to search), check the currency (**Change** to edit it: the list offers every currency your suppliers bill in, not only the recent ones), pick a **Season** from the chips (they are the store's own seasons; **Or type one** such as FW-26, or choose **No season**), then tap **Start shooting**. It makes a blank order to shoot into. A brand that isn't on the desk can't be found here: add it on the desk first.
 - **Find an order**, a search box that reads "Brand, season or PO". Type and tap **Find** to search every open order, past the first few the list shows. It reads **No open order matches that.** when nothing fits.
-- The store's open buying orders, most recently photographed first, each with a camera button.
+- The store's open buying orders, most recently photographed first, each with a camera button. Each row starts with the supplier's own PO number (or ThreadCloud's PO number when there is none), then the season and the photo count, so two orders from one brand in the same season can be told apart. Reorders and orders brought in from another system are left off this list.
 
 In the classic design, **New appointment** and **New lot** are rows at the top of the list. In the new design a **+** button at the top (named **New**) opens a sheet with **Appointment** and **Lot**.
 
@@ -90,9 +90,9 @@ A sample piece may carry a cost of zero and still be approved; every other piece
 
 **Receive** opens with a search box, **Find an order**, that reads "Brand, season or PO". Type and tap **Find**. It finds orders you can receive, any order that was sent, and any order that already has units received on it even if it was never marked sent, with the ones due first. A draft or an imported old season with nothing in stays out. It reads **No order matches that.** when nothing fits.
 
-Without a search, the tab lists every order to receive, in two groups:
+Search also finds a reorder by the supplier's PO number, and a custom order by its number, the customer or the brand (see [Custom orders](#custom-orders-on-the-phone) below). Without a search, the tab lists every order to receive, reorders included, in two groups:
 
-- **To receive**: orders due now, including ones partly received and ones past their window, and orders you receive at the desk without ever marking them sent.
+- **To receive**: orders due now, including ones partly received and ones past their window, orders you receive at the desk without ever marking them sent, and reorders that are sent or carry the supplier's own PO number. A reorder you are still drafting is not listed.
 - **Coming up**: orders whose window has not opened.
 
 Each row shows the brand, the season, the delivery window and where the order stands, and the percentage already in; an order past its window is marked. With nothing due it reads **Nothing is arriving right now.**
@@ -103,6 +103,7 @@ Open an order (its title line carries the season, PO, the date it was sent, the 
 - Products the phone can't count stay on the order, greyed out under the reason, so nothing drops off it:
   - **Not on Shopify yet** lists products with no Shopify product. Receiving never runs before the first push. The note reads "Push them in Enrich, then count them here." for a buyer, with <strong>Open Enrich</strong>, or "A buyer pushes them in Enrich, then you can count them here." for anyone else.
   - **Receive at the desk** lists products that are on Shopify but owed only on sizes the phone can't count; the desk's receive sets those up. <strong>Open in ThreadCloud</strong> opens the order on the desk.
+  - **Choose the size scale first** lists products receiving holds until their sizes are on a size scale. Pick the scale under **Size scale for [product]** (**Choose a size scale**) and tap **Set size scale**; the product then moves into the count. See [Receiving](/workflows/receiving/#a-style-that-needs-a-size-scale).
   The links show only where the person's switches open that desk page.
 - Extras beyond the order are received at the desk.
 
@@ -120,6 +121,10 @@ A care-label shot you took keeps its label mark while it waits to send.
 **Nothing more is coming.** Once something has arrived on a buying order, a person with the **Buy** switch also sees a **Nothing more is coming** button on the order's page. It opens a sheet that says what it will do. **Mark N units not coming** closes off what the order still owes (it leaves **To receive** and **Coming up**, and what arrived stays received), and **Keep waiting** leaves it. If a customer had a hold on a unit that will not arrive, the phone names them so you can tell them. Everyone sees the standing close ("N units marked not coming on Nov 9."), and a buyer gets **Undo**. It is the same close as on the desk (see [Receiving](/workflows/receiving/#nothing-more-is-coming)), and it works on a reorder too.
 
 Tags for phone receipts are printed at the desk: use **Print received tags** on the Receiving log. See [Print Labels](/workflows/labels/#print-received-tags).
+
+### Custom orders on the phone
+
+Custom orders (made to measure and special orders) are received here too, found by number, customer or brand. See [Custom orders](/workflows/mtm/#receive-on-the-phone) for the steps: one row per suit or per group of identical pieces, a camera button on each with shot prompts, and **Mark received**. The cost is entered at the desk.
 
 ## Going back
 
