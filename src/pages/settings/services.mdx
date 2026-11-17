@@ -1,0 +1,84 @@
+---
+layout: ../../layouts/Doc.astro
+title: Alterations and services
+description: How to set up alterations, repairs and other services as Shopify products so the till can sell them and ThreadCloud keeps them out of your merchandise.
+---
+
+# Alterations and services
+
+An alteration, a repair or a deposit is something you charge for at the till, not stock you buy. ThreadCloud does not create these. You make them once in Shopify, and ThreadCloud recognises them and keeps them out of buying, review and photography.
+
+<div class="callout callout-info">
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
+If a label here doesn't match the app, it changed and this page is stale. Tell the team.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">When to use</div>
+When you want staff to ring up an alteration at the till, when you change your alteration prices, or when a service is showing up in ThreadCloud as if it were a product.
+</div>
+
+## Why ThreadCloud does not make them
+
+Every product ThreadCloud makes starts as a buy: an order from a brand, a purchase order, receiving. A service has no brand, cost, sizes or delivery, so it never goes through that. It lives in Shopify only.
+
+## Create a service in Shopify
+
+Make one product for each service, for example **Trousers: Plain hem** or **Jacket: Shorten sleeves**. Start the title with the garment so staff can find it by typing "trousers" or "hem" at the till.
+
+<ol class="steps">
+  <li>In Shopify admin, go to <strong>Products</strong> and add a product. Give it the title and the price.</li>
+  <li>Set the <strong>Product type</strong> to <strong>Alterations</strong>. This is the step ThreadCloud depends on (see below).</li>
+  <li>Turn off inventory tracking, so it can never sell out.</li>
+  <li>Mark it as not a physical product, so nothing is shipped.</li>
+  <li>Sell it on <strong>Point of Sale</strong> only. Leave it off the Online Store unless you want shoppers to buy it there.</li>
+  <li>Set the vendor to your own store name and make the product active.</li>
+</ol>
+
+No picture, description, barcode or SKU is needed. Tax is your call: set it the way your accountant treats services.
+
+## Two prices for one service
+
+Many stores charge less to alter a garment bought from them than one bought elsewhere. Keep it one product with two variants, not two products.
+
+<ol class="steps">
+  <li>On the product, add one option named <strong>Garment bought</strong>.</li>
+  <li>Give it two values: <strong>Here</strong> and <strong>Elsewhere</strong>.</li>
+  <li>Set each variant's price.</li>
+</ol>
+
+At the till, staff tap the service and pick **Here** or **Elsewhere**. Your sales reports then show each service once, split by where the garment came from.
+
+## What ThreadCloud looks for
+
+ThreadCloud reads the **product type** and the **tags**, not the title. A product is treated as a service when either one contains the word **alteration** or **alterations**, or **deposit**. Gift cards are recognised on their own.
+
+- A product titled "Shorten sleeves" with no type and no tag looks like merchandise. Set the type.
+- If you would rather keep your own product type, add the tag **Alterations** and leave the type alone.
+- For a service that is not an alteration, such as a repair or a cleaning, the tag **Alterations** still works. So does clicking **Not a product (service)** (below).
+
+You do not set a category or subcategory for a service. ThreadCloud files it by itself, and writes nothing about it to Shopify.
+
+## What ThreadCloud does with a service
+
+| Where | What happens |
+|---|---|
+| **Clean Catalog** | It stays out of review and publishing. Nothing is written to it in Shopify. See [Catalog setup](/settings/legacy-enrichment/). |
+| **Catalog profile** | It is counted under **Not merchandise**. |
+| **Photography** | It is left out. It will never be shot. See [Photography](/workflows/photography/). |
+| **Stock** | It sits under the **Services** divider, apart from your merchandise. See [Stock](/planning/stock/). |
+| **Budget & OTB** | It is not a category line. You do not buy it. |
+| **Sales** | The money still counts in your revenue. |
+
+## If a service shows up as a product
+
+ThreadCloud sorts a product the next time it reads your catalog, so a service you just made may not be sorted yet.
+
+<ol class="steps">
+  <li>Check its <strong>Product type</strong> or tags in Shopify (above) and fix them.</li>
+  <li>If it is already in <strong>Settings → Catalog → Clean Catalog</strong> under <strong>To review</strong>, open the row and click <strong>Not a product (service)</strong>. It leaves the list and nothing is written to Shopify.</li>
+</ol>
+
+## Changing prices later
+
+Change the variant prices in Shopify. ThreadCloud holds no price for a service, so there is nothing to update here.
