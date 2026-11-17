@@ -17,7 +17,7 @@ description: How the store and each brand are selling. The Overview with its Bra
 | **Money** | Store financials for a period. See [Money](/planning/money/). |
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-10</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a tab or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -34,10 +34,22 @@ Weekly. Monday morning works: read last week's sales, then the brands that need 
 ## The header, on every tab
 
 - **Left**: the page title, or a breadcrumb like **Merchandising › Brand** on a brand page.
-- **Right**: the **period picker**, a search button, and a gear for your settings.
+- **Right**: the **period picker**, a search button, and a gear for your settings. In the new design the period picker is replaced by the **season and window bar** (next), and the header also holds **Ask Winston about your merchandising** (see [Ask Winston](#ask-winston)).
 - **Below**: the four tabs, and **⋯** for the older reports.
 
-### The period picker
+### The season and window bar (new design)
+
+In the new design, Merchandising pages sit under one compact bar. It holds a **Season** picker, three window chips, and the dates in plain words, for example "Aug 1, 2026 to Jan 31, 2027 · to date Nov 16".
+
+| Window chip | What it reads |
+|---|---|
+| **Season** | The whole season in the picker |
+| **Season to date** | From the season's start to today. It shows only when the season's dates are known. |
+| **Last 30 days** | The 30 days to today |
+
+**Other dates**, at the end of the dates line, opens a sheet with **This month**, **Last month**, **Last 90 days**, **Year to date** and **Custom dates** (type **From, included** and **To, included**, then **Apply**). When a date range is on, none of the three chips is pressed. The filters (**Brand**, **Category**, **Stock type**) sit under the bar. The choice is kept in the page address, so a view can be bookmarked or shared. The classic design keeps the period picker below.
+
+### The period picker (classic design)
 
 One button that states the period in words, for example **Last 30 days** or **FW-26 season**. Click it to choose:
 
@@ -89,6 +101,21 @@ The store table: one row per brand, the heart of the Overview.
 - **Show all N brands** shows the full list.
 - **CSV** downloads the table as you see it.
 
+### Sales and purchases by stock type (new design)
+
+Two short sections sit under the figures, each a single bar split into the stock types, with the amounts and shares listed beneath it.
+
+- **Sales by stock type** splits the window's net sales (for example MTO, STOCK, NOS and SPECIAL). It reads **No sales in this window.** when there are none.
+- **Purchases at cost by stock type**, headed with the season (for example "· FW-26"), splits what the season's orders cost. It reads "N units have no cost" while some units are uncosted, and **Nothing is on order for this season.** when there is nothing. **Includes estimated FX** appears where an estimated exchange rate was used.
+
+A split that can't be proved shows the sentence the page states for its cause, never a guess.
+
+### Events
+
+**Events** shows each store event with its net sales, its share of the window's net sales and its dates (for example "Nov 8 to Nov 9, 2026"). Open a row for that event's own split by stock type.
+
+An event is a Shopify order tag. Tag an event's orders **event: Trunk show** (the word **event:** followed by the event's name) in Shopify admin. ThreadCloud records the name on each sale line. A tag you add after the sale is picked up on the next pass, and a removed tag clears it. Until some orders carry one, the section says so and shows how to tag them.
+
 ### The rail
 
 **The rail** shows products as cards with their picture, sorted by **Sold**, **Left**, **Velocity**, **Margin** or **Age**. Each card links to the product in Shopify admin and on your storefront where those exist.
@@ -111,17 +138,61 @@ Any figure ThreadCloud can't prove shows a mark instead of a number. The reason,
 
 ## Seasons
 
-One buying season over its whole life. Pick the season in the period picker. Filters: Brand, Category, and one Stock type.
+One buying season over its whole life. Pick the season in the period picker (the **Season** picker in the new design). Filters: Brand, Category, and one Stock type.
+
+### What the season figures count
+
+Season figures (**Sell-through**, **Units available**, **Received**, the receipt shortfall and **Delivery fill**, including each order's Received and Ordered in the delivery drill) count every product except STOCK and NOS, which are read on **Stock**. A line on the page says so: "Season figures, delivery fill included, count everything except STOCK and NOS, which are on Stock." The grain is the whole product (and, for delivery fill, the whole order line): a product's sales, receipts and stock are in or out together, so the rate never divides one group by another. **Net sales**, **Net units**, **Gross margin** and the sales split by stock type keep every stock type, special orders included.
+
+A scope that holds only STOCK and NOS products, or a filter naming only STOCK or NOS, reads "Not a season measure for STOCK and NOS. See Stock." It is never a zero. An order whose every line is STOCK or NOS reads **See Stock** under **Ordered**.
+
+Two other rules decide which season a sale or receipt belongs to. A reorder's receipts count under the product's own season (the season tag on the live product), not the reorder's own code. In the sales history, a NOS or stock-service sale is filed under the season it sold in, and so is a special order that has no season of its own.
+
+### The 1% rule
+
+A figure used to be withheld whenever a few products couldn't be counted, for example products whose records disagree or that have no receiving record. Now, when what is left out is under 1% of the figure's own units, the figure publishes over the products that can be counted. It carries a mark, and one footnote line says how much was left out ("Sell-through leaves out 0.6% of units (4 products with conflicting records)"). When 1% or more is left out the figure stays withheld and the **Fix list** says why. A product with no receiving record has an unknown received count, so sell-through for it is counted by units sold plus units on hand, and the page says how many products were counted that way.
+
+The same idea covers skipped sales history: when under 1% of the sales history's orders could not be read, the figures publish, and a footnote reads "N orders (x%) from the sales history could not be counted" with **See skipped orders**. It shows on the Merchandising Overview, brand and Stock pages too. The skipped orders are listed in **Settings**, **Connections & sync**, **Sales history details**.
+
+A product that holds nothing never blocks a season figure: a style with no units ordered, no sales and nothing on hand is counted at its zeros.
 
 | Chapter | What it shows |
 |---|---|
 | **01 The season in figures** | **Net sales**, **Net units**, **Sell-through**, **Gross margin**, **Received** |
-| **02 Sell-through by cohort, category and brand** | Cut by **cohort** (stock type), **category** or **brand**. Columns include **Net units**, **Net sales**, **Sell-through** and **Shortfall**. Rows link to the brand's **scorecard**. **CSV** exports it. |
+| **02 Sell-through by category and brand, sales by stock type** | Cut by **category**, **brand** or **Stock type**. Category and brand cuts show **Net units**, **Net sales**, **Sell-through** and **Shortfall**. The **Stock type** cut shows **Net units** and **Net sales** only, because sell-through isn't defined by the stock type at the time of sale. Rows link to the brand's **scorecard**. **CSV** exports it. |
 | **03 The delivery drill** | Each order in the season: **Order**, **Delivery window**, **Ordered**, **Received**, **Fill** |
 | **04 Carryover at cost** | Current STOCK and NOS at cost. This one is not limited to the season. |
 | **05 Not published, and why** | Every figure that is withheld, with its reason |
 
+In the new design the page is one flowing page rather than numbered chapters: the season's figures, a **Cut by** switch (**Category**, **Brand**, **Stock type**) with an **Export CSV** button, the **Delivery drill**, **Carryover**, the **Fix list**, then **Not published** and notes.
+
+### The Fix list
+
+The page used to repeat the same withheld reason once for each figure and category, about sixty lines that said a handful of things. The **Fix list** groups the reasons by cause, one row each, with a count, what the cause holds back ("Holds back Sell-through, Received") and the page that clears it. For example:
+
+- "N ordered products have no receiving record": **Receive** opens the order's receiving page.
+- "Receiving entries and the shipment record disagree": **Reconcile**.
+- "N products carry more than one category": **Clean catalog**.
+- Products that changed season after they sold, carry more than one brand or stock type, or have no current catalog record. No page re-tags those, so the row has no button.
+- "N sales have no usable date": outside every sales figure.
+
+A row with a **Show N** toggle opens the products and orders behind the count: missing receipts are grouped one row per order (with its styles named), conflicts show the values that disagree, and each line links to the place that fixes it. At most 50 are listed per cause, then "and N more". A link opens its page with **Seasons** as the first crumb, so you land back on the same season and filters. Figures that only wait for more history sit under **Not published**. A figure that is not a season measure (STOCK and NOS) is never a fix.
+
 If no order exists for the season yet, the delivery drill says so. If the store has no buying season, the page reads **No season to read.**
+
+## Ask Winston
+
+**Ask Winston about your merchandising** sits in the Merchandising header in the new design, shaped like a search field with Winston's ring beside it. Click it and a sheet titled **Ask Winston** opens with the cursor in the field. Type a question in plain words, such as which brands are behind on delivery, or how a season is selling against last season, and click **Ask**.
+
+- Winston reads the same figures the Merchandising pages show, through the same reads, so it withholds the same figures. A withheld figure is reported as withheld, with the page's own reason, never as zero and never estimated. A published figure with a limit comes with that limit.
+- While it works the sheet shows what it is reading, and the strip at the bottom shows the work. The answer opens with one sentence that answers the question, followed by a short list. Charts are drawn from the figures Winston read (bars, stacked bars, lines or a split bar), and a withheld figure shows as a marked gap. Every number states the season, date range or count date it is for.
+- **What Winston looked at** (folded) lists each read and the season or window it covered, so you can check the answer against the page.
+- **Export** offers **Data (CSV)** and **PDF** of the answer.
+- You can ask a follow-up in the same sheet. A question can be up to 1,000 characters.
+
+**Questions are limited.** Each store has 100 questions a month. The sheet shows what is left quietly under the field ("84 of 100 left this month"), and the header entry shows a count only when 10 or fewer are left (**N left**, or **None left**). With none left it reads "No questions left. 100 more arrive on" the date. A question that gets no answer is handed back and doesn't count.
+
+Winston answers questions about what sold, what is on hand, how a season or brand is doing, and what is on order or arriving. For how to use ThreadCloud itself, use the Help desk (see [Help and Winston](/help/)).
 
 ## More reports (⋯)
 
@@ -139,9 +210,14 @@ The **⋯** at the end of the tab row opens the older reports. They keep their o
 
 - **Sales** come from your Shopify orders. ThreadCloud syncs orders every hour. See **Settings → Connections & sync**.
 - **On hand** comes from a nightly count of your Shopify stock, plus an hourly sweep.
+- **Events** come from the **event:** tag on the Shopify order.
 - **Season** figures use the season calendar in the gear.
 
 If numbers look stale, open [Settings](/settings/store-health/) and read the **Shopify sync** and **Nightly capture** tiles.
+
+## Stock type, and where to set it
+
+Every product has a stock type (MTO, STOCK, NOS or SPECIAL), and Merchandising reads sales, purchases and the season figures by it. To change a live product's stock type, buying staff can use the **Stock type** row on a style's page or the **Stock type** row on the brand's About room. See [Network](/settings/brands-suppliers/#set-a-live-products-stock-type). Past sales keep the type they sold under until **Rebuild sales history** (Settings, Automations).
 
 ## Monday morning review
 

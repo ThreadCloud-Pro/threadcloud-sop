@@ -9,7 +9,7 @@ description: Set a season's open-to-buy, split it by category, subcategory and b
 Open to buy is the season budget you haven't spent yet. In ThreadCloud you set it on the season page in **[Buying Plan](/planning/buying-seasons/)**, split it on the **Plan** tab, and check each order against it on the order's **Budget** tab.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a column or button here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -58,9 +58,38 @@ Brand rows also show last season's cost of goods sold and margin for that brand 
 
 A row marked **legacy plan** was planned under an older category name. Click **Move plan** and choose the current category before editing it.
 
+## Suggested budget
+
+In the new design the **Plan** tab has two sections: **Your plan** (what you have set, sent and still have to buy) and **Suggested budget** ("From your sales history. Nothing changes until you use it."). The suggestion reads your dated sales and proposes a buy for each category. It never changes your plan by itself.
+
+At the top of the section are four figures:
+
+| Figure | Meaning |
+|---|---|
+| **Suggested at cost** | The total suggested, with the seasons of sales it is built from ("From FW-25 and SS-26 sales"; "(on pace)" marks a season still running) |
+| **Pre-book** | What to buy before the season, bought to sell the full-price target at full price |
+| **Chase** | Held back to buy in season into what sells, on brands that reorder |
+| **Reserve and NOS** (or **Reserve, NOS and special orders**) | The in-season money. Special orders are named here but stay in the budget for customer orders. |
+
+**Plan settings** (three switches that apply at once, with no Save) shape every category:
+
+- **Outlook**: the buyer's view of the season against history. **Flat**, or **+10%**, **+20%**, **-10%**, **-20%**.
+- **Full price**: the share of the buy you aim to sell at full price: 65%, 70%, 75%, 80% or 85%. A higher target means buying cleaner. New plans start at 75%.
+- **Chase**: the share of demand held back for in-season reorders: **None**, 10%, 20% or 30%. New plans start at 20%. It applies only to brands that reorder in season.
+
+The rule is: pre-book is full-price demand divided by the full-price target, and chase holds part of the demand from brands that reorder in season back as reserve, to buy into what sells. On a phone the settings are one row, **Plan settings**, that opens a sheet.
+
+The table, **Suggested budget by category**, has the columns **Category**, **Your plan**, **Suggested** and **Last season**. A category's pills say where it stands: **In plan** (your plan already matches), **Not in this season**, or a note that some units have no cost, which blocks **Use** until they are costed. **Own settings** marks a category that carries its own settings instead of the plan's. **Use** on a row saves that suggestion as the category's budget, with its reserve and its split by brand. A category you already planned keeps your number: only **Use** on its row replaces it. **See the history** opens **Sold by season, and the plan**, a chart of what each season sold beside the plan. Tap a row to open that category's sheet: its own chart, the split by bucket, the brands and sizes, and its own settings, with a button to follow the plan's settings again.
+
+The tab has one filled button at a time. While categories are still unplanned it is **Use suggestion for N unplanned categories** (with the total across them), which fills each with its suggested budget, reserve and brand split. Once everything is planned it is **Edit budget** (**Set budget** the first time). With nothing planned the suggestion is shown above **Your plan**, and below it once something is. A row whose reserve changed is not marked In plan, so it offers **Use** again. Older seasons read the plan's shared settings as their own.
+
+## In-season reserve
+
+Part of a category's budget can be held back for in-season reorders of STOCK and NOS and chase buys. On **Your plan**, **In-season reserve** shows the total **Reserve at cost**, what has been **Reordered**, and a table with each category's **Reserve**, **Reordered** and **Held** (what is still held back). **Set a reserve** (pick the category, type the amount; empty clears it) sets one by hand on any category that has a budget. **Move reserve** moves money between two categories, and both categories' budgets and reserves change by that amount. A row shows **Used** when it is spent, or "N over" when reorders went past it. At the season's cut-off date, a reserve that was not spent **lapses** and shows **Lapsed**, with the unspent amount "Back to cash on" that date. Reorders whose PO was sent before the cut-off count against the reserve. After a move, **Use** writes both categories' brand split afresh instead of the old one.
+
 ## How the numbers update
 
-Placed cost updates as you build orders. An order counts from the moment its styles have quantities and costs, whether or not its PO has been sent. **Committed** and **Uncommitted** tell the two apart.
+Placed cost updates as you build orders. An order counts from the moment its styles have quantities and costs, whether or not its PO has been sent. **Committed** and **Uncommitted** tell the two apart. **Committed** follows the same receiving rules the Receive page uses, so an order's total reads the same on the budget, the buying seasons and the order itself.
 
 Costs in another currency are converted to store currency. Where ThreadCloud used an estimated rate, the tile says **includes a resolved FX estimate**. The exchange rate locks for good when the order is first received.
 

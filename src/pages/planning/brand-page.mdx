@@ -9,7 +9,7 @@ description: One brand's performance in Merchandising, its products ledger and s
 Every brand in Merchandising has its own page: how it sold in the period, how its season is going, what is on hand now, and every product you bought from it. Its **Letter** tab turns that into a page you can share with the brand.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 If a tab or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -29,7 +29,7 @@ The **Performance** tab is the default.
 | Group | Figures |
 |---|---|
 | The period you picked | **Units sold**, **Net sales**, **Gross margin** |
-| The season | **Sell-through**, **Delivery fill**. **Season page** opens the season in Merchandising. |
+| The season | **Sell-through**, **Delivery fill**. **Season page** opens the season in Merchandising. These count every product except STOCK and NOS, as the [Seasons page](/planning/trading/#what-the-season-figures-count) does. |
 | **Private to you** (click to open) | **Season net sales**, **Season margin**, **Plan** (the brand's target, OTB left and OTB used) |
 | **Now** | **On hand**, **Cover** (weeks). **Stock** opens the Stock tab filtered to this brand. |
 
@@ -80,6 +80,17 @@ The brand sees the letter in the new design when the store's design is the new o
 
 The new letter reads like a product page. The brand and period sit at the top, then the performance as cards with a bar for each rate. Each product category is its own section with its subtotal, with the size curves per category and the products under a disclosure. The notes are stated once at the foot. A bar of links (**Performance**, **Products**, **Sizes**, **Notes**) jumps to each section. It reads the same on a phone and a computer. The foot of the letter has a small link, **What this letter is**, to a page that tells the brand what produced it.
 
+### How the letter is laid out
+
+The letter groups the brand's goods by how they were bought, in this order, with one tile for each section and a total tile that adds the section tiles up to the unit:
+
+1. **This season**: the season in the picker.
+2. **Earlier seasons** (headed **Other seasons in the store** when the season you picked is not the newest): earlier goods still in the store.
+3. **Stock and NOS**.
+4. **Special orders**: stated by category and counts only. A special order never shows its title, which could name a customer.
+
+Every section and tile counts over one window, and the figures tie out (reorders, sizes, holds and references add up to the tiles). The season's tile carries **Delivered %** and **Received at cost**. Sell-through is stated on the season's tile only, since it is a season figure. Dates read in words. A section the brand has nothing in is left out.
+
 ### The share link
 
 The link you copy is short, like `/r/7KQ2M9XA`: eight letters and numbers, small enough to survive a text message. It opens the same letter as the long link did, and **Disable** works on it the same way. Codes use no 0, O, 1 or I, and capitals or lowercase both work if you retype one.
@@ -90,7 +101,7 @@ If a brand rep tells you their link opens a page that reads **This link was cut 
 
 - **Versions** lists every letter you shared for the period, with its status: **Active**, **Superseded**, **Expired** or **Disabled**. **Show share link** recovers the link for the active version.
 - **Live links from other periods** lists every link that is still working for a period other than the one on screen, with its period, version, when it was published and when it expires. **Show share link** on any row recovers it. So a link you sent for last season is never lost because you changed the period picker.
-- A link lasts 90 days. Sharing a new version supersedes the old one.
+- A link lasts 365 days. Sharing a new version supersedes the old one.
 - **Disable this period's links** turns off the links for this period.
 - **Disable every link for** the brand turns off all of them. It asks you to confirm; **Keep them** cancels.
 

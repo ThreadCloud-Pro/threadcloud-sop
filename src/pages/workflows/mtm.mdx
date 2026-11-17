@@ -9,7 +9,7 @@ description: One-off made-to-measure and special orders. Drop in the supplier co
 Custom orders are one-off special orders: a made-to-measure suit, a special-order jacket, a monogrammed tie, anything you buy for one customer (or a few customers on one maker's order). You start from the maker's confirmation, review the details, send the products to Shopify so they can be scanned at the register, and receive and tag them when they land.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-13</div>
+<div class="callout-title">Last verified against the app: 2026-11-17</div>
 This screen is labelled <strong>Custom orders</strong> in the app (it used to be called MTM). If a button name here doesn't match, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -19,9 +19,9 @@ This screen is labelled <strong>Custom orders</strong> in the app (it used to be
   <li><strong>New custom order</strong>: drop in the maker's confirmation, or enter it by hand.</li>
   <li><strong>Review</strong>: the customer, the garments, the measurements, the price and the delivery date.</li>
   <li><strong>SEND TO SHOPIFY</strong>: creates the products, ready to scan at the register.</li>
-  <li><strong>Mark received</strong> when the garments arrive, and enter the final cost.</li>
-  <li><strong>Print the labels</strong>, tag the garments, and ring them up on POS when the customer collects.</li>
-  <li>The order closes itself when Shopify shows the garments handed over. If a piece never went through a sale, mark it <strong>picked up</strong> by hand.</li>
+  <li><strong>Mark received</strong> when the garments arrive, and enter the final cost once for each piece or suit. You can also do this from the phone's <strong>Receive</strong> tab.</li>
+  <li><strong>Print the labels</strong>, tag the garments, and ring them up on POS by scanning each tag when the customer collects.</li>
+  <li>The order closes itself, piece by piece, as Shopify shows the garments handed over. If a piece never went through a sale, mark it <strong>picked up</strong> by hand.</li>
 </ol>
 
 Every custom order page shows one step bar: **Review**, **Ordered**, **Received**. **Fitted** joins the bar only once the order has been picked up. Ordered means it has gone to Shopify and the maker, and is waiting to arrive.
@@ -50,7 +50,7 @@ Everything on the review screen **saves on its own** as you go. Watch for **Savi
 
 ### A · Customer
 
-Type a name, or search your Shopify customers and tap the right one ("Is this them? Tap to confirm."). If they're new, use <strong>+ CREATE</strong> to make them in Shopify. A customer isn't required to send the order: an unnamed order can be attached to the customer at the register.
+Type a name, or search your Shopify customers and tap the right one ("Is this them? Tap to confirm."). When the maker's document names a customer, ThreadCloud says whether the customer on the order matches it: **Matches the document**, **Likely match** or **Different name**. With no customer chosen yet, it looks the document's name up in your Shopify customers. One exact match is chosen for you. A close one (a short form of the first name, an initial, a different middle name) is offered with the reason and a **Use** button, never chosen silently. If they're new, use <strong>+ CREATE</strong> to make them in Shopify. A customer isn't required to send the order: an unnamed order can be attached to the customer at the register.
 
 For a trunk show or a split order, click <strong>DIFFERENT CLIENTS PER ITEM</strong> to give each garment its own client. <strong>BACK TO ONE CLIENT</strong> undoes it.
 
@@ -62,7 +62,7 @@ One card per garment or product. For each one:
 - **Size ordered**. It prints on the tag ("Add the size · prints on the tag"). **Size scale** sets the scale the size is read on and printed under; change it if the size reads wrong.
 - **Fabric**, with an optional fabric photo, and details such as lapel, lining and buttons. <strong>+ ADD FIELD</strong> adds another detail.
 - **Adjustments**, **Qty**, notes for the item, detail photos and a spec sheet.
-- **COST** (what you pay the maker) and **RETAIL** (what the customer pays).
+- **COST** (what you pay the maker) and **RETAIL** (what the customer pays). When the maker's confirmation printed no amount for a piece, the price shows a quiet "No amount printed" and you type it in.
 
 Click <strong>ADD GARMENT</strong> for more. Custom orders aren't limited to tailoring: ties, scarves and accessories work too.
 
@@ -104,9 +104,11 @@ An Ordered order opens on its summary: a headline such as "Arriving tomorrow.", 
 
 When the garments land, work through **Check each tag** ("Match each tag's code, size and price to its row. Anything off, fix it in Review first."). For each garment, find its row by the **Tag** code, then check the **Size** and the **Price** match the tag.
 
-Then enter the final **Cost** for each garment, the **Customer total** if it changed, and any **Notes** (for example "fabric upgrade billed extra"), and click <strong>Mark received</strong> in the dark bar at the bottom. ThreadCloud books the stock into Shopify and tells you if it couldn't.
+Then enter the final **Cost**, the **Customer total** if it changed, and any **Notes** (for example "fabric upgrade billed extra"), and click <strong>Mark received</strong> in the dark bar at the bottom. ThreadCloud books the stock into Shopify and tells you if it couldn't.
 
-Once received, **What came in** shows the final cost, what the customer paid and the margin. The dark bar offers <strong>Print labels</strong>: one label per tag on the Dymo. The **…** menu in the header has:
+**Enter a suit's cost once.** The maker bills a suit as one amount, so the receipt has one field for the whole suit, labelled with the suit, its pieces and the customer (for example **Suit cost**), on the suit's first row. The other pieces of that suit read **In suit** and take no cost of their own. That one figure settles the suit and goes to its one Shopify product. A single piece, such as a shirt or a tie, still has its own **Cost**. If a suit was earlier costed piece by piece and not completely, the receipt says so and asks for the suit's cost once.
+
+Once received, **What came in** shows the **Final cost**, the **Retail price** and the **Margin**. The figure is labelled **Retail price** because it is the price, not a claim that it was paid: a **Paid**, **Partly paid**, **Unpaid** or **Refunded** mark appears beside it only when the order is linked to a Shopify sale that says so. With no linked sale it reads **No Shopify order linked**. The dark bar offers <strong>Print labels</strong>: one label per tag on the Dymo. The **…** menu in the header has:
 
 - <strong>Print labels on a sheet</strong>: a sheet of labels for a regular office printer.
 - <strong>Receiving document</strong>: garments, units and cost.
@@ -117,12 +119,29 @@ Once received, **What came in** shows the final cost, what the customer paid and
 
 ## On the sales floor (POS)
 
-The <strong>Custom Orders</strong> tile in Shopify POS ("Load a made-to-measure order") lists every custom order that's been sent to Shopify and not yet paid at the register. Each row shows the customer, the garments, the deposit on file, the ETA and the total. Tap a row to load its items, and the customer if one is linked, into the cart. You'll see "Added to the cart." when it's done.
+There is no special tile or cart for custom orders. When **SEND TO SHOPIFY** runs, each piece (or each suit, which is one product) becomes a Shopify product that sells only at the register, never online. Its SKU is the order's code and the piece's number, the same code printed on its label.
+
+When the customer collects, **scan each tag at the register** and ring it up like any other sale. Add the customer to the cart in POS before you take payment: Shopify credits the salesperson and the customer natively. No draft order is created.
+
+ThreadCloud notices the sale (Shopify tells it) and links it to the custom order when the sale carries every piece of the order. A sale that carries only some of the pieces does not link. The order page then shows **Paid**, **Unpaid** and the other payment marks from that sale.
 
 <div class="callout callout-tip">
-<div class="callout-title">No customer on the order?</div>
-The tile says "Customer not attached" and loads the items anyway. Add the customer in the cart before you take payment.
+<div class="callout-title">Collected in two visits</div>
+If the customer takes some pieces now and the rest later, ring up each piece when it leaves. Each piece closes when its own sale is fulfilled in Shopify.
 </div>
+
+## Receive on the phone
+
+The phone's **Receive** tab also receives custom orders, so the garments can be checked in at the rack.
+
+<ol class="steps">
+  <li>Open <strong>Receive</strong>, type the order's number, the customer or the brand in <strong>Find an order</strong>, and tap <strong>Find</strong>. Custom orders that have been ordered from the maker and not yet received show in a <strong>Custom orders</strong> group, marked <strong>Custom</strong>, beside any buying orders the search finds.</li>
+  <li>Open the order. Under <strong>Pieces</strong>, each suit is one row and identical pieces are grouped on one row (shown as ×2, for example), each with its code and how many photos it has.</li>
+  <li>Tap the camera button on a piece. The in-app camera names each shot it wants (such as front, label and inside), and you can also pick a photo from the phone's library. The photos are kept with the order as received photos, named for the piece, and show beside the maker's confirmation on the desk.</li>
+  <li>Tap <strong>Mark received</strong>. It is the same receipt the desk makes. There is no whole-order shortcut for photos: shoot the pieces you want first.</li>
+</ol>
+
+The phone takes no cost. Enter the suit or piece cost on the desk with **Edit receipt** (see above). An order holds at most a set number of photos, and the phone says **This order already holds as many photos as it can.** when it is full. If Shopify cannot be reached from the phone, it says so and asks you to finish on the desktop.
 
 ## Picked up and closed
 
