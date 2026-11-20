@@ -9,7 +9,7 @@ description: The delivery windows every order is placed in, and the season group
 A delivery window is the stretch of months an order is due to land, for example **Fall &amp; Winter Delivery 1**, July to August. Every order is placed in one. Each window belongs to a season group, and the group decides which buying season the order counts toward.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-09</div>
+<div class="callout-title">Last verified against the app: 2026-11-20</div>
 If a field or button here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -66,6 +66,8 @@ During setup, Home shows a **Confirm delivery calendar** tile. Open it, use the 
 <div class="callout callout-warn">
 <div class="callout-title">Changing a code that orders use</div>
 If orders already use a window's code, ThreadCloud asks before changing it and offers <strong>Change code and update</strong> those orders, so they stay linked. Products already in Shopify keep the season tag they were pushed with.
+
+Some codes cannot change at all. When an order in the window has a sent PO, products pushed to Shopify, imported history or a reorder, ThreadCloud checks that first and a sheet says so, for example "This code can't change. 4 orders in this window have a sent PO and a reorder." The sheet links to <strong>Correct season</strong>, where you move those orders to another window instead. See [Correct a season](/workflows/correct-season/).
 </div>
 
 <div class="callout callout-danger">

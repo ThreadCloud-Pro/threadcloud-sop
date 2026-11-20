@@ -9,7 +9,7 @@ description: Bring in the purchase orders you placed in your old system, so thei
 A store moving onto ThreadCloud usually has orders it already placed in its old system and is still waiting on. **Orders from another system** brings them in, so the goods can be received, photographed and enriched here like any other order, and are not entered twice.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-17</div>
+<div class="callout-title">Last verified against the app: 2026-11-20</div>
 This is a setup tool, not a menu item. It is open to the account owner only, and only on a store that is being onboarded, at the address <strong>/app/settings/open-orders-import</strong> inside the app, or from a link ThreadCloud support gives you. Anyone else gets a "not found" page. If a button name here doesn't match the app, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -25,6 +25,8 @@ The old system's pending purchase orders report, as a CSV file, with three colum
 - **PO #**: the order's number.
 - **SKU**: each product's SKU. Every SKU has to exist in Shopify already.
 - **To receive**: the units still to come, as a whole number.
+
+If the file is missing a column, the page refuses it and names the report to use: the **Pending Purchase Orders Report**.
 
 Blank rows and the report's total rows are left out. A row that can't be read is listed by its row number and never guessed at. A very large file is refused with "Split it and add each part."
 
@@ -50,6 +52,8 @@ Then choose what to do with the report with the switch **What to do with the rep
   <li>Click <strong>Add as orders</strong>. A sheet states how many units are still to receive and their cost, and that nothing goes to Shopify or to a supplier. Confirm it with the same button.</li>
   <li>When it finishes, <strong>Open Orders</strong> (or <strong>Open Reorders</strong>) takes you to what was added.</li>
 </ol>
+
+**An order you already built by hand is not added twice.** Before it creates an order, ThreadCloud looks for an order of the same supplier and season that has no outside PO number and whose styles cover most of the report's lines (at least 80 percent). On a match it creates nothing. The order shows under <strong>Already in ThreadCloud</strong>, linked, with a button to the **Join orders already here** step, so the goods are never entered twice. This applies to both **Add as orders** and **Add as stock-only reorders**.
 
 A long report is added a few orders at a time, so the page shows a running count ("40 of 120 orders"). If it stops part way, run it again: orders already added are skipped.
 

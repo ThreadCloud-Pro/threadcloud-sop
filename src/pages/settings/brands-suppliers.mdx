@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Network
-description: The directory of brands, suppliers and agents, and the brand record with its About, Models, Kit and People rooms.
+description: The master list of brands, suppliers and agents, who each brand orders through and who a PO goes to, and the brand record with its About, Models, Kit, People and Buying rooms.
 ---
 
 # Network
@@ -9,7 +9,7 @@ description: The directory of brands, suppliers and agents, and the brand record
 **Network** in the ThreadCloud menu (the page itself is titled **Brand network** in the new design) is the directory of every brand you carry, the suppliers who bill you, and the agents who introduce brands. Each brand opens to its **brand record**: its facts, its fit, its photography and its people.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-17</div>
+<div class="callout-title">Last verified against the app: 2026-11-20</div>
 If a tab or field here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -71,7 +71,7 @@ Under **Bulk import** at the foot of the registry:
 
 ## The brand record
 
-A brand opens to rooms: **About**, **Models**, **Kit**, **People** and, in the new design, **Orders**. Switch with the tabs under the brand name.
+A brand opens to rooms: **About**, **Models**, **Kit**, **People** and, in the new design, **Buying**. Switch with the tabs under the brand name.
 
 ### About
 
@@ -84,7 +84,7 @@ A brand opens to rooms: **About**, **Models**, **Kit**, **People** and, in the n
 
 #### Set a live product's stock type
 
-Buying staff see a **Stock type** row on the About room (for example "Stock type · 6 products · 1 disagree"). It opens a sheet: pick the products first, grouped by their current stock type with **Select all** or **Select none** for each group, then choose the type under **Set to** (**MTO**, **STOCK**, **NOS** or **SPECIAL**) and confirm with **Set N to [type]**. The confirm step says exactly what changes:
+Buying staff see a **Stock type** row on the brand's **Buying** room, under **How you buy** (for example "Stock type · 6 products · 1 disagree"). It opens a sheet: pick the products first, grouped by their current stock type with **Select all** or **Select none** for each group, then choose the type under **Set to** (**MTO**, **STOCK**, **NOS** or **SPECIAL**) and confirm with **Set N to [type]**. The confirm step says exactly what changes:
 
 - **ThreadCloud**: every style linked to each picked product takes the new stock type.
 - **Shopify**: the stock type field and the storefront tags (the `nos` and `stock-service` tags are swapped as needed), and the product type where it names a stock type. A product that ThreadCloud has never written to in Shopify changes in ThreadCloud only, and its first push carries the type.
@@ -103,13 +103,17 @@ The garments you keep buying from the brand, their bodies, size runs and measure
 - **Resources**: logos, linesheets, lookbooks, campaign and seasonal images, documents and web links, filtered by season (**Add resource**).
 - **Product photography**: drop photos here. Name them by style and colour code (for example `AB1234_010_front.jpg`) and ThreadCloud matches each to the style. Photos it can't match show under **Unmatched**.
 
-### Orders
+### Buying
 
-**Orders** lists the brand's whole buying history, newest first: **Season** (with the delivery), **PO number** (and the supplier's own number under it), **Status**, **Units**, **Cost** (for people who see costs, with "N of M costed" where some units have no cost) and **Received**. Status and received read the receiving contract, so a fully received reorder reads Received whatever it was last saved as. Historical and archived orders are included and marked; pre-owned lots are left out. Click a row to open the order. It loads the first time you open the tab and reads only. It reads **No orders for this brand yet.** when there are none.
+**Buying** (it was called **Orders**, and an old link to it still lands here) lists the brand's whole buying history, newest first: **Season** (with the delivery), **PO number** (and the supplier's own number under it), **Status**, **Units**, **Cost** (for people who see costs, with "N of M costed" where some units have no cost) and **Received**. Status and received read the receiving contract, so a fully received reorder reads Received whatever it was last saved as. Historical and archived orders are included and marked; pre-owned lots are left out. Click a row to open the order. It loads the first time you open the tab and reads only. It reads **No orders for this brand yet.** when there are none.
+
+Under the orders, a group called **How you buy** holds the **Stock type** row (see [Set a live product's stock type](#set-a-live-products-stock-type)). It used to sit on About.
 
 ### People
 
 Everyone you deal with for this brand, in three groups: the brand's own team, the supplier's people and the agency's people.
+
+A person you add from a brand belongs to that brand. They get this brand's POs and nobody else's. When the same person also works for the supplier's other brands, tick **For every brand at this supplier** and they are shared. If you correct a shared person's email on one brand and leave that box off, the brand gets its own contact with the new address. The shared person stays for the other brands, and the old address stops being copied on this brand's POs.
 
 <ol class="steps">
   <li>Click <strong>Add person</strong>. Enter name, role, email and phone, and where they work.</li>
@@ -120,6 +124,38 @@ Everyone you deal with for this brand, in three groups: the brand's own team, th
 **Who are they with?** When you type a supplier contact on an order and that person is new to the brand, ThreadCloud asks one question: **Who is [name] with?** The choices are the brand's biller (marked **Billed via**), its agency (marked **Agency**), **A new agency** (type its name), the brand's own head office, or **Just this order**. Where the company already has reps, you can tick **Replaces [name]** for any of them that this person takes over from. **Save** makes the person a rep on the brand under that company.
 
 **Former.** When you change a brand's biller or agency, ThreadCloud saves the change and then asks: "Is [old company] still repping [brand]?" **Still repping** changes nothing. **No longer** moves that company's people on this brand to a quiet **Former** list on the People room, showing who repped the brand and until when. **Link again** on a row brings someone back. Nobody is deleted.
+
+## The Brands list: who gets each PO
+
+The **Brands** tab is the master list of how every brand is ordered. Each row shows the **Brand**, **Orders through**, the **Contact** a PO goes to and a **Status** pill. **Orders through** says who the brand orders through: **Brand direct**, an **Agency** or a **Distributor** (a supplier), with a quiet "On portal" when the brand has an order portal. A pill appears only when a PO could not reach anyone:
+
+| Pill | What it means |
+|---|---|
+| **No email** | Nobody on this brand has an email, so a PO has no one to go to. |
+| **Shared Default** | The PO would be addressed to the catch-all supplier called Default, not a real company. |
+| **Agency has no rep** | The brand orders through an agency and nobody is named there. |
+
+The list opens on **Needs attention**, the brands with a pill. It reads **Every brand can receive a PO** when there are none. Switch to **All brands** for the whole list. The **Status** chip narrows the list to brands **On portal** or, for people who see brand research, by the state of the brand's record (such as **Draft** or **Approved**).
+
+### Fix a brand in one place
+
+<ol class="steps">
+  <li>Click a brand's row. A sheet opens with <strong>Open brand page</strong> on top.</li>
+  <li>Pick <strong>Orders through</strong>: <strong>Brand direct</strong>, <strong>Agency</strong> or <strong>Distributor</strong>, and choose the company. A shared company reads "Used by 12 brands".</li>
+  <li>Fill in the <strong>Contact</strong>, <strong>Email</strong> and <strong>Phone</strong>, and tick <strong>CC on orders</strong> if they should be copied. For a distributor the sheet also shows <strong>Terms</strong> and <strong>Currency</strong>.</li>
+  <li>If you changed a shared person's details, decide whether <strong>For every brand at this supplier</strong> should be ticked.</li>
+  <li>Click <strong>Save</strong>. Nothing is written until you do.</li>
+</ol>
+
+Choosing another agency or supplier changes nothing until **Save**, and a line above **Save** says where the POs would go. A save that takes the brand off its old supplier or agency moves that company's people on this brand to the brand's **Former** list (see People above), so they stop getting its POs and can be linked again.
+
+### Paste a list
+
+When the answers are in a spreadsheet or an email, click **Paste a list**. Paste rows of brand, the company they order through, the email and the person (commas, tabs or semicolons all work). A header row is fine. ThreadCloud matches each row to a brand and shows a preview. A row with **No match** has a picker so you can choose the brand yourself. A company it does not know is marked **(new)** and is created on Apply. Nothing is written until you click **Apply to N brands**. A blank cell stays blank: a row with no company never turns the contact into a new biller.
+
+### Who a PO goes to
+
+A real PO, a reorder PO, the print view, the supplier link and **Message supplier** all use one rule. They go to the people linked to this brand, plus the supplier's people who are linked to no brand at all (an order desk). They never go to a former rep of this brand, or to a person who reps only other brands. A brand with no links and no former reps at its supplier uses the supplier's whole list. A document already sent keeps the people it went to. The sheet, Paste a list and this list read the same rule, so the contact you see is the contact the PO uses.
 
 ## Adding a brand from a new order
 
@@ -142,6 +178,12 @@ If nobody on the brand's People room has an email, <strong>Email brand contact</
 <div class="callout-title">Two records for one brand</div>
 Search the registry before adding a brand. If two records exist for one brand, email <a href="mailto:hello@threadcloud.io">hello@threadcloud.io</a> rather than deleting one.
 </div>
+
+## On the PO page
+
+Before you send, the PO page names a brand that **Goes to no one** (no ordering email) or a PO **Addressed to Default**. Each line has a button (**Add one**, **Choose the supplier**) that opens the same brand sheet right there. It never blocks **Send**, and an issued PO never prints "Default" as the addressee.
+
+When you edit a supplier or one of its contacts that more than one brand uses, a line above **Save** warns "Used by 3 brands. Saving changes all their POs." **See which** lists them.
 
 ## Next steps
 

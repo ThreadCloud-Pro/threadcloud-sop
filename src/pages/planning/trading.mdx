@@ -17,7 +17,7 @@ description: How the store and each brand are selling. The Overview with its Bra
 | **Money** | Store financials for a period. See [Money](/planning/money/). |
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-17</div>
+<div class="callout-title">Last verified against the app: 2026-11-20</div>
 If a tab or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -114,7 +114,15 @@ A split that can't be proved shows the sentence the page states for its cause, n
 
 **Events** shows each store event with its net sales, its share of the window's net sales and its dates (for example "Nov 8 to Nov 9, 2026"). Open a row for that event's own split by stock type.
 
-An event is a Shopify order tag. Tag an event's orders **event: Trunk show** (the word **event:** followed by the event's name) in Shopify admin. ThreadCloud records the name on each sale line. A tag you add after the sale is picked up on the next pass, and a removed tag clears it. Until some orders carry one, the section says so and shows how to tag them.
+You set an event up once, and ThreadCloud matches sales to it by itself.
+
+<ol class="steps">
+  <li>Under <strong>Events</strong>, click <strong>New event</strong> (it reads <strong>No events yet</strong> until you have one).</li>
+  <li>Enter the <strong>Name</strong>, the <strong>Dates</strong> and the <strong>Brands</strong> the event covers. Click <strong>Create event</strong>.</li>
+  <li>Open <strong>Open event</strong> on its row to change the name, dates or brands later, or to delete it.</li>
+</ol>
+
+A sale belongs to one event. ThreadCloud picks it in this order: a Shopify order tagged **event: Trunk show** (the word **event:** followed by the event's name), then the custom order the sale is linked to, then a custom order's date, then the sale's own date and brand. The narrower event wins a tie. Brands are kept by brand, so renaming a brand never drops it from an event. An event whose dates have not started says "Starts [date]" and "Results appear once the event begins." On a custom order, the **Event** row shows the event it counted under, with **Change**, and you can pick **None** to keep it out of every event.
 
 ### The rail
 
@@ -143,6 +151,10 @@ One buying season over its whole life. Pick the season in the period picker (the
 ### What the season figures count
 
 Season figures (**Sell-through**, **Units available**, **Received**, the receipt shortfall and **Delivery fill**, including each order's Received and Ordered in the delivery drill) count every product except STOCK and NOS, which are read on **Stock**. A line on the page says so: "Season figures, delivery fill included, count everything except STOCK and NOS, which are on Stock." The grain is the whole product (and, for delivery fill, the whole order line): a product's sales, receipts and stock are in or out together, so the rate never divides one group by another. **Net sales**, **Net units**, **Gross margin** and the sales split by stock type keep every stock type, special orders included.
+
+Special orders are left out of the same measures. A special order (or a made to measure order) does not count in **Units available**, **Sell-through**, **Received**, the receipt shortfall or **Delivery fill**, exactly as STOCK and NOS do. It still counts in **Net sales**, **Net units**, **Gross margin**, the sales split by stock type, **Events** and the Overview headline.
+
+A style or order with nothing received now counts as 0 received against what you ordered, so **Delivery fill** reads 0% instead of being withheld. It is withheld only when no units were ordered. The Brand letter, the Season page and the Overview tile all read the same figure, so they agree.
 
 A scope that holds only STOCK and NOS products, or a filter naming only STOCK or NOS, reads "Not a season measure for STOCK and NOS. See Stock." It is never a zero. An order whose every line is STOCK or NOS reads **See Stock** under **Ordered**.
 
@@ -188,6 +200,7 @@ If no order exists for the season yet, the delivery drill says so. If the store 
 - While it works the sheet shows what it is reading, and the strip at the bottom shows the work. The answer opens with one sentence that answers the question, followed by a short list. Charts are drawn from the figures Winston read (bars, stacked bars, lines or a split bar), and a withheld figure shows as a marked gap. Every number states the season, date range or count date it is for.
 - **What Winston looked at** (folded) lists each read and the season or window it covered, so you can check the answer against the page.
 - **Export** offers **Data (CSV)** and **PDF** of the answer.
+- Ask about **stock by season**, such as how much past-season stock is still on hand. Winston reads each product's season (the catalog season, else the order's season) and says whether it is a current, past or future season by your selling windows. Past-season stock is the on-hand stock of seasons whose selling window has ended. It is not "aged stock". Ask what a merchandising word means, such as sell-through or OTB, and he answers from the same plain definitions this manual uses.
 - You can ask a follow-up in the same sheet. A question can be up to 1,000 characters.
 
 **Questions are limited.** Each store has 100 questions a month. The sheet shows what is left quietly under the field ("84 of 100 left this month"), and the header entry shows a count only when 10 or fewer are left (**N left**, or **None left**). With none left it reads "No questions left. 100 more arrive on" the date. A question that gets no answer is handed back and doesn't count.
@@ -210,7 +223,7 @@ The **⋯** at the end of the tab row opens the older reports. They keep their o
 
 - **Sales** come from your Shopify orders. ThreadCloud syncs orders every hour. See **Settings → Connections & sync**.
 - **On hand** comes from a nightly count of your Shopify stock, plus an hourly sweep.
-- **Events** come from the **event:** tag on the Shopify order.
+- **Events** come from the events you set up, matched to sales by the **event:** tag on the Shopify order, a linked custom order or the dates and brands.
 - **Season** figures use the season calendar in the gear.
 
 If numbers look stale, open [Settings](/settings/store-health/) and read the **Shopify sync** and **Nightly capture** tiles.
