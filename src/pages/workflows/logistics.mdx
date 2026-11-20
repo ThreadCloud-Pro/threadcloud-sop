@@ -9,7 +9,7 @@ description: The back-office desk for shipments in motion. Reprint a product lab
 **Logistics** ("shipments in motion") is the desk for everything that's already been bought: what's on its way, what's landed, and the paperwork that goes with it. Open it from the menu.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-17</div>
+<div class="callout-title">Last verified against the app: 2026-11-20</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -38,7 +38,7 @@ If the browser blocks the print window, click <strong>OPEN LABEL</strong>. More 
 
 ## Receiving log
 
-<strong>Receiving Log</strong> opens the **Receiving log** ("what's landed"). It has three tabs, and each has its own search box. On a phone, each row stacks as a card.
+<strong>Receiving Log</strong> opens the **Receiving log** ("what's landed"). It has four tabs (**Due now**, **Coming up**, **Received** and **Open POs**), and each has its own search box. On a phone, each row stacks as a card.
 
 On the Receiving log, <strong>Print received tags</strong> (top right) prints the tags of recent receipts that have not been printed yet, including boxes received on the phone. See <a href="/workflows/labels/#print-received-tags">Print Labels</a>.
 
@@ -58,10 +58,27 @@ When products are on the floor but were never received in ThreadCloud, a card at
 
 <strong>Reprint Tags</strong> opens the same log on the Received tab.
 
+### Open POs
+
+**Open POs** lists every order still arriving, read against the delivery window you want. It reads only. Fully received POs leave the tab. A card at the top counts what needs you, for example "3 late" or "2 past cancel date", with a **Show** button that narrows the list to that group (**Show all** brings it back). The groups are **Past cancel**, **Late**, **Early**, **At risk** and **No window**.
+
+The chip beside the tabs groups the list: **By window** (the default), **By brand** or **By order**. Each row names the brand and PO. A pill and a one-line reason appear only for a PO with a problem, for example "Window ended Nov 2, 9 days ago, 12 units still out". A PO that is on track shows no pill. Search finds an order by brand, season, PO number or the supplier's own number.
+
+Click a problem row to open it. People who can contact suppliers (the Buy area) see **Message supplier** there:
+
+<ol class="steps">
+  <li>Click the row, then <strong>Message supplier</strong>. A sheet opens with a ready message for where the order stands: confirm the ship dates, please hold until our window opens, past our window, or a cancellation notice for an order past its cancel date.</li>
+  <li>Under <strong>Send to</strong> the PO's usual contact is first. Pick someone else if they should get it. It never offers a former rep.</li>
+  <li>Edit the message if you want to. Then click <strong>Copy message</strong> (a cancellation reads <strong>Copy cancellation notice</strong>), or <strong>Open in Gmail</strong> to write it to the address on file.</li>
+</ol>
+
+ThreadCloud never sends it for you. Each copy or Gmail press is recorded on the order ("Message copied", "Opened in Gmail"). **Copy message** works with no email on file; the sheet says "No email on file" with an **Add one** link. A cancellation notice does not cancel the order in ThreadCloud.
+
 ### The Shopify card
 
 Someone who can open Enrich also sees a card headed **Shopify** at the top of the log when something needs a look. Receiving never creates or re-pushes a Shopify product by itself; the card asks you to.
 
+- **No longer on Shopify, or different SKUs.** Before a delivery lands, ThreadCloud checks the open orders that still owe units against Shopify (it only reads). A line such as "Gabo · FW-26: 2 products are no longer on Shopify" means someone deleted the product in Shopify. <strong>Review in Enrich</strong> opens that order's Enrich tab to push it again. A line such as "Gabo · FW-26: 1 product has different SKUs on Shopify" means a SKU was changed in Shopify after the push. <strong>Open receiving</strong> opens the order's Receive page, where the relink runs. See <a href="/workflows/receiving/#deleted-products-and-changed-skus">Receiving</a>.
 - **Not on Shopify yet.** One line per order that has started arriving and still has products with no Shopify product, for example "Gabo · FW-26: 3 products not on Shopify yet". <strong>Review in Enrich</strong> opens that order's Enrich tab, where you review and push them. Reorders, custom orders, imported history and archived POs are not listed, and neither are products that are closed.
 - **Re-sync.** A line such as "4 received products have details Shopify doesn't have yet" appears for received products whose care label was read after their last push. <strong>Re-sync</strong> opens **Re-sync received products**, which lists them and explains that Shopify gets each product's details as ThreadCloud holds them now. Click **Re-sync N products** (or **Not now**). It runs Enrich's own update push, one order at a time, and never creates a product. At most 100 products go in one click; more come up after it. Photos shot at receiving stay in ThreadCloud.
 

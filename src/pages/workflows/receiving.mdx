@@ -9,7 +9,7 @@ description: Count the box against the order, press Receive, print hang tags, cl
 When a box arrives, you open the order's **Receive** page, count what's in this box, and press **Receive**. ThreadCloud books the stock into Shopify, locks the exchange rate, puts the products on your Point of Sale, and prints the hang tags. It's usually done at the receiving table with a tablet beside the open box.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-17</div>
+<div class="callout-title">Last verified against the app: 2026-11-20</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
@@ -49,6 +49,15 @@ Any of these gets you to the Receive page:
 The Receiving log (**Due now**, **Coming up** and **Received**) and the phone's **Receive** tab list reorders beside buying orders. A reorder opens the same receive screen it always had: the desk's Receive page, or the count sheet on the phone. Rows show the supplier's own PO number when the order has one, and the log's search ("Search brand, order or PO number") finds orders by it, so you can work from the number on the supplier's paperwork.
 
 Two limits keep the lists honest. A reorder you are still drafting or picking, and that carries no supplier number, is not arriving, so it stays off **Due now** and **Coming up** (search still finds it). Imported history (a legacy order from before ThreadCloud) is no purchase order and never appears on these lists.
+
+### Deleted products and changed SKUs
+
+The Receiving log also warns you before a box lands when Shopify no longer matches an open order. The check only reads. Two lines can appear, one per order:
+
+- "[Brand · Season]: 2 products are no longer on Shopify". Someone deleted the product in Shopify. Click <strong>Review in Enrich</strong> and push it again before you receive.
+- "[Brand · Season]: 1 product has different SKUs on Shopify". A SKU was changed in Shopify after the push. Click <strong>Open receiving</strong>. The relink on the Receive page matches the product again.
+
+See the [Receiving log](/workflows/logistics/#the-shopify-card).
 
 ### Arrived but never received
 
