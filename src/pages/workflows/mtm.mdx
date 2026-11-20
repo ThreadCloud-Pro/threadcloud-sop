@@ -62,7 +62,7 @@ One card per garment or product. For each one:
 - **Size ordered**. It prints on the tag ("Add the size · prints on the tag"). **Size scale** sets the scale the size is read on and printed under; change it if the size reads wrong.
 - **Fabric**, with an optional fabric photo, and details such as lapel, lining and buttons. <strong>+ ADD FIELD</strong> adds another detail.
 - **Adjustments**, **Qty**, notes for the item, detail photos and a spec sheet.
-- **Photos.** The garment's photo tile (**Add photo**) opens your camera or library on a phone, or the file picker on a computer. **Replace** swaps it and **Remove** clears it. Under **Maker details**, **Detail photos** takes as many as you like with **Add a detail photo**. A link you pasted earlier still shows. When the product is created in Shopify, an uploaded photo goes with it. If a photo cannot be read or sent, it is left out and the push carries on without it.
+- **Photos.** The garment's photo tile (**Add photo**) opens your camera or library on a phone, or the file picker on a computer. **Replace** swaps it and **Remove** clears it. Under **Maker details**, **Detail photos** takes as many as you like with **Add a detail photo**. On an Android phone the picker offers the camera and your files. A link you pasted earlier still shows. When the product is created in Shopify, an uploaded photo goes with it. If a photo cannot be read or sent, it is left out and the push carries on without it.
 - **Quantity** sits beside the price and cost for a single piece. The header and the group label count pieces, so a line ordered twice reads as two. The closed **Maker details** row says what it holds (model, cloth, alterations) instead of counts.
 - **COST** (what you pay the maker) and **RETAIL** (what the customer pays). When the maker's confirmation printed no amount for a piece, the price shows a quiet "No amount printed" and you type it in.
 
@@ -144,6 +144,27 @@ The phone's **Receive** tab also receives custom orders, so the garments can be 
 </ol>
 
 The phone takes no cost. After **Mark received**, anyone who sees costs gets a row, **Final cost: finish on desktop**, while the final cost is not set. It opens the order on the desk, where **Edit receipt** takes the suit or piece cost (see above). An order holds at most a set number of photos, and the phone says **This order already holds as many photos as it can.** when it is full. If Shopify cannot be reached from the phone, it says so and asks you to finish on the desktop.
+
+## A piece that didn't arrive
+
+Sometimes the maker sends an order short. Receive what came, then mark the piece that is missing.
+
+<ol class="steps">
+  <li>On the received order, open the <strong>…</strong> menu and click <strong>A piece didn't arrive</strong>. (When an order has several pieces, each piece also has its own <strong>[piece] didn't arrive</strong> item. A suit counts as one piece.)</li>
+  <li>The sheet asks <strong>Which piece didn't arrive?</strong> and lists the <strong>Pieces here</strong>. Pick the piece and confirm. ThreadCloud says its stock comes off Shopify until you receive it.</li>
+  <li>The piece stays on the order marked <strong>Not here yet</strong>. The order reads <strong>1 piece not here yet</strong> (or "2 pieces not here yet"), and **Received** counts what is in, for example "11 of 12".</li>
+  <li>When the piece lands, open the <strong>…</strong> menu and click <strong>Receive [piece]</strong>. Its stock goes back into Shopify and the count catches up.</li>
+</ol>
+
+A few rules keep the order honest:
+
+- A piece that is not here cannot be picked up, and the order cannot close as picked up while any piece is out.
+- A piece that is already picked up, or is on a Shopify sale, cannot be marked. If the sale was a mistake, refund or cancel it in Shopify.
+- The last piece that is still here cannot be marked. If nothing on the order is here, use **Undo receipt** instead.
+- If Shopify does not take the stock change, nothing changes and the page says so. Try again in a moment.
+- **Undo receipt** clears every mark on the order.
+
+The phone's Receive tab does not have this step. Mark and receive a missing piece on the desk.
 
 ## Picked up and closed
 
