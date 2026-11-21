@@ -51,7 +51,7 @@ export const navigation: NavSection[] = [
     ],
   },
   {
-    title: "ThreadCloud Reps",
+    title: "TC Wholesale",
     items: [
       { href: "/reps/", title: "Start here" },
       { href: "/reps/lines-and-seasons/", title: "Lines and seasons" },
