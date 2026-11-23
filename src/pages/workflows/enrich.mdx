@@ -14,7 +14,7 @@ On every order after parse, before push. The background pass usually runs on its
 </div>
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-17</div>
+<div class="callout-title">Last verified against the app: 2026-11-23</div>
 If a button name here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -236,6 +236,14 @@ For a single product you don't need the window: click <strong>Make showroom imag
 | <strong>Framing</strong> | 4:5, 1:1, 3:4 |
 | <strong>Fill</strong> | 75%, 85%, 92% of the frame |
 | <strong>House notes</strong> | Up to 280 characters. Notes never override colour, construction or the no-invention rules. |
+
+### A colour you have only as a swatch
+
+If a colour has no garment photo of its own, only a swatch, Showroom takes the swatch for the fabric and colour, and borrows the shape from another colour of the same style and the same model that does have a garment photo. It uses only the shape: the other colour's colour is ignored, and lining and button photos are treated as details. Two models that share a style code are different garments, so one never lends its shape to the other. With no other colour to borrow from, it works from the swatch alone. It is made from the same **Make showroom image** action as any other product, not on its own.
+
+### The same style and colour on another order
+
+An approved image stays with its style and colour. When a reorder, a second delivery or a carried-over colour has the same brand, style code, model and colour as a product that already has an approved showroom image, it shows that image and its status chip reads **From** the other order's name, rather than making a new one. A plain **Generate** skips those colours, and the banner says, for example, **4 images queued, 2 already made for the same style and colour**. A reused image has no **Discard**, because it belongs to the other order. Click **Redo showroom image** to make a fresh one for this product. Two brands that happen to share style and colour codes never share an image.
 
 ### Review each image
 
