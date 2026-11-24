@@ -17,13 +17,18 @@ description: How the store and each brand are selling. The Overview with its Bra
 | **Money** | Store financials for a period. See [Money](/planning/money/). |
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-20</div>
+<div class="callout-title">Last verified against the app: 2026-11-23</div>
 If a tab or label here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
 <div class="callout callout-info">
 <div class="callout-title">Who sees it</div>
 Merchandising needs Merchandising access, granted by the account owner in <a href="/settings/users-roles/">Team access</a>.
+</div>
+
+<div class="callout callout-info">
+<div class="callout-title">If Merchandising is not part of your plan</div>
+A store can start on buying alone. Then **Merchandising** in the menu opens the **Buying Plan** and nothing else. The other tabs are greyed out and read **Part of the Merchandising add-on**, and Ask Winston, search and the reports are hidden. Ask ThreadCloud to switch it on.
 </div>
 
 <div class="callout callout-info">
@@ -93,9 +98,10 @@ The store table: one row per brand, the heart of the Overview.
 | **Brand** | Click to open the [brand page](/planning/brand-page/) |
 | **Sold**, **Net sales** | In the period you picked |
 | **Sell-through**, **Fill** | Over the season's life |
-| **On hand**, **Cover** | Now. Cover is weeks of cover, for STOCK and NOS only. |
+| **On hand**, **Cover** | Now. Cover is weeks of cover, for STOCK and NOS only. It counts the last 28 full days, ending last midnight, so it does not move during the day. |
 | **Letter** | The state of the brand letter for the period. See [Brand page](/planning/brand-page/#the-letter). |
 
+- **Brand rows ignore the subcategory filter.** The Sell-through tile and each brand's season sell-through read the whole season across all subcategories, so the rows match the tile and the Seasons page. The category, brand and stock type filters still apply.
 - **Filter brands** narrows the list as you type.
 - **Sort brands** by **Sold**, **Net sales** or **Season sell-through**.
 - **Show all N brands** shows the full list.
@@ -130,7 +136,7 @@ A sale belongs to one event. ThreadCloud picks it in this order: a Shopify order
 
 ### Breakdown
 
-One row per **Category**, **Subcategory** or **Stock type** (pick the cut at the top right). Columns: **Units sold**, **Net sales**, **Units left**, **On hand at cost**, **Sell-through**. Click a column heading to sort. On the Category cut, click a row's arrow to open its subcategories. Click a row's name to filter the whole page to it. **CSV** exports the rows in the order you sorted them. On a date range, the breakdown is by **Season** only.
+One row per **Category**, **Subcategory** or **Stock type** (pick the cut at the top right). Columns: **Units sold**, **Net sales**, **Units left**, **On hand at cost**, **Sold vs on hand**. **Sold vs on hand** is the units sold in the period out of those sold plus those still on hand now. It is not the season sell-through on the Brands table, which counts from what was received, so the two can differ for the same brand and are named differently. When the cost is known for only some of a row's units, its **On hand at cost** carries an asterisk and a line under the table says how many units the cost covers, such as **Lardini: cost covers 50 of 2,000 units on hand.** Click a column heading to sort. On the Category cut, click a row's arrow to open its subcategories. Click a row's name to filter the whole page to it. **CSV** exports the rows in the order you sorted them. On a date range, the breakdown is by **Season** only.
 
 ### Sizes
 

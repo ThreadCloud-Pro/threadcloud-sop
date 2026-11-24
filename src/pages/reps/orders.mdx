@@ -27,7 +27,7 @@ The **Orders** tab lists every order. Each row shows the brand and season, like 
   <li>Add the <strong>confirmation</strong>, <strong>ship notice</strong> and <strong>invoice</strong> as they come in.</li>
 </ol>
 
-The order page has three tabs: **Styles**, **Buyer** and **Brand**. Above them, steps show where the order stands, and a card tells you what needs you next. The order's back link goes to **Orders**. The store is the first row on the **Styles** tab.
+The order page has three tabs across the top: **Styles**, **Buyer** and **Brand**. They stay in view as you scroll. Above them, steps show where the order stands, and a card tells you what needs you next. The order's back link goes to **Orders**. The store is the first row on the **Styles** tab.
 
 ## Pick in the store
 
@@ -36,7 +36,8 @@ The **Styles** tab lists the whole season. Each style shows its codes and price.
 - **Tap the round tick** to pick a style. Tap it again to unpick it.
 - On a picked style, tap **Add sizes, price or a note**. Type the quantity for each size (or one **Qty** when the style has no size run), change **Price each** if the brand agreed a different price, add a **Note**, and press **Save**.
 - Once a style has quantities and a price, it shows the units and their total, like **12 units · 2,868.00 EUR**.
-- **Scan a tag** reads a code or barcode and finds the style. It asks **Which colour** when the code covers several, shows **Colours of this style** so you can tick more or **Add a colour** with a photo of the swatch, then takes sizes per colour with **Next colour**, and **Save**. **Find a style** searches the season by code or name, and a brand's barcodes that are not in this season yet say so.
+- **Scan a tag** finds a style by its tag (see [Scan to order](#scan-to-order)). **Find a style** searches the season by code or name.
+- The sizes are a table, not a list. Sizes run across the top with one box under each, and the table scrolls sideways inside the card when the run is long. On a picked style the sizes show as a read-only table with a **Units** total.
 - A season with no styles reads **No styles yet**, with **Read the line sheet** beside it.
 
 Picking copies the season's wholesale price onto the order, so a later line sheet doesn't reprice an order you're already writing. Quantities are whole numbers up to 999 per size.
@@ -48,11 +49,53 @@ The header counts what's picked, like **Styles, 8 picked**, and adds **2 on this
 The <strong>Note</strong> on a picked style is printed in the buyer's version. Keep private notes on the store page under <strong>Buyers</strong>.
 </div>
 
+## Scan to order
+
+At an appointment you can find a style by its tag instead of scrolling the styles. On the **Styles** tab, press **Scan a tag**. A sheet opens with the camera.
+
+<ol class="steps">
+  <li>Hold the tag in view and press <strong>Scan the tag</strong>. Or type a style code or name under <strong>Or type a code or name</strong>.</li>
+  <li>The phone reads a barcode first, then a printed style code. Both are read on the phone, so this works with no signal (see <a href="/reps/#with-no-signal">With no signal</a>). When there is a signal and the phone could not match the tag, ThreadCloud reads it for you as a last step.</li>
+  <li>The style opens with its photo, name, code, colour and wholesale price, and one row for each size in its run. Press the plus and minus buttons, or type the number. A size never goes below 0.</li>
+  <li>Press <strong>Next</strong> to save and scan the next tag, or <strong>Done</strong> to save and go back to the order.</li>
+</ol>
+
+ThreadCloud matches the tag against this season's styles, by style code and then model code, ignoring capitals, spaces and dashes. A colour printed on the tag narrows it.
+
+| You see | What it means |
+|---|---|
+| The style opens | One match. |
+| **Which colour** | The code is on more than one colour. Pick the colour you mean. |
+| **Search styles**, with the code filled in | Nothing matched. Search by name or a different part of the code. |
+| **Emanuel Berg's barcodes aren't in this season yet.** | The barcode number matched nothing. Scan the printed style code, or search. |
+| **No style in Spring 2027 matches.** | The search found nothing. |
+
+A style saved with every size at 0 still counts as picked, so you can send it to the buyer with or without quantities. If a save does not go through, the sheet says **Did not save. Check the signal and scan it again.** and you can try again.
+
+### The sample is one colour, the style comes in others
+
+The sample on the table is usually one colour. After a scan, the sheet shows the sample's photo, the style name and price, and **Colours of this style** with every colour of that style. The scanned colour is ticked and marked as the sample. Tick the other colours the buyer wants.
+
+If a colour is not on the season yet, press **Add a colour** and add it from its swatch: under **Photograph the swatch with its code showing**, take the photo. ThreadCloud reads the code and name and says **Read from the swatch. Check it before you add.** Check **Colour code** and **Colour name**, fix them if they are wrong, and press **Add colour**. It is added to the season with the sample's name, prices and size run. Adding a colour needs a connection, and offline the sheet says so.
+
+Then press **Sizes**, or **Sizes for 3 colours**, and fill the sizes for each ticked colour in turn (**Colour 2 of 3**). **Next colour** saves one and moves to the next.
+
+The swatch photo stays with that colour. It shows on the buyer's confirm page and goes to the store as a swatch (see [Did it reach the store's TC Retail?](#did-it-reach-the-stores-tc-retail)).
+
 ## Made-to-order pieces
 
-For a brand that makes to order, the **Styles** tab has a **Pieces** group above the styles. A **piece** is one made-to-order garment: garment, fabric, model and options, priced from the brand's [made-to-order form](/reps/lines-and-seasons/#the-made-to-order-form). Press **Add a piece**, choose **Garment**, **Model**, **Fabric** (photograph the fabric if you like), the options (like **Lining** or **Buttons**, with the code from the made-to-order form), the **Sizes** and a **Custom detail**, then press **Add to the order**. For a made to measure piece, press **Made to measure** and fill in **Client**, **Starting size** and **Changes, in cm**.
+When the brand makes garments to order, the **Styles** tab has a **Pieces** group with **Add a piece**. Where the brand's [made-to-order form](/reps/lines-and-seasons/#the-made-to-order-form) allows it there is also **Made to measure**. A **piece** is one made-to-order garment, priced from that form.
 
-The price shows under **Detail and price**. For an agent or a brand selling in house it is the brand's price from the form. A distributor types **Your price to the store, each**. **Make this the usual for** the store saves the choices for next time, and **Clear the usual** removes them. **Remove from the order** takes the piece off. If the form has no prices yet, the page offers **Open the made-to-order form**.
+<ol class="steps">
+  <li>Press <strong>Add a piece</strong>. Fill in the <strong>Client</strong> where the page asks for one (made to measure), and pick the <strong>Garment</strong>.</li>
+  <li>Pick the <strong>Model</strong> and the <strong>Fabric</strong>, then each option the form lists (like <strong>Lining</strong> or <strong>Buttons</strong>, with the code from the made-to-order form). Next to <strong>Fabric</strong>, press <strong>Photograph</strong> and take a photo of the fabric label: ThreadCloud reads its code and selects the fabric. Nothing saves by itself, so check what it picked. If the code is not on the form it says so, for example <strong>Read F-123, not on this form</strong>. It needs a signal; typing and picking always work.</li>
+  <li>Fill in the <strong>Sizes</strong> (for made to measure, the <strong>Starting size</strong> and <strong>Changes, in cm</strong>), a <strong>Custom detail</strong> if there is one, and the price under <strong>Detail and price</strong>. For an agent or a brand selling in house it is the brand's price from the form. A distributor types <strong>Your price to the store, each</strong>.</li>
+  <li>Press <strong>Add to the order</strong>. Open the piece later to change it with <strong>Save</strong>, or press <strong>Remove from the order</strong>.</li>
+</ol>
+
+**A store's usual.** Most pieces for one store repeat the same model and options. Tick **Make this the usual for** the store's name before you save, and the next piece for that store, brand and garment starts from them (**Model and options are the store's usual.**). Fabric, sizes and any option the form marks as picked fresh each time are never copied. **Clear the usual** removes it. If the form has no prices yet, the page offers **Open the made-to-order form**.
+
+The model's code and version travel with the piece. The order sent to the brand shows the version first, and the store's draft order and its purchase order carry the model code and the option line.
 
 ## Send to the buyer
 
@@ -69,7 +112,7 @@ The message lists each style with its colour, codes, price, sizes and quantities
 
 ## The buyer confirms
 
-The link opens a page titled with the brand and season, like **Emanuel Berg, Spring 2027**, with **For** the store, **from** you, and the version. It shows the deadline, units and **Total**, then each style with sizes and prices. At the foot it reads **Invoiced by** the company that invoices the store: the brand for an agent, or your agency for a distributor or a brand selling in house (see [Orders go to, and who invoices the store](/reps/lines-and-seasons/#orders-go-to-and-who-invoices-the-store)). It never shows your commission, your cost or your margin.
+The link opens a page titled with the brand and season, like **Emanuel Berg, Spring 2027**, with **For** the store, **from** you, and the version. Each style shows its colour's photo beside it: the colour's own showroom photo, or its swatch when it has nothing else. Above them, three figures show the deadline (like **Dec 15**, with the weekday in its label), the units and the **Total**, then each style with sizes and prices. At the foot it reads **Invoiced by** the company that invoices the store: the brand for an agent, or your agency for a distributor or a brand selling in house (see [Orders go to, and who invoices the store](/reps/lines-and-seasons/#orders-go-to-and-who-invoices-the-store)). It never shows your commission, your cost or your margin.
 
 The buyer types their name and presses **Confirm this order**, or **Ask for changes**: they choose **Which style** (or **The whole order**), write **What should change?** and press **Send to** your first name. They can't change a quantity or a price: you own every number.
 
@@ -86,7 +129,7 @@ Changing a pick on an order marked <strong>With the brand</strong> keeps that st
 
 ## Did it reach the store's TC Retail?
 
-Once the buyer confirms, ThreadCloud tries to put the order into the store's own ThreadCloud, which is **TC Retail**. When it works, the **Styles** tab shows **In** the store's name and **TC Retail**, with **Reached**. When it can't, the order says why in plain words, for example **Blazer is not on TC Retail, so the order stays with you.** or **The store has not switched on orders from reps yet.** A distributor's order arrives there naming the distributor as the supplier.
+Once the buyer confirms, ThreadCloud tries to put the order into the store's own ThreadCloud, which is **TC Retail**. When it works, the **Styles** tab shows **In** the store's name and **TC Retail**, with **Reached**. When it can't, the order says why in plain words, for example **Blazer is not on TC Retail, so the order stays with you.** or **The store has not switched on orders from reps yet.** A distributor's order arrives there naming the distributor as the supplier. Each colour's real photos come with it. A swatch photo comes marked as a swatch, so the store does not use it as a picture of the garment. Photos made by AI never cross.
 
 Most stores do not use ThreadCloud, so this is normal. The order is still yours and still valid: you send it to the brand as usual. Nothing shows here until the buyer has confirmed.
 
@@ -98,7 +141,7 @@ Once the order has picks, the tab shows **Send to** and the name (for a distribu
 
 Once every pick is saved, you can:
 
-- Press **Download the order** for a spreadsheet of the order, or **Download your PO** if you are a distributor. It lists the agency, rep, store and its address, buyer, **Store's PO number**, brand, season and deadline, then each style, colour, size, quantity, price, **Currency** and **Total**. A distributor's price column reads **Your cost**, and only an owner or admin sees it.
+- Press **Download the order** for a spreadsheet of the order, or **Download your PO** if you are a distributor. A style picked with no quantities still has its own row, with the size and quantity blank. It lists the agency, rep, store and its address, buyer, **Store's PO number**, brand, season and deadline, then each style, colour, size, quantity, price, **Currency** and **Total**. A distributor's price column reads **Your cost**, and only an owner or admin sees it.
 - Press **Email** and the name. Your own mail app opens, addressed to that order email. Attach the downloaded file and send it yourself: ThreadCloud does not send it.
 
 If picks are still saving or waiting on the phone, the page says so and holds these buttons until they are saved.
