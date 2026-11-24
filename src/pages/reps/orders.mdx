@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Doc.astro
 title: Writing an order
-description: Pick styles in the store, add sizes and prices, send the buyer a version to confirm from a link, send the order to the brand or supplier, and add the confirmation, ship notice and invoice they send back.
+description: Pick styles in the store, add sizes and prices, email the buyer a version to confirm from a link, send the order to the brand or supplier, and add the confirmation, ship notice and invoice they send back.
 ---
 
 # Writing an order
@@ -22,7 +22,7 @@ The **Orders** tab lists every order. Each row shows the brand and season, like 
 <ol class="steps">
   <li>On the store, under <strong>Write an order</strong>, tap the brand's season, like <strong>Emanuel Berg, Spring 2027</strong>.</li>
   <li>On the <strong>Styles</strong> tab, <strong>tick</strong> each style the buyer wants, and add sizes, a price or a note. Or press <strong>Scan a tag</strong>.</li>
-  <li>On the <strong>Buyer</strong> tab, press <strong>Send to the buyer</strong>, then <strong>Text</strong>, <strong>Email</strong> or <strong>Copy message</strong>, and send it to the buyer yourself.</li>
+  <li>On the <strong>Buyer</strong> tab, press <strong>Send to the buyer</strong>. ThreadCloud emails the buyer. With only a phone number, press <strong>Prepare the message</strong>, send it by <strong>Text</strong> or <strong>Copy</strong>, then answer <strong>Did you send it?</strong></li>
   <li>When the buyer confirms, on the <strong>Brand</strong> tab (<strong>Supplier</strong> when a supplier receives your orders) press <strong>Download the order</strong>, press <strong>Email</strong> and the name, attach the file, send it, and press <strong>Mark sent to</strong> that name.</li>
   <li>Add the <strong>confirmation</strong>, <strong>ship notice</strong> and <strong>invoice</strong> as they come in.</li>
 </ol>
@@ -99,16 +99,34 @@ The model's code and version travel with the piece. The order sent to the brand 
 
 ## Send to the buyer
 
-On the **Buyer** tab, **To** lists the buyers you have on the store, and **What** shows the version, the picks, the units and the total. Add a **Note to the buyer (optional)** and press **Send to the buyer**, the one main button, at the bottom of the page. The line above it reads **Freezes this order as version 2.** (the next number). Every send is a **version**: version 1, then 2, and so on. A check shows **Sent to the buyer** and **Waiting for the buyer to confirm**, and the order reads **Waiting on the buyer**.
+On the **Buyer** tab, **To** lists the buyers you have on the store, and **What** shows the version, the picks, the units and the total. Add a **Note to the buyer (optional)** and press the one main button at the bottom of the page. Every send is a **version**: version 1, then 2, and so on. What the button says depends on whether the buyer has an email.
 
-<div class="callout callout-warn">
-<div class="callout-title">ThreadCloud doesn't send it for you</div>
-The message appears under <strong>Version 1</strong>, with <strong>Text</strong> and <strong>Email</strong> for each buyer (their name follows the word, or <strong>the buyer</strong>) and <strong>Copy message</strong>. Send it to the buyer yourself, by text, email or WhatsApp. It ends with the link the buyer confirms from.
-</div>
+### The buyer has an email
+
+When the buyer has an email on the store and sending is on, the button reads **Send to the buyer**, and the line above it reads **Emails Sam Ortiz in Example Agency's name, as version 2.** ThreadCloud sends the email itself. It comes from your agency's name followed by **via TC Wholesale**, like **Example Agency via TC Wholesale**. The buyer's replies go to your agency's **Reply email**, which an owner or admin sets under **Your agency** (see [Your agency](/reps/#your-agency)). If the agency has none, replies go to your own sign-in email.
+
+The email has the order as the buyer would read it, and the link to confirm it or ask for changes. The buyer needs no account. Once it goes, the **Buyer** tab shows **Sent**, with a line like **Sent to Sam Ortiz, sam@store.com, Nov 24, 3:05 PM**, and the order reads **Waiting on the buyer**.
+
+An order is marked sent only after the email goes. If it fails, nothing is marked sent and the page says why, for example **The email did not go, so nothing is marked sent. Try again, or use Text or Copy.** Other messages you may see:
+
+| You see | What to do |
+|---|---|
+| **That buyer has no usable email address. Fix it on the store, or use Text or Copy.** | Correct the buyer's email on the store. |
+| **Add a Reply email in Account first, so the buyer's answer reaches you.** | Have an owner or admin add the agency's **Reply email**. |
+| **This order is already being sent.** | Wait for the first send to finish. |
+| **The email to** the address **went, but ThreadCloud could not record it.** | Press **Yes, I sent it** under **Did you send it?** |
+
+### The buyer has only a phone
+
+With no email, or when sending is off, the button reads **Prepare the message**, and the line above it says nothing is marked sent until you say so. The message appears under **Version 1**, with **Text** and **Copy** (**Email** too when sending is off and the buyer has an email). Send it yourself, by text, email or WhatsApp. It ends with the link the buyer confirms from.
+
+Then the page asks **Did you send it?**, with **Yes, I sent it** and **No, not yet**. Yes marks the version sent, and the record reads **Sent by you** with the time. No leaves it a draft, and the page says **Version 1 is still a draft. Nothing is marked sent.**
+
+If you change the order before you send it, the page says **The order changed since you made version 1. Make the message again before you send it.**
 
 The message lists each style with its colour, codes, price, sizes and quantities, and your note, then the total per currency, your name and your agency, and the link. Units with no price are left out of the total, and the message says so.
 
-**Send to the buyer** waits while picks are still on the phone, so a version never goes out without them.
+The send button waits while picks are still on the phone, so a version never goes out without them.
 
 ## The buyer confirms
 
