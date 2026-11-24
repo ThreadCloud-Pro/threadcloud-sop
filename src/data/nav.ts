@@ -54,9 +54,9 @@ export const navigation: NavSection[] = [
     title: "TC Wholesale",
     items: [
       { href: "/reps/", title: "Start here" },
-      { href: "/reps/lines-and-seasons/", title: "Lines and seasons" },
-      { href: "/reps/doors-and-visits/", title: "Doors and visits" },
-      { href: "/reps/territory-and-claims/", title: "Territory, claims and store confirmation" },
+      { href: "/reps/lines-and-seasons/", title: "Brands and seasons" },
+      { href: "/reps/doors-and-visits/", title: "Stores and visits" },
+      { href: "/reps/territory-and-claims/", title: "Territory, claims and store naming" },
       { href: "/reps/orders/", title: "Writing an order" },
       { href: "/reps/earnings/", title: "Earnings" },
       { href: "/reps/help/", title: "Help" },

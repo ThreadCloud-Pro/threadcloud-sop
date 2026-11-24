@@ -1,79 +1,94 @@
 ---
 layout: ../../layouts/Doc.astro
-title: Lines and seasons
-description: Add the brands you represent, open a season, read the linesheet into the season's book, add the brand's photos, set the order deadline and delivery windows, and check the styles the reader was unsure of.
+title: Brands and seasons
+description: Add the brands you sell, say who receives the order and who invoices the store, open a season, read the line sheet, add photos, set the order deadline and delivery windows, and check the styles the reader was unsure of.
 ---
 
-# Lines and seasons
+# Brands and seasons
 
-A **line** is a brand you represent. Each line has **seasons** (SS27, FW27), and each season has a **book**: every style and colour you can sell, with its sizes and prices. You fill the book by reading the brand's linesheet into it.
+A **brand** is a label whose clothes you sell to stores. Each brand has **seasons** (Spring 2027, Fall 2027), and each season holds its **styles**: every style and colour you can sell, with its sizes and prices. You fill a season by reading the brand's **line sheet** into it.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-11-21</div>
+<div class="callout-title">Last verified against the app: 2026-11-24</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell ThreadCloud.
 </div>
 
 ## Quick path
 
 <ol class="steps">
-  <li><strong>Lines</strong> tab: add the brand under <strong>Add a line</strong>.</li>
-  <li>On the line, open a season under <strong>Open a season</strong>.</li>
-  <li>On the season, add the linesheet under <strong>Add a linesheet</strong>: pick its currency, then <strong>Read linesheet</strong>.</li>
-  <li>Add the brand's photos under <strong>Add photos</strong>, if the linesheet didn't bring them.</li>
-  <li>Set the <strong>order deadline</strong> and <strong>delivery windows</strong>.</li>
+  <li><strong>Brands</strong> tab: add the brand under <strong>Add a brand</strong>.</li>
+  <li>On the brand, open a season under <strong>Open a season</strong>.</li>
+  <li>On the season, press <strong>Read the line sheet</strong>: pick its currency, then <strong>Read line sheet</strong>.</li>
+  <li>Add the brand's photos under <strong>Add photos</strong>, if the line sheet didn't bring them.</li>
+  <li>Set the <strong>order deadline</strong> and the <strong>delivery windows</strong>.</li>
   <li>Open <strong>To check</strong> and clear each style the reader was unsure of.</li>
 </ol>
 
-## Add a line
+## Add a brand
 
-On the **Lines** tab, fill in **Add a line**:
+On the **Brands** tab, press **Add a brand** and fill it in:
 
 | Field | What to put |
 |---|---|
 | **Brand** | The brand's name. Required. |
-| **Brand website** | For example brand.com. |
+| **Website** | For example brand.com. |
+| **Who invoices the store** | **The brand (you earn commission)**, **You, as distributor**, or **You, it is your own brand**. This sets which of the fields below show. |
+| **Commission %** | Agents only. Your rate, like 8 or 8.5. Earnings uses it, so set it now. |
+| **Commission is paid** | Agents only: **On shipment**, **On invoice**, or **When the store pays**. |
+| **Wholesale currency** | The three-letter code the brand usually prices in, like EUR. It is the default for this brand's line sheets. A distributor sees **Brand's currency**, and a brand selling in house sees **Currency**. |
 | **Territory** | Where you sell it, for example Ontario and Quebec. |
-| **Commission %** | Your rate, like 8 or 8.5. Earnings uses it, so set it now. |
-| **Brand pays commission** | On shipment, On invoice, or When the store pays. |
-| **Wholesale currency** | The three-letter code the brand usually prices in, like EUR. It's the default for this line's linesheets. |
 
-Press **Add line**. ThreadCloud checks whether the brand is already on ThreadCloud:
+Press **Add brand**. ThreadCloud checks whether the brand is already on ThreadCloud:
 
-- **This brand is already on ThreadCloud. Is it this one?** Press **Yes** with the brand's name if it's the same brand, or **No, a different brand**.
+- **This brand is already on ThreadCloud. Is it this one?** Press **Yes** with the brand's name if it's the same brand, or **A different brand**.
 - **This brand is not on ThreadCloud yet.** Press **Add it to ThreadCloud**, or **Not now**.
 
-Linking the line to its brand on ThreadCloud is how stores will later recognise your orders. A store sees nothing of yours until it confirms it knows you. If you pressed Not now, the line page offers **Check ThreadCloud** to link it later.
+Linking your brand to the one on ThreadCloud is how stores later recognise your orders. A store sees nothing of yours until it names you. If you pressed Not now, the brand page offers **Check ThreadCloud** to link it later.
 
 <div class="callout callout-info">
-<div class="callout-title">Changing a line's terms</div>
-The agency owner can change a line's commission, payout terms or currency: open the line and use **Edit terms**. Earnings already recorded keep the rate they were recorded at; the new terms apply from the next shipment.
+<div class="callout-title">Changing a brand's terms</div>
+An owner or admin can change a brand's commission, payout terms or currency: open the brand and press **Edit**, then **Save terms**. Earnings already recorded keep the rate they were recorded at; the new terms apply from the next shipment. **Remove brand** takes the brand off your list; its seasons, orders and documents are kept.
 </div>
 
-## The brand's contact
+## Orders go to, and who invoices the store
 
-Open a line (**Lines**, then the brand) and find **Send orders to**. It shows where this brand's orders go: the order email, a contact person and a phone. Press **Add the brand's contact** (or **Change contact**), fill in **Order email**, **Contact person** and **Phone**, and press **Save contact**. Anyone in your agency can change it. Orders to this brand use it (see [Send it to the brand](/reps/orders/#send-it-to-the-brand)).
+A brand page holds two facts, and every step of an order prints the right company from them.
+
+| On the brand page | It answers | Default |
+|---|---|---|
+| **Orders go to** | Who receives the order: **The brand**, or **A supplier** you name (a distributor, importer or agency that holds the brand). Its order email, contact and phone sit beside it. | The brand |
+| **Invoices the store** | **The brand**, **The supplier** you named, or **You**. | Set by who you chose when adding the brand: the brand for an agent, you for a distributor |
+
+- **An agent working for the brand:** nothing to change. Orders go to the brand and the brand invoices the store.
+- **An agent working for a supplier:** under **Orders go to**, choose **A supplier** and type the supplier's name, then set **Invoices the store** to **The supplier**. The order page then reads **Supplier** instead of **Brand**, and sends to, and shows the confirmation from, the supplier's name. The buyer's page reads **Invoiced by** the supplier.
+- **A distributor:** you are the supplier. The buyer's page reads **Invoiced by** your agency, and your order to the brand is **Your PO to** the brand.
+- **A brand selling in house:** **Orders go to** is hidden, because you are the brand. The order has no steps to send to a brand, and the buyer's page reads **Invoiced by** your brand.
+
+### Where orders go
+
+Open a brand (**Brands**, then the brand) and find **Orders go to**. It shows the order email, a contact person and a phone. Press **Add the contact** (or **Change contact**), fill in **Order email**, **Contact person** and **Phone**, and press **Save contact**. Anyone in your agency can change it. Orders to this brand, or to its supplier, use it (see [Send it to the brand or supplier](/reps/orders/#send-it-to-the-brand-or-supplier)). This is not your agency's **Reply email**, which is where buyers' answers come to you.
 
 ## Add several brands
 
-If you carry a lot of brands, add them in one go. On the **Lines** tab, find **Add several brands**.
+If you carry a lot of brands, add them in one go. On the **Brands** tab, find **Add several brands**, under your list.
 
 <ol class="steps">
   <li><strong>Paste the brands</strong>, one per line, or choose a <strong>.csv or .xlsx file</strong>. Up to 200 at a time.</li>
   <li>Press <strong>Check brands</strong>. Nothing is added yet.</li>
-  <li><strong>Look at each brand.</strong> A tick links the line to that brand on ThreadCloud. Untick it to add the line without a link. To leave a brand out altogether, take it out of your list and press <strong>Check brands</strong> again.</li>
+  <li><strong>Look at each brand.</strong> A tick links your brand to that brand on ThreadCloud. Untick it to add it without a link. To leave a brand out altogether, take it out of your list and press <strong>Check brands</strong> again.</li>
   <li>Press <strong>Add</strong> with the count. The page reads <strong>12 brands added.</strong></li>
 </ol>
 
-The columns, in this order: **brand**, **website**, **commission %**, **payout** (shipment, invoice or store payment), **currency**. Only the brand is required. A first row headed "brand" is skipped.
+The columns, in this order: **brand**, **website**, **commission %**, **payout** (shipment, invoice or store payment), **currency**. Only the brand is required. A first row headed "brand" is skipped. Every brand added this way is one you sell as an agent; change it afterwards under **Edit**, **Terms**.
 
 On the check, each brand shows one of these:
 
 | You see | What it means |
 |---|---|
-| **On ThreadCloud as** the brand's name | ThreadCloud knows this brand. It is ticked, and the line links to it. |
-| **Did you mean** the brand's name**?** | A close match. Not ticked, so the line is added without a link. Tick it only if it is the same brand. |
-| **New to ThreadCloud** | No match. It is ticked, and the brand is added to ThreadCloud. Untick it to add the line without adding the brand. |
-| **Already in your lines** | You have it. It is skipped. |
+| **On ThreadCloud as** the brand's name | ThreadCloud knows this brand. It is ticked, and your brand links to it. |
+| **Did you mean** the brand's name**?** | A close match. Not ticked, so the brand is added without a link. Tick it only if it is the same brand. |
+| **New to ThreadCloud** | No match. It is ticked, and the brand is added to ThreadCloud. Untick it to add it to your list without adding it to ThreadCloud. |
+| **Already in your brands** | You have it. It is skipped. |
 | **Listed twice** | An earlier row is the same brand. It is skipped. |
 | A message in red, like **Commission is a percent, like 8 or 8.5.** | That row has a value ThreadCloud cannot use. It is skipped. Fix it and check again. |
 
@@ -81,27 +96,27 @@ After adding, any skipped brand is listed with its message. You only ever see th
 
 ## Open a season
 
-On the line, fill in **Open a season**:
+On the brand, press **Open a season** and fill it in:
 
-- **Season code**: letters and digits, like SS27. Spaces are dropped, so "FW 2027" becomes FW2027.
-- **Name**: optional, like Spring Summer 2027.
+- **Season**: the name people say, like Spring 2027.
+- **Code (optional)**: letters and digits, like SS27. Spaces are dropped, so "FW 2027" becomes FW2027. It shows as fine print under the season.
 - **Order deadline**: optional here; you can set or change it later.
 
-Press **Open season**. Each code can be used once per line: a second SS27 reads **SS27 is already on this line.**
+Press **Open season**. Each code can be used once per brand: a second SS27 reads **SS27 is already on this brand.** Seasons are listed and titled in words, like **Spring 2027**, with their styles and order deadline beside them.
 
-## Read the linesheet
+## Read the line sheet
 
-On the season, under **Add a linesheet**:
+On the season, press **Add a line sheet** (or **Read the line sheet** in the setup list):
 
 <ol class="steps">
   <li><strong>Choose the file</strong>: a PDF, a photo (JPEG or PNG), or a spreadsheet (XLSX, XLS or CSV), up to 32 MB.</li>
   <li><strong>Pick the currency</strong> under <strong>Prices on this sheet are in</strong>: CAD, USD, EUR, GBP, or <strong>Other</strong> and type the code (like CHF).</li>
   <li>If retail is in a different currency, open <strong>Retail in another currency</strong> and pick it. Otherwise leave it on <strong>Same</strong>.</li>
   <li>Optional: add a <strong>Note for the reader</strong>, for anything the sheet doesn't say.</li>
-  <li>Press <strong>Read linesheet</strong>. A PDF or photo can take up to a minute; the button reads <strong>Reading the linesheet…</strong></li>
+  <li>Press <strong>Read line sheet</strong>. A PDF or photo can take up to a minute; the button reads <strong>Reading the line sheet…</strong></li>
 </ol>
 
-The result shows above the form, for example **Book updated: 24 added. Unmarked prices read as USD. 18 photos from the sheet added to 24 styles.** Read any notes listed under it.
+The result shows above the form, for example **Styles updated: 24 added. Unmarked prices read as USD. 18 photos from the sheet added to 24 styles.** Read any notes listed under it.
 
 ### How the currency is decided
 
@@ -117,11 +132,11 @@ The currency you pick covers every price the sheet doesn't mark. A currency the 
 
 ThreadCloud never guesses: a price it can't be sure of is left blank and the style is flagged, rather than stored in the wrong currency.
 
-The currency chips start on the one you used for this line's last sheet, or on the line's wholesale currency for a first sheet.
+The currency chips start on the one you used for this brand's last sheet, or on the brand's wholesale currency for a first sheet.
 
 ### Reading a sheet again
 
-When the brand sends a revised sheet, read it into the same season. Styles already in the book are updated, new ones are added, and anything the new sheet doesn't mention is kept. A price list without sizes doesn't wipe the sizes.
+When the brand sends a revised sheet, read it into the same season. Styles already in the season are updated, new ones are added, and anything the new sheet doesn't mention is kept. A price list without sizes doesn't wipe the sizes.
 
 Your work survives a re-read:
 
@@ -132,17 +147,17 @@ To fix a sheet read in the wrong currency, pick the right one and read the sheet
 
 ## Photos
 
-A style with a photo shows it on its row in the book, large on the style's page, and beside it on an order, so you see what you're picking in the store. Photos come in three ways.
+A style with a photo shows it on its row in the season, large on the style's page, and beside it on an order, so you see what you're picking in the store. Photos come in three ways.
 
-### From a PDF linesheet
+### From a PDF line sheet
 
-Reading a PDF linesheet also takes the photos it prints. Each photo goes on the style whose code is printed directly beneath it, and on the colour printed there. When the text beneath names no colour, the photo goes on every colour of that style. The result line says how many, like **18 photos from the sheet added to 24 styles.**
+Reading a PDF line sheet also takes the photos it prints. Each photo goes on the style whose code is printed directly beneath it, and on the colour printed there. When the text beneath names no colour, the photo goes on every colour of that style. The result line says how many, like **18 photos from the sheet added to 24 styles.**
 
-A photo with no style code beneath it is skipped, for example when the sheet prints the code beside the photo or above it. Add those from a folder. If the photos can't be taken from the sheet at all, the book is still read, and the note says **The sheet's photos couldn't be taken from it. Add them from a folder instead.**
+A photo with no style code beneath it is skipped, for example when the sheet prints the code beside the photo or above it. Add those from a folder. If the photos can't be taken from the sheet at all, the styles are still read, and the note says **The sheet's photos couldn't be taken from it. Add them from a folder instead.**
 
 ### From the brand's photo folder
 
-Brands often send a folder of photos named with the style code, like **LD1234_010_front.jpg**. Once the book has styles, the season shows **Add photos**:
+Brands often send a folder of photos named with the style code, like **LD1234_010_front.jpg**. Once the season has styles, it shows **Add photos**:
 
 <ol class="steps">
   <li>Under <strong>Add photos</strong>, choose the photos: a whole folder on a computer, or several from your phone's library.</li>
@@ -174,28 +189,28 @@ If a photo landed on the wrong colour, or is simply wrong, open the style, tap *
 A new season shows **Set up the season**, a path of four steps with a count like **1 of 4**:
 
 1. **Set the order deadline**
-2. **Read the linesheet**
-3. **Add the photos** (optional)
+2. **Read the line sheet**
+3. **Add photos** (optional)
 4. **Check the flagged styles**
 
-The next step is lit and has its own button: **Set dates**, **Add it**, **Add photos** or **Start checking**. A done step shows a tick. A step with something left says what, in amber:
+The next step is lit and has its own button: **Set dates**, **Read**, **Add photos** or **Start checking**. A done step shows a tick. A step with something left says what, in amber:
 
-- Under **Read the linesheet**: **4 styles without wholesale**, **without retail** or **without a size run**, or **Wholesale in CAD and EUR** when the book holds more than one wholesale currency. The button reads **Read again**: read a corrected sheet, or edit the styles.
-- Under **Add the photos**: **No photos yet**, or a count like **18 of 24 styles have a photo**.
-- Under **Check the flagged styles**: a count like **2 styles to check against the linesheet**.
+- Under **Read the line sheet**: **4 styles without wholesale**, **without retail** or **without a size run**, or **Wholesale in CAD and EUR** when the season holds more than one wholesale currency. The button reads **Read again**: read a corrected sheet, or edit the styles.
+- Under **Add photos**: **No photos yet**, or a count like **18 of 48**. Pressing it scrolls to the **Photos** block on the same page.
+- Under **Check the flagged styles**: a count like **2 styles to check**.
 
-When the first, second and fourth steps are done, the path folds into one line, **Ready to sell**. Photos are welcome but never hold a season back. Tap **Setup** on that line to see the steps again.
+When the first, second and fourth steps are done, the path folds into one line, **Ready to sell**. A store's page shows the same state beside a season, **Ready to sell** or a count like **3 to check**. Photos are welcome but never hold a season back. Tap **Setup** on that line to see the steps again.
 
-Below is **The book**: every style with its codes, sizes and prices. Tap a style to open it.
+Below is **Styles**: every style with its codes, sizes and prices. Tap a style to open it. A season with nothing read reads **No styles yet**, with **Read the line sheet** beside it. **See all styles** shows the whole list.
 
 ## Add a style by hand
 
-If the reader missed a style, add it yourself. On the season page, press **Add a style** (it reads "One the linesheet missed"), fill in the form and press **Add style**.
+If the reader missed a style, add it yourself. On the season page, press **Add a style**, fill in the form and press **Add style**.
 
 - Only **Name** is required. **Style code**, **Colour**, **Sizes**, **Wholesale**, **Retail** and **Currency** are optional.
 - **Currency** starts as the season's currency. A price written as **$48** uses it. A price written as **USD 48** or **48,00 EUR** names its own currency.
 - A wholesale or retail price needs a currency. If none is set, the form asks for one.
-- The style joins the season's book like any other.
+- The style joins the season like any other.
 
 ## Season dates
 
@@ -211,23 +226,23 @@ Brands move their dates, so the order deadline and delivery windows can be chang
 - The page shows two empty rows. For more, save and two more appear, up to 8 windows.
 - Windows are listed in the order they ship.
 
-The season page then shows the deadline with the days left, and each window, like **D1 · Jan 15 to Feb 28**.
+The season page then shows the deadline with the days left, and each window, like **D1 · Jan 15 to Feb 28**. On the dates page each window's group is titled **Delivery 1**, **Delivery 2** and so on.
 
 ## Check the styles the reader was unsure of
 
 When the reader isn't sure about a style, it flags it **check** and says why, for example **The sheet does not clearly show the colour name.** or **The sheet does not show the currency of the wholesale price, so it is left blank.**
 
-A flag never stops you picking or sending the style, and the buyer never sees it. But clear them before you sell from the book.
+A flag never stops you picking or sending the style, and the buyer never sees it. But clear them before you sell the season.
 
 <ol class="steps">
-  <li>On the season, tap <strong>To check</strong> above the book.</li>
+  <li>On the season, tap <strong>To check</strong> above the styles.</li>
   <li>Tap a style. The box at the top says why it's flagged.</li>
-  <li>Tap <strong>Open the linesheet ↗</strong> to see the brand's original.</li>
-  <li>If the book matches the sheet, press <strong>Looks right</strong>.</li>
+  <li>Tap <strong>Open the line sheet</strong> to see the brand's original.</li>
+  <li>If the style matches the sheet, press <strong>Looks right</strong>.</li>
   <li>If not, open <strong>Edit</strong>, correct it, and press <strong>Save and mark checked</strong>.</li>
 </ol>
 
-You go back to the book, where the style shows a green **checked** for a moment. When nothing is left, the filter reads **Nothing left to check.**
+You go back to the season, where the style shows a green **checked** for a moment. When nothing is left, the filter reads **Nothing left to check.**
 
 ### Editing a style
 
@@ -237,3 +252,13 @@ You go back to the book, where the style shows a green **checked** for a moment.
 - **Wholesale** and **Retail**: a price like 478.00, with its **Currency** beside it (like USD). A price needs a currency: this is where you fill in a currency the reader left blank.
 
 If someone reads the sheet again while you have a style open, nothing you press is saved, and the page shows the style as read now: **The sheet was read again while this was open, so nothing was saved. Here it is as read now.** Check it again.
+
+## A distributor's prices to stores
+
+Only a distributor sees this. On the brand page, under **On ThreadCloud**, press **Your prices to stores**. You set what stores pay you for the brand: a markup from retail or your own price per style, the currency you bill stores in, and your costs (shipping %, duty %, **Broker, per unit**). A price typed on a style wins. Until you save, the buyer sees **Price to come**.
+
+On a style, **Your cost** shows beside **Store price**. Your cost, and what you keep, show to an owner or admin only. A Member sees the store price only, and no store or brand ever sees your cost.
+
+## The made-to-order form
+
+A brand that makes to order has a **made-to-order form**: its fabrics, prices, models, options and sizes. On the season, open **Made-to-order form** (it shows when the form has a part, or the brand makes to order), then press **Read a file** to read the brand's price guide or swatch photos into it. Open each part (**Fabrics**, **Prices**, **Models**, **Options**, **Sizes**), correct it, and press **Save**: saving marks the part checked. The form reads **Ready to sell** when every part is checked, and **3 of 5 parts checked** until then. A piece on an order is priced from this form (see [Made-to-order pieces](/reps/orders/#made-to-order-pieces)).
