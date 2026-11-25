@@ -9,20 +9,20 @@ description: What it means when receiving says Shopify didn't confirm the stock,
 Every time receiving changes stock in Shopify (a receipt, a reversal, an adjustment, a size fix), ThreadCloud writes the change down first and then waits for Shopify to confirm it. Most of the time Shopify answers in a second and you never see any of this. This page is for the rare time it doesn't.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-11-25</div>
 If a button name here doesn't match what you see, the app changed and this page is stale. Tell the team.
 </div>
 
 <div class="callout callout-info">
 <div class="callout-title">When to use</div>
-When a receiving screen warns "Shopify stock not confirmed", or refuses a size and sends you to <strong>Settings, Automations, Shopify stock</strong>.
+When a receiving screen warns "Shopify stock not confirmed", or refuses a size and sends you to <strong>Settings, Connections &amp; sync, Shopify stock</strong>.
 </div>
 
 ## What you might see while receiving
 
 **After a receipt: "Shopify stock not confirmed on N units"**, with the sizes. The receipt is recorded in ThreadCloud, but Shopify didn't confirm the stock for those sizes. Check those sizes in Shopify before selling them.
 
-**Before a receipt: a refusal that names sizes**, for example "A Shopify stock sync for sizes 48, 50 is unresolved since 20 minutes ago; resolve it under Settings / Automations, Shopify stock, then receive again." An earlier stock change on the same size was never confirmed. ThreadCloud won't stack a new change on top of it until it's settled. **Nothing was booked by this attempt.**
+**Before a receipt: a refusal that names sizes**, for example "A Shopify stock sync for sizes 48, 50 is unresolved since 20 minutes ago; resolve it under Settings / Connections & sync, Shopify stock, then receive again." An earlier stock change on the same size was never confirmed. ThreadCloud won't stack a new change on top of it until it's settled. **Nothing was booked by this attempt.**
 
 <div class="callout callout-danger">
 <div class="callout-title">Don't just enter it again</div>
@@ -31,7 +31,7 @@ An unconfirmed change may still have landed in Shopify. If you re-enter the quan
 
 ## Where to look
 
-Open <strong>Settings</strong>, then **Automations**, and find the **Shopify stock** row. It reads one of:
+Open <strong>Settings</strong>, then **Connections & sync**, then the **Shopify** tab, and find the **Shopify stock** row. It reads one of:
 
 | Row reads | Meaning |
 |---|---|

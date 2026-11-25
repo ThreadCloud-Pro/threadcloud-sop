@@ -12,10 +12,10 @@ The separate **AI &amp; Pipeline** page is gone from the app (its old address no
 - **Brand voice, product description appendix and Showroom looks**: **Settings → Product pages** (tabs **Voice**, **Page details**, **Showroom looks**, **Advanced**).
 - **Occasions, Categories and Always in stock**: **Settings → Catalog → Product facts** tab.
 - **MSRP pricing, purchase order defaults**: **Settings → Buying** (tabs **Pricing**, **Purchase orders**).
-- **FX rate lock**: **Settings → Receiving → Exchange rates** tab.
+- **FX rate lock**: **Settings → Receiving → Checks** tab, under **Exchange rates**.
 
 <div class="callout callout-info">
-<div class="callout-title">Last verified against the app: 2026-10-01</div>
+<div class="callout-title">Last verified against the app: 2026-11-25</div>
 If a section or field here doesn't match the app, it changed and this page is stale. Tell the team.
 </div>
 
@@ -23,8 +23,6 @@ If a section or field here doesn't match the app, it changed and this page is st
 <div class="callout-title">Owner territory</div>
 Changes here affect every product ThreadCloud writes. Only the store owner should change them. Only the Shopify account owner can test, replace or clear the AI key.
 </div>
-
-Use the search box at the top (for example "MSRP", "brand voice", "FX lock") to jump to a setting. Each section opens and closes with its heading.
 
 ## Technical controls
 
@@ -34,7 +32,7 @@ The store's own AI key. It is stored encrypted and never shown again after savin
 
 <ol class="steps">
   <li>Get a key from your AI provider. For Anthropic, keys start with <code>sk-ant-</code>.</li>
-  <li>Click <strong>Replace API key</strong> and paste it. Leaving the field blank keeps the key you have.</li>
+  <li>Paste the new key in the <strong>Replace API key</strong> field. Leaving the field blank keeps the key you have.</li>
   <li>Save.</li>
 </ol>
 
@@ -63,9 +61,9 @@ ThreadCloud chooses these models and updates them after testing on real orders. 
 
 | Field | What it does |
 |---|---|
-| **MSRP Multiplier** | Landed cost × multiplier = suggested retail price |
-| **Round MSRP to nearest** | Rounds the suggested price up to the nearest dollar amount |
-| **Prices end in** | One digit, 0 to 9. When set it replaces the round-up and only ever moves a price up. Leave blank for no ending. |
+| **Markup** | Landed cost × multiplier = suggested retail price |
+| **Round to** | Rounds the suggested price up to the nearest dollar amount |
+| **Price ending** | One digit, 0 to 9. When set it replaces the round-up and only ever moves a price up. Leave blank for no ending. |
 
 **Storefront size guide** links to the size conversions your filters use. See [Storefront](/settings/theme/#size-guide).
 
@@ -80,26 +78,26 @@ How ThreadCloud writes product descriptions on the Enrich tab.
 | **Tone and style** | How the copy should sound. Used in every description. |
 | **Output structure** | What to include, in order, one per line |
 | **Creativity** | **Low** (focused, consistent), **Balanced**, or **High** (creative, varied) |
-| **Words and phrases to avoid** | Words the writer will never use |
+| **Words to avoid** | Words the writer will never use |
 
-**Technical writing rules** (folded) holds advanced instructions for the description writer. Leave them to ThreadCloud unless asked.
+**Advanced writing rules**, on the **Advanced** tab, holds advanced instructions for the description writer. Leave them to ThreadCloud unless asked.
 
-Click **Save writing settings**. Changes apply to new and regenerated descriptions. Existing descriptions stay as they are until regenerated on Enrich.
+Click **Save**. Changes apply to new and regenerated descriptions. Existing descriptions stay as they are until regenerated on Enrich.
 
 ### Product description appendix
 
 | Field | What it does |
 |---|---|
 | **Fit advice** | The "Fit:" line per fit. Leave a field empty for the default. |
-| **Fine print by stock type** | A small note at the foot of the description, chosen by the product's stock type |
-| **Show the supplier "Style:" code on the product page** | When off, the supplier's article, model and colour code stay internal and are not printed for shoppers |
+| **Fine print** | A small note at the foot of the description, chosen by the product's stock type |
+| **Show the supplier style code** | When off, the supplier's article, model and colour code stay internal and are not printed for shoppers |
 
-Click **Save appendix**.
+Click **Save**.
 
 ### Occasions, category mappings and always-in-stock tags
 
-- **Occasion Taxonomy**: the occasions your store uses, each with a short definition so ThreadCloud can classify products.
-- **Category Mappings**: how your own product types map to ThreadCloud categories.
+- **Occasions**: the occasions your store uses, each with a short definition so ThreadCloud can classify products.
+- **Categories**: how your own product types map to ThreadCloud categories.
 - **Always in stock**: the Shopify tags that mark NOS products, for example `nos, core, carryover`.
 
 ### Showroom looks
@@ -115,17 +113,13 @@ The store owner can also save a look straight from the Enrich window with **Save
 
 ## Purchase Orders
 
-- **Require ship and cancel dates on purchase orders**
-- **Default ship window (days)**: days between the order date and the expected ship date
+- **Require ship and cancel dates**
+- **Default ship window**: days between the order date and the expected ship date
 
 ## Receiving
 
-- **FX Rate Lock**: the exchange rate locks automatically on an order's first receipt. Locked rates are never recalculated.
-- **Measurement Baselines**: how many categories have measurement ranges set from receiving.
-
-## Saving
-
-**Save settings** saves the page. **Reset to defaults** puts every field back to ThreadCloud's defaults.
+- **Exchange rates** (on the **Checks** tab): the exchange rate locks automatically on an order's first receipt. Locked rates are never recalculated.
+- **Sample size for each scale** (on the **Measuring** tab): the size your team measures as the sample for each size scale.
 
 ## Common patterns
 
@@ -154,4 +148,4 @@ Try a voice change on a few styles before regenerating a whole order.
 ## Next steps
 
 - [Catalog setup](/settings/legacy-enrichment/): label your existing catalog
-- [Network](/settings/brands-suppliers/): brand-level details used in descriptions
+- [Brand network](/settings/brands-suppliers/): brand-level details used in descriptions
