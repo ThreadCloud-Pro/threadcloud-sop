@@ -157,6 +157,27 @@ When the answers are in a spreadsheet or an email, click **Paste a list**. Paste
 
 A real PO, a reorder PO, the print view, the supplier link and **Message supplier** all use one rule. They go to the people linked to this brand, plus the supplier's people who are linked to no brand at all (an order desk). They never go to a former rep of this brand, or to a person who reps only other brands. A brand with no links and no former reps at its supplier uses the supplier's whole list. A document already sent keeps the people it went to. The sheet, Paste a list and this list read the same rule, so the contact you see is the contact the PO uses.
 
+## Orders from an agency
+
+A rep from an agency that uses TC Wholesale can write an order for you in the store and send you a recap to confirm. Once you have confirmed that agency for the brand and switched on **Bring confirmed orders in**, every order you confirm with them comes into ThreadCloud by itself, as a draft order. Nobody retypes it. Only the account owner can do this.
+
+<ol class="steps">
+  <li>From <strong>Network</strong>, open <strong>Agency confirmations</strong>.</li>
+  <li>If the agency is under <strong>Needs you</strong> (it reads "<em>agency</em> says they represent <em>brand</em>"), press <strong>Confirm</strong>. If they do not represent that brand for you, press <strong>Not us</strong>. If the agency has not asked, use <strong>Name the agency for a brand</strong> to name it yourself.</li>
+  <li>Under <strong>Your answers</strong>, find the agency and brand and press <strong>Bring confirmed orders in</strong>. The row then reads <strong>Orders you confirm with them come into ThreadCloud as draft POs.</strong></li>
+</ol>
+
+From then on:
+
+- An order arrives only after you confirm the rep's recap. Orders confirmed before you switched it on do not come in.
+- It arrives as a draft order for that brand and season, with the brand's photos from the rep's book where there are any. Check it, then enrich it and send the PO like any other order.
+- If the rep sends you a changed version and you confirm it, the draft follows the change, while its PO has not gone out.
+- You must carry the brand in ThreadCloud. If you do not, the order stays with the agency, and the rep sees why.
+- A recap priced in more than one currency does not come in, so ask the rep for one currency per order.
+- To stop, press **Stop bringing orders in**. The row then reads **Orders you confirm with them stay with them.** Orders already in ThreadCloud stay where they are.
+
+If the page says **Your store is not registered with the ThreadCloud network yet, so agencies cannot ask you to confirm them.**, ask Winston in **Help**.
+
 ## Details from your agency
 
 If one of your brands comes through an agency that uses TC Wholesale, and you have confirmed that agency, you can copy its current details into your own contacts. Open **Agency confirmations**, a page under **Network** (the page where you also name the agency for a brand). A confirmed agency shows as **From** its name, with what it shares: its name, website, phone, order email and address, and the name and email of the people who are your buyer's contact there. A person's phone shows only if they chose to share it.
