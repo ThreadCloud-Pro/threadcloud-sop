@@ -68,7 +68,7 @@ When you pick a date range, a second button beside it names the season shown nex
 
 ### Filters
 
-Click **+ Filter** to add a filter for **Brand**, **Category** or **Stock type**. Each filter becomes a chip. Click a chip to change it, or **×** to remove it. Stock type options are **Seasonal MTO**, **Seasonal Stock**, **Never Out of Stock** and **Special Orders**, plus **Unclassified** for products with no stock type.
+Click **+ Filter** to add a filter for **Brand**, **Category** or **Stock type**. Each filter becomes a chip. Click a chip to change it, or **×** to remove it. Stock type options are **Booking**, **Seasonal Stock**, **Never Out of Stock** and **Special Orders**, plus **Unclassified** for products with no stock type.
 
 ### Search and the gear
 
@@ -111,7 +111,7 @@ The store table: one row per brand, the heart of the Overview.
 
 Two short sections sit under the figures, each a single bar split into the stock types, with the amounts and shares listed beneath it.
 
-- **Sales by stock type** splits the window's net sales (for example MTO, STOCK, NOS and SPECIAL). It reads **No sales in this window.** when there are none.
+- **Sales by stock type** splits the window's net sales (for example Booking, STOCK, NOS and Customer). It reads **No sales in this window.** when there are none.
 - **Purchases at cost by stock type**, headed with the season (for example "· FW-26"), splits what the season's orders cost. It reads "N units have no cost" while some units are uncosted, and **Nothing is on order for this season.** when there is nothing. **Includes estimated FX** appears where an estimated exchange rate was used.
 
 A split that can't be proved shows the sentence the page states for its cause, never a guess.
@@ -213,6 +213,28 @@ If no order exists for the season yet, the delivery drill says so. If the store 
 
 Winston answers questions about what sold, what is on hand, how a season or brand is doing, and what is on order or arriving. For how to use ThreadCloud itself, use the Help desk (see [Help and Winston](/help/)).
 
+### What Ask Winston can and cannot answer
+
+He answers from your store's own figures and nothing else, so some questions have a better home.
+
+| You want to know | Ask Winston? | Where to look instead |
+|---|---|---|
+| Best brands by units or net sales, a season or a date range | Yes | |
+| Weekly sell-through for a brand, season or category | Yes, in units | Money by week is not one read; ask for a date range at a time |
+| Bought against sold by size | Yes | |
+| Stock on hand today, in units and value, and past-season stock | Yes | [Stock](/planning/stock/) |
+| What is arriving this week, and which POs are late | Yes | [Logistics](/workflows/logistics/) |
+| Products missing composition, origin, care or photos | Yes | [Enrich](/workflows/enrich/) |
+| Gross margin | For a whole season, or one brand at a time | He does not list margin for every brand in one answer |
+| Weeks of cover | For STOCK and NOS | Booking products are not covered |
+| Price changes on a product | What was recorded | An empty list does not prove the price never moved |
+| Budget and open-to-buy left | No | [Budget & OTB](/planning/budget-otb/) |
+| What to reorder | He gives the figures, not the decision | [Reorder](/workflows/reorder/) |
+| Who bought it, or which salesperson sold it | No | ThreadCloud does not hold the customer or the salesperson on a sale |
+| What you owe a brand and when | No | Your accounting system |
+| How your store compares with others | Never | He reads one store, yours |
+| How to do something in ThreadCloud | No | Ask Winston in **Help**, in the corner of any screen |
+
 ## More reports (⋯)
 
 The **⋯** at the end of the tab row opens the older reports. They keep their own tab row.
@@ -236,7 +258,7 @@ If numbers look stale, open [Settings](/settings/store-health/) and read the **S
 
 ## Stock type, and where to set it
 
-Every product has a stock type (MTO, STOCK, NOS or SPECIAL), and Merchandising reads sales, purchases and the season figures by it. To change a live product's stock type, buying staff can use the **Stock type** row on a style's page or the **Stock type** row on the brand's About room. See [Network](/settings/brands-suppliers/#set-a-live-products-stock-type). Past sales keep the type they sold under until **Rebuild sales history** (Settings, Automations).
+Every product has a stock type (Booking, STOCK, NOS or Customer), and Merchandising reads sales, purchases and the season figures by it. To change a live product's stock type, buying staff can use the **Stock type** row on a style's page or the **Stock type** row on the brand's About room. See [Brand network](/settings/brands-suppliers/#set-a-live-products-stock-type). Past sales keep the type they sold under until **Rebuild sales history** (Settings, Automations).
 
 ## Monday morning review
 

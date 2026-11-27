@@ -66,7 +66,7 @@ export const navigation: NavSection[] = [
     title: "Settings",
     items: [
       { href: "/settings/store-health/", title: "Settings and store health" },
-      { href: "/settings/brands-suppliers/", title: "Network" },
+      { href: "/settings/brands-suppliers/", title: "Brand network" },
       { href: "/settings/brand-fit/", title: "Brand fit" },
       { href: "/settings/delivery-windows/", title: "Delivery calendar" },
       { href: "/settings/legacy-enrichment/", title: "Catalog setup" },
